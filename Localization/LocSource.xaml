@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--  
+    MainView
+    -->
+
+    <sys:String x:Key="LOCThemeModifier">ThemeModifier</sys:String>
+    
+    <!--  
+    ThemeModifierSettingsView
+    -->
+
+    <sys:String x:Key="LOCThemeModifierPick">pick</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">restore</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
+
+</ResourceDictionary>

@@ -9,151 +9,178 @@
     <TabControl Margin="20">
 
         <TabItem Header="Edit theme">
+            <ScrollViewer>
+                <Grid Grid.ColumnSpan="3">
 
-            <Grid Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="275" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="275" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="270" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="270" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="40" />
-                </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource ControlBackgroundBrush}" Name="tbControlBackgroundBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">ControlBackgroundBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource ControlBackgroundBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">ControlBackgroundBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrush}" Name="tbTextBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">TextBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource TextBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">TextBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDarker}" Name="tbTextBrushDarker"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">TextBrushDarker</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource TextBrushDarker}"></TextBlock>
-                    <Label Margin="10,0" Width="165">TextBrushDarker</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDark}" Name="tbTextBrushDark"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">TextBrushDark</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource TextBrushDark}"></TextBlock>
-                    <Label Margin="10,0" Width="165">TextBrushDark</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrush}" Name="tbNormalBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">NormalBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource NormalBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">NormalBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrushDark}" Name="tbNormalBrushDark"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">NormalBrushDark</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource NormalBrushDark}"></TextBlock>
-                    <Label Margin="10,0" Width="165">NormalBrushDark</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBorderBrush}" Name="tbNormalBorderBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">NormalBorderBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource NormalBorderBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">NormalBorderBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource HoverBrush}" Name="tbHoverBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">HoverBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource HoverBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">HoverBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource GlyphBrush}" Name="tbGlyphBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">GlyphBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource GlyphBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">GlyphBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource HighlightGlyphBrush}" Name="tbHighlightGlyphBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">HighlightGlyphBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource HighlightGlyphBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">HighlightGlyphBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBorderBrush}" Name="tbPopupBorderBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">PopupBorderBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource PopupBorderBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">PopupBorderBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource TooltipBackgroundBrush}" Name="tbTooltipBackgroundBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">TooltipBackgroundBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource TooltipBackgroundBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">TooltipBackgroundBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource ButtonBackgroundBrush}" Name="tbButtonBackgroundBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">ButtonBackgroundBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource ButtonBackgroundBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">ButtonBackgroundBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource GridItemBackgroundBrush}" Name="tbGridItemBackgroundBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">GridItemBackgroundBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource GridItemBackgroundBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">GridItemBackgroundBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource PanelSeparatorBrush}" Name="tbPanelSeparatorBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">PanelSeparatorBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource PanelSeparatorBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">PanelSeparatorBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBackgroundBrush}" Name="tbPopupBackgroundBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">PopupBackgroundBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource PopupBackgroundBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">PopupBackgroundBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource PositiveRatingBrush}" Name="tbPositiveRatingBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">PositiveRatingBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource PositiveRatingBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">PositiveRatingBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource NegativeRatingBrush}" Name="tbNegativeRatingBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">NegativeRatingBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource MixedRatingBrush}" Name="tbMixedRatingBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">MixedRatingBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" VerticalAlignment="Center" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource PositiveRatingBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">NegativeRatingBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="0">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource ExpanderBackgroundBrush}" Name="tbExpanderBackgroundBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">ExpanderBackgroundBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="2">
+                        <TextBlock Height="28" Width="28" Background="{DynamicResource WindowBackgourndBrush}" Name="tbWindowBackgourndBrush"></TextBlock>
+                        <Label Margin="10,0" Width="130" FontSize="10">WindowBackgourndBrush</Label>
+                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
+                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                    </StackPanel>
 
-                <!--
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="0">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource MixedRatingBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">MixedRatingBrush</Label>
-                    <Button Click="Button_Click" VerticalAlignment="Center" Width="50">pick</Button>
-                </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="2">
-                    <TextBlock Height="32" Width="32" Background="{DynamicResource ExpanderBackgroundBrush}"></TextBlock>
-                    <Label Margin="10,0" Width="165">ExpanderBackgroundBrush</Label>
-                    <Button Click="Button_Click">pick</Button>
-                </StackPanel>
-                -->
-
-                <Button Grid.Row="9" Grid.Column="2" Name="btRestore" Content="Restore default" Click="BtRestore_Click" VerticalAlignment="Center"/>
-            </Grid>
+                    <Button Grid.Row="11" Grid.Column="2" Name="btRestore" Content="{DynamicResource LOCThemeModifierRestoreDefault}" Click="BtRestore_Click" VerticalAlignment="Center"/>
+                </Grid>
+            </ScrollViewer>
         </TabItem>
 
         <TabItem Header="View">
@@ -254,5 +281,5 @@
             </Grid>
         </TabItem>
     </TabControl>
-    
+
 </UserControl>

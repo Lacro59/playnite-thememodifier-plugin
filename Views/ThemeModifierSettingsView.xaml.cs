@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ThemeModifier.Models;
+using ThemeModifier.Services;
 
 namespace ThemeModifier.Views
 {
@@ -45,82 +46,31 @@ namespace ThemeModifier.Views
 
                 tbControl.Background = new SolidColorBrush(color);
 
-                SetColor(lControl.Content.ToString(), color);
+                ThemeClass.SetColor(lControl.Content.ToString(), color, settings);
             }
         }
 
-        private void SetColor (string Name, Color color)
+        private void ButtonRestore_Click(object sender, RoutedEventArgs e)
         {
-            IntegrationUI ui = new IntegrationUI();
-            List<ResourcesList> resourcesLists = new List<ResourcesList>();
-            resourcesLists.Add(new ResourcesList { Key = Name, Value = new SolidColorBrush(color) });
-            ui.AddResources(resourcesLists);
+            TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
+            Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
-            switch (Name)
-            {
-                case "ControlBackgroundBrush":
-                    settings.ControlBackgroundBrush_Edit = color.ToString();
-                    break;
-                case "TextBrush":
-                    settings.TextBrush_Edit = color.ToString();
-                    break;
-                case "TextBrushDarker":
-                    settings.TextBrushDarker_Edit = color.ToString();
-                    break;
-                case "TextBrushDark":
-                    settings.TextBrushDark_Edit = color.ToString();
-                    break;
-                case "NormalBrush":
-                    settings.NormalBrush_Edit = color.ToString();
-                    break;
-                case "NormalBrushDark":
-                    settings.NormalBrushDark_Edit = color.ToString();
-                    break;
-                case "NormalBorderBrush":
-                    settings.NormalBorderBrush_Edit = color.ToString();
-                    break;
-                case "HoverBrush":
-                    settings.HoverBrush_Edit = color.ToString();
-                    break;
-                case "GlyphBrush":
-                    settings.GlyphBrush_Edit = color.ToString();
-                    break;
-                case "HighlightGlyphBrush":
-                    settings.HighlightGlyphBrush_Edit = color.ToString();
-                    break;
-                case "PopupBorderBrush":
-                    settings.PopupBorderBrush_Edit = color.ToString();
-                    break;
-                case "TooltipBackgroundBrush":
-                    settings.TooltipBackgroundBrush_Edit = color.ToString();
-                    break;
-                case "ButtonBackgroundBrush":
-                    settings.ButtonBackgroundBrush_Edit = color.ToString();
-                    break;
-                case "GridItemBackgroundBrush":
-                    settings.GridItemBackgroundBrush_Edit = color.ToString();
-                    break;
-                case "PanelSeparatorBrush":
-                    settings.PanelSeparatorBrush_Edit = color.ToString();
-                    break;
-                case "PopupBackgroundBrush":
-                    settings.PopupBackgroundBrush_Edit = color.ToString();
-                    break;
-                case "PositiveRatingBrush":
-                    settings.PositiveRatingBrush_Edit = color.ToString();
-                    break;
-                case "NegativeRatingBrush":
-                    settings.NegativeRatingBrush_Edit = color.ToString();
-                    break;
-                case "MixedRatingBrush":
-                    settings.MixedRatingBrush_Edit = color.ToString();
-                    break;
-            }
+
+            ThemeElement finded = ThemeDefault.Find(x => x.name == lControl.Content.ToString());
+
+            tbControl.Background = finded.color;
+
+            ThemeClass.SetColor(lControl.Content.ToString(), null, settings, finded.color);
         }
 
         private void BtRestore_Click(object sender, RoutedEventArgs e)
         {
+            ThemeClass.RestoreColor(ThemeDefault, settings);
 
+            foreach (ThemeElement themeElement in ThemeDefault)
+            {
+                ((TextBlock)this.FindName("tb" + themeElement.name)).Background = themeElement.color;
+            }
         }
     }
 }

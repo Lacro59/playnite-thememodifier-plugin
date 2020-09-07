@@ -12,6 +12,8 @@ namespace ThemeModifier
     {
         private readonly ThemeModifier plugin;
 
+        public bool EnableCheckVersion { get; set; } = true;
+
         public string ControlBackgroundBrush_Edit { get; set; } = string.Empty;
         public string TextBrush_Edit { get; set; } = string.Empty;
         public string TextBrushDarker_Edit { get; set; } = string.Empty;
@@ -31,6 +33,8 @@ namespace ThemeModifier
         public string PositiveRatingBrush_Edit { get; set; } = string.Empty;
         public string NegativeRatingBrush_Edit { get; set; } = string.Empty;
         public string MixedRatingBrush_Edit { get; set; } = string.Empty;
+        public string ExpanderBackgroundBrush_Edit { get; set; } = string.Empty;
+        public string WindowBackgourndBrush_Edit { get; set; } = string.Empty;
 
         // Playnite serializes settings object to a JSON object and saves it as text file.
         // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
@@ -72,6 +76,8 @@ namespace ThemeModifier
                 PositiveRatingBrush_Edit = savedSettings.PositiveRatingBrush_Edit;
                 NegativeRatingBrush_Edit = savedSettings.NegativeRatingBrush_Edit;
                 MixedRatingBrush_Edit = savedSettings.MixedRatingBrush_Edit;
+                ExpanderBackgroundBrush_Edit = savedSettings.ExpanderBackgroundBrush_Edit;
+                WindowBackgourndBrush_Edit = savedSettings.WindowBackgourndBrush_Edit;
             }
         }
 

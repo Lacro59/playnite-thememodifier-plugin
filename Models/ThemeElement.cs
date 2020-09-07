@@ -10,6 +10,6 @@ namespace ThemeModifier.Models
     public class ThemeElement
     {
         public string name { get; set; }
-        public Color color { get; set; }
+        public dynamic color { get; set; }
     }
 }
