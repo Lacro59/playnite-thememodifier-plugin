@@ -15,17 +15,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ThemeModifier.Models;
 
 namespace ThemeModifier.Views
 {
     public partial class ThemeModifierSettingsView : UserControl
     {
         private ThemeModifierSettings settings;
+        private List<ThemeElement> ThemeDefault;
 
 
-        public ThemeModifierSettingsView(ThemeModifierSettings settings)
+        public ThemeModifierSettingsView(ThemeModifierSettings settings, List<ThemeElement> ThemeDefault)
         {
             this.settings = settings;
+            this.ThemeDefault = ThemeDefault;
 
             InitializeComponent();
         }
@@ -115,7 +118,9 @@ namespace ThemeModifier.Views
             }
         }
 
+        private void BtRestore_Click(object sender, RoutedEventArgs e)
+        {
 
-
+        }
     }
 }

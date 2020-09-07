@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ThemeElement.cs" />
     <Compile Include="ThemeModifier.cs" />
     <Compile Include="ThemeModifierSettings.cs" />
     <Compile Include="Views\ThemeModifierSettingsView.xaml.cs">
@@ -252,7 +253,6 @@
     <None Include="Resources\PlayniteResources\Playnite.Common.dll" />
     <None Include="Resources\PlayniteResources\Playnite.dll" />
     <None Include="Resources\PluginCommon.dll" />
-    <None Include="Resources\PluginCommon.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

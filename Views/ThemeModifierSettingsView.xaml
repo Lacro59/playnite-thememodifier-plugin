@@ -27,7 +27,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
@@ -151,6 +151,8 @@
                     <Button Click="Button_Click">pick</Button>
                 </StackPanel>
                 -->
+
+                <Button Grid.Row="9" Grid.Column="2" Name="btRestore" Content="Restore default" Click="BtRestore_Click" VerticalAlignment="Center"/>
             </Grid>
         </TabItem>
 

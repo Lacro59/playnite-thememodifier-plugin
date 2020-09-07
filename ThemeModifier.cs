@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ThemeModifier.Models;
 using ThemeModifier.Views;
 
 namespace ThemeModifier
@@ -17,14 +18,38 @@ namespace ThemeModifier
     public class ThemeModifier : Plugin
     {
         private static readonly ILogger logger = LogManager.GetLogger();
+        private static IResourceProvider resources = new ResourceProvider();
 
         private ThemeModifierSettings settings { get; set; }
+
+        private List<ThemeElement> ThemeDefault = new List<ThemeElement>();
 
         public override Guid Id { get; } = Guid.Parse("ec2f4013-17e6-428a-b8a9-5e34a3b80009");
 
         public ThemeModifier(IPlayniteAPI api) : base(api)
         {
             settings = new ThemeModifierSettings(this);
+
+            ThemeDefault.Add(new ThemeElement { name = "ControlBackgroundBrush", color = (Color)resources.GetResource("ControlBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "TextBrush", color = (Color)resources.GetResource("TextBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "TextBrushDarker", color = (Color)resources.GetResource("TextBrushDarker") });
+            ThemeDefault.Add(new ThemeElement { name = "TextBrushDark", color = (Color)resources.GetResource("TextBrushDark") });
+            ThemeDefault.Add(new ThemeElement { name = "NormalBrush", color = (Color)resources.GetResource("NormalBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "NormalBrushDark", color = (Color)resources.GetResource("NormalBrushDark") });
+            ThemeDefault.Add(new ThemeElement { name = "NormalBorderBrush", color = (Color)resources.GetResource("NormalBorderBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "HoverBrush", color = (Color)resources.GetResource("HoverBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "GlyphBrush", color = (Color)resources.GetResource("GlyphBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "HighlightGlyphBrush", color = (Color)resources.GetResource("HighlightGlyphBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "PopupBorderBrush", color = (Color)resources.GetResource("PopupBorderBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "TooltipBackgroundBrush", color = (Color)resources.GetResource("TooltipBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "ButtonBackgroundBrush", color = (Color)resources.GetResource("ButtonBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "GridItemBackgroundBrush", color = (Color)resources.GetResource("GridItemBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "PanelSeparatorBrush", color = (Color)resources.GetResource("PanelSeparatorBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "PopupBackgroundBrush", color = (Color)resources.GetResource("PopupBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "PositiveRatingBrush", color = (Color)resources.GetResource("PositiveRatingBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "NegativeRatingBrush", color = (Color)resources.GetResource("NegativeRatingBrush") });
+            ThemeDefault.Add(new ThemeElement { name = "MixedRatingBrush", color = (Color)resources.GetResource("MixedRatingBrush") });
+
 
             IntegrationUI ui = new IntegrationUI();
             List<ResourcesList> resourcesLists = new List<ResourcesList>();
@@ -59,14 +84,6 @@ namespace ThemeModifier
                 {
                     Key = "TextBrushDark",
                     Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDark_Edit))
-                });
-            }
-            if (!settings.NormalBrush_Edit.IsNullOrEmpty())
-            {
-                resourcesLists.Add(new ResourcesList
-                {
-                    Key = "NormalBrush",
-                    Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrush_Edit))
                 });
             }
             if (!settings.NormalBrush_Edit.IsNullOrEmpty())
@@ -254,7 +271,7 @@ namespace ThemeModifier
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            return new ThemeModifierSettingsView(settings);
+            return new ThemeModifierSettingsView(settings, ThemeDefault);
         }
     }
 }
