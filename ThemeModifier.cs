@@ -6,15 +6,10 @@ using PluginCommon;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
-using System.Windows.Media;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
 using ThemeModifier.Views;
@@ -31,6 +26,7 @@ namespace ThemeModifier
         private List<ThemeElement> ThemeDefault = new List<ThemeElement>();
 
         public override Guid Id { get; } = Guid.Parse("ec2f4013-17e6-428a-b8a9-5e34a3b80009");
+
 
         public ThemeModifier(IPlayniteAPI api) : base(api)
         {
@@ -58,6 +54,7 @@ namespace ThemeModifier
 
 
             EventManager.RegisterClassHandler(typeof(Button), Button.ClickEvent, new RoutedEventHandler(OnButtonCancelClick));
+
 
             // Default values
             ThemeDefault.Add(new ThemeElement { name = "ControlBackgroundBrush", color = resources.GetResource("ControlBackgroundBrush") });
@@ -91,38 +88,19 @@ namespace ThemeModifier
         {
             return new List<ExtensionFunction>
             {
-                //new ExtensionFunction(
-                //    "Execute function from GenericPlugin",
-                //    () =>
-                //    {
-                //        // Add code to be execute when user invokes this menu entry.
-                //        PlayniteApi.Dialogs.ShowMessage("Code executed from a plugin!");
-                //    })
+
             };
         }
 
-        private T FindParent<T>(DependencyObject child) where T : DependencyObject
-        {
-            T parent = VisualTreeHelper.GetParent(child) as T;
-
-            if (parent != null)
-            {
-                return parent;
-            }
-            else
-            {
-                return FindParent<T>(VisualTreeHelper.GetParent(child));
-            }
-        }
         private void OnButtonCancelClick(object sender, RoutedEventArgs e)
         {
-            string ButtonName = "";
+            string ButtonName = string.Empty;
             try
             {
                 ButtonName = ((Button)sender).Name;
                 if (ButtonName == "ButtonCancel")
                 {
-                    if ((string)FindParent<WindowBase>((Button)sender).GetValue(AutomationProperties.AutomationIdProperty) == "WindowSettings")
+                    if ((string)Tools.FindParent<WindowBase>((Button)sender).GetValue(AutomationProperties.AutomationIdProperty) == "WindowSettings")
                     {
                         var savedSettings = this.LoadPluginSettings<ThemeModifierSettings>();
                         ThemeClass.RestoreColor(ThemeDefault, settings);

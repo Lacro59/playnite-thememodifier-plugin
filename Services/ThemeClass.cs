@@ -1,9 +1,6 @@
 ﻿using PluginCommon;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using ThemeModifier.Models;
 
@@ -13,162 +10,176 @@ namespace ThemeModifier.Services
     {
         public static void SetColor(string name, Color? color, ThemeModifierSettings settings, dynamic colorDefault = null)
         {
-            IntegrationUI ui = new IntegrationUI();
-            List<ResourcesList> resourcesLists = new List<ResourcesList>();
-            
-            string colorString = string.Empty;
-            if (color != null)
+            try
             {
-                colorString = color.ToString();
-                resourcesLists.Add(new ResourcesList { Key = name, Value = new SolidColorBrush((Color)color) });
-            }
-            else if (colorDefault != null)
-            {
-                resourcesLists.Add(new ResourcesList { Key = name, Value = colorDefault });
-            }
+                IntegrationUI ui = new IntegrationUI();
+                List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
-            ui.AddResources(resourcesLists);
+                string colorString = string.Empty;
+                if (color != null)
+                {
+                    colorString = color.ToString();
+                    resourcesLists.Add(new ResourcesList { Key = name, Value = new SolidColorBrush((Color)color) });
+                }
+                else if (colorDefault != null)
+                {
+                    resourcesLists.Add(new ResourcesList { Key = name, Value = colorDefault });
+                }
 
-            switch (name)
+                ui.AddResources(resourcesLists);
+
+                switch (name)
+                {
+                    case "ControlBackgroundBrush":
+                        settings.ControlBackgroundBrush_Edit = colorString;
+                        break;
+                    case "TextBrush":
+                        settings.TextBrush_Edit = colorString;
+                        break;
+                    case "TextBrushDarker":
+                        settings.TextBrushDarker_Edit = colorString;
+                        break;
+                    case "TextBrushDark":
+                        settings.TextBrushDark_Edit = colorString;
+                        break;
+                    case "NormalBrush":
+                        settings.NormalBrush_Edit = colorString;
+                        break;
+                    case "NormalBrushDark":
+                        settings.NormalBrushDark_Edit = colorString;
+                        break;
+                    case "NormalBorderBrush":
+                        settings.NormalBorderBrush_Edit = colorString;
+                        break;
+                    case "HoverBrush":
+                        settings.HoverBrush_Edit = colorString;
+                        break;
+                    case "GlyphBrush":
+                        settings.GlyphBrush_Edit = colorString;
+                        break;
+                    case "HighlightGlyphBrush":
+                        settings.HighlightGlyphBrush_Edit = colorString;
+                        break;
+                    case "PopupBorderBrush":
+                        settings.PopupBorderBrush_Edit = colorString;
+                        break;
+                    case "TooltipBackgroundBrush":
+                        settings.TooltipBackgroundBrush_Edit = colorString;
+                        break;
+                    case "ButtonBackgroundBrush":
+                        settings.ButtonBackgroundBrush_Edit = colorString;
+                        break;
+                    case "GridItemBackgroundBrush":
+                        settings.GridItemBackgroundBrush_Edit = colorString;
+                        break;
+                    case "PanelSeparatorBrush":
+                        settings.PanelSeparatorBrush_Edit = colorString;
+                        break;
+                    case "PopupBackgroundBrush":
+                        settings.PopupBackgroundBrush_Edit = colorString;
+                        break;
+                    case "PositiveRatingBrush":
+                        settings.PositiveRatingBrush_Edit = colorString;
+                        break;
+                    case "NegativeRatingBrush":
+                        settings.NegativeRatingBrush_Edit = colorString;
+                        break;
+                    case "MixedRatingBrush":
+                        settings.MixedRatingBrush_Edit = colorString;
+                        break;
+                }
+            }
+            catch (Exception ex)
             {
-                case "ControlBackgroundBrush":
-                    settings.ControlBackgroundBrush_Edit = colorString;
-                    break;
-                case "TextBrush":
-                    settings.TextBrush_Edit = colorString;
-                    break;
-                case "TextBrushDarker":
-                    settings.TextBrushDarker_Edit = colorString;
-                    break;
-                case "TextBrushDark":
-                    settings.TextBrushDark_Edit = colorString;
-                    break;
-                case "NormalBrush":
-                    settings.NormalBrush_Edit = colorString;
-                    break;
-                case "NormalBrushDark":
-                    settings.NormalBrushDark_Edit = colorString;
-                    break;
-                case "NormalBorderBrush":
-                    settings.NormalBorderBrush_Edit = colorString;
-                    break;
-                case "HoverBrush":
-                    settings.HoverBrush_Edit = colorString;
-                    break;
-                case "GlyphBrush":
-                    settings.GlyphBrush_Edit = colorString;
-                    break;
-                case "HighlightGlyphBrush":
-                    settings.HighlightGlyphBrush_Edit = colorString;
-                    break;
-                case "PopupBorderBrush":
-                    settings.PopupBorderBrush_Edit = colorString;
-                    break;
-                case "TooltipBackgroundBrush":
-                    settings.TooltipBackgroundBrush_Edit = colorString;
-                    break;
-                case "ButtonBackgroundBrush":
-                    settings.ButtonBackgroundBrush_Edit = colorString;
-                    break;
-                case "GridItemBackgroundBrush":
-                    settings.GridItemBackgroundBrush_Edit = colorString;
-                    break;
-                case "PanelSeparatorBrush":
-                    settings.PanelSeparatorBrush_Edit = colorString;
-                    break;
-                case "PopupBackgroundBrush":
-                    settings.PopupBackgroundBrush_Edit = colorString;
-                    break;
-                case "PositiveRatingBrush":
-                    settings.PositiveRatingBrush_Edit = colorString;
-                    break;
-                case "NegativeRatingBrush":
-                    settings.NegativeRatingBrush_Edit = colorString;
-                    break;
-                case "MixedRatingBrush":
-                    settings.MixedRatingBrush_Edit = colorString;
-                    break;
+                Common.LogError(ex, "ThemeModifier", "Error on SetColor()");
             }
         }
 
         public static void RestoreColor(List<ThemeElement> ThemeDefault, ThemeModifierSettings settings, bool withSettings = false)
         {
-            if (withSettings)
+            try
             {
-                SetThemeSettings(settings);
-            }
-            else
-            {
-                IntegrationUI ui = new IntegrationUI();
-                List<ResourcesList> resourcesLists = new List<ResourcesList>();
-
-                foreach (ThemeElement themeElement in ThemeDefault)
+                if (withSettings)
                 {
-                    resourcesLists.Add(new ResourcesList { Key = themeElement.name, Value = themeElement.color });
-
-                    switch (themeElement.name)
-                    {
-                        case "ControlBackgroundBrush":
-                            settings.ControlBackgroundBrush_Edit = string.Empty;
-                            break;
-                        case "TextBrush":
-                            settings.TextBrush_Edit = string.Empty;
-                            break;
-                        case "TextBrushDarker":
-                            settings.TextBrushDarker_Edit = string.Empty;
-                            break;
-                        case "TextBrushDark":
-                            settings.TextBrushDark_Edit = string.Empty;
-                            break;
-                        case "NormalBrush":
-                            settings.NormalBrush_Edit = string.Empty;
-                            break;
-                        case "NormalBrushDark":
-                            settings.NormalBrushDark_Edit = string.Empty;
-                            break;
-                        case "NormalBorderBrush":
-                            settings.NormalBorderBrush_Edit = string.Empty;
-                            break;
-                        case "HoverBrush":
-                            settings.HoverBrush_Edit = string.Empty;
-                            break;
-                        case "GlyphBrush":
-                            settings.GlyphBrush_Edit = string.Empty;
-                            break;
-                        case "HighlightGlyphBrush":
-                            settings.HighlightGlyphBrush_Edit = string.Empty;
-                            break;
-                        case "PopupBorderBrush":
-                            settings.PopupBorderBrush_Edit = string.Empty;
-                            break;
-                        case "TooltipBackgroundBrush":
-                            settings.TooltipBackgroundBrush_Edit = string.Empty;
-                            break;
-                        case "ButtonBackgroundBrush":
-                            settings.ButtonBackgroundBrush_Edit = string.Empty;
-                            break;
-                        case "GridItemBackgroundBrush":
-                            settings.GridItemBackgroundBrush_Edit = string.Empty;
-                            break;
-                        case "PanelSeparatorBrush":
-                            settings.PanelSeparatorBrush_Edit = string.Empty;
-                            break;
-                        case "PopupBackgroundBrush":
-                            settings.PopupBackgroundBrush_Edit = string.Empty;
-                            break;
-                        case "PositiveRatingBrush":
-                            settings.PositiveRatingBrush_Edit = string.Empty;
-                            break;
-                        case "NegativeRatingBrush":
-                            settings.NegativeRatingBrush_Edit = string.Empty;
-                            break;
-                        case "MixedRatingBrush":
-                            settings.MixedRatingBrush_Edit = string.Empty;
-                            break;
-                    }
+                    SetThemeSettings(settings);
                 }
+                else
+                {
+                    IntegrationUI ui = new IntegrationUI();
+                    List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
-                ui.AddResources(resourcesLists);
+                    foreach (ThemeElement themeElement in ThemeDefault)
+                    {
+                        resourcesLists.Add(new ResourcesList { Key = themeElement.name, Value = themeElement.color });
+
+                        switch (themeElement.name)
+                        {
+                            case "ControlBackgroundBrush":
+                                settings.ControlBackgroundBrush_Edit = string.Empty;
+                                break;
+                            case "TextBrush":
+                                settings.TextBrush_Edit = string.Empty;
+                                break;
+                            case "TextBrushDarker":
+                                settings.TextBrushDarker_Edit = string.Empty;
+                                break;
+                            case "TextBrushDark":
+                                settings.TextBrushDark_Edit = string.Empty;
+                                break;
+                            case "NormalBrush":
+                                settings.NormalBrush_Edit = string.Empty;
+                                break;
+                            case "NormalBrushDark":
+                                settings.NormalBrushDark_Edit = string.Empty;
+                                break;
+                            case "NormalBorderBrush":
+                                settings.NormalBorderBrush_Edit = string.Empty;
+                                break;
+                            case "HoverBrush":
+                                settings.HoverBrush_Edit = string.Empty;
+                                break;
+                            case "GlyphBrush":
+                                settings.GlyphBrush_Edit = string.Empty;
+                                break;
+                            case "HighlightGlyphBrush":
+                                settings.HighlightGlyphBrush_Edit = string.Empty;
+                                break;
+                            case "PopupBorderBrush":
+                                settings.PopupBorderBrush_Edit = string.Empty;
+                                break;
+                            case "TooltipBackgroundBrush":
+                                settings.TooltipBackgroundBrush_Edit = string.Empty;
+                                break;
+                            case "ButtonBackgroundBrush":
+                                settings.ButtonBackgroundBrush_Edit = string.Empty;
+                                break;
+                            case "GridItemBackgroundBrush":
+                                settings.GridItemBackgroundBrush_Edit = string.Empty;
+                                break;
+                            case "PanelSeparatorBrush":
+                                settings.PanelSeparatorBrush_Edit = string.Empty;
+                                break;
+                            case "PopupBackgroundBrush":
+                                settings.PopupBackgroundBrush_Edit = string.Empty;
+                                break;
+                            case "PositiveRatingBrush":
+                                settings.PositiveRatingBrush_Edit = string.Empty;
+                                break;
+                            case "NegativeRatingBrush":
+                                settings.NegativeRatingBrush_Edit = string.Empty;
+                                break;
+                            case "MixedRatingBrush":
+                                settings.MixedRatingBrush_Edit = string.Empty;
+                                break;
+                        }
+                    }
+
+                    ui.AddResources(resourcesLists);
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "ThemeModifier", "Error on RestoreColor()");
             }
         }
 
@@ -180,6 +191,7 @@ namespace ThemeModifier.Services
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
                 string[] TwoColors = null;
+
                 if (!settings.ControlBackgroundBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -352,9 +364,9 @@ namespace ThemeModifier.Services
 
                 ui.AddResources(resourcesLists);
             }
-            catch
+            catch (Exception ex)
             {
-
+                Common.LogError(ex, "ThemeModifier", "Error on SetThemeSettings()");
             }
         }
     }

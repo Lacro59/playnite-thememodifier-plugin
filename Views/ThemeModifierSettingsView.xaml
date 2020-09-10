@@ -3,19 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ColorPickerWPF="clr-namespace:ColorPickerWPF;assembly=ColorPickerWPF"
              mc:Ignorable="d">
 
     <TabControl Margin="20">
-
         <TabItem Header="Edit theme">
             <ScrollViewer>
                 <Grid Grid.ColumnSpan="3">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="275" />
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="275" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -35,150 +33,150 @@
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource ControlBackgroundBrush}" Name="tbControlBackgroundBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">ControlBackgroundBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrush}" Name="tbTextBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">TextBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDarker}" Name="tbTextBrushDarker"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">TextBrushDarker</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDark}" Name="tbTextBrushDark"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">TextBrushDark</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrush}" Name="tbNormalBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">NormalBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrushDark}" Name="tbNormalBrushDark"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">NormalBrushDark</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBorderBrush}" Name="tbNormalBorderBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">NormalBorderBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource HoverBrush}" Name="tbHoverBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">HoverBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource GlyphBrush}" Name="tbGlyphBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">GlyphBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource HighlightGlyphBrush}" Name="tbHighlightGlyphBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">HighlightGlyphBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBorderBrush}" Name="tbPopupBorderBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">PopupBorderBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource TooltipBackgroundBrush}" Name="tbTooltipBackgroundBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">TooltipBackgroundBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource ButtonBackgroundBrush}" Name="tbButtonBackgroundBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">ButtonBackgroundBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource GridItemBackgroundBrush}" Name="tbGridItemBackgroundBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">GridItemBackgroundBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource PanelSeparatorBrush}" Name="tbPanelSeparatorBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">PanelSeparatorBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBackgroundBrush}" Name="tbPopupBackgroundBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">PopupBackgroundBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource PositiveRatingBrush}" Name="tbPositiveRatingBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">PositiveRatingBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource NegativeRatingBrush}" Name="tbNegativeRatingBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">NegativeRatingBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource MixedRatingBrush}" Name="tbMixedRatingBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">MixedRatingBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" VerticalAlignment="Center" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="0">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource ExpanderBackgroundBrush}" Name="tbExpanderBackgroundBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">ExpanderBackgroundBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="2">
                         <TextBlock Height="28" Width="28" Background="{DynamicResource WindowBackgourndBrush}" Name="tbWindowBackgourndBrush"></TextBlock>
                         <Label Margin="10,0" Width="130" FontSize="10">WindowBackgourndBrush</Label>
-                        <Button Click="Button_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierPick}" />
-                        <Button Click="ButtonRestore_Click" FontSize="10" Content="{DynamicResource LOCThemeModifierRestore}" />
+                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                     </StackPanel>
 
 
-                    <Button Grid.Row="11" Grid.Column="2" Name="btRestore" Content="{DynamicResource LOCThemeModifierRestoreDefault}" Click="BtRestore_Click" VerticalAlignment="Center"/>
+                    <Button Grid.Row="11" Grid.Column="2" Name="btRestoreDefault" Content="{DynamicResource LOCThemeModifierRestoreDefault}" Click="BtRestoreDefault_Click" VerticalAlignment="Center"/>
                 </Grid>
             </ScrollViewer>
         </TabItem>
@@ -186,9 +184,10 @@
         <TabItem Header="View">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="270" />
+                    <ColumnDefinition Width="45" />
+                    <ColumnDefinition Width="205"/>
                     <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="270" />
+                    <ColumnDefinition Width="250" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -201,7 +200,7 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <GroupBox Header="GroupBox Button" Margin="10" Padding="10" Grid.Column="0" Grid.Row="1" >
+                <GroupBox Header="GroupBox Button" Margin="10" Padding="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" >
                     <StackPanel>
                         <Button VerticalAlignment="Center" Width="150" Margin="0,0,0,10">Button</Button>
 
@@ -209,7 +208,7 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Header="GroupBox ProgressBar" Margin="10" Padding="10" Grid.Column="2" Grid.Row="1" >
+                <GroupBox Header="GroupBox ProgressBar" Margin="10" Padding="10" Grid.Column="3" Grid.Row="1" >
                     <StackPanel>
                         <ProgressBar Width="150" Minimum="0" Maximum="100" Value="10" Height="28" Margin="0,0,0,10" />
 
@@ -217,25 +216,23 @@
                     </StackPanel>
                 </GroupBox>
 
-                <Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,10" BorderThickness="1">
-                    <DockPanel>
-                        <StackPanel VerticalAlignment="Center" DockPanel.Dock="Left" Width="270">
-                            <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" Width="270" Margin="0,0,0,10">
-                                <Label>Checkbox with label</Label>
-                            </CheckBox>
-                            <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" Width="270" HorizontalAlignment="Center" IsChecked="True">
-                                <Label>Checkbox with label</Label>
-                            </CheckBox>
-                        </StackPanel>
 
-                        <StackPanel DockPanel.Dock="Right" Width="270" Margin="30,0,0,0">
-                            <RadioButton Margin="0,0,0,10">RadioButton</RadioButton>
-                            <RadioButton IsChecked="True">RadioButton</RadioButton>
-                        </StackPanel>
-                    </DockPanel>
-                </Border>
+                <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin="4,0,49,10">
+                    <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" Margin="0,0,0,10">
+                        <Label>Checkbox with label</Label>
+                    </CheckBox>
+                    <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" HorizontalAlignment="Center" IsChecked="True">
+                        <Label>Checkbox with label</Label>
+                    </CheckBox>
+                </StackPanel>
 
-                <TreeView HorizontalAlignment="Center" Width="200" Grid.Column="0" Grid.Row="3">
+                <StackPanel Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" Margin="75,0">
+                    <RadioButton Margin="0,0,0,10">RadioButton</RadioButton>
+                    <RadioButton IsChecked="True">RadioButton</RadioButton>
+                </StackPanel>
+
+
+                <TreeView HorizontalAlignment="Center" Width="200" Grid.Column="0" Grid.Row="3" Margin="25,0,25,10" Grid.ColumnSpan="2">
                     <ScrollViewer Height="100">
                         <TreeViewItem Header="Level 1" IsExpanded="True">
                             <TreeViewItem Header="Level 2.1" />
@@ -250,7 +247,7 @@
                     </ScrollViewer>
                 </TreeView>
 
-                <StackPanel Grid.Column="2" Grid.Row="3">
+                <StackPanel Grid.Column="3" Grid.Row="3" Margin="0,0,0,10">
                     <Slider Minimum="0" Maximum="50" Value="15" Margin="0,0,0,10"></Slider>
 
                     <TextBlock>           
@@ -262,7 +259,7 @@
                     </RepeatButton>
                 </StackPanel>
 
-                <Button Grid.Column="0" Grid.Row="4" Content="Menu test" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Margin="0,10">
+                <Button Grid.Column="1" Grid.Row="4" Content="Menu test" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Margin="5,10,50,10">
                     <Button.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Menu item 1" />
@@ -273,7 +270,7 @@
                     </Button.ContextMenu>
                 </Button>
 
-                <Expander Grid.Column="2" Grid.Row="4" >
+                <Expander Grid.Column="3" Grid.Row="4" >
                     <TextBlock TextWrapping="Wrap">  
                         Exmpale text for Expander control.
                     </TextBlock>

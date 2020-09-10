@@ -4,17 +4,9 @@ using PluginCommon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
 
@@ -34,42 +26,61 @@ namespace ThemeModifier.Views
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BtPickColor_Click(object sender, RoutedEventArgs e)
         {
-            Color color;
-            bool ok = ColorPickerWindow.ShowDialog(out color, ColorPickerDialogOptions.SimpleView);
-
-            if (ok)
+            try
             {
-                TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
-                Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
+                Color color;
+                bool ok = ColorPickerWindow.ShowDialog(out color, ColorPickerDialogOptions.SimpleView);
 
-                tbControl.Background = new SolidColorBrush(color);
+                if (ok)
+                {
+                    TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
+                    Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
-                ThemeClass.SetColor(lControl.Content.ToString(), color, settings);
+                    tbControl.Background = new SolidColorBrush(color);
+
+                    ThemeClass.SetColor(lControl.Content.ToString(), color, settings);
+                }
             }
-        }
-
-        private void ButtonRestore_Click(object sender, RoutedEventArgs e)
-        {
-            TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
-            Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
-
-
-            ThemeElement finded = ThemeDefault.Find(x => x.name == lControl.Content.ToString());
-
-            tbControl.Background = finded.color;
-
-            ThemeClass.SetColor(lControl.Content.ToString(), null, settings, finded.color);
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "ThemeModifier", "Error on BtPickColor_Click()");
+            }
         }
 
         private void BtRestore_Click(object sender, RoutedEventArgs e)
         {
-            ThemeClass.RestoreColor(ThemeDefault, settings);
+            try { 
+                TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
+                Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
-            foreach (ThemeElement themeElement in ThemeDefault)
+                ThemeElement finded = ThemeDefault.Find(x => x.name == lControl.Content.ToString());
+
+                tbControl.Background = finded.color;
+
+                ThemeClass.SetColor(lControl.Content.ToString(), null, settings, finded.color);
+            }
+            catch (Exception ex)
             {
-                ((TextBlock)this.FindName("tb" + themeElement.name)).Background = themeElement.color;
+                Common.LogError(ex, "ThemeModifier", "Error on BtRestore_Click()");
+            }
+        }
+
+        private void BtRestoreDefault_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ThemeClass.RestoreColor(ThemeDefault, settings);
+
+                foreach (ThemeElement themeElement in ThemeDefault)
+                {
+                    ((TextBlock)this.FindName("tb" + themeElement.name)).Background = themeElement.color;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "ThemeModifier", "Error on BtRestoreDefault_Click()");
             }
         }
     }
