@@ -1,13 +1,27 @@
-﻿using PluginCommon;
+﻿using Newtonsoft.Json;
+using Playnite.SDK;
+using PluginCommon;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
+using ThemeModifier.PlayniteResources;
 
 namespace ThemeModifier.Services
 {
     public class ThemeClass
     {
+        private static ILogger logger = LogManager.GetLogger();
+        private static IResourceProvider resources = new ResourceProvider();
+
+        private static List<string> ThemeFileToBackup = new List<string>();
+
+
         public static void SetColor(string name, Color? color, ThemeModifierSettings settings, dynamic colorDefault = null)
         {
             try
@@ -368,6 +382,233 @@ namespace ThemeModifier.Services
             {
                 Common.LogError(ex, "ThemeModifier", "Error on SetThemeSettings()");
             }
+        }
+
+
+
+        public static ThemeManifest GetActualTheme(string PlayniteConfigurationPath)
+        {
+            string path = Path.Combine(PlayniteConfigurationPath, "config.json");
+            string ThemeName = string.Empty;
+
+            // Get actual theme
+            try
+            {
+                if (File.Exists(path))
+                {
+                    ThemeName = ((dynamic)JsonConvert.DeserializeObject(File.ReadAllText(path))).Theme;
+
+                    var AllThemeInfos = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop);
+#if DEBUG
+                    logger.Debug($"ThemeModifier - {JsonConvert.SerializeObject(AllThemeInfos)}");
+#endif
+                    //
+                    ThemeManifest ThemeInfo = AllThemeInfos.Find(x => x.Name.ToLower() == ThemeName.ToLower());
+                    if (ThemeInfo != null)
+                    {
+                        return ThemeInfo;
+                    }
+                    ThemeInfo = AllThemeInfos.Find(x => x.LegacyDirId.ToLower() == ThemeName.ToLower());
+                    if (ThemeInfo != null)
+                    {
+                        return ThemeInfo;
+                    }
+
+                    ThemeInfo = AllThemeInfos.Find(x => x.DirectoryPath.ToLower().IndexOf(ThemeName.ToLower()) > -1);
+                    if (ThemeInfo != null)
+                    {
+                        return ThemeInfo;
+                    }
+
+                    logger.Warn($"ThemeModifier - No ThemeManifest find for {ThemeName}");
+
+                    return null;
+                }
+                else
+                {
+                    logger.Warn($"ThemeModifier - Not find config file {path}");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, $"ThemeModifier - Failed to load config file {path}");
+            }
+
+            return null;
+        }
+
+        public static bool SetThemeFile(string PlayniteConfigurationPath, ThemeModifierSettings settings)
+        {
+            string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            ThemeManifest ThemeInfos = GetActualTheme(PlayniteConfigurationPath);
+
+            ThemeFileToBackup = new List<string>();
+
+            ThemeFileToBackup.Add("DerivedStyles\\DetailsViewItemTemplate.xaml");
+
+            if (ThemeInfos != null)
+            {
+                try
+                {
+                    foreach (string FileName in ThemeFileToBackup)
+                    {
+                        // Backup
+                        if (!File.Exists(Path.Combine(ThemeInfos.DirectoryPath, FileName.Replace(".xaml", ".xaml.bck"))) 
+                            && File.Exists(Path.Combine(ThemeInfos.DirectoryPath, FileName))
+                            && !File.Exists(Path.Combine(ThemeInfos.DirectoryPath, "apply")))
+                        {
+                            File.Move(Path.Combine(ThemeInfos.DirectoryPath, FileName), Path.Combine(ThemeInfos.DirectoryPath, FileName.Replace(".xaml", ".xaml.bck")));
+                        }
+
+                        // Delete
+                        if (File.Exists(Path.Combine(ThemeInfos.DirectoryPath, FileName)))
+                        {
+                            File.Delete(Path.Combine(ThemeInfos.DirectoryPath, FileName));
+                        }
+
+                        if (!Directory.Exists(Path.Combine(ThemeInfos.DirectoryPath, "DerivedStyles")))
+                        {
+                            Directory.CreateDirectory(Path.Combine(ThemeInfos.DirectoryPath, "DerivedStyles"));
+                        }
+
+                        // Copy
+                        if (File.Exists(Path.Combine(pluginFolder, "Themes", FileName)))
+                        {
+                            File.Create(Path.Combine(ThemeInfos.DirectoryPath, "apply"));
+                            File.Copy(Path.Combine(pluginFolder, "Themes", FileName), Path.Combine(ThemeInfos.DirectoryPath, FileName));
+                        }
+                        else
+                        {
+                            logger.Error($"ThemeModifier - File {Path.Combine(pluginFolder, "Themes", FileName)} not found");
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex, $"ThemeModifier - Failed to set file");
+                    return false;
+                }
+            }
+            else
+            {
+                logger.Warn($"ThemeModifier - No ThemeManifest find for actual theme");
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool RestoreThemeFile(string PlayniteConfigurationPath) {
+            ThemeManifest ThemeInfos = GetActualTheme(PlayniteConfigurationPath);
+
+            ThemeFileToBackup = new List<string>();
+            ThemeFileToBackup.Add("DerivedStyles\\DetailsViewItemTemplate.xaml");
+
+            if (ThemeInfos != null)
+            {
+                try
+                {
+                    foreach (string FileName in ThemeFileToBackup)
+                    {
+                        // Delete
+                        if (File.Exists(Path.Combine(ThemeInfos.DirectoryPath, FileName)))
+                        {
+                            File.Delete(Path.Combine(ThemeInfos.DirectoryPath, FileName));
+                        }
+                        if (File.Exists(Path.Combine(ThemeInfos.DirectoryPath, "apply")))
+                        {
+                            File.Delete(Path.Combine(ThemeInfos.DirectoryPath, "apply"));
+                        }
+
+                        // Restore
+                        if (File.Exists(Path.Combine(ThemeInfos.DirectoryPath, FileName.Replace(".xaml", ".xaml.bck"))))
+                        {
+                            File.Move(Path.Combine(ThemeInfos.DirectoryPath, FileName.Replace(".xaml", ".xaml.bck")), Path.Combine(ThemeInfos.DirectoryPath, FileName));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex, $"ThemeModifier - Failed to set file");
+                    return false;
+                }
+            }
+            else
+            {
+                logger.Warn($"ThemeModifier - No ThemeManifest find for actual theme");
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+
+        public static Grid CreateControl(ThemeModifierSettings settings, double MaxHeight, ImageSource OriginalSource)
+        {
+            try
+            {
+                string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string ImageName = string.Empty;
+
+                if (settings.UseIconCircle)
+                {
+                    ImageName = "circle";
+                }
+                if (settings.UseIconClock)
+                {
+                    ImageName = "clock";
+                }
+                if (settings.UseIconSquareCorne)
+                {
+                    ImageName = "squareCorne";
+                }
+                if (settings.UseIconWe4ponx)
+                {
+                    ImageName = "we4ponx";
+                }
+
+
+                Grid g = new Grid();
+                g.Margin = new Thickness(0, 0, 10, 0);
+                DockPanel.SetDock(g, Dock.Left);
+
+                Image PART_ImageFrame = new Image();
+                PART_ImageFrame.Name = "PART_ImageFrame";
+                PART_ImageFrame.MaxHeight = MaxHeight;
+                PART_ImageFrame.MaxWidth = MaxHeight;
+                PART_ImageFrame.Source = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}.png"));
+                RenderOptions.SetBitmapScalingMode(PART_ImageFrame, BitmapScalingMode.Fant);
+
+                Image PART_ImageIcon = new Image();
+                PART_ImageIcon.Name = "PART_ImageIcon";
+                PART_ImageIcon.Source = OriginalSource;
+                PART_ImageIcon.Stretch = Stretch.Fill;
+                PART_ImageIcon.MaxHeight = MaxHeight;
+                PART_ImageIcon.MaxWidth = MaxHeight;
+                RenderOptions.SetBitmapScalingMode(PART_ImageFrame, BitmapScalingMode.Fant);
+
+                ImageBrush imgB = new ImageBrush();
+                imgB.ImageSource = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}Shape.png"));
+
+                PART_ImageIcon.OpacityMask = imgB;
+
+                Grid.SetColumn(PART_ImageFrame, 0);
+                Grid.SetColumn(PART_ImageIcon, 0);
+
+                g.Children.Add(PART_ImageFrame);
+                g.Children.Add(PART_ImageIcon);
+
+                return g;
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "ThemeModifier", "Error on CreateControl()");
+            }
+
+            return null;
         }
     }
 }

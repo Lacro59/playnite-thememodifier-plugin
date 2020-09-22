@@ -12,8 +12,17 @@
     ThemeModifierSettingsView
     -->
 
+    <sys:String x:Key="LOCThemeModifierEditTheme">Edit theme</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditView">View</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditIcon">Icons</sys:String>
+    
     <sys:String x:Key="LOCThemeModifierPick">pick</sys:String>
     <sys:String x:Key="LOCThemeModifierRestore">restore</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Enable icon changer</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Apply icons</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restore icons</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">Enable in description</sys:String>
 
 </ResourceDictionary>

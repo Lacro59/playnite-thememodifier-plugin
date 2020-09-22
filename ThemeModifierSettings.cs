@@ -36,6 +36,13 @@ namespace ThemeModifier
         public string ExpanderBackgroundBrush_Edit { get; set; } = string.Empty;
         public string WindowBackgourndBrush_Edit { get; set; } = string.Empty;
 
+        public bool EnableIconChanger { get; set; } = false;
+        public bool UseIconCircle { get; set; } = true;
+        public bool UseIconClock { get; set; } = false;
+        public bool UseIconSquareCorne { get; set; } = false;
+        public bool UseIconWe4ponx { get; set; } = false;
+        public bool EnableInDescription { get; set; } = true;
+
         // Playnite serializes settings object to a JSON object and saves it as text file.
         // If you want to exclude some property from being saved then use `JsonIgnore` ignore attribute.
         [JsonIgnore]
@@ -78,6 +85,13 @@ namespace ThemeModifier
                 MixedRatingBrush_Edit = savedSettings.MixedRatingBrush_Edit;
                 ExpanderBackgroundBrush_Edit = savedSettings.ExpanderBackgroundBrush_Edit;
                 WindowBackgourndBrush_Edit = savedSettings.WindowBackgourndBrush_Edit;
+
+                EnableIconChanger = savedSettings.EnableIconChanger;
+                UseIconCircle = savedSettings.UseIconCircle;
+                UseIconClock = savedSettings.UseIconClock;
+                UseIconSquareCorne = savedSettings.UseIconSquareCorne;
+                UseIconWe4ponx = savedSettings.UseIconWe4ponx;
+                EnableInDescription = savedSettings.EnableInDescription;
             }
         }
 
