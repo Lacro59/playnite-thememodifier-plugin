@@ -101,6 +101,12 @@ namespace ThemeModifier.Services
                     case "MixedRatingBrush":
                         settings.MixedRatingBrush_Edit = colorString;
                         break;
+                    case "ExpanderBackgroundBrush":
+                        settings.ExpanderBackgroundBrush_Edit = colorString;
+                        break;
+                    case "WindowBackgourndBrush":
+                        settings.WindowBackgourndBrush_Edit = colorString;
+                        break;
                 }
             }
             catch (Exception ex)
@@ -542,7 +548,6 @@ namespace ThemeModifier.Services
 
             return true;
         }
-
 
 
 
