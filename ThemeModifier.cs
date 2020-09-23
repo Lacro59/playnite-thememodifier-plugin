@@ -184,36 +184,38 @@ namespace ThemeModifier
             ui.AddResources(resourcesLists);
 
             var ThemeInfos = ThemeClass.GetActualTheme(PlayniteApi.Paths.ConfigurationPath);
+            string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string ImageName = string.Empty;
 
-            if (ThemeInfos != null && settings.EnableInDescription && File.Exists(Path.Combine(ThemeInfos.DirectoryPath, "apply")))
+            if (ThemeInfos != null && settings.EnableIconChanger)
+            {
+                if (settings.UseIconCircle)
+                {
+                    ImageName = "circle";
+                }
+                if (settings.UseIconClock)
+                {
+                    ImageName = "clock";
+                }
+                if (settings.UseIconSquareCorne)
+                {
+                    ImageName = "squareCorne";
+                }
+                if (settings.UseIconWe4ponx)
+                {
+                    ImageName = "we4ponx";
+                }
+
+                resourcesLists = new List<ResourcesList>();
+                resourcesLists.Add(new ResourcesList { Key = "TM_Image", Value = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}.png")) });
+                resourcesLists.Add(new ResourcesList { Key = "TM_ImageShape", Value = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}Shape.png")) });
+                ui.AddResources(resourcesLists);
+            }
+
+            if (ThemeInfos != null && settings.EnableIconChanger && settings.EnableInDescription && File.Exists(Path.Combine(ThemeInfos.DirectoryPath, "apply")))
             {
                 try
                 {
-                    string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    string ImageName = string.Empty;
-
-                    if (settings.UseIconCircle)
-                    {
-                        ImageName = "circle";
-                    }
-                    if (settings.UseIconClock)
-                    {
-                        ImageName = "clock";
-                    }
-                    if (settings.UseIconSquareCorne)
-                    {
-                        ImageName = "squareCorne";
-                    }
-                    if (settings.UseIconWe4ponx)
-                    {
-                        ImageName = "we4ponx";
-                    }
-
-                    resourcesLists = new List<ResourcesList>();
-                    resourcesLists.Add(new ResourcesList { Key = "TM_Image", Value = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}.png")) });
-                    resourcesLists.Add(new ResourcesList { Key = "TM_ImageShape", Value = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}Shape.png")) });
-                    ui.AddResources(resourcesLists);
-
                     var PART_ControlGameView = SearchElementByName("PART_ControlGameView");
                     var PART_ImageIcon = SearchElementByName("PART_ImageIcon", PART_ControlGameView);
                     var PART_ThemeModifierIcon = SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
