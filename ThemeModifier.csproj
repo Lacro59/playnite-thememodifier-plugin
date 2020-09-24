@@ -52,10 +52,6 @@
       <HintPath>packages\PlayniteSDK.5.2.0\lib\net462\Playnite.SDK.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PluginCommon, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\PluginCommon.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -278,7 +274,6 @@
   <ItemGroup>
     <None Include="Resources\PlayniteResources\Playnite.Common.dll" />
     <None Include="Resources\PlayniteResources\Playnite.dll" />
-    <None Include="Resources\PluginCommon.dll" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Themes\Images\circleResource.png">
@@ -325,6 +320,12 @@
     <Resource Include="Themes\Images\we4ponxResource.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="playnite-plugincommon\PluginCommon.csproj">
+      <Project>{e05ac297-6067-4270-a572-1df926bb3635}</Project>
+      <Name>PluginCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
