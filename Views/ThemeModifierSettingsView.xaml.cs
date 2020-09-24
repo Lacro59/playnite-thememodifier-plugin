@@ -58,11 +58,11 @@ namespace ThemeModifier.Views
                 TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
                 Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
-                ThemeElement finded = _ThemeDefault.Find(x => x.name == lControl.Content.ToString());
+                ThemeElement finded = _ThemeDefault.Find(x => x.Name == lControl.Content.ToString());
 
-                tbControl.Background = finded.color;
+                tbControl.Background = finded.Color;
 
-                ThemeClass.SetColor(lControl.Content.ToString(), null, _settings, finded.color);
+                ThemeClass.SetColor(lControl.Content.ToString(), null, _settings, finded.Color);
             }
             catch (Exception ex)
             {
@@ -78,7 +78,7 @@ namespace ThemeModifier.Views
 
                 foreach (ThemeElement themeElement in _ThemeDefault)
                 {
-                    ((TextBlock)this.FindName("tb" + themeElement.name)).Background = themeElement.color;
+                    ((TextBlock)this.FindName("tb" + themeElement.Name)).Background = themeElement.Color;
                 }
             }
             catch (Exception ex)

@@ -66,27 +66,27 @@ namespace ThemeModifier
 
 
             // Default values
-            ThemeDefault.Add(new ThemeElement { name = "ControlBackgroundBrush", color = resources.GetResource("ControlBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "TextBrush", color = resources.GetResource("TextBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "TextBrushDarker", color = resources.GetResource("TextBrushDarker") });
-            ThemeDefault.Add(new ThemeElement { name = "TextBrushDark", color = resources.GetResource("TextBrushDark") });
-            ThemeDefault.Add(new ThemeElement { name = "NormalBrush", color = resources.GetResource("NormalBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "NormalBrushDark", color = resources.GetResource("NormalBrushDark") });
-            ThemeDefault.Add(new ThemeElement { name = "NormalBorderBrush", color = resources.GetResource("NormalBorderBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "HoverBrush", color = resources.GetResource("HoverBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "GlyphBrush", color = resources.GetResource("GlyphBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "HighlightGlyphBrush", color = resources.GetResource("HighlightGlyphBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "PopupBorderBrush", color = resources.GetResource("PopupBorderBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "TooltipBackgroundBrush", color = resources.GetResource("TooltipBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "ButtonBackgroundBrush", color = resources.GetResource("ButtonBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "GridItemBackgroundBrush", color = resources.GetResource("GridItemBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "PanelSeparatorBrush", color = resources.GetResource("PanelSeparatorBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "PopupBackgroundBrush", color = resources.GetResource("PopupBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "PositiveRatingBrush", color = resources.GetResource("PositiveRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "NegativeRatingBrush", color = resources.GetResource("NegativeRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "MixedRatingBrush", color = resources.GetResource("MixedRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "ExpanderBackgroundBrush", color = resources.GetResource("ExpanderBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "WindowBackgourndBrush", color = resources.GetResource("WindowBackgourndBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "ControlBackgroundBrush", Color = resources.GetResource("ControlBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "TextBrush", Color = resources.GetResource("TextBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "TextBrushDarker", Color = resources.GetResource("TextBrushDarker") });
+            ThemeDefault.Add(new ThemeElement { Name = "TextBrushDark", Color = resources.GetResource("TextBrushDark") });
+            ThemeDefault.Add(new ThemeElement { Name = "NormalBrush", Color = resources.GetResource("NormalBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "NormalBrushDark", Color = resources.GetResource("NormalBrushDark") });
+            ThemeDefault.Add(new ThemeElement { Name = "NormalBorderBrush", Color = resources.GetResource("NormalBorderBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "HoverBrush", Color = resources.GetResource("HoverBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "GlyphBrush", Color = resources.GetResource("GlyphBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "HighlightGlyphBrush", Color = resources.GetResource("HighlightGlyphBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "PopupBorderBrush", Color = resources.GetResource("PopupBorderBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "TooltipBackgroundBrush", Color = resources.GetResource("TooltipBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "ButtonBackgroundBrush", Color = resources.GetResource("ButtonBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "GridItemBackgroundBrush", Color = resources.GetResource("GridItemBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "PanelSeparatorBrush", Color = resources.GetResource("PanelSeparatorBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "PopupBackgroundBrush", Color = resources.GetResource("PopupBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "PositiveRatingBrush", Color = resources.GetResource("PositiveRatingBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "NegativeRatingBrush", Color = resources.GetResource("NegativeRatingBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "MixedRatingBrush", Color = resources.GetResource("MixedRatingBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "ExpanderBackgroundBrush", Color = resources.GetResource("ExpanderBackgroundBrush") });
+            ThemeDefault.Add(new ThemeElement { Name = "WindowBackgourndBrush", Color = resources.GetResource("WindowBackgourndBrush") });
 
 
             // Add modified values

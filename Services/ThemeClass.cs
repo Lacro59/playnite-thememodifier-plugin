@@ -134,9 +134,9 @@ namespace ThemeModifier.Services
 
                     foreach (ThemeElement themeElement in ThemeDefault)
                     {
-                        resourcesLists.Add(new ResourcesList { Key = themeElement.name, Value = themeElement.color });
+                        resourcesLists.Add(new ResourcesList { Key = themeElement.Name, Value = themeElement.Color });
 
-                        switch (themeElement.name)
+                        switch (themeElement.Name)
                         {
                             case "ControlBackgroundBrush":
                                 settings.ControlBackgroundBrush_Edit = string.Empty;

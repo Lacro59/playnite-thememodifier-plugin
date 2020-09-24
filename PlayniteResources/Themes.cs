@@ -10,8 +10,9 @@ using System.Collections.Generic;
 using System.IO;
 using YamlDotNet.Serialization;
 using System.Linq;
-using Playnite;
 using System.Windows;
+using PlaynitePaths = PluginCommon.PlayniteResources.PlaynitePaths;
+using PlayniteSettings = PluginCommon.PlayniteResources.PlayniteSettings;
 
 namespace ThemeModifier.PlayniteResources
 {
@@ -87,6 +88,7 @@ namespace ThemeModifier.PlayniteResources
             DescriptionPath = manifestPath;
             DirectoryPath = Path.GetDirectoryName(manifestPath);
             DirectoryName = Path.GetFileNameWithoutExtension(DirectoryPath);
+            // TODO New SDK
             if (Mode == ApplicationMode.Desktop)
             {
                 //IsBuiltInTheme = BuiltinExtensions.BuiltinDesktopThemeFolders.Contains(DirectoryName);
@@ -141,6 +143,7 @@ namespace ThemeModifier.PlayniteResources
             DefaultTheme = theme;
         }
 
+        /*
         public static void ApplyFullscreenButtonPrompts(Application app, FullscreenButtonPrompts prompts)
         {
             if (prompts == FullscreenSettings.DefaultButtonPrompts)
@@ -179,7 +182,9 @@ namespace ThemeModifier.PlayniteResources
                 }
             }
         }
+        */
 
+        /*
         public static bool ApplyTheme(Application app, ThemeManifest theme, ApplicationMode mode)
         {
             var apiVesion = mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
@@ -242,6 +247,7 @@ namespace ThemeModifier.PlayniteResources
 
             return false;
         }
+        */
 
         public static List<ThemeManifest> GetAvailableThemes(ApplicationMode mode)
         {

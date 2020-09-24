@@ -69,10 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ThemeElement.cs" />
-    <Compile Include="PlayniteResources\Common\Interop.cs" />
-    <Compile Include="PlayniteResources\Common\Paths.cs" />
-    <Compile Include="PlayniteResources\PlaynitePaths.cs" />
-    <Compile Include="PlayniteResources\PlayniteSettings.cs" />
     <Compile Include="PlayniteResources\Themes.cs" />
     <Compile Include="Services\ThemeClass.cs" />
     <Compile Include="ThemeModifier.cs" />
