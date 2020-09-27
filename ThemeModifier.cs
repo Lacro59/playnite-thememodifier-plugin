@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
@@ -28,12 +27,11 @@ namespace ThemeModifier
 
         private ThemeModifierSettings settings { get; set; }
 
-        private readonly IntegrationUI ui = new IntegrationUI();
-        public static List<ThemeElement> ThemeDefault = new List<ThemeElement>();
-
         public override Guid Id { get; } = Guid.Parse("ec2f4013-17e6-428a-b8a9-5e34a3b80009");
 
+        private readonly IntegrationUI ui = new IntegrationUI();
         private Game GameSelected { get; set; }
+        public static List<ThemeElement> ThemeDefault = new List<ThemeElement>();
 
 
         public ThemeModifier(IPlayniteAPI api) : base(api)
@@ -60,6 +58,7 @@ namespace ThemeModifier
                 }
             }
 
+
             // Default values
             ThemeDefault.Add(new ThemeElement { Name = "ControlBackgroundBrush", Color = resources.GetResource("ControlBackgroundBrush") });
             ThemeDefault.Add(new ThemeElement { Name = "TextBrush", Color = resources.GetResource("TextBrush") });
@@ -83,22 +82,26 @@ namespace ThemeModifier
             ThemeDefault.Add(new ThemeElement { Name = "ExpanderBackgroundBrush", Color = resources.GetResource("ExpanderBackgroundBrush") });
             ThemeDefault.Add(new ThemeElement { Name = "WindowBackgourndBrush", Color = resources.GetResource("WindowBackgourndBrush") });
 
-
             // Add modified values
             ThemeClass.SetThemeSettings(settings);
         }
 
         public override IEnumerable<ExtensionFunction> GetFunctions()
         {
-            return new List<ExtensionFunction>
-            {
-               new ExtensionFunction(
-                    "ThemeModifier Test",
+            List<ExtensionFunction> listFunctions = new List<ExtensionFunction>();
+
+#if DEBUG
+            listFunctions.Add(
+                new ExtensionFunction(
+                    "ThemModifier Test",
                     () =>
                     {
 
                     })
-            };
+                );
+#endif
+
+            return listFunctions;
         }
 
         public override void OnGameSelected(GameSelectionEventArgs args)
@@ -108,7 +111,6 @@ namespace ThemeModifier
                 if (args.NewValue != null && args.NewValue.Count == 1)
                 {
                     GameSelected = args.NewValue[0];
-
                     IntegrationUI();
                 }
             }
@@ -214,7 +216,6 @@ namespace ThemeModifier
 
                         if (gNew != null)
                         {
-                            // StackPanel
                             FrameworkElement parent = null;
 
                             if (PART_ThemeModifierIcon != null)
@@ -229,6 +230,7 @@ namespace ThemeModifier
                             {
 #if DEBUG
                                 logger.Debug("ThemeModifier - Remove PART_ImageIcon");
+                                logger.Debug($"ThemeModifier - PART_ImageIcon.Parent is {PART_ImageIcon.Parent.ToString()}");
 #endif
                                 if (PART_ImageIcon.Parent is DockPanel)
                                 {
@@ -269,7 +271,6 @@ namespace ThemeModifier
                 }
             }
         }
-
 
 
         public override void OnGameInstalled(Game game)
