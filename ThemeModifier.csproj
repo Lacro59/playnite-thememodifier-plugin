@@ -38,11 +38,6 @@
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Playnite, Version=7.7.0.26797, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\PlayniteResources\Playnite.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Playnite.SDK, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\PlayniteSDK.5.2.0\lib\net462\Playnite.SDK.dll</HintPath>
       <Private>False</Private>
@@ -261,9 +256,6 @@
     <None Include="icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PlayniteResources\Playnite.dll" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Themes\Images\circleResource.png">

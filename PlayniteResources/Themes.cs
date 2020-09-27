@@ -11,57 +11,9 @@ using System.IO;
 using YamlDotNet.Serialization;
 using System.Linq;
 using System.Windows;
-using PlaynitePaths = PluginCommon.PlayniteResources.PlaynitePaths;
-using PlayniteSettings = PluginCommon.PlayniteResources.PlayniteSettings;
 
 namespace ThemeModifier.PlayniteResources
 {
-    public class BaseExtensionManifest
-    {
-        public string Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Author { get; set; }
-
-        public string Version { get; set; }
-
-        public List<Link> Links { get; set; }
-
-        [YamlIgnore]
-        public string DirectoryPath { get; set; }
-
-        [YamlIgnore]
-        public string DirectoryName { get; set; }
-
-        [YamlIgnore]
-        public string DescriptionPath { get; set; }
-
-        [YamlIgnore]
-        public string LegacyDirId
-        {
-            get
-            {
-                if (Name.IsNullOrEmpty())
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return Paths.GetSafeFilename(Name).Replace(" ", string.Empty) + "_" + (Name + Author).MD5();
-                }
-            }
-        }
-
-        public void VerifyManifest()
-        {
-            if (!System.Version.TryParse(Version, out var extver))
-            {
-                throw new Exception("Extension version string must be a real version!");
-            }
-        }
-    }
-
     public class ThemeManifest : BaseExtensionManifest
     {
         public string ThemeApiVersion { get; set; }

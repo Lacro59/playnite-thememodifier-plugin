@@ -1,5 +1,4 @@
-﻿using Playnite.Controls;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -30,7 +29,7 @@ namespace ThemeModifier
         private ThemeModifierSettings settings { get; set; }
 
         private readonly IntegrationUI ui = new IntegrationUI();
-        private List<ThemeElement> ThemeDefault = new List<ThemeElement>();
+        public static List<ThemeElement> ThemeDefault = new List<ThemeElement>();
 
         public override Guid Id { get; } = Guid.Parse("ec2f4013-17e6-428a-b8a9-5e34a3b80009");
 
@@ -60,10 +59,6 @@ namespace ThemeModifier
                     cv.ShowNotification(api, "ThemeModifier - " + resources.GetString("LOCUpdaterWindowTitle"));
                 }
             }
-
-
-            EventManager.RegisterClassHandler(typeof(Button), Button.ClickEvent, new RoutedEventHandler(OnButtonCancelClick));
-
 
             // Default values
             ThemeDefault.Add(new ThemeElement { Name = "ControlBackgroundBrush", Color = resources.GetResource("ControlBackgroundBrush") });
@@ -101,67 +96,10 @@ namespace ThemeModifier
                     "ThemeModifier Test",
                     () =>
                     {
-                        if (settings.EnableIconChanger)
-                        {
 
-                            
-
-
-
-                        }
                     })
             };
         }
-
-        // TODO In PluginCommon
-        private FrameworkElement SearchElementByName(string ElementName, DependencyObject dpObj = null)
-        {
-            FrameworkElement ElementFind = null;
-
-            if (dpObj == null)
-            {
-                dpObj = Application.Current.MainWindow;
-            }
-
-            ElementFind = (FrameworkElement)LogicalTreeHelper.FindLogicalNode(dpObj, ElementName);
-
-            if (ElementFind == null)
-            {
-                foreach (FrameworkElement el in Tools.FindVisualChildren<FrameworkElement>(dpObj))
-                {
-                    if (el.Name == ElementName)
-                    {
-                        ElementFind = el;
-                        break;
-                    }
-                }
-            }
-
-            return ElementFind;
-        }
-
-        private void OnButtonCancelClick(object sender, RoutedEventArgs e)
-        {
-            string ButtonName = string.Empty;
-            try
-            {
-                ButtonName = ((Button)sender).Name;
-                if (ButtonName == "ButtonCancel")
-                {
-                    if ((string)Tools.FindParent<WindowBase>((Button)sender).GetValue(AutomationProperties.AutomationIdProperty) == "WindowSettings")
-                    {
-                        var savedSettings = this.LoadPluginSettings<ThemeModifierSettings>();
-                        ThemeClass.RestoreColor(ThemeDefault, settings);
-                        ThemeClass.RestoreColor(ThemeDefault, savedSettings, true);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex, "HowLongToBeat", "OnButtonCancelClick() error");
-            }
-        }
-
 
         public override void OnGameSelected(GameSelectionEventArgs args)
         {
@@ -220,9 +158,9 @@ namespace ThemeModifier
             {
                 try
                 {
-                    var PART_ControlGameView = SearchElementByName("PART_ControlGameView");
-                    var PART_ImageIcon = SearchElementByName("PART_ImageIcon", PART_ControlGameView);
-                    var PART_ThemeModifierIcon = SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
+                    var PART_ControlGameView = ui.SearchElementByName("PART_ControlGameView");
+                    var PART_ImageIcon = ui.SearchElementByName("PART_ImageIcon", PART_ControlGameView);
+                    var PART_ThemeModifierIcon = ui.SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
 
                     if (PART_ImageIcon != null || PART_ThemeModifierIcon != null)
                     {

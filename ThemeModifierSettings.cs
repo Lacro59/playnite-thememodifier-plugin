@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThemeModifier.Services;
 
 namespace ThemeModifier
 {
@@ -104,6 +105,13 @@ namespace ThemeModifier
         {
             // Code executed when user decides to cancel any changes made since BeginEdit was called.
             // This method should revert any changes made to Option1 and Option2.
+
+            var savedSettings = plugin.LoadPluginSettings<ThemeModifierSettings>();
+            var settings = new ThemeModifierSettings(plugin);
+            ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, settings);
+            ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, savedSettings, true);
+
+
         }
 
         public void EndEdit()
