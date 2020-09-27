@@ -1,6 +1,7 @@
-﻿Name: ThemeModifier
+﻿Id: playnite-thememodifier-plugin
+Name: ThemeModifier
 Author: Lacro59
-Version: 0.2
+Version: 1.0
 Module: ThemeModifier.dll
 Type: GenericPlugin
 Icon: icon.png
