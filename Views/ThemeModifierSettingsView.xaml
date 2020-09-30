@@ -3,182 +3,209 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:PluginCommon.Controls;assembly=PluginCommon"
              mc:Ignorable="d">
 
     <TabControl Margin="20">
         <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}">
-            <ScrollViewer>
-                <Grid Grid.ColumnSpan="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="40" />
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource ControlBackgroundBrush}" Name="tbControlBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">ControlBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+            <Grid>
+                <Grid Name="PART_SelectorColor" Width="500" Visibility="Collapsed">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <controls:ControlPickerGradient Name="PART_SelectorColorPicker"></controls:ControlPickerGradient>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrush}" Name="tbTextBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">TextBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDarker}" Name="tbTextBrushDarker"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">TextBrushDarker</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDark}" Name="tbTextBrushDark"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">TextBrushDark</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrush}" Name="tbNormalBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">NormalBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrushDark}" Name="tbNormalBrushDark"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">NormalBrushDark</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBorderBrush}" Name="tbNormalBorderBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">NormalBorderBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource HoverBrush}" Name="tbHoverBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">HoverBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource GlyphBrush}" Name="tbGlyphBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">GlyphBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource HighlightGlyphBrush}" Name="tbHighlightGlyphBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">HighlightGlyphBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBorderBrush}" Name="tbPopupBorderBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">PopupBorderBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource TooltipBackgroundBrush}" Name="tbTooltipBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">TooltipBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource ButtonBackgroundBrush}" Name="tbButtonBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">ButtonBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource GridItemBackgroundBrush}" Name="tbGridItemBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">GridItemBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource PanelSeparatorBrush}" Name="tbPanelSeparatorBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">PanelSeparatorBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBackgroundBrush}" Name="tbPopupBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">PopupBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource PositiveRatingBrush}" Name="tbPositiveRatingBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">PositiveRatingBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource NegativeRatingBrush}" Name="tbNegativeRatingBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">NegativeRatingBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource MixedRatingBrush}" Name="tbMixedRatingBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">MixedRatingBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource ExpanderBackgroundBrush}" Name="tbExpanderBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">ExpanderBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource WindowBackgourndBrush}" Name="tbWindowBackgourndBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="11">WindowBackgourndBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-
-
-                    <Button Grid.Row="11" Grid.Column="2" Name="btRestoreDefault" VerticalAlignment="Center"
-                            Content="{DynamicResource LOCThemeModifierRestoreDefault}" Click="BtRestoreDefault_Click" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="90" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="90" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <Button Name="PART_TM_ColorOK" Grid.Column="1" Grid.Row="1" Content="{DynamicResource LOCOKLabel}" 
+                                Click="PART_TM_ColorOK_Click"/>
+                        <Button Name="PART_TM_ColorCancel" Grid.Column="3" Grid.Row="1" Content="{DynamicResource LOCCancelLabel}" 
+                                Click="PART_TM_ColorCancel_Click" />
+                    </Grid>
                 </Grid>
-            </ScrollViewer>
+                
+                <ScrollViewer Name="PART_ThemeColor">
+                    <Grid Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource ControlBackgroundBrush}" Name="tbControlBackgroundBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">ControlBackgroundBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrush}" Name="tbTextBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">TextBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDarker}" Name="tbTextBrushDarker"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">TextBrushDarker</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDark}" Name="tbTextBrushDark"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">TextBrushDark</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrush}" Name="tbNormalBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">NormalBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrushDark}" Name="tbNormalBrushDark"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">NormalBrushDark</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBorderBrush}" Name="tbNormalBorderBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">NormalBorderBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource HoverBrush}" Name="tbHoverBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">HoverBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource GlyphBrush}" Name="tbGlyphBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">GlyphBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource HighlightGlyphBrush}" Name="tbHighlightGlyphBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">HighlightGlyphBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBorderBrush}" Name="tbPopupBorderBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">PopupBorderBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource TooltipBackgroundBrush}" Name="tbTooltipBackgroundBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">TooltipBackgroundBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource ButtonBackgroundBrush}" Name="tbButtonBackgroundBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">ButtonBackgroundBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource GridItemBackgroundBrush}" Name="tbGridItemBackgroundBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">GridItemBackgroundBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource PanelSeparatorBrush}" Name="tbPanelSeparatorBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">PanelSeparatorBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBackgroundBrush}" Name="tbPopupBackgroundBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">PopupBackgroundBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource PositiveRatingBrush}" Name="tbPositiveRatingBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">PositiveRatingBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource NegativeRatingBrush}" Name="tbNegativeRatingBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">NegativeRatingBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource MixedRatingBrush}" Name="tbMixedRatingBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">MixedRatingBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="0">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource ExpanderBackgroundBrush}" Name="tbExpanderBackgroundBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">ExpanderBackgroundBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="2">
+                            <TextBlock Height="28" Width="28" Background="{DynamicResource WindowBackgourndBrush}" Name="tbWindowBackgourndBrush"></TextBlock>
+                            <Label Margin="10,0" Width="130" FontSize="11">WindowBackgourndBrush</Label>
+                            <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                            <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                        </StackPanel>
+
+
+                        <Button Grid.Row="11" Grid.Column="2" Name="btRestoreDefault" VerticalAlignment="Center"
+                                Content="{DynamicResource LOCThemeModifierRestoreDefault}" Click="BtRestoreDefault_Click" />
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
         </TabItem>
 
         <TabItem Header="{DynamicResource LOCThemeModifierEditView}">

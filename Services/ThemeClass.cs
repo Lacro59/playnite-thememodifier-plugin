@@ -26,7 +26,7 @@ namespace ThemeModifier.Services
         private static List<string> ThemeFileToBackup = new List<string>();
 
 
-        public static void SetColor(string name, Color? color, ThemeModifierSettings settings, dynamic colorDefault = null)
+        public static void SetThemeColor(string name, Color? color, ThemeModifierSettings settings, dynamic colorDefault = null)
         {
             try
             {
@@ -46,70 +46,222 @@ namespace ThemeModifier.Services
 
                 ui.AddResources(resourcesLists);
 
+                ThemeLinearGradient themeLinearGradient = new ThemeLinearGradient();
+
                 switch (name)
                 {
                     case "ControlBackgroundBrush":
                         settings.ControlBackgroundBrush_Edit = colorString;
+                        settings.ControlBackgroundBrush_EditGradient = themeLinearGradient;
                         break;
                     case "TextBrush":
                         settings.TextBrush_Edit = colorString;
+                        settings.TextBrush_EditGradient = themeLinearGradient;
                         break;
                     case "TextBrushDarker":
                         settings.TextBrushDarker_Edit = colorString;
+                        settings.TextBrushDarker_EditGradient = themeLinearGradient;
                         break;
                     case "TextBrushDark":
                         settings.TextBrushDark_Edit = colorString;
+                        settings.TextBrushDark_EditGradient = themeLinearGradient;
                         break;
                     case "NormalBrush":
                         settings.NormalBrush_Edit = colorString;
+                        settings.NormalBrush_EditGradient = themeLinearGradient;
                         break;
                     case "NormalBrushDark":
                         settings.NormalBrushDark_Edit = colorString;
+                        settings.NormalBrushDark_EditGradient = themeLinearGradient;
                         break;
                     case "NormalBorderBrush":
                         settings.NormalBorderBrush_Edit = colorString;
+                        settings.NormalBorderBrush_EditGradient = themeLinearGradient;
                         break;
                     case "HoverBrush":
                         settings.HoverBrush_Edit = colorString;
+                        settings.HoverBrush_EditGradient = themeLinearGradient;
                         break;
                     case "GlyphBrush":
                         settings.GlyphBrush_Edit = colorString;
+                        settings.GlyphBrush_EditGradient = themeLinearGradient;
                         break;
                     case "HighlightGlyphBrush":
                         settings.HighlightGlyphBrush_Edit = colorString;
+                        settings.HighlightGlyphBrush_EditGradient = themeLinearGradient;
                         break;
                     case "PopupBorderBrush":
                         settings.PopupBorderBrush_Edit = colorString;
+                        settings.PopupBorderBrush_EditGradient = themeLinearGradient;
                         break;
                     case "TooltipBackgroundBrush":
                         settings.TooltipBackgroundBrush_Edit = colorString;
+                        settings.TooltipBackgroundBrush_EditGradient = themeLinearGradient;
                         break;
                     case "ButtonBackgroundBrush":
                         settings.ButtonBackgroundBrush_Edit = colorString;
+                        settings.ButtonBackgroundBrush_EditGradient = themeLinearGradient;
                         break;
                     case "GridItemBackgroundBrush":
                         settings.GridItemBackgroundBrush_Edit = colorString;
+                        settings.GridItemBackgroundBrush_EditGradient = themeLinearGradient;
                         break;
                     case "PanelSeparatorBrush":
                         settings.PanelSeparatorBrush_Edit = colorString;
+                        settings.PanelSeparatorBrush_EditGradient = themeLinearGradient;
                         break;
                     case "PopupBackgroundBrush":
                         settings.PopupBackgroundBrush_Edit = colorString;
+                        settings.PopupBackgroundBrush_EditGradient = themeLinearGradient;
                         break;
                     case "PositiveRatingBrush":
                         settings.PositiveRatingBrush_Edit = colorString;
+                        settings.PositiveRatingBrush_EditGradient = themeLinearGradient;
                         break;
                     case "NegativeRatingBrush":
                         settings.NegativeRatingBrush_Edit = colorString;
+                        settings.NegativeRatingBrush_EditGradient = themeLinearGradient;
                         break;
                     case "MixedRatingBrush":
                         settings.MixedRatingBrush_Edit = colorString;
+                        settings.MixedRatingBrush_EditGradient = themeLinearGradient;
                         break;
                     case "ExpanderBackgroundBrush":
                         settings.ExpanderBackgroundBrush_Edit = colorString;
+                        settings.ExpanderBackgroundBrush_EditGradient = themeLinearGradient;
                         break;
                     case "WindowBackgourndBrush":
                         settings.WindowBackgourndBrush_Edit = colorString;
+                        settings.WindowBackgourndBrush_EditGradient = themeLinearGradient;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "ThemeModifier", "Error on SetColor()");
+            }
+        }
+
+        public static void SetThemeColor(string name, LinearGradientBrush linearGradientBrush, ThemeModifierSettings settings, dynamic colorDefault = null)
+        {
+            try
+            {
+                IntegrationUI ui = new IntegrationUI();
+                List<ResourcesList> resourcesLists = new List<ResourcesList>();
+
+                string colorString = string.Empty;
+                if (linearGradientBrush != new LinearGradientBrush())
+                {
+                    resourcesLists.Add(new ResourcesList { Key = name, Value = linearGradientBrush });
+                }
+                else if (colorDefault != null)
+                {
+                    resourcesLists.Add(new ResourcesList { Key = name, Value = colorDefault });
+                }
+
+                ui.AddResources(resourcesLists);
+
+
+                ThemeLinearGradient themeLinearGradient = new ThemeLinearGradient
+                {
+                    StartPoint = linearGradientBrush.StartPoint,
+                    EndPoint = linearGradientBrush.EndPoint,
+                    GradientStop1 = new ThemeGradientColor {
+                        ColorString = linearGradientBrush.GradientStops[0].Color.ToString(),
+                        ColorOffset = linearGradientBrush.GradientStops[0].Offset
+                    },
+                    GradientStop2 = new ThemeGradientColor {
+                        ColorString = linearGradientBrush.GradientStops[1].Color.ToString(),
+                        ColorOffset = linearGradientBrush.GradientStops[1].Offset
+                    }
+                };
+
+
+                switch (name)
+                {
+                    case "ControlBackgroundBrush":
+                        settings.ControlBackgroundBrush_Edit = string.Empty;
+                        settings.ControlBackgroundBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "TextBrush":
+                        settings.TextBrush_Edit = string.Empty;
+                        settings.TextBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "TextBrushDarker":
+                        settings.TextBrushDarker_Edit = string.Empty;
+                        settings.TextBrushDarker_EditGradient = themeLinearGradient;
+                        break;
+                    case "TextBrushDark":
+                        settings.TextBrushDark_Edit = string.Empty;
+                        settings.TextBrushDark_EditGradient = themeLinearGradient;
+                        break;
+                    case "NormalBrush":
+                        settings.NormalBrush_Edit = string.Empty;
+                        settings.NormalBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "NormalBrushDark":
+                        settings.NormalBrushDark_Edit = string.Empty;
+                        settings.NormalBrushDark_EditGradient = themeLinearGradient;
+                        break;
+                    case "NormalBorderBrush":
+                        settings.NormalBorderBrush_Edit = string.Empty;
+                        settings.NormalBorderBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "HoverBrush":
+                        settings.HoverBrush_Edit = string.Empty;
+                        settings.HoverBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "GlyphBrush":
+                        settings.GlyphBrush_Edit = string.Empty;
+                        settings.GlyphBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "HighlightGlyphBrush":
+                        settings.HighlightGlyphBrush_Edit = string.Empty;
+                        settings.HighlightGlyphBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "PopupBorderBrush":
+                        settings.PopupBorderBrush_Edit = string.Empty;
+                        settings.PopupBorderBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "TooltipBackgroundBrush":
+                        settings.TooltipBackgroundBrush_Edit = string.Empty;
+                        settings.TooltipBackgroundBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "ButtonBackgroundBrush":
+                        settings.ButtonBackgroundBrush_Edit = string.Empty;
+                        settings.ButtonBackgroundBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "GridItemBackgroundBrush":
+                        settings.GridItemBackgroundBrush_Edit = string.Empty;
+                        settings.GridItemBackgroundBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "PanelSeparatorBrush":
+                        settings.PanelSeparatorBrush_Edit = string.Empty;
+                        settings.PanelSeparatorBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "PopupBackgroundBrush":
+                        settings.PopupBackgroundBrush_Edit = string.Empty;
+                        settings.PopupBackgroundBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "PositiveRatingBrush":
+                        settings.PositiveRatingBrush_Edit = string.Empty;
+                        settings.PositiveRatingBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "NegativeRatingBrush":
+                        settings.NegativeRatingBrush_Edit = string.Empty;
+                        settings.NegativeRatingBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "MixedRatingBrush":
+                        settings.MixedRatingBrush_Edit = string.Empty;
+                        settings.MixedRatingBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "ExpanderBackgroundBrush":
+                        settings.ExpanderBackgroundBrush_Edit = string.Empty;
+                        settings.ExpanderBackgroundBrush_EditGradient = themeLinearGradient;
+                        break;
+                    case "WindowBackgourndBrush":
+                        settings.WindowBackgourndBrush_Edit = string.Empty;
+                        settings.WindowBackgourndBrush_EditGradient = themeLinearGradient;
                         break;
                 }
             }
@@ -136,64 +288,85 @@ namespace ThemeModifier.Services
                     {
                         resourcesLists.Add(new ResourcesList { Key = themeElement.Name, Value = themeElement.Color });
 
+                        ThemeLinearGradient themeLinearGradient = new ThemeLinearGradient();
+
                         switch (themeElement.Name)
                         {
                             case "ControlBackgroundBrush":
                                 settings.ControlBackgroundBrush_Edit = string.Empty;
+                                settings.ControlBackgroundBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "TextBrush":
                                 settings.TextBrush_Edit = string.Empty;
+                                settings.TextBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "TextBrushDarker":
                                 settings.TextBrushDarker_Edit = string.Empty;
+                                settings.TextBrushDarker_EditGradient = themeLinearGradient;
                                 break;
                             case "TextBrushDark":
                                 settings.TextBrushDark_Edit = string.Empty;
+                                settings.TextBrushDark_EditGradient = themeLinearGradient;
                                 break;
                             case "NormalBrush":
                                 settings.NormalBrush_Edit = string.Empty;
+                                settings.NormalBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "NormalBrushDark":
                                 settings.NormalBrushDark_Edit = string.Empty;
+                                settings.NormalBrushDark_EditGradient = themeLinearGradient;
                                 break;
                             case "NormalBorderBrush":
                                 settings.NormalBorderBrush_Edit = string.Empty;
+                                settings.NormalBorderBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "HoverBrush":
                                 settings.HoverBrush_Edit = string.Empty;
+                                settings.HoverBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "GlyphBrush":
                                 settings.GlyphBrush_Edit = string.Empty;
+                                settings.GlyphBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "HighlightGlyphBrush":
                                 settings.HighlightGlyphBrush_Edit = string.Empty;
+                                settings.HighlightGlyphBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "PopupBorderBrush":
                                 settings.PopupBorderBrush_Edit = string.Empty;
+                                settings.PopupBorderBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "TooltipBackgroundBrush":
                                 settings.TooltipBackgroundBrush_Edit = string.Empty;
+                                settings.TooltipBackgroundBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "ButtonBackgroundBrush":
                                 settings.ButtonBackgroundBrush_Edit = string.Empty;
+                                settings.ButtonBackgroundBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "GridItemBackgroundBrush":
                                 settings.GridItemBackgroundBrush_Edit = string.Empty;
+                                settings.GridItemBackgroundBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "PanelSeparatorBrush":
                                 settings.PanelSeparatorBrush_Edit = string.Empty;
+                                settings.PanelSeparatorBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "PopupBackgroundBrush":
                                 settings.PopupBackgroundBrush_Edit = string.Empty;
+                                settings.PopupBackgroundBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "PositiveRatingBrush":
                                 settings.PositiveRatingBrush_Edit = string.Empty;
+                                settings.PositiveRatingBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "NegativeRatingBrush":
                                 settings.NegativeRatingBrush_Edit = string.Empty;
+                                settings.NegativeRatingBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "MixedRatingBrush":
                                 settings.MixedRatingBrush_Edit = string.Empty;
+                                settings.MixedRatingBrush_EditGradient = themeLinearGradient;
                                 break;
                         }
                     }
@@ -207,14 +380,35 @@ namespace ThemeModifier.Services
             }
         }
 
+        private static LinearGradientBrush GetLinearGradientBrush (ThemeLinearGradient themeLinearGradient)
+        {
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
+
+            linearGradientBrush.StartPoint = themeLinearGradient.StartPoint;
+            linearGradientBrush.EndPoint = themeLinearGradient.EndPoint;
+
+            GradientStop gs1 = new GradientStop();
+            GradientStop gs2 = new GradientStop();
+
+            gs1.Offset = themeLinearGradient.GradientStop1.ColorOffset;
+            gs2.Offset = themeLinearGradient.GradientStop2.ColorOffset;
+
+            gs1.Color = (Color)ColorConverter.ConvertFromString(themeLinearGradient.GradientStop1.ColorString);
+            gs2.Color = (Color)ColorConverter.ConvertFromString(themeLinearGradient.GradientStop2.ColorString);
+
+            linearGradientBrush.GradientStops.Add(gs1);
+            linearGradientBrush.GradientStops.Add(gs2);
+
+            return linearGradientBrush;
+        }
+
+
         public static void SetThemeSettings(ThemeModifierSettings settings)
         {
             try
             {
                 IntegrationUI ui = new IntegrationUI();
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
-
-                string[] TwoColors = null;
 
                 if (!settings.ControlBackgroundBrush_Edit.IsNullOrEmpty())
                 {
@@ -224,6 +418,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ControlBackgroundBrush_Edit))
                     });
                 }
+                if (settings.ControlBackgroundBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "ControlBackgroundBrush",
+                        Value = GetLinearGradientBrush(settings.ControlBackgroundBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.TextBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -232,6 +435,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrush_Edit))
                     });
                 }
+                if (settings.TextBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "TextBrush",
+                        Value = GetLinearGradientBrush(settings.TextBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.TextBrushDarker_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -240,6 +452,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDarker_Edit))
                     });
                 }
+                if (settings.TextBrushDarker_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "TextBrushDarker",
+                        Value = GetLinearGradientBrush(settings.TextBrushDarker_EditGradient)
+                    });
+                }
+
                 if (!settings.TextBrushDark_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -248,6 +469,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDark_Edit))
                     });
                 }
+                if (settings.TextBrushDark_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "TextBrushDark",
+                        Value = GetLinearGradientBrush(settings.TextBrushDark_EditGradient)
+                    });
+                }
+
                 if (!settings.NormalBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -256,6 +486,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrush_Edit))
                     });
                 }
+                if (settings.NormalBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "NormalBrush",
+                        Value = GetLinearGradientBrush(settings.NormalBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.NormalBrushDark_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -264,6 +503,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrushDark_Edit))
                     });
                 }
+                if (settings.NormalBrushDark_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "NormalBrushDark",
+                        Value = GetLinearGradientBrush(settings.NormalBrushDark_EditGradient)
+                    });
+                }
+
                 if (!settings.NormalBorderBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -272,6 +520,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBorderBrush_Edit))
                     });
                 }
+                if (settings.NormalBorderBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "NormalBorderBrush",
+                        Value = GetLinearGradientBrush(settings.NormalBorderBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.HoverBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -280,6 +537,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.HoverBrush_Edit))
                     });
                 }
+                if (settings.HoverBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "HoverBrush",
+                        Value = GetLinearGradientBrush(settings.HoverBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.GlyphBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -288,6 +554,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.GlyphBrush_Edit))
                     });
                 }
+                if (settings.GlyphBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "GlyphBrush",
+                        Value = GetLinearGradientBrush(settings.GlyphBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.HighlightGlyphBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -296,6 +571,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.HighlightGlyphBrush_Edit))
                     });
                 }
+                if (settings.HighlightGlyphBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "HighlightGlyphBrush",
+                        Value = GetLinearGradientBrush(settings.HighlightGlyphBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.PopupBorderBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -304,6 +588,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PopupBorderBrush_Edit))
                     });
                 }
+                if (settings.PopupBorderBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "PopupBorderBrush",
+                        Value = GetLinearGradientBrush(settings.PopupBorderBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.TooltipBackgroundBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -312,6 +605,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TooltipBackgroundBrush_Edit))
                     });
                 }
+                if (settings.TooltipBackgroundBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "TooltipBackgroundBrush",
+                        Value = GetLinearGradientBrush(settings.TooltipBackgroundBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.ButtonBackgroundBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -320,6 +622,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ButtonBackgroundBrush_Edit))
                     });
                 }
+                if (settings.ButtonBackgroundBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "ButtonBackgroundBrush",
+                        Value = GetLinearGradientBrush(settings.ButtonBackgroundBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.GridItemBackgroundBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -328,6 +639,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.GridItemBackgroundBrush_Edit))
                     });
                 }
+                if (settings.GridItemBackgroundBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "GridItemBackgroundBrush",
+                        Value = GetLinearGradientBrush(settings.GridItemBackgroundBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.PanelSeparatorBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -336,6 +656,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PanelSeparatorBrush_Edit))
                     });
                 }
+                if (settings.PanelSeparatorBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "GridPanelSeparatorBrushItemBackgroundBrush",
+                        Value = GetLinearGradientBrush(settings.PanelSeparatorBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.PopupBackgroundBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -344,6 +673,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PopupBackgroundBrush_Edit))
                     });
                 }
+                if (settings.PopupBackgroundBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "PopupBackgroundBrush",
+                        Value = GetLinearGradientBrush(settings.PopupBackgroundBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.PositiveRatingBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -352,6 +690,15 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PositiveRatingBrush_Edit))
                     });
                 }
+                if (settings.PositiveRatingBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "PositiveRatingBrush",
+                        Value = GetLinearGradientBrush(settings.PositiveRatingBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.NegativeRatingBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
@@ -360,12 +707,29 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NegativeRatingBrush_Edit))
                     });
                 }
+                if (settings.NegativeRatingBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "NegativeRatingBrush",
+                        Value = GetLinearGradientBrush(settings.NegativeRatingBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.MixedRatingBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "MixedRatingBrush",
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.MixedRatingBrush_Edit))
+                    });
+                }
+                if (settings.MixedRatingBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "MixedRatingBrush",
+                        Value = GetLinearGradientBrush(settings.MixedRatingBrush_EditGradient)
                     });
                 }
 
@@ -377,12 +741,29 @@ namespace ThemeModifier.Services
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ExpanderBackgroundBrush_Edit))
                     });
                 }
+                if (settings.ExpanderBackgroundBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "ExpanderBackgroundBrush",
+                        Value = GetLinearGradientBrush(settings.ExpanderBackgroundBrush_EditGradient)
+                    });
+                }
+
                 if (!settings.WindowBackgourndBrush_Edit.IsNullOrEmpty())
                 {
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "WindowBackgourndBrush",
                         Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WindowBackgourndBrush_Edit))
+                    });
+                }
+                if (settings.WindowBackgourndBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "WindowBackgourndBrush",
+                        Value = GetLinearGradientBrush(settings.WindowBackgourndBrush_EditGradient)
                     });
                 }
 
@@ -580,27 +961,35 @@ namespace ThemeModifier.Services
                 }
 
 
-                Grid g = new Grid();
-                g.Margin = new Thickness(0, 0, 10, 0);
+                Grid g = new Grid
+                {
+                    Margin = new Thickness(0, 0, 10, 0)
+                };
                 DockPanel.SetDock(g, Dock.Left);
 
-                Image PART_ImageFrame = new Image();
-                PART_ImageFrame.Name = "PART_ImageFrame";
-                PART_ImageFrame.MaxHeight = MaxHeight;
-                PART_ImageFrame.MaxWidth = MaxHeight;
-                PART_ImageFrame.Source = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}.png"));
+                Image PART_ImageFrame = new Image
+                {
+                    Name = "PART_ImageFrame",
+                    MaxHeight = MaxHeight,
+                    MaxWidth = MaxHeight,
+                    Source = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}.png"))
+                };
                 RenderOptions.SetBitmapScalingMode(PART_ImageFrame, BitmapScalingMode.Fant);
 
-                Image PART_ImageIcon = new Image();
-                PART_ImageIcon.Name = "PART_ImageIcon";
-                PART_ImageIcon.Source = OriginalSource;
-                PART_ImageIcon.Stretch = Stretch.Fill;
-                PART_ImageIcon.MaxHeight = MaxHeight;
-                PART_ImageIcon.MaxWidth = MaxHeight;
+                Image PART_ImageIcon = new Image
+                {
+                    Name = "PART_ImageIcon",
+                    Source = OriginalSource,
+                    Stretch = Stretch.Fill,
+                    MaxHeight = MaxHeight,
+                    MaxWidth = MaxHeight
+                };
                 RenderOptions.SetBitmapScalingMode(PART_ImageFrame, BitmapScalingMode.Fant);
 
-                ImageBrush imgB = new ImageBrush();
-                imgB.ImageSource = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}Shape.png"));
+                ImageBrush imgB = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}Shape.png"))
+                };
 
                 PART_ImageIcon.OpacityMask = imgB;
 

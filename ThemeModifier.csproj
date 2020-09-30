@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ColorPickerWPF, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ColorPickerWPF.1.0.9\lib\net461\ColorPickerWPF.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
@@ -64,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ThemeElement.cs" />
+    <Compile Include="Models\ThemeLinearGradient.cs" />
     <Compile Include="PlayniteResources\Themes.cs" />
     <Compile Include="Services\ThemeClass.cs" />
     <Compile Include="ThemeModifier.cs" />
@@ -174,6 +172,9 @@
       <Project>{e05ac297-6067-4270-a572-1df926bb3635}</Project>
       <Name>PluginCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

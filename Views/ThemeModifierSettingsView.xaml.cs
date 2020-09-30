@@ -1,5 +1,5 @@
-﻿using ColorPickerWPF;
-using ColorPickerWPF.Code;
+﻿using Newtonsoft.Json;
+using Playnite.SDK;
 using PluginCommon;
 using System;
 using System.Collections.Generic;
@@ -15,9 +15,14 @@ namespace ThemeModifier.Views
 {
     public partial class ThemeModifierSettingsView : UserControl
     {
+        private static readonly ILogger logger = LogManager.GetLogger();
+
         private ThemeModifierSettings _settings;
         private List<ThemeElement> _ThemeDefault;
         private string _PlayniteConfigurationPath;
+
+        private TextBlock tbControl;
+        private Label lControl;
 
 
         public ThemeModifierSettingsView(ThemeModifierSettings settings, List<ThemeElement> ThemeDefault, string PlayniteConfigurationPath)
@@ -33,18 +38,22 @@ namespace ThemeModifier.Views
         {
             try
             {
-                Color color;
-                bool ok = ColorPickerWindow.ShowDialog(out color, ColorPickerDialogOptions.SimpleView);
+                tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
+                lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
-                if (ok)
+                if (tbControl.Background is SolidColorBrush)
                 {
-                    TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
-                    Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
-
-                    tbControl.Background = new SolidColorBrush(color);
-
-                    ThemeClass.SetColor(lControl.Content.ToString(), color, _settings);
+                    Color color = ((SolidColorBrush)tbControl.Background).Color;
+                    PART_SelectorColorPicker.SetColors(color);
                 }
+                if (tbControl.Background is LinearGradientBrush)
+                {
+                    LinearGradientBrush linearGradientBrush = (LinearGradientBrush)tbControl.Background;
+                    PART_SelectorColorPicker.SetColors(linearGradientBrush);
+                }
+
+                PART_SelectorColor.Visibility = Visibility.Visible;
+                PART_ThemeColor.Visibility = Visibility.Collapsed;
             }
             catch (Exception ex)
             {
@@ -62,7 +71,7 @@ namespace ThemeModifier.Views
 
                 tbControl.Background = finded.Color;
 
-                ThemeClass.SetColor(lControl.Content.ToString(), null, _settings, finded.Color);
+                ThemeClass.SetThemeColor(lControl.Content.ToString(), null, _settings, finded.Color);
             }
             catch (Exception ex)
             {
@@ -129,6 +138,41 @@ namespace ThemeModifier.Views
         private void BtRemoveIcons_Click(object sender, RoutedEventArgs e)
         {
             ThemeClass.RestoreThemeFile(_PlayniteConfigurationPath);
+        }
+
+        private void PART_TM_ColorOK_Click(object sender, RoutedEventArgs e)
+        {
+            Color color = default(Color);
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
+
+            if (tbControl != null && lControl != null)
+            {
+                if (PART_SelectorColorPicker.IsSimpleColor)
+                {
+                    color = PART_SelectorColorPicker.SimpleColor;
+                    tbControl.Background = new SolidColorBrush(color);
+                    ThemeClass.SetThemeColor(lControl.Content.ToString(), color, _settings);
+                }
+                else
+                {
+                    linearGradientBrush = PART_SelectorColorPicker.linearGradientBrush;
+                    tbControl.Background = linearGradientBrush;
+                    ThemeClass.SetThemeColor(lControl.Content.ToString(), linearGradientBrush, _settings);
+                }
+            }
+            else
+            {
+                logger.Warn("ThemeModifier - One control is undefined");
+            }
+
+            PART_SelectorColor.Visibility = Visibility.Collapsed;
+            PART_ThemeColor.Visibility = Visibility.Visible;
+        }
+
+        private void PART_TM_ColorCancel_Click(object sender, RoutedEventArgs e)
+        {
+            PART_SelectorColor.Visibility = Visibility.Collapsed;
+            PART_ThemeColor.Visibility = Visibility.Visible;
         }
     }
 }
