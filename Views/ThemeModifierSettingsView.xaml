@@ -209,62 +209,67 @@
         </TabItem>
 
         <TabItem Header="{DynamicResource LOCThemeModifierEditView}">
-            <Grid>
+            <Grid Margin="10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="45" />
-                    <ColumnDefinition Width="205"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <GroupBox Header="GroupBox Button" Margin="10" Padding="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" >
+                <GroupBox Header="GroupBox Button" Grid.Column="0" Grid.Row="0">
                     <StackPanel>
-                        <Button VerticalAlignment="Center" Width="150" Margin="0,0,0,10">Button</Button>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                            <Button VerticalAlignment="Center" Width="110" Margin="0,0,10,0">Button</Button>
 
-                        <ToggleButton VerticalAlignment="Center" Width="150" IsChecked="True">ToggleButton</ToggleButton>
+                            <ToggleButton VerticalAlignment="Center" Width="110" IsChecked="True">ToggleButton</ToggleButton>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <Button Width="150" Height="40" Style="{DynamicResource PlayButton}" Content="{DynamicResource LOCPlayGame}" />
+                        </StackPanel>
+                    </StackPanel>
+                    
+                </GroupBox>
+                <GroupBox Header="GroupBox ProgressBar" Grid.Column="2" Grid.Row="0" >
+                    <StackPanel>
+                        <ProgressBar Minimum="0" Maximum="100" Value="10" Height="28" Margin="0,0,0,10" />
+
+                        <ProgressBar IsIndeterminate="True" Height="28" />
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Header="GroupBox ProgressBar" Margin="10" Padding="10" Grid.Column="3" Grid.Row="1" >
-                    <StackPanel>
-                        <ProgressBar Width="150" Minimum="0" Maximum="100" Value="10" Height="28" Margin="0,0,0,10" />
-
-                        <ProgressBar Width="150" IsIndeterminate="True" Height="28" />
-                    </StackPanel>
-                </GroupBox>
-
-
-                <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin="4,0,49,10">
-                    <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" Margin="0,0,0,10">
+                <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="2">
+                    <CheckBox VerticalAlignment="Center" Margin="0,0,0,10">
                         <Label>Checkbox with label</Label>
                     </CheckBox>
-                    <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" HorizontalAlignment="Center" IsChecked="True">
+                    <CheckBox VerticalAlignment="Center" IsChecked="True">
                         <Label>Checkbox with label</Label>
                     </CheckBox>
                 </StackPanel>
-
                 <StackPanel Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" Margin="75,0">
                     <RadioButton Margin="0,0,0,10">RadioButton</RadioButton>
                     <RadioButton IsChecked="True">RadioButton</RadioButton>
                 </StackPanel>
 
-
-                <TreeView HorizontalAlignment="Center" Width="200" Grid.Column="0" Grid.Row="3" Margin="25,0,25,10" Grid.ColumnSpan="2">
-                    <ScrollViewer Height="100">
+                <TreeView Grid.Column="0" Grid.Row="4">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <TreeViewItem Header="Level 1" IsExpanded="True">
-                            <TreeViewItem Header="Level 2.1" />
+                            <TreeViewItem Header="Level 2.1" IsSelected="True" />
                             <TreeViewItem Header="Level 2.2" IsExpanded="True">
-                                <TreeViewItem Header="Level 3.1" />
+                                <TreeViewItem Header="Level 3.1" IsEnabled="False" />
                                 <TreeViewItem Header="Level 3.2" />
                             </TreeViewItem>
                             <TreeViewItem Header="Level 2.3" />
@@ -273,35 +278,59 @@
                         </TreeViewItem>
                     </ScrollViewer>
                 </TreeView>
-
-                <StackPanel Grid.Column="3" Grid.Row="3" Margin="0,0,0,10">
+                <StackPanel Grid.Column="2" Grid.Row="4" Grid.RowSpan="3">
                     <Slider Minimum="0" Maximum="50" Value="15" Margin="0,0,0,10"></Slider>
 
-                    <TextBlock>           
+                    <TextBlock Margin="0,0,0,10">       
                         <Hyperlink>Hyperlink example</Hyperlink>
                     </TextBlock>
 
-                    <RepeatButton  VerticalAlignment="Center" Width="150" Margin="0,10,0,10" Delay="500" Interval="500">
-                        RepeatButton
-                    </RepeatButton>
+                    <ComboBox IsEditable="True" Text="Test3" Margin="0,0,0,10">
+                        <ComboBoxItem Content="Test1"/>
+                        <ComboBoxItem Content="Test2"/>
+                        <ComboBoxItem Content="Test3" IsSelected="True" />
+                        <ComboBoxItem Content="Test4"/>
+                    </ComboBox>
+
+                    <Expander IsExpanded="True" Header="Expander">
+                        <TextBlock TextWrapping="Wrap" Margin="5">
+                        Example text for Expander control.
+                        </TextBlock>
+                    </Expander>
                 </StackPanel>
 
-                <Button Grid.Column="1" Grid.Row="4" Content="Menu test" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Margin="5,10,50,10">
-                    <Button.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Menu item 1" />
-                            <MenuItem Header="Menu item 2" />
-                            <Separator />
-                            <MenuItem Header="Menu item 3" />
-                        </ContextMenu>
-                    </Button.ContextMenu>
-                </Button>
+                <Menu Grid.Column="0" Grid.Row="6">
+                    <MenuItem Header="Test1" Margin="0,0,10,0">
+                        <MenuItem Header="menu1" />
+                        <MenuItem Header="menu2" />
+                    </MenuItem>
+                    <MenuItem Header="Test2 with multi level" Margin="0,0,10,0">
+                        <MenuItem Header="menu1" />
+                        <MenuItem Header="menu2" IsEnabled="False" />
+                        <MenuItem Header="menu3" IsChecked="True" IsCheckable="True"/>
+                        <Separator />
+                        <MenuItem Header="menu4">
+                            <MenuItem Header="submenu1" />
+                            <MenuItem Header="submenu2" />
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Test3">
+                        <MenuItem Header="menu1" />
+                    </MenuItem>
+                </Menu>
 
-                <Expander Grid.Column="3" Grid.Row="4">
-                    <TextBlock TextWrapping="Wrap">
-                        Example text for Expander control.
-                    </TextBlock>
-                </Expander>
+                <ListView Height="70" SelectedIndex="1" Grid.Row="8" Grid.ColumnSpan="3" Grid.Column="0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Column" Width="120" />
+                            <GridViewColumn Header="Column" Width="auto" />
+                            <GridViewColumn Header="Column" Width="150" />
+                            <GridViewColumn Header="Column" Width="150" />
+                        </GridView>
+                    </ListView.View>
+                    <ListViewItem Content="data1"></ListViewItem>
+                    <ListViewItem Content="data2"></ListViewItem>
+                </ListView>
             </Grid>
         </TabItem>
 
