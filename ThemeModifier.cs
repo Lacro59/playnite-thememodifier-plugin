@@ -44,7 +44,7 @@ namespace ThemeModifier
             string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             // Add plugin localization in application ressource.
-            PluginCommon.Localization.SetPluginLanguage(pluginFolder, api.Paths.ConfigurationPath);
+            PluginCommon.Localization.SetPluginLanguage(pluginFolder, api.ApplicationSettings.Language);
             // Add common in application ressource.
             PluginCommon.Common.Load(pluginFolder);
 
@@ -59,29 +59,8 @@ namespace ThemeModifier
                 }
             }
 
-
-            // Default values
-            ThemeDefault.Add(new ThemeElement { Name = "ControlBackgroundBrush", Color = resources.GetResource("ControlBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "TextBrush", Color = resources.GetResource("TextBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "TextBrushDarker", Color = resources.GetResource("TextBrushDarker") });
-            ThemeDefault.Add(new ThemeElement { Name = "TextBrushDark", Color = resources.GetResource("TextBrushDark") });
-            ThemeDefault.Add(new ThemeElement { Name = "NormalBrush", Color = resources.GetResource("NormalBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "NormalBrushDark", Color = resources.GetResource("NormalBrushDark") });
-            ThemeDefault.Add(new ThemeElement { Name = "NormalBorderBrush", Color = resources.GetResource("NormalBorderBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "HoverBrush", Color = resources.GetResource("HoverBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "GlyphBrush", Color = resources.GetResource("GlyphBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "HighlightGlyphBrush", Color = resources.GetResource("HighlightGlyphBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "PopupBorderBrush", Color = resources.GetResource("PopupBorderBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "TooltipBackgroundBrush", Color = resources.GetResource("TooltipBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "ButtonBackgroundBrush", Color = resources.GetResource("ButtonBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "GridItemBackgroundBrush", Color = resources.GetResource("GridItemBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "PanelSeparatorBrush", Color = resources.GetResource("PanelSeparatorBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "PopupBackgroundBrush", Color = resources.GetResource("PopupBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "PositiveRatingBrush", Color = resources.GetResource("PositiveRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "NegativeRatingBrush", Color = resources.GetResource("NegativeRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "MixedRatingBrush", Color = resources.GetResource("MixedRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "ExpanderBackgroundBrush", Color = resources.GetResource("ExpanderBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { Name = "WindowBackgourndBrush", Color = resources.GetResource("WindowBackgourndBrush") });
+            // Theme default
+            ThemeDefault = ThemeClass.GetThemeDefault();
 
             // Add modified values
             ThemeClass.SetThemeSettings(settings);
@@ -321,7 +300,7 @@ namespace ThemeModifier
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            return new ThemeModifierSettingsView(settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath);
+            return new ThemeModifierSettingsView(PlayniteApi, settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath, this.GetPluginUserDataPath());
         }
     }
 }
