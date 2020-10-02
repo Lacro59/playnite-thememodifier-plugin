@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThemeModifier.Models;
+using ThemeModifier.Services;
 
 namespace ThemeModifier
 {
@@ -15,26 +17,47 @@ namespace ThemeModifier
         public bool EnableCheckVersion { get; set; } = true;
 
         public string ControlBackgroundBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient ControlBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string TextBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient TextBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string TextBrushDarker_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient TextBrushDarker_EditGradient { get; set; } = new ThemeLinearGradient();
         public string TextBrushDark_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient TextBrushDark_EditGradient { get; set; } = new ThemeLinearGradient();
         public string NormalBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient NormalBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string NormalBrushDark_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient NormalBrushDark_EditGradient { get; set; } = new ThemeLinearGradient();
         public string NormalBorderBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient NormalBorderBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string HoverBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient HoverBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string GlyphBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient GlyphBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string HighlightGlyphBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient HighlightGlyphBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string PopupBorderBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient PopupBorderBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string TooltipBackgroundBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient TooltipBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string ButtonBackgroundBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient ButtonBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string GridItemBackgroundBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient GridItemBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string PanelSeparatorBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient PanelSeparatorBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string PopupBackgroundBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient PopupBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string PositiveRatingBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient PositiveRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string NegativeRatingBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient NegativeRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string MixedRatingBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient MixedRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string ExpanderBackgroundBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient ExpanderBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string WindowBackgourndBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient WindowBackgourndBrush_EditGradient { get; set; } = new ThemeLinearGradient();
 
         public bool EnableIconChanger { get; set; } = false;
         public bool UseIconCircle { get; set; } = true;
@@ -86,6 +109,30 @@ namespace ThemeModifier
                 ExpanderBackgroundBrush_Edit = savedSettings.ExpanderBackgroundBrush_Edit;
                 WindowBackgourndBrush_Edit = savedSettings.WindowBackgourndBrush_Edit;
 
+
+                ControlBackgroundBrush_EditGradient = savedSettings.ControlBackgroundBrush_EditGradient;
+                TextBrush_EditGradient = savedSettings.TextBrush_EditGradient;
+                TextBrushDarker_EditGradient = savedSettings.TextBrushDarker_EditGradient;
+                TextBrushDark_EditGradient = savedSettings.TextBrushDark_EditGradient;
+                NormalBrush_EditGradient = savedSettings.NormalBrush_EditGradient;
+                NormalBrushDark_EditGradient = savedSettings.NormalBrushDark_EditGradient;
+                NormalBorderBrush_EditGradient = savedSettings.NormalBorderBrush_EditGradient;
+                HoverBrush_EditGradient = savedSettings.HoverBrush_EditGradient;
+                GlyphBrush_EditGradient = savedSettings.GlyphBrush_EditGradient;
+                HighlightGlyphBrush_EditGradient = savedSettings.HighlightGlyphBrush_EditGradient;
+                PopupBorderBrush_EditGradient = savedSettings.PopupBorderBrush_EditGradient;
+                TooltipBackgroundBrush_EditGradient = savedSettings.TooltipBackgroundBrush_EditGradient;
+                ButtonBackgroundBrush_EditGradient = savedSettings.ButtonBackgroundBrush_EditGradient;
+                GridItemBackgroundBrush_EditGradient = savedSettings.GridItemBackgroundBrush_EditGradient;
+                PanelSeparatorBrush_EditGradient = savedSettings.PanelSeparatorBrush_EditGradient;
+                PopupBackgroundBrush_EditGradient = savedSettings.PopupBackgroundBrush_EditGradient;
+                PositiveRatingBrush_EditGradient = savedSettings.PositiveRatingBrush_EditGradient;
+                NegativeRatingBrush_EditGradient = savedSettings.NegativeRatingBrush_EditGradient;
+                MixedRatingBrush_EditGradient = savedSettings.MixedRatingBrush_EditGradient;
+                ExpanderBackgroundBrush_EditGradient = savedSettings.ExpanderBackgroundBrush_EditGradient;
+                WindowBackgourndBrush_EditGradient = savedSettings.WindowBackgourndBrush_EditGradient;
+
+
                 EnableIconChanger = savedSettings.EnableIconChanger;
                 UseIconCircle = savedSettings.UseIconCircle;
                 UseIconClock = savedSettings.UseIconClock;
@@ -104,6 +151,13 @@ namespace ThemeModifier
         {
             // Code executed when user decides to cancel any changes made since BeginEdit was called.
             // This method should revert any changes made to Option1 and Option2.
+
+            var savedSettings = plugin.LoadPluginSettings<ThemeModifierSettings>();
+            var settings = new ThemeModifierSettings(plugin);
+            ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, settings);
+            ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, savedSettings, true);
+
+
         }
 
         public void EndEdit()

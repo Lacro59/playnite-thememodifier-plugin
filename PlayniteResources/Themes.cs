@@ -1,62 +1,19 @@
-﻿using Playnite.Common;
-using Playnite.SDK;
+﻿using Playnite.SDK;
 using Playnite.SDK.Models;
+using PluginCommon;
+using PluginCommon.PlayniteResources;
+using PluginCommon.PlayniteResources.API;
+using PluginCommon.PlayniteResources.Common;
+using PluginCommon.PlayniteResources.Converters;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using YamlDotNet.Serialization;
 using System.Linq;
-using Playnite;
 using System.Windows;
 
 namespace ThemeModifier.PlayniteResources
 {
-    public class BaseExtensionManifest
-    {
-        public string Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Author { get; set; }
-
-        public string Version { get; set; }
-
-        public List<Link> Links { get; set; }
-
-        [YamlIgnore]
-        public string DirectoryPath { get; set; }
-
-        [YamlIgnore]
-        public string DirectoryName { get; set; }
-
-        [YamlIgnore]
-        public string DescriptionPath { get; set; }
-
-        [YamlIgnore]
-        public string LegacyDirId
-        {
-            get
-            {
-                if (Name.IsNullOrEmpty())
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return Paths.GetSafeFilename(Name).Replace(" ", string.Empty) + "_" + (Name + Author).MD5();
-                }
-            }
-        }
-
-        public void VerifyManifest()
-        {
-            if (!System.Version.TryParse(Version, out var extver))
-            {
-                throw new Exception("Extension version string must be a real version!");
-            }
-        }
-    }
-
     public class ThemeManifest : BaseExtensionManifest
     {
         public string ThemeApiVersion { get; set; }
@@ -83,6 +40,7 @@ namespace ThemeModifier.PlayniteResources
             DescriptionPath = manifestPath;
             DirectoryPath = Path.GetDirectoryName(manifestPath);
             DirectoryName = Path.GetFileNameWithoutExtension(DirectoryPath);
+            // TODO New SDK
             if (Mode == ApplicationMode.Desktop)
             {
                 //IsBuiltInTheme = BuiltinExtensions.BuiltinDesktopThemeFolders.Contains(DirectoryName);
@@ -137,6 +95,7 @@ namespace ThemeModifier.PlayniteResources
             DefaultTheme = theme;
         }
 
+        /*
         public static void ApplyFullscreenButtonPrompts(Application app, FullscreenButtonPrompts prompts)
         {
             if (prompts == FullscreenSettings.DefaultButtonPrompts)
@@ -175,7 +134,9 @@ namespace ThemeModifier.PlayniteResources
                 }
             }
         }
+        */
 
+        /*
         public static bool ApplyTheme(Application app, ThemeManifest theme, ApplicationMode mode)
         {
             var apiVesion = mode == ApplicationMode.Desktop ? DesktopApiVersion : FullscreenApiVersion;
@@ -238,6 +199,7 @@ namespace ThemeModifier.PlayniteResources
 
             return false;
         }
+        */
 
         public static List<ThemeManifest> GetAvailableThemes(ApplicationMode mode)
         {

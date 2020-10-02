@@ -3,329 +3,431 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:PluginCommon.Controls;assembly=PluginCommon"
              mc:Ignorable="d">
 
-    <TabControl Margin="20">
-        <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}">
-            <ScrollViewer>
-                <Grid Grid.ColumnSpan="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="40" />
-                    </Grid.RowDefinitions>
+    <Grid Margin="20">
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Width="67" IsEnabled="False"></TabItem>
+            
+            <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}" Name="PART_TabEditTheme" IsSelected="True">
+                <Grid>
+                    <Grid Name="PART_SelectorColor" Width="500" Visibility="Collapsed">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <controls:ControlPickerGradient Name="PART_SelectorColorPicker"></controls:ControlPickerGradient>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource ControlBackgroundBrush}" Name="tbControlBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">ControlBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="90" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                        
+                            <Button Name="PART_TM_ColorOK" Grid.Column="1" Grid.Row="1" Content="{DynamicResource LOCOKLabel}" 
+                                    Click="PART_TM_ColorOK_Click"/>
+                            <Button Name="PART_TM_ColorCancel" Grid.Column="3" Grid.Row="1" Content="{DynamicResource LOCCancelLabel}" 
+                                    Click="PART_TM_ColorCancel_Click" />
+                        </Grid>
+                    </Grid>
+                
+                    <ScrollViewer Name="PART_ThemeColor">
+                        <Grid Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrush}" Name="tbTextBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">TextBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource ControlBackgroundBrush}" Name="tbControlBackgroundBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">ControlBackgroundBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDarker}" Name="tbTextBrushDarker"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">TextBrushDarker</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrush}" Name="tbTextBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">TextBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDark}" Name="tbTextBrushDark"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">TextBrushDark</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDarker}" Name="tbTextBrushDarker"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">TextBrushDarker</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrush}" Name="tbNormalBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">NormalBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="1" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource TextBrushDark}" Name="tbTextBrushDark"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">TextBrushDark</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrushDark}" Name="tbNormalBrushDark"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">NormalBrushDark</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrush}" Name="tbNormalBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">NormalBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBorderBrush}" Name="tbNormalBorderBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">NormalBorderBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="2" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBrushDark}" Name="tbNormalBrushDark"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">NormalBrushDark</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource HoverBrush}" Name="tbHoverBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">HoverBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource NormalBorderBrush}" Name="tbNormalBorderBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">NormalBorderBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource GlyphBrush}" Name="tbGlyphBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">GlyphBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="3" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource HoverBrush}" Name="tbHoverBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">HoverBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource HighlightGlyphBrush}" Name="tbHighlightGlyphBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">HighlightGlyphBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource GlyphBrush}" Name="tbGlyphBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">GlyphBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBorderBrush}" Name="tbPopupBorderBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">PopupBorderBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="4" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource HighlightGlyphBrush}" Name="tbHighlightGlyphBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">HighlightGlyphBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource TooltipBackgroundBrush}" Name="tbTooltipBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">TooltipBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBorderBrush}" Name="tbPopupBorderBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">PopupBorderBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource ButtonBackgroundBrush}" Name="tbButtonBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">ButtonBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="5" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource TooltipBackgroundBrush}" Name="tbTooltipBackgroundBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">TooltipBackgroundBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource GridItemBackgroundBrush}" Name="tbGridItemBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">GridItemBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource ButtonBackgroundBrush}" Name="tbButtonBackgroundBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">ButtonBackgroundBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource PanelSeparatorBrush}" Name="tbPanelSeparatorBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">PanelSeparatorBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="6" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource GridItemBackgroundBrush}" Name="tbGridItemBackgroundBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">GridItemBackgroundBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBackgroundBrush}" Name="tbPopupBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">PopupBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource PanelSeparatorBrush}" Name="tbPanelSeparatorBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">PanelSeparatorBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource PositiveRatingBrush}" Name="tbPositiveRatingBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">PositiveRatingBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="7" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource PopupBackgroundBrush}" Name="tbPopupBackgroundBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">PopupBackgroundBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource NegativeRatingBrush}" Name="tbNegativeRatingBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">NegativeRatingBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource MixedRatingBrush}" Name="tbMixedRatingBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">MixedRatingBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource PositiveRatingBrush}" Name="tbPositiveRatingBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">PositiveRatingBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
+                        
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource NegativeRatingBrush}" Name="tbNegativeRatingBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">NegativeRatingBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="0">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource ExpanderBackgroundBrush}" Name="tbExpanderBackgroundBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">ExpanderBackgroundBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="2">
-                        <TextBlock Height="28" Width="28" Background="{DynamicResource WindowBackgourndBrush}" Name="tbWindowBackgourndBrush"></TextBlock>
-                        <Label Margin="10,0" Width="130" FontSize="12">WindowBackgourndBrush</Label>
-                        <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
-                        <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
-                    </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource MixedRatingBrush}" Name="tbMixedRatingBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">MixedRatingBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
-
-                    <Button Grid.Row="11" Grid.Column="2" Name="btRestoreDefault" Content="{DynamicResource LOCThemeModifierRestoreDefault}" Click="BtRestoreDefault_Click" VerticalAlignment="Center"/>
-                </Grid>
-            </ScrollViewer>
-        </TabItem>
-
-        <TabItem Header="{DynamicResource LOCThemeModifierEditView}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="45" />
-                    <ColumnDefinition Width="205"/>
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="250" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-
-                <GroupBox Header="GroupBox Button" Margin="10" Padding="10" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" >
-                    <StackPanel>
-                        <Button VerticalAlignment="Center" Width="150" Margin="0,0,0,10">Button</Button>
-
-                        <ToggleButton VerticalAlignment="Center" Width="150" IsChecked="True">ToggleButton</ToggleButton>
-                    </StackPanel>
-                </GroupBox>
-
-                <GroupBox Header="GroupBox ProgressBar" Margin="10" Padding="10" Grid.Column="3" Grid.Row="1" >
-                    <StackPanel>
-                        <ProgressBar Width="150" Minimum="0" Maximum="100" Value="10" Height="28" Margin="0,0,0,10" />
-
-                        <ProgressBar Width="150" IsIndeterminate="True" Height="28" />
-                    </StackPanel>
-                </GroupBox>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="0">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource ExpanderBackgroundBrush}" Name="tbExpanderBackgroundBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">ExpanderBackgroundBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource WindowBackgourndBrush}" Name="tbWindowBackgourndBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">WindowBackgourndBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
 
 
-                <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin="4,0,49,10">
-                    <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" Margin="0,0,0,10">
-                        <Label>Checkbox with label</Label>
-                    </CheckBox>
-                    <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" HorizontalAlignment="Center" IsChecked="True">
-                        <Label>Checkbox with label</Label>
-                    </CheckBox>
-                </StackPanel>
-
-                <StackPanel Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" Margin="75,0">
-                    <RadioButton Margin="0,0,0,10">RadioButton</RadioButton>
-                    <RadioButton IsChecked="True">RadioButton</RadioButton>
-                </StackPanel>
-
-
-                <TreeView HorizontalAlignment="Center" Width="200" Grid.Column="0" Grid.Row="3" Margin="25,0,25,10" Grid.ColumnSpan="2">
-                    <ScrollViewer Height="100">
-                        <TreeViewItem Header="Level 1" IsExpanded="True">
-                            <TreeViewItem Header="Level 2.1" />
-                            <TreeViewItem Header="Level 2.2" IsExpanded="True">
-                                <TreeViewItem Header="Level 3.1" />
-                                <TreeViewItem Header="Level 3.2" />
-                            </TreeViewItem>
-                            <TreeViewItem Header="Level 2.3" />
-                            <TreeViewItem Header="Level 2.4" />
-                            <TreeViewItem Header="Level 2.5" />
-                        </TreeViewItem>
+                            <Button Grid.Row="11" Grid.Column="2" Name="btRestoreDefault" VerticalAlignment="Center"
+                                    Content="{DynamicResource LOCThemeModifierRestoreDefault}" Click="BtRestoreDefault_Click" />
+                        </Grid>
                     </ScrollViewer>
-                </TreeView>
+                </Grid>
+            </TabItem>
 
-                <StackPanel Grid.Column="3" Grid.Row="3" Margin="0,0,0,10">
-                    <Slider Minimum="0" Maximum="50" Value="15" Margin="0,0,0,10"></Slider>
-
-                    <TextBlock>           
-                <Hyperlink>Hyperlink example</Hyperlink>
-                    </TextBlock>
-
-                    <RepeatButton  VerticalAlignment="Center" Width="150" Margin="0,10,0,10" Delay="500" Interval="500">
-                        RepeatButton
-                    </RepeatButton>
-                </StackPanel>
-
-                <Button Grid.Column="1" Grid.Row="4" Content="Menu test" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Margin="5,10,50,10">
-                    <Button.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Menu item 1" />
-                            <MenuItem Header="Menu item 2" />
-                            <Separator />
-                            <MenuItem Header="Menu item 3" />
-                        </ContextMenu>
-                    </Button.ContextMenu>
-                </Button>
-
-                <Expander Grid.Column="3" Grid.Row="4" >
-                    <TextBlock TextWrapping="Wrap">  
-                        Exmpale text for Expander control.
-                    </TextBlock>
-                </Expander>
-            </Grid>
-        </TabItem>
-
-        <TabItem Width="100" IsEnabled="False"></TabItem>
-        
-        <TabItem Header="{DynamicResource LOCThemeModifierEditIcon}">
-            <DockPanel Margin="10">
-                <CheckBox IsChecked="{Binding EnableIconChanger}" DockPanel.Dock="Top">
-                    <Label Content="{DynamicResource LOCThemeModifierEnableIconChanger}" />
-                </CheckBox>
-
-                <Grid IsEnabled="{Binding EnableIconChanger}" Margin="30,5,0,0" DockPanel.Dock="Top">
+            <TabItem Header="{DynamicResource LOCThemeModifierEditView}">
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="10" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <ToggleButton IsChecked="{Binding UseIconCircle}" Grid.Column="0" Grid.Row="0" Margin="5" 
-                                  Name="tbUseIconCircle" Click="ToggleButton_Click">
-                        <Image Source="/ThemeModifier;component/Themes/Images/circleResource.png" Width="48"/>
-                    </ToggleButton>
-                    <ToggleButton IsChecked="{Binding UseIconClock}" Grid.Column="1" Grid.Row="0" Margin="5" 
-                                  Name="tbUseIconClock" Click="ToggleButton_Click">
-                        <Image Source="/ThemeModifier;component/Themes/Images/clockResource.png" Width="48"/>
-                    </ToggleButton>
-                    <ToggleButton IsChecked="{Binding UseIconSquareCorne}" Grid.Column="2" Grid.Row="0" Margin="5" 
-                                  Name="tbUseIconSquareCorne" Click="ToggleButton_Click">
-                        <Image Source="/ThemeModifier;component/Themes/Images/squareCorneResource.png" Width="48"/>
-                    </ToggleButton>
-                    <ToggleButton IsChecked="{Binding UseIconWe4ponx}" Grid.Column="3" Grid.Row="0" Margin="5" 
-                                  Name="tbUseIconWe4ponx" Click="ToggleButton_Click">
-                        <Image Source="/ThemeModifier;component/Themes/Images/we4ponxResource.png" Width="48"/>
-                    </ToggleButton>
+                    <GroupBox Header="GroupBox Button" Grid.Column="0" Grid.Row="0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                                <Button VerticalAlignment="Center" Width="110" Margin="0,0,10,0">Button</Button>
+
+                                <ToggleButton VerticalAlignment="Center" Width="110" IsChecked="True">ToggleButton</ToggleButton>
+                            </StackPanel>
+
+                            <StackPanel>
+                                <Button Width="150" Height="40" Style="{DynamicResource PlayButton}" Content="{DynamicResource LOCPlayGame}" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </GroupBox>
+                    <GroupBox Header="GroupBox ProgressBar" Grid.Column="2" Grid.Row="0" >
+                        <StackPanel>
+                            <ProgressBar Minimum="0" Maximum="100" Value="10" Height="28" Margin="0,0,0,10" />
+
+                            <ProgressBar IsIndeterminate="True" Height="28" />
+                        </StackPanel>
+                    </GroupBox>
+
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="2">
+                        <CheckBox VerticalAlignment="Center" Margin="0,0,0,10">
+                            <Label>Checkbox with label</Label>
+                        </CheckBox>
+                        <CheckBox VerticalAlignment="Center" IsChecked="True">
+                            <Label>Checkbox with label</Label>
+                        </CheckBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" Margin="75,0">
+                        <RadioButton Margin="0,0,0,10">RadioButton</RadioButton>
+                        <RadioButton IsChecked="True">RadioButton</RadioButton>
+                    </StackPanel>
+
+                    <TreeView Grid.Column="0" Grid.Row="4">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TreeViewItem Header="Level 1" IsExpanded="True">
+                                <TreeViewItem Header="Level 2.1" IsSelected="True" />
+                                <TreeViewItem Header="Level 2.2" IsExpanded="True">
+                                    <TreeViewItem Header="Level 3.1" IsEnabled="False" />
+                                    <TreeViewItem Header="Level 3.2" />
+                                </TreeViewItem>
+                                <TreeViewItem Header="Level 2.3" />
+                                <TreeViewItem Header="Level 2.4" />
+                                <TreeViewItem Header="Level 2.5" />
+                            </TreeViewItem>
+                        </ScrollViewer>
+                    </TreeView>
+                    <StackPanel Grid.Column="2" Grid.Row="4" Grid.RowSpan="3">
+                        <Slider Minimum="0" Maximum="50" Value="15" Margin="0,0,0,10"></Slider>
+
+                        <TextBlock Margin="0,0,0,10">       
+                            <Hyperlink>Hyperlink example</Hyperlink>
+                        </TextBlock>
+
+                        <ComboBox IsEditable="True" Text="Test3" Margin="0,0,0,10">
+                            <ComboBoxItem Content="Test1"/>
+                            <ComboBoxItem Content="Test2"/>
+                            <ComboBoxItem Content="Test3" IsSelected="True" />
+                            <ComboBoxItem Content="Test4"/>
+                        </ComboBox>
+
+                        <Expander IsExpanded="True" Header="Expander">
+                            <TextBlock TextWrapping="Wrap" Margin="5">
+                            Example text for Expander control.
+                            </TextBlock>
+                        </Expander>
+                    </StackPanel>
+
+                    <Menu Grid.Column="0" Grid.Row="6">
+                        <MenuItem Header="Test1" Margin="0,0,10,0">
+                            <MenuItem Header="menu1" />
+                            <MenuItem Header="menu2" />
+                        </MenuItem>
+                        <MenuItem Header="Test2 with multi level" Margin="0,0,10,0">
+                            <MenuItem Header="menu1" />
+                            <MenuItem Header="menu2" IsEnabled="False" />
+                            <MenuItem Header="menu3" IsChecked="True" IsCheckable="True"/>
+                            <Separator />
+                            <MenuItem Header="menu4">
+                                <MenuItem Header="submenu1" />
+                                <MenuItem Header="submenu2" />
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Test3">
+                            <MenuItem Header="menu1" />
+                        </MenuItem>
+                    </Menu>
+
+                    <ListView Height="70" SelectedIndex="1" Grid.Row="8" Grid.ColumnSpan="3" Grid.Column="0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Column" Width="120" />
+                                <GridViewColumn Header="Column" Width="auto" />
+                                <GridViewColumn Header="Column" Width="150" />
+                                <GridViewColumn Header="Column" Width="150" />
+                            </GridView>
+                        </ListView.View>
+                        <ListViewItem Content="data1"></ListViewItem>
+                        <ListViewItem Content="data2"></ListViewItem>
+                    </ListView>
                 </Grid>
+            </TabItem>
 
-                <CheckBox IsEnabled="{Binding EnableIconChanger}" IsChecked="{Binding EnableInDescription}" Margin="30,5,0,0" DockPanel.Dock="Top" Name="cEnableInDescription">
-                    <Label Content="{DynamicResource LOCThemeModifierEnableInDescription}" />
-                </CheckBox>
+            <TabItem Width="260" IsEnabled="False"></TabItem>
+
+            <TabItem Header="{DynamicResource LOCThemeModifierEditIcon}">
+                <DockPanel Margin="10">
+                    <CheckBox IsChecked="{Binding EnableIconChanger}" DockPanel.Dock="Top">
+                        <Label Content="{DynamicResource LOCThemeModifierEnableIconChanger}" />
+                    </CheckBox>
+
+                    <Grid IsEnabled="{Binding EnableIconChanger}" Margin="30,5,0,0" DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <ToggleButton IsChecked="{Binding UseIconCircle}" Grid.Column="0" Grid.Row="0" Margin="5" 
+                                      Name="tbUseIconCircle" Click="ToggleButton_Click">
+                            <Image Source="/ThemeModifier;component/Themes/Images/circleResource.png" Width="48"/>
+                        </ToggleButton>
+                        <ToggleButton IsChecked="{Binding UseIconClock}" Grid.Column="1" Grid.Row="0" Margin="5" 
+                                      Name="tbUseIconClock" Click="ToggleButton_Click">
+                            <Image Source="/ThemeModifier;component/Themes/Images/clockResource.png" Width="48"/>
+                        </ToggleButton>
+                        <ToggleButton IsChecked="{Binding UseIconSquareCorne}" Grid.Column="2" Grid.Row="0" Margin="5" 
+                                      Name="tbUseIconSquareCorne" Click="ToggleButton_Click">
+                            <Image Source="/ThemeModifier;component/Themes/Images/squareCorneResource.png" Width="48"/>
+                        </ToggleButton>
+                        <ToggleButton IsChecked="{Binding UseIconWe4ponx}" Grid.Column="3" Grid.Row="0" Margin="5" 
+                                      Name="tbUseIconWe4ponx" Click="ToggleButton_Click">
+                            <Image Source="/ThemeModifier;component/Themes/Images/we4ponxResource.png" Width="48"/>
+                        </ToggleButton>
+                    </Grid>
+
+                    <CheckBox IsEnabled="{Binding EnableIconChanger}" IsChecked="{Binding EnableInDescription}" Margin="30,5,0,0" DockPanel.Dock="Top" Name="cEnableInDescription">
+                        <Label Content="{DynamicResource LOCThemeModifierEnableInDescription}" />
+                    </CheckBox>
 
 
-                <StackPanel DockPanel.Dock="Bottom" Margin="0,30,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Name="btSetIcons" Content="{DynamicResource LOCThemeModifierBtSetIcons}" Margin="0,0,10,0" Click="BtSetIcons_Click" VerticalAlignment="Bottom" />
-                    <Button Name="btRemoveIcons" Content="{DynamicResource LOCThemeModifierBtRemoveIcons}" Click="BtRemoveIcons_Click" VerticalAlignment="Bottom" />
-                </StackPanel>
-            </DockPanel>
-        </TabItem>
-    </TabControl>
+                    <StackPanel DockPanel.Dock="Bottom" Margin="0,30,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Name="btSetIcons" Content="{DynamicResource LOCThemeModifierBtSetIcons}" Margin="0,0,10,0" Click="BtSetIcons_Click" VerticalAlignment="Bottom" />
+                        <Button Name="btRemoveIcons" Content="{DynamicResource LOCThemeModifierBtRemoveIcons}" Click="BtRemoveIcons_Click" VerticalAlignment="Bottom" />
+                    </StackPanel>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
 
+        <Menu Name="PART_EditThemeMenu" Height="{Binding ElementName=PART_TabEditTheme, Path=ActualHeight}" Width="67"
+              VerticalAlignment="Top" HorizontalAlignment="Left">
+            <MenuItem Header="{DynamicResource LOCThemeModifierManageMenu}" Margin="5,0,0,0">
+                <MenuItem Header="{DynamicResource LOCThemeModifierManageMenuLoad}" Name="PART_EditThemeMenuLoad">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Header" Value="{Binding Name}" />
+                            <Setter Property="Tag" Value="{Binding FileName}" />
+                            <EventSetter Event="Click" Handler="PART_EditThemeMenuBtLoad_Click"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+                <MenuItem Header="{DynamicResource LOCSaveLabel}" Name="PART_EditThemeMenuSave">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="PART_EditThemeMenuSaveName" Width="200" KeyUp="PART_EditThemeMenuSaveName_KeyUp" Margin="0,0,10,0" />
+                        <Button Name="PART_EditThemeMenuBtSave" Content="{DynamicResource LOCOKLabel}" Click="PART_EditThemeMenuBtSave_Click" />
+                    </StackPanel>
+                </MenuItem>
+                <MenuItem Header="{DynamicResource LOCRemoveTitle}" Name="PART_EditThemeMenuRemove">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Header" Value="{Binding Name}" />
+                            <Setter Property="Tag" Value="{Binding FileName}" />
+                            <EventSetter Event="Click" Handler="PART_EditThemeMenuBtRemove_Click"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="{DynamicResource LOCImportLabel}" Name="PART_EditThemeMenuImport" Click="PART_EditThemeMenuImport_Click" />
+                <MenuItem Header="{DynamicResource LOCThemeModifierManageMenuExport}" Name="PART_EditThemeMenuExport">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Header" Value="{Binding Name}" />
+                            <Setter Property="Tag" Value="{Binding FileName}" />
+                            <EventSetter Event="Click" Handler="PART_EditThemeMenuBtExport_Click"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+    </Grid>
 </UserControl>

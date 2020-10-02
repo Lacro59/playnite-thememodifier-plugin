@@ -1,15 +1,18 @@
-﻿using Playnite.Controls;
+﻿using Newtonsoft.Json;
 using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using PluginCommon;
+using PluginCommon.PlayniteResources;
+using PluginCommon.PlayniteResources.API;
+using PluginCommon.PlayniteResources.Common;
+using PluginCommon.PlayniteResources.Converters;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
@@ -25,12 +28,11 @@ namespace ThemeModifier
 
         private ThemeModifierSettings settings { get; set; }
 
-        private readonly IntegrationUI ui = new IntegrationUI();
-        private List<ThemeElement> ThemeDefault = new List<ThemeElement>();
-
         public override Guid Id { get; } = Guid.Parse("ec2f4013-17e6-428a-b8a9-5e34a3b80009");
 
+        private readonly IntegrationUI ui = new IntegrationUI();
         private Game GameSelected { get; set; }
+        public static List<ThemeElement> ThemeDefault = new List<ThemeElement>();
 
 
         public ThemeModifier(IPlayniteAPI api) : base(api)
@@ -42,7 +44,7 @@ namespace ThemeModifier
             string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             // Add plugin localization in application ressource.
-            PluginCommon.Localization.SetPluginLanguage(pluginFolder, api.Paths.ConfigurationPath);
+            PluginCommon.Localization.SetPluginLanguage(pluginFolder, api.ApplicationSettings.Language);
             // Add common in application ressource.
             PluginCommon.Common.Load(pluginFolder);
 
@@ -57,33 +59,8 @@ namespace ThemeModifier
                 }
             }
 
-
-            EventManager.RegisterClassHandler(typeof(Button), Button.ClickEvent, new RoutedEventHandler(OnButtonCancelClick));
-
-
-            // Default values
-            ThemeDefault.Add(new ThemeElement { name = "ControlBackgroundBrush", color = resources.GetResource("ControlBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "TextBrush", color = resources.GetResource("TextBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "TextBrushDarker", color = resources.GetResource("TextBrushDarker") });
-            ThemeDefault.Add(new ThemeElement { name = "TextBrushDark", color = resources.GetResource("TextBrushDark") });
-            ThemeDefault.Add(new ThemeElement { name = "NormalBrush", color = resources.GetResource("NormalBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "NormalBrushDark", color = resources.GetResource("NormalBrushDark") });
-            ThemeDefault.Add(new ThemeElement { name = "NormalBorderBrush", color = resources.GetResource("NormalBorderBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "HoverBrush", color = resources.GetResource("HoverBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "GlyphBrush", color = resources.GetResource("GlyphBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "HighlightGlyphBrush", color = resources.GetResource("HighlightGlyphBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "PopupBorderBrush", color = resources.GetResource("PopupBorderBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "TooltipBackgroundBrush", color = resources.GetResource("TooltipBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "ButtonBackgroundBrush", color = resources.GetResource("ButtonBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "GridItemBackgroundBrush", color = resources.GetResource("GridItemBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "PanelSeparatorBrush", color = resources.GetResource("PanelSeparatorBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "PopupBackgroundBrush", color = resources.GetResource("PopupBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "PositiveRatingBrush", color = resources.GetResource("PositiveRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "NegativeRatingBrush", color = resources.GetResource("NegativeRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "MixedRatingBrush", color = resources.GetResource("MixedRatingBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "ExpanderBackgroundBrush", color = resources.GetResource("ExpanderBackgroundBrush") });
-            ThemeDefault.Add(new ThemeElement { name = "WindowBackgourndBrush", color = resources.GetResource("WindowBackgourndBrush") });
-
+            // Theme default
+            ThemeDefault = ThemeClass.GetThemeDefault();
 
             // Add modified values
             ThemeClass.SetThemeSettings(settings);
@@ -91,73 +68,21 @@ namespace ThemeModifier
 
         public override IEnumerable<ExtensionFunction> GetFunctions()
         {
-            return new List<ExtensionFunction>
-            {
-               new ExtensionFunction(
-                    "ThemeModifier Test",
+            List<ExtensionFunction> listFunctions = new List<ExtensionFunction>();
+
+#if DEBUG
+            listFunctions.Add(
+                new ExtensionFunction(
+                    "ThemModifier Test",
                     () =>
                     {
-                        if (settings.EnableIconChanger)
-                        {
 
-                            
-
-
-
-                        }
                     })
-            };
+                );
+#endif
+
+            return listFunctions;
         }
-
-        // TODO In PluginCommon
-        private FrameworkElement SearchElementByName(string ElementName, DependencyObject dpObj = null)
-        {
-            FrameworkElement ElementFind = null;
-
-            if (dpObj == null)
-            {
-                dpObj = Application.Current.MainWindow;
-            }
-
-            ElementFind = (FrameworkElement)LogicalTreeHelper.FindLogicalNode(dpObj, ElementName);
-
-            if (ElementFind == null)
-            {
-                foreach (FrameworkElement el in Tools.FindVisualChildren<FrameworkElement>(dpObj))
-                {
-                    if (el.Name == ElementName)
-                    {
-                        ElementFind = el;
-                        break;
-                    }
-                }
-            }
-
-            return ElementFind;
-        }
-
-        private void OnButtonCancelClick(object sender, RoutedEventArgs e)
-        {
-            string ButtonName = string.Empty;
-            try
-            {
-                ButtonName = ((Button)sender).Name;
-                if (ButtonName == "ButtonCancel")
-                {
-                    if ((string)Tools.FindParent<WindowBase>((Button)sender).GetValue(AutomationProperties.AutomationIdProperty) == "WindowSettings")
-                    {
-                        var savedSettings = this.LoadPluginSettings<ThemeModifierSettings>();
-                        ThemeClass.RestoreColor(ThemeDefault, settings);
-                        ThemeClass.RestoreColor(ThemeDefault, savedSettings, true);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex, "HowLongToBeat", "OnButtonCancelClick() error");
-            }
-        }
-
 
         public override void OnGameSelected(GameSelectionEventArgs args)
         {
@@ -166,7 +91,6 @@ namespace ThemeModifier
                 if (args.NewValue != null && args.NewValue.Count == 1)
                 {
                     GameSelected = args.NewValue[0];
-
                     IntegrationUI();
                 }
             }
@@ -216,9 +140,9 @@ namespace ThemeModifier
             {
                 try
                 {
-                    var PART_ControlGameView = SearchElementByName("PART_ControlGameView");
-                    var PART_ImageIcon = SearchElementByName("PART_ImageIcon", PART_ControlGameView);
-                    var PART_ThemeModifierIcon = SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
+                    var PART_ControlGameView = ui.SearchElementByName("PART_ControlGameView");
+                    var PART_ImageIcon = ui.SearchElementByName("PART_ImageIcon", PART_ControlGameView);
+                    var PART_ThemeModifierIcon = ui.SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
 
                     if (PART_ImageIcon != null || PART_ThemeModifierIcon != null)
                     {
@@ -272,7 +196,6 @@ namespace ThemeModifier
 
                         if (gNew != null)
                         {
-                            // StackPanel
                             FrameworkElement parent = null;
 
                             if (PART_ThemeModifierIcon != null)
@@ -287,6 +210,7 @@ namespace ThemeModifier
                             {
 #if DEBUG
                                 logger.Debug("ThemeModifier - Remove PART_ImageIcon");
+                                logger.Debug($"ThemeModifier - PART_ImageIcon.Parent is {PART_ImageIcon.Parent.ToString()}");
 #endif
                                 if (PART_ImageIcon.Parent is DockPanel)
                                 {
@@ -327,7 +251,6 @@ namespace ThemeModifier
                 }
             }
         }
-
 
 
         public override void OnGameInstalled(Game game)
@@ -377,7 +300,7 @@ namespace ThemeModifier
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            return new ThemeModifierSettingsView(settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath);
+            return new ThemeModifierSettingsView(PlayniteApi, settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath, this.GetPluginUserDataPath());
         }
     }
 }

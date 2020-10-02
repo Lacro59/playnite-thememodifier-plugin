@@ -15,7 +15,15 @@
     <sys:String x:Key="LOCThemeModifierEditTheme">Edit theme</sys:String>
     <sys:String x:Key="LOCThemeModifierEditView">View</sys:String>
     <sys:String x:Key="LOCThemeModifierEditIcon">Icons</sys:String>
-    
+
+    <sys:String x:Key="LOCThemeModifierManageMenu">Manage</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Load</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Export</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">File saved</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">File not saved</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">The selected file is not a theme file</sys:String>
+
     <sys:String x:Key="LOCThemeModifierPick">pick</sys:String>
     <sys:String x:Key="LOCThemeModifierRestore">restore</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
