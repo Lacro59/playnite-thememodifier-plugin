@@ -16,6 +16,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
+using ThemeModifier.PlayniteResources;
 using ThemeModifier.Services;
 using ThemeModifier.Views;
 
@@ -33,6 +34,8 @@ namespace ThemeModifier
         private readonly IntegrationUI ui = new IntegrationUI();
         private Game GameSelected { get; set; }
         public static List<ThemeElement> ThemeDefault = new List<ThemeElement>();
+        public static List<ThemeElement> ThemeDefaultConstants = new List<ThemeElement>();
+        public static List<ThemeElement> ThemeActualConstants = new List<ThemeElement>();
 
 
         public ThemeModifier(IPlayniteAPI api) : base(api)
@@ -61,9 +64,20 @@ namespace ThemeModifier
 
             // Theme default
             ThemeDefault = ThemeClass.GetThemeDefault();
+            ThemeDefaultConstants = ThemeClass.GetThemeDefaultConstants(api.Paths.ConfigurationPath);
+
+            // Theme actual
+            ThemeActualConstants = ThemeClass.GetThemeActualConstants(settings, api.Paths.ConfigurationPath);
+
+#if DEBUG
+            logger.Debug($"ThemeModifier - ThemeDefault: {JsonConvert.SerializeObject(ThemeDefault)}");
+            logger.Debug($"ThemeModifier - ThemeDefaultConstants: {JsonConvert.SerializeObject(ThemeDefaultConstants)}");
+            logger.Debug($"ThemeModifier - ThemeActualConstants: {JsonConvert.SerializeObject(ThemeActualConstants)}");
+#endif
 
             // Add modified values
             ThemeClass.SetThemeSettings(settings);
+            ThemeClass.SetThemeSettingsConstants(ThemeActualConstants);
         }
 
         public override IEnumerable<ExtensionFunction> GetFunctions()
@@ -107,7 +121,7 @@ namespace ThemeModifier
             resourcesLists.Add(new ResourcesList { Key = "TM_ImageShape", Value = null });
             ui.AddResources(resourcesLists);
 
-            var ThemeInfos = ThemeClass.GetActualTheme(PlayniteApi.Paths.ConfigurationPath);
+            ThemeManifest ThemeInfos = ThemeClass.GetActualTheme(PlayniteApi.Paths.ConfigurationPath);
             string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string ImageName = string.Empty;
 

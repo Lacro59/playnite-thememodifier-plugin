@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ThemeColors.cs" />
+    <Compile Include="Models\ThemeConstants.cs" />
     <Compile Include="Models\ThemeElement.cs" />
     <Compile Include="Models\ThemeLinearGradient.cs" />
     <Compile Include="PlayniteResources\Themes.cs" />

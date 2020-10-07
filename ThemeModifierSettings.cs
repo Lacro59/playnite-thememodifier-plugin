@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
+using ThemeModifier.Views;
 
 namespace ThemeModifier
 {
@@ -58,6 +60,11 @@ namespace ThemeModifier
         public ThemeLinearGradient ExpanderBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string WindowBackgourndBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient WindowBackgourndBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+
+
+        public List<ThemeConstants> ThemesConstants = new List<ThemeConstants>();
+
+
 
         public bool EnableIconChanger { get; set; } = false;
         public bool UseIconCircle { get; set; } = true;
@@ -139,6 +146,8 @@ namespace ThemeModifier
                 UseIconSquareCorne = savedSettings.UseIconSquareCorne;
                 UseIconWe4ponx = savedSettings.UseIconWe4ponx;
                 EnableInDescription = savedSettings.EnableInDescription;
+
+                ThemesConstants = savedSettings.ThemesConstants;
             }
         }
 
@@ -157,11 +166,18 @@ namespace ThemeModifier
             ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, settings);
             ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, savedSettings, true);
 
-
+            ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);
+            ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeActualConstants);
         }
 
         public void EndEdit()
         {
+            ThemesConstants = ThemeClass.GetThemesConstants(plugin.PlayniteApi.Paths.ConfigurationPath, ThemeModifierSettingsView.SettingsThemeConstants, ThemesConstants);
+            ThemeModifier.ThemeActualConstants = ThemeModifierSettingsView.SettingsThemeConstants;
+
+            ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);
+            ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeActualConstants);
+
             // Code executed when user decides to confirm changes made since BeginEdit was called.
             // This method should save settings made to Option1 and Option2.
             plugin.SavePluginSettings(this);
