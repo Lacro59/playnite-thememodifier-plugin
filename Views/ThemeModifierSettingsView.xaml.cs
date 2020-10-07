@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Playnite.SDK;
 using PluginCommon;
+using PluginCommon.PlayniteResources.Common;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -11,7 +14,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ThemeModifier.Models;
+using ThemeModifier.PlayniteResources;
 using ThemeModifier.Services;
+using YamlDotNet.Serialization;
 
 namespace ThemeModifier.Views
 {
@@ -19,7 +24,7 @@ namespace ThemeModifier.Views
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private static IResourceProvider resources = new ResourceProvider();
-        private IPlayniteAPI _PlayniteAPI;
+        private IPlayniteAPI _PlayniteApi;
         private ThemeModifierSettings _settings;
 
         private List<ThemeElement> _ThemeDefault;
@@ -29,20 +34,647 @@ namespace ThemeModifier.Views
         private TextBlock tbControl;
         private Label lControl;
 
+        public static List<ThemeElement> SettingsThemeConstants = new List<ThemeElement>();
+        private readonly IntegrationUI ui = new IntegrationUI();
 
-        public ThemeModifierSettingsView(IPlayniteAPI PlayniteAPI, ThemeModifierSettings settings, List<ThemeElement> ThemeDefault, string PlayniteConfigurationPath, string PluginUserDataPath)
+        private dynamic colorDefault = null;
+
+
+        public ThemeModifierSettingsView(IPlayniteAPI PlayniteApi, ThemeModifierSettings settings, List<ThemeElement> ThemeDefault, string PlayniteConfigurationPath, string PluginUserDataPath)
         {
-            _PlayniteAPI = PlayniteAPI;
+            _PlayniteApi = PlayniteApi;
             _settings = settings;
             _ThemeDefault = ThemeDefault;
             _PlayniteConfigurationPath = PlayniteConfigurationPath;
             _PluginUserDataPath = PluginUserDataPath;
 
+            SettingsThemeConstants = ThemeClass.GetThemeActualConstants(settings, PlayniteApi.Paths.ConfigurationPath);
+
+
             InitializeComponent();
 
 
             SetMenuItems();
+
+            SetThemeConstants();
         }
+
+
+        #region Theme constants
+        private void SetThemeConstants()
+        {
+            int iRow = 0;
+
+            foreach (ThemeElement themeElement in ThemeModifier.ThemeDefaultConstants)
+            {
+                Grid gd = new Grid();
+                gd.Margin = new Thickness(0, 0, 0, 10);
+                ColumnDefinition c1 = new ColumnDefinition();
+                c1.Width = new GridLength(1, GridUnitType.Star);
+                ColumnDefinition c2 = new ColumnDefinition();
+                c2.Width = new GridLength(1, GridUnitType.Star);
+                ColumnDefinition c3 = new ColumnDefinition();
+                c3.Width = new GridLength(41);
+                ColumnDefinition c4 = new ColumnDefinition();
+                c4.Width = new GridLength(41);
+                gd.ColumnDefinitions.Add(c1);
+                gd.ColumnDefinitions.Add(c2);
+                gd.ColumnDefinitions.Add(c3);
+                gd.ColumnDefinitions.Add(c4);
+
+
+                Label lb = new Label();
+                Grid.SetColumn(lb, 0);
+                lb.Name = "PART_ThemeConstantsLabel";
+                lb.Content = themeElement.Name;
+                lb.Margin = new Thickness(0, 0, 10, 0);
+
+                gd.Children.Add(lb);
+
+                FrameworkElement control = new FrameworkElement();
+
+                Button btPickColor = new Button();
+                btPickColor.Width = 41;
+                btPickColor.Content = "\u270f";
+                btPickColor.Click += BtPickColorConstants_Click;
+                Grid.SetColumn(btPickColor, 2);
+
+                Button btRestore = new Button();
+                btRestore.Width = 41;
+                btRestore.Content = "\u274C";
+                btRestore.Click += BtRestoreConstants_Click;
+                Grid.SetColumn(btRestore, 3);
+
+                bool HadPickColor = false;
+
+                dynamic elSaved = themeElement.Element;
+                if (ThemeModifier.ThemeActualConstants.Find(x => x.Name == themeElement.Name) != null)
+                {
+                    elSaved = ThemeModifier.ThemeActualConstants.Find(x => x.Name == themeElement.Name).Element;
+                }
+
+                // Create control
+                if (elSaved is string)
+                {
+                    gd.Tag = "string";
+
+                    control = new TextBox();
+                    control.KeyUp += TbThemeConstants_KeyUp;
+
+                    ((TextBox)control).Text = (string)elSaved;
+                }
+
+                if (elSaved is double)
+                {
+                    gd.Tag = "double";
+
+                    control = new Slider();
+                    ((Slider)control).ValueChanged += sThemeConstants_ValueChanged;
+                    ((Slider)control).SmallChange = 0.1;
+                    ((Slider)control).Minimum = 0;
+                    ((Slider)control).Maximum = 30;
+                    ((Slider)control).AutoToolTipPlacement = AutoToolTipPlacement.TopLeft;
+                    ((Slider)control).AutoToolTipPrecision = 1;
+
+                    ((Slider)control).Value = (double)elSaved;
+                }
+
+                if (elSaved is int)
+                {
+                    gd.Tag = "int";
+
+                    control = new Slider();
+                    ((Slider)control).ValueChanged += sThemeConstants_ValueChanged;
+                    ((Slider)control).SmallChange = 1;
+                    ((Slider)control).Minimum = 0;
+                    ((Slider)control).Maximum = 30;
+                    ((Slider)control).AutoToolTipPlacement = AutoToolTipPlacement.TopLeft;
+
+                    ((Slider)control).Value = (int)elSaved;
+                }
+
+                if (elSaved is Color)
+                {
+                    gd.Tag = "color";
+
+                    control = new TextBlock();
+                    control.Width = 100;
+                    control.HorizontalAlignment = HorizontalAlignment.Left;
+
+                    ((TextBlock)control).Background = new SolidColorBrush((Color)elSaved);
+
+                    HadPickColor = true;
+                }
+
+                if (elSaved is SolidColorBrush)
+                {
+                    gd.Tag = "solidcolorbrush";
+
+                    control = new TextBlock();
+                    control.Width = 100;
+                    control.HorizontalAlignment = HorizontalAlignment.Left;
+
+                    ((TextBlock)control).Background = (SolidColorBrush)elSaved;
+
+                    HadPickColor = true;
+                }
+
+                if (elSaved is LinearGradientBrush)
+                {
+                    gd.Tag = "lineargradientbrush";
+
+                    control = new TextBlock();
+                    control.Width = 100;
+                    control.HorizontalAlignment = HorizontalAlignment.Left;
+
+                    ((TextBlock)control).Background = (LinearGradientBrush)elSaved;
+
+                    HadPickColor = true;
+                }
+
+                if (elSaved is Visibility)
+                {
+                    gd.Tag = "visibility";
+
+                    control = new ComboBox();
+                    ((ComboBox)control).SelectionChanged += CbThemeConstants_SelectionChanged;
+                    ComboBoxItem cbItem1 = new ComboBoxItem();
+                    cbItem1.Tag = Visibility.Collapsed;
+                    cbItem1.Content = "Collapsed";
+                    ComboBoxItem cbItem2 = new ComboBoxItem();
+                    cbItem2.Tag = Visibility.Hidden;
+                    cbItem2.Content = "Hidden";
+                    ComboBoxItem cbItem3 = new ComboBoxItem();
+                    cbItem3.Tag = Visibility.Visible;
+                    cbItem3.Content = "Visible";
+
+                    ((ComboBox)control).Items.Add(cbItem1);
+                    ((ComboBox)control).Items.Add(cbItem2);
+                    ((ComboBox)control).Items.Add(cbItem3);
+
+                    switch (elSaved)
+                    {
+                        case Visibility.Collapsed:
+                            ((ComboBox)control).SelectedIndex = 0;
+                            break;
+                        case Visibility.Hidden:
+                            ((ComboBox)control).SelectedIndex = 1;
+                            break;
+                        case Visibility.Visible:
+                            ((ComboBox)control).SelectedIndex = 2;
+                            break;
+                    }
+                }
+
+                if (elSaved is VerticalAlignment)
+                {
+                    gd.Tag = "verticalalignment";
+
+                    control = new ComboBox();
+                    ((ComboBox)control).SelectionChanged += CbThemeConstants_SelectionChanged;
+                    ComboBoxItem cbItem1 = new ComboBoxItem();
+                    cbItem1.Tag = VerticalAlignment.Bottom;
+                    cbItem1.Content = "Bottom";
+                    ComboBoxItem cbItem2 = new ComboBoxItem();
+                    cbItem2.Tag = VerticalAlignment.Center;
+                    cbItem2.Content = "Center";
+                    ComboBoxItem cbItem3 = new ComboBoxItem();
+                    cbItem3.Tag = VerticalAlignment.Stretch;
+                    cbItem3.Content = "Stretch";
+                    ComboBoxItem cbItem4 = new ComboBoxItem();
+                    cbItem4.Tag = VerticalAlignment.Top;
+                    cbItem4.Content = "Top";
+
+                    ((ComboBox)control).Items.Add(cbItem1);
+                    ((ComboBox)control).Items.Add(cbItem2);
+                    ((ComboBox)control).Items.Add(cbItem3);
+                    ((ComboBox)control).Items.Add(cbItem4);
+
+                    switch (elSaved)
+                    {
+                        case VerticalAlignment.Bottom:
+                            ((ComboBox)control).SelectedIndex = 0;
+                            break;
+                        case VerticalAlignment.Center:
+                            ((ComboBox)control).SelectedIndex = 1;
+                            break;
+                        case VerticalAlignment.Stretch:
+                            ((ComboBox)control).SelectedIndex = 2;
+                            break;
+                        case VerticalAlignment.Top:
+                            ((ComboBox)control).SelectedIndex = 2;
+                            break;
+                    }
+                }
+
+                if (elSaved is HorizontalAlignment)
+                {
+                    gd.Tag = "horizontalalignment";
+
+                    control = new ComboBox();
+                    ((ComboBox)control).SelectionChanged += CbThemeConstants_SelectionChanged;
+                    ComboBoxItem cbItem1 = new ComboBoxItem();
+                    cbItem1.Tag = HorizontalAlignment.Center;
+                    cbItem1.Content = "Center";
+                    ComboBoxItem cbItem2 = new ComboBoxItem();
+                    cbItem2.Tag = HorizontalAlignment.Left;
+                    cbItem2.Content = "Left";
+                    ComboBoxItem cbItem3 = new ComboBoxItem();
+                    cbItem3.Tag = HorizontalAlignment.Right;
+                    cbItem3.Content = "Right";
+                    ComboBoxItem cbItem4 = new ComboBoxItem();
+                    cbItem4.Tag = HorizontalAlignment.Stretch;
+                    cbItem4.Content = "Stretch";
+
+                    ((ComboBox)control).Items.Add(cbItem1);
+                    ((ComboBox)control).Items.Add(cbItem2);
+                    ((ComboBox)control).Items.Add(cbItem3);
+                    ((ComboBox)control).Items.Add(cbItem4);
+
+                    switch (elSaved)
+                    {
+                        case HorizontalAlignment.Center:
+                            ((ComboBox)control).SelectedIndex = 0;
+                            break;
+                        case HorizontalAlignment.Left:
+                            ((ComboBox)control).SelectedIndex = 1;
+                            break;
+                        case HorizontalAlignment.Right:
+                            ((ComboBox)control).SelectedIndex = 2;
+                            break;
+                        case HorizontalAlignment.Stretch:
+                            ((ComboBox)control).SelectedIndex = 2;
+                            break;
+                    }
+                }
+
+
+                control.Name = "PART_ThemeConstantsControl";
+                control.Tag = themeElement.Name;
+                Grid.SetColumn(control, 1);
+                gd.Children.Add(control);
+                if (HadPickColor)
+                {
+                    gd.Children.Add(btPickColor);
+                }
+                gd.Children.Add(btRestore);
+
+
+                // Add control
+                Grid.SetColumn(gd, 0);
+                Grid.SetRow(gd, iRow);
+
+                PART_ConstantsThemeEdit.Children.Add(gd);
+
+                iRow++;
+            }
+
+            PART_ConstantsThemeEdit.UpdateLayout();
+        }
+
+        private void TbThemeConstants_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            try
+            {
+                Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
+
+                string Name = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string Element = ((TextBox)sender).Text;
+
+                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                {
+                    SettingsThemeConstants.Find(x => x.Name == Name).Element = Element;
+                }
+                else
+                {
+                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
+                }
+#if DEBUG
+                logger.Debug($"ThemeModifier - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
+#endif
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                //Common.LogError(ex, "ThemeModifier", $"ThemeModifier - Error on TbThemeConstants_KeyUp()");
+#endif
+            }
+        }
+
+        private void CbThemeConstants_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
+
+                string Name = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                dynamic Element = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Tag;
+
+                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                {
+                    SettingsThemeConstants.Find(x => x.Name == Name).Element = Element;
+                }
+                else
+                {
+                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
+                }
+#if DEBUG
+                logger.Debug($"ThemeModifier - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
+#endif
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                //Common.LogError(ex, "ThemeModifier", $"ThemeModifier - Error on CbThemeConstants_SelectionChanged()");
+#endif
+            }
+        }
+
+        private void sThemeConstants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            try
+            {
+                Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
+
+                string Name = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string Type = (string)gdParent.Tag;
+                dynamic Element = null;
+                if (Type.ToLower() == "int")
+                {
+                    Element = (int)((Slider)sender).Value;
+                }
+                if (Type.ToLower() == "double")
+                {
+                    Element = (double)Math.Round(((Slider)sender).Value, 1);
+                }
+
+                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                {
+                    SettingsThemeConstants.Find(x => x.Name == Name).Element = Element;
+                }
+                else
+                {
+                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
+                }
+#if DEBUG
+                logger.Debug($"ThemeModifier - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
+#endif
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                //Common.LogError(ex, "ThemeModifier", $"ThemeModifier - Error on sThemeConstants_ValueChanged()");
+#endif
+            }
+        }
+
+        private void BtPickColorConstants_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
+
+                tbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
+                lControl = gdParent.Children.OfType<Label>().FirstOrDefault();
+
+                if (tbControl.Background is SolidColorBrush)
+                {
+                    Color color = ((SolidColorBrush)tbControl.Background).Color;
+                    PART_SelectorColorPickerConstants.SetColors(color);
+                }
+                if (tbControl.Background is LinearGradientBrush)
+                {
+                    LinearGradientBrush linearGradientBrush = (LinearGradientBrush)tbControl.Background;
+                    PART_SelectorColorPickerConstants.SetColors(linearGradientBrush);
+                }
+
+                PART_SelectorColorConstants.Visibility = Visibility.Visible;
+                PART_ThemeConstants.Visibility = Visibility.Collapsed;
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "ThemeModifier", "Error on BtPickColorConstants_Click()");
+            }
+        }
+
+        private void BtRestoreConstants_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
+
+                string elName = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string elType = (string)gdParent.Tag;
+                FrameworkElement elControl = ui.SearchElementByName("PART_ThemeConstantsControl", gdParent);
+
+                dynamic elDefault = ThemeModifier.ThemeDefaultConstants.Find(x => x.Name == elName).Element;
+                //if (ThemeModifier.ThemeActualConstants.Find(x => x.Name == elName) != null)
+                //{
+                //    elDefault = ThemeModifier.ThemeActualConstants.Find(x => x.Name == elName).Element;
+                //}
+
+                if (elDefault is string)
+                {
+                    gdParent.Tag = "string";
+                    ((TextBox)elControl).Text = (string)elDefault;
+                    TbThemeConstants_KeyUp(elControl, null);
+                }
+
+                if (elDefault is double)
+                {
+                    gdParent.Tag = "double";
+                    ((Slider)elControl).Value = (double)elDefault;
+                    sThemeConstants_ValueChanged(elControl, null);
+                }
+
+                if (elDefault is int)
+                {
+                    gdParent.Tag = "int";
+                    ((Slider)elControl).Value = (int)elDefault;
+                    sThemeConstants_ValueChanged(elControl, null);
+                }
+
+                if (elDefault is Color)
+                {
+                    gdParent.Tag = "color";
+                    ((TextBlock)elControl).Background = new SolidColorBrush((Color)elDefault);
+
+                    tbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
+                    lControl = gdParent.Children.OfType<Label>().FirstOrDefault();
+                    colorDefault = (Color)elDefault;
+                    PART_TM_ColorOKConstants_Click(elControl, null);
+                }
+
+                if (elDefault is SolidColorBrush)
+                {
+                    gdParent.Tag = "solidcolorbrush";
+                    ((TextBlock)elControl).Background = (SolidColorBrush)elDefault;
+
+                    tbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
+                    lControl = gdParent.Children.OfType<Label>().FirstOrDefault();
+                    colorDefault = (SolidColorBrush)elDefault;
+                    PART_TM_ColorOKConstants_Click(elControl, null);
+                }
+
+                if (elDefault is LinearGradientBrush)
+                {
+                    gdParent.Tag = "lineargradientbrush";
+                    ((TextBlock)elControl).Background = (LinearGradientBrush)elDefault;
+
+                    tbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
+                    lControl = gdParent.Children.OfType<Label>().FirstOrDefault();
+                    colorDefault = (LinearGradientBrush)elDefault;
+                    PART_TM_ColorOKConstants_Click(elControl, null);
+                }
+
+                if (elDefault is Visibility)
+                {
+                    gdParent.Tag = "visibility";
+
+                    switch (elDefault)
+                    {
+                        case Visibility.Collapsed:
+                            ((ComboBox)elControl).SelectedIndex = 0;
+                            break;
+                        case Visibility.Hidden:
+                            ((ComboBox)elControl).SelectedIndex = 1;
+                            break;
+                        case Visibility.Visible:
+                            ((ComboBox)elControl).SelectedIndex = 2;
+                            break;
+                    }
+
+                    CbThemeConstants_SelectionChanged(elControl, null);
+                }
+
+                if (elDefault is VerticalAlignment)
+                {
+                    gdParent.Tag = "verticalalignment";
+
+                    switch (elDefault)
+                    {
+                        case VerticalAlignment.Bottom:
+                            ((ComboBox)elControl).SelectedIndex = 0;
+                            break;
+                        case VerticalAlignment.Center:
+                            ((ComboBox)elControl).SelectedIndex = 1;
+                            break;
+                        case VerticalAlignment.Stretch:
+                            ((ComboBox)elControl).SelectedIndex = 2;
+                            break;
+                        case VerticalAlignment.Top:
+                            ((ComboBox)elControl).SelectedIndex = 2;
+                            break;
+                    }
+
+                    CbThemeConstants_SelectionChanged(elControl, null);
+                }
+
+                if (elDefault is HorizontalAlignment)
+                {
+                    gdParent.Tag = "horizontalalignment";
+
+                    switch (elDefault)
+                    {
+                        case HorizontalAlignment.Center:
+                            ((ComboBox)elControl).SelectedIndex = 0;
+                            break;
+                        case HorizontalAlignment.Left:
+                            ((ComboBox)elControl).SelectedIndex = 1;
+                            break;
+                        case HorizontalAlignment.Right:
+                            ((ComboBox)elControl).SelectedIndex = 2;
+                            break;
+                        case HorizontalAlignment.Stretch:
+                            ((ComboBox)elControl).SelectedIndex = 2;
+                            break;
+                    }
+
+                    CbThemeConstants_SelectionChanged(elControl, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "ThemeModifier", "Error on BtRestoreConstants_Click()");
+            }
+        }
+
+        private void PART_TM_ColorOKConstants_Click(object sender, RoutedEventArgs e)
+        {
+            Color color = default(Color);
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
+
+            if (tbControl != null && lControl != null)
+            {
+                dynamic elSaved = null;
+                string Name = (string)lControl.Content;
+                string Type = (string)((Grid)tbControl.Parent).Tag;
+
+                if (colorDefault == null)
+                {
+                    if (PART_SelectorColorPickerConstants.IsSimpleColor)
+                    {
+                        color = PART_SelectorColorPickerConstants.SimpleColor;
+                        tbControl.Background = new SolidColorBrush(color);
+
+                        if (Type == "color")
+                        {
+                            elSaved = color;
+                        }
+                        else
+                        {
+                            ((Grid)tbControl.Parent).Tag = "solidcolorbrush";
+                            elSaved = new SolidColorBrush(color);
+                        }
+                    }
+                    else
+                    {
+                        linearGradientBrush = PART_SelectorColorPickerConstants.linearGradientBrush;
+                        tbControl.Background = linearGradientBrush;
+
+                        if (Type == "color")
+                        {
+                            elSaved = linearGradientBrush.GradientStops[0].Color;
+                            tbControl.Background = new SolidColorBrush(elSaved);
+                        }
+                        else
+                        {
+                            ((Grid)tbControl.Parent).Tag = "lineargradientbrush";
+                            elSaved = linearGradientBrush;
+                        }
+                    }
+                }
+
+                if (colorDefault != null)
+                {
+                    elSaved = colorDefault;
+                    colorDefault = null;
+                }
+
+                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                {
+                    SettingsThemeConstants.Find(x => x.Name == Name).Element = elSaved;
+                }
+                else
+                {
+                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = elSaved });
+                }
+            }
+            else
+            {
+                logger.Warn("ThemeModifier - One control is undefined");
+            }
+
+            PART_SelectorColorConstants.Visibility = Visibility.Collapsed;
+            PART_ThemeConstants.Visibility = Visibility.Visible;
+        }
+
+        private void PART_TM_ColorCancelConstants_Click(object sender, RoutedEventArgs e)
+        {
+            PART_SelectorColorConstants.Visibility = Visibility.Collapsed;
+            PART_ThemeConstants.Visibility = Visibility.Visible;
+        }
+        #endregion
 
 
         #region Theme color
@@ -81,9 +713,9 @@ namespace ThemeModifier.Views
 
                 ThemeElement finded = _ThemeDefault.Find(x => x.Name == lControl.Content.ToString());
 
-                tbControl.Background = finded.Color;
+                tbControl.Background = finded.Element;
 
-                ThemeClass.SetThemeColor(lControl.Content.ToString(), null, _settings, finded.Color);
+                ThemeClass.SetThemeColor(lControl.Content.ToString(), null, _settings, finded.Element);
             }
             catch (Exception ex)
             {
@@ -102,8 +734,8 @@ namespace ThemeModifier.Views
                     var control = this.FindName("tb" + themeElement.Name);
                     if (control is TextBlock)
                     {
-                        ((TextBlock)control).Background = themeElement.Color;
-                        ThemeClass.SetThemeColor(themeElement.Name, null, _settings, themeElement.Color);
+                        ((TextBlock)control).Background = themeElement.Element;
+                        ThemeClass.SetThemeColor(themeElement.Name, null, _settings, themeElement.Element);
                     }
                     else
                     {
@@ -115,6 +747,42 @@ namespace ThemeModifier.Views
             {
                 Common.LogError(ex, "ThemeModifier", "Error on BtRestoreDefault_Click()");
             }
+        }
+
+
+        private void PART_TM_ColorOK_Click(object sender, RoutedEventArgs e)
+        {
+            Color color = default(Color);
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
+
+            if (tbControl != null && lControl != null)
+            {
+                if (PART_SelectorColorPicker.IsSimpleColor)
+                {
+                    color = PART_SelectorColorPicker.SimpleColor;
+                    tbControl.Background = new SolidColorBrush(color);
+                    ThemeClass.SetThemeColor(lControl.Content.ToString(), new SolidColorBrush(color), _settings);
+                }
+                else
+                {
+                    linearGradientBrush = PART_SelectorColorPicker.linearGradientBrush;
+                    tbControl.Background = linearGradientBrush;
+                    ThemeClass.SetThemeColor(lControl.Content.ToString(), linearGradientBrush, _settings);
+                }
+            }
+            else
+            {
+                logger.Warn("ThemeModifier - One control is undefined");
+            }
+
+            PART_SelectorColor.Visibility = Visibility.Collapsed;
+            PART_ThemeColor.Visibility = Visibility.Visible;
+        }
+
+        private void PART_TM_ColorCancel_Click(object sender, RoutedEventArgs e)
+        {
+            PART_SelectorColor.Visibility = Visibility.Collapsed;
+            PART_ThemeColor.Visibility = Visibility.Visible;
         }
         #endregion
 
@@ -162,60 +830,7 @@ namespace ThemeModifier.Views
         {
             ThemeClass.RestoreThemeFile(_PlayniteConfigurationPath);
         }
-
-        private void PART_TM_ColorOK_Click(object sender, RoutedEventArgs e)
-        {
-            Color color = default(Color);
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
-
-            if (tbControl != null && lControl != null)
-            {
-                if (PART_SelectorColorPicker.IsSimpleColor)
-                {
-                    color = PART_SelectorColorPicker.SimpleColor;
-                    tbControl.Background = new SolidColorBrush(color);
-                    ThemeClass.SetThemeColor(lControl.Content.ToString(), new SolidColorBrush(color), _settings);
-                }
-                else
-                {
-                    linearGradientBrush = PART_SelectorColorPicker.linearGradientBrush;
-                    tbControl.Background = linearGradientBrush;
-                    ThemeClass.SetThemeColor(lControl.Content.ToString(), linearGradientBrush, _settings);
-                }
-            }
-            else
-            {
-                logger.Warn("ThemeModifier - One control is undefined");
-            }
-
-            PART_SelectorColor.Visibility = Visibility.Collapsed;
-            PART_ThemeColor.Visibility = Visibility.Visible;
-        }
-
-        private void PART_TM_ColorCancel_Click(object sender, RoutedEventArgs e)
-        {
-            PART_SelectorColor.Visibility = Visibility.Collapsed;
-            PART_ThemeColor.Visibility = Visibility.Visible;
-        }
         #endregion
-
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try {
-                if (((TabControl)sender).SelectedIndex == 1 || ((TabControl)sender).SelectedIndex == 2)
-                {
-                    PART_EditThemeMenu.IsEnabled = true;
-                }
-                else
-                {
-                    PART_EditThemeMenu.IsEnabled = false;
-                }
-            }
-            catch
-            {
-            }
-        }
 
 
         #region Menu
@@ -243,12 +858,12 @@ namespace ThemeModifier.Views
             string ThemeName = PART_EditThemeMenuSaveName.Text;
             if (ThemeClass.SaveThemeColors(this, ThemeName, _PluginUserDataPath))
             {
-                _PlayniteAPI.Dialogs.ShowMessage(resources.GetString("LOCThemeModifierManageSaveOk"), "ThemeModifier");
+                _PlayniteApi.Dialogs.ShowMessage(resources.GetString("LOCThemeModifierManageSaveOk"), "ThemeModifier");
                 SetMenuItems();
             }
             else
             {
-                _PlayniteAPI.Dialogs.ShowMessage(resources.GetString("LOCThemeModifierManageSaveKo"), "ThemeModifier");
+                _PlayniteApi.Dialogs.ShowMessage(resources.GetString("LOCThemeModifierManageSaveKo"), "ThemeModifier");
             }
         }
 
@@ -257,7 +872,6 @@ namespace ThemeModifier.Views
             string ThemeName = PART_EditThemeMenuSaveName.Text;
             PART_EditThemeMenuBtSave.IsEnabled = (ThemeName.Trim().Length > 3 && !ThemeClass.ThemeFileExist(ThemeName, _PluginUserDataPath));
         }
-
 
         private void PART_EditThemeMenuBtLoad_Click(object sender, RoutedEventArgs e)
         {
@@ -273,13 +887,12 @@ namespace ThemeModifier.Views
             }
         }
 
-
         private void PART_EditThemeMenuBtRemove_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 string PathFileName = ((FrameworkElement)sender).Tag.ToString();
-                if (_PlayniteAPI.Dialogs.ShowMessage(resources.GetString("LOCRemoveLabel") + " " + PathFileName,  "ThemeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (_PlayniteApi.Dialogs.ShowMessage(resources.GetString("LOCRemoveLabel") + " " + PathFileName,  "ThemeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     ThemeClass.DeleteThemeColors(PathFileName, _PluginUserDataPath);
                     SetMenuItems();
@@ -291,10 +904,9 @@ namespace ThemeModifier.Views
             }
         }
 
-
         private void PART_EditThemeMenuImport_Click(object sender, RoutedEventArgs e)
         {
-            string targetPath = _PlayniteAPI.Dialogs.SelectFile("json file|*.json");
+            string targetPath = _PlayniteApi.Dialogs.SelectFile("json file|*.json");
 
             if (!targetPath.IsNullOrEmpty())
             {
@@ -306,13 +918,13 @@ namespace ThemeModifier.Views
                 }
                 catch
                 {
-                    _PlayniteAPI.Dialogs.ShowErrorMessage(resources.GetString("LOCThemeModifierManageNoFile"), "ThemeModifier");
+                    _PlayniteApi.Dialogs.ShowErrorMessage(resources.GetString("LOCThemeModifierManageNoFile"), "ThemeModifier");
                     return;
                 }
 
                 if (themeColors.Name.IsNullOrEmpty())
                 {
-                    _PlayniteAPI.Dialogs.ShowErrorMessage(resources.GetString("LOCThemeModifierManageNoFile"), "ThemeModifier");
+                    _PlayniteApi.Dialogs.ShowErrorMessage(resources.GetString("LOCThemeModifierManageNoFile"), "ThemeModifier");
                     return;
                 }
 
@@ -324,15 +936,33 @@ namespace ThemeModifier.Views
             }
         }
 
-
         private void PART_EditThemeMenuBtExport_Click(object sender, RoutedEventArgs e)
         {
             string PathFileName = ((FrameworkElement)sender).Tag.ToString();
-            string targetPath = _PlayniteAPI.Dialogs.SaveFile("json file|*.json", true);            
+            string targetPath = _PlayniteApi.Dialogs.SaveFile("json file|*.json", true);            
 
             if (!targetPath.IsNullOrEmpty())
             {
                 File.Copy(PathFileName, targetPath, true);
+            }
+        }
+
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (((TabControl)sender).SelectedIndex == 1 || ((TabControl)sender).SelectedIndex == 3)
+                {
+                    PART_EditThemeMenu.IsEnabled = true;
+                }
+                else
+                {
+                    PART_EditThemeMenu.IsEnabled = false;
+                }
+            }
+            catch
+            {
             }
         }
         #endregion
