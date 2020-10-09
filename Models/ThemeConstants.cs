@@ -15,4 +15,10 @@ namespace ThemeModifier.Models
         public string TypeResource { get; set; }
         public dynamic Element { get; set; }
     }
+
+    public class ThemeConstantsDefined
+    {
+        public string Name { get; set; }
+        public string Description { get; set; } = string.Empty;
+    }
 }

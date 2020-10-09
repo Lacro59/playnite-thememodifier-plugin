@@ -11,7 +11,7 @@
             <TabItem Width="67" IsEnabled="False"></TabItem>
             
             <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}" Name="PART_TabEditTheme" IsSelected="True">
-                <Grid>
+                <Grid Margin="10">
                     <Grid Name="PART_SelectorColor" Width="500" Visibility="Collapsed">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <controls:ControlPickerGradient Name="PART_SelectorColorPicker"></controls:ControlPickerGradient>
@@ -55,7 +55,7 @@
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
-                                <RowDefinition Height="40" />
+                                <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
 
                             <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="0" Grid.Column="0">
@@ -205,7 +205,7 @@
                             </StackPanel>
 
 
-                            <Button Grid.Row="11" Grid.Column="2" Name="btRestoreDefault" VerticalAlignment="Center"
+                            <Button Grid.Row="11" Grid.Column="2" Name="btRestoreDefault" VerticalAlignment="Center" Visibility="Collapsed"
                                     Content="{DynamicResource LOCThemeModifierRestoreDefault}" Click="BtRestoreDefault_Click" />
                         </Grid>
                     </ScrollViewer>
@@ -213,7 +213,7 @@
             </TabItem>
 
             <TabItem Header="{DynamicResource LOCThemeModifierEditThemeConstants}">
-                <Grid>
+                <Grid Margin="10">
                     <Grid Name="PART_SelectorColorConstants" Width="500" Visibility="Collapsed">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <controls:ControlPickerGradient Name="PART_SelectorColorPickerConstants"></controls:ControlPickerGradient>
@@ -487,7 +487,7 @@
                 <MenuItem Header="{DynamicResource LOCSaveLabel}" Name="PART_EditThemeMenuSave">
                     <StackPanel Orientation="Horizontal">
                         <TextBox Name="PART_EditThemeMenuSaveName" Width="200" KeyUp="PART_EditThemeMenuSaveName_KeyUp" Margin="0,0,10,0" />
-                        <Button Name="PART_EditThemeMenuBtSave" Content="{DynamicResource LOCOKLabel}" Click="PART_EditThemeMenuBtSave_Click" />
+                        <Button Name="PART_EditThemeMenuBtSave" Content="{DynamicResource LOCOKLabel}" Click="PART_EditThemeMenuBtSave_Click" IsEnabled="false" />
                     </StackPanel>
                 </MenuItem>
                 <MenuItem Header="{DynamicResource LOCRemoveTitle}" Name="PART_EditThemeMenuRemove">

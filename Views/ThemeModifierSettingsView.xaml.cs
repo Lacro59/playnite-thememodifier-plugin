@@ -91,6 +91,20 @@ namespace ThemeModifier.Views
 
                 gd.Children.Add(lb);
 
+
+                if (!themeElement.Description.IsNullOrEmpty())
+                {
+                    Label lbDescription = new Label();
+                    Grid.SetColumn(lbDescription, 0);
+                    lbDescription.Content = "\u2139";
+                    lbDescription.ToolTip = themeElement.Description;
+                    lbDescription.Margin = new Thickness(0, 0, 10, 0);
+                    lbDescription.HorizontalAlignment = HorizontalAlignment.Right;
+
+                    gd.Children.Add(lbDescription);
+                }
+
+
                 FrameworkElement control = new FrameworkElement();
 
                 Button btPickColor = new Button();
@@ -114,6 +128,16 @@ namespace ThemeModifier.Views
                 }
 
                 // Create control
+                if (elSaved is bool)
+                {
+                    gd.Tag = "bool";
+
+                    control = new CheckBox();
+                    ((CheckBox)control).Click += CbThemeConstants_Click;
+                    control.VerticalAlignment = VerticalAlignment.Center;
+                    ((CheckBox)control).IsChecked = (bool)elSaved;
+                }
+
                 if (elSaved is string)
                 {
                     gd.Tag = "string";
@@ -332,6 +356,26 @@ namespace ThemeModifier.Views
             PART_ConstantsThemeEdit.UpdateLayout();
         }
 
+        private void CbThemeConstants_Click(object sender, RoutedEventArgs e)
+        {
+            Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
+
+            string Name = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+            bool Element = (bool)((CheckBox)sender).IsChecked;
+
+            if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+            {
+                SettingsThemeConstants.Find(x => x.Name == Name).Element = Element;
+            }
+            else
+            {
+                SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
+            }
+#if DEBUG
+            logger.Debug($"ThemeModifier - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
+#endif
+        }
+
         private void TbThemeConstants_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             try
@@ -468,10 +512,13 @@ namespace ThemeModifier.Views
                 FrameworkElement elControl = ui.SearchElementByName("PART_ThemeConstantsControl", gdParent);
 
                 dynamic elDefault = ThemeModifier.ThemeDefaultConstants.Find(x => x.Name == elName).Element;
-                //if (ThemeModifier.ThemeActualConstants.Find(x => x.Name == elName) != null)
-                //{
-                //    elDefault = ThemeModifier.ThemeActualConstants.Find(x => x.Name == elName).Element;
-                //}
+
+                if (elDefault is bool)
+                {
+                    gdParent.Tag = "bool";
+                    ((CheckBox)elControl).IsChecked = (bool)elDefault;
+                    CbThemeConstants_Click(elControl, null);
+                }
 
                 if (elDefault is string)
                 {
@@ -865,6 +912,9 @@ namespace ThemeModifier.Views
             {
                 _PlayniteApi.Dialogs.ShowMessage(resources.GetString("LOCThemeModifierManageSaveKo"), "ThemeModifier");
             }
+
+            PART_EditThemeMenuSaveName.Text = string.Empty;
+            PART_EditThemeMenuBtSave.IsEnabled = false;
         }
 
         private void PART_EditThemeMenuSaveName_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)

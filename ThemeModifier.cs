@@ -67,7 +67,10 @@ namespace ThemeModifier
             ThemeDefaultConstants = ThemeClass.GetThemeDefaultConstants(api.Paths.ConfigurationPath);
 
             // Theme actual
-            ThemeActualConstants = ThemeClass.GetThemeActualConstants(settings, api.Paths.ConfigurationPath);
+            if (ThemeDefaultConstants.Count > 0)
+            {
+                ThemeActualConstants = ThemeClass.GetThemeActualConstants(settings, api.Paths.ConfigurationPath);
+            }
 
 #if DEBUG
             logger.Debug($"ThemeModifier - ThemeDefault: {JsonConvert.SerializeObject(ThemeDefault)}");

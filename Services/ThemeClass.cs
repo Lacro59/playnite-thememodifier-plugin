@@ -905,7 +905,6 @@ namespace ThemeModifier.Services
 #if DEBUG
                     logger.Debug($"ThemeModifier - {JsonConvert.SerializeObject(AllThemeInfos)}");
 #endif
-                    //
                     ThemeManifest ThemeInfo = AllThemeInfos.Find(x => x.Name.ToLower() == ThemeName.ToLower());
                     if (ThemeInfo != null)
                     {
@@ -1327,7 +1326,7 @@ namespace ThemeModifier.Services
         #endregion
 
         #region Theme constants
-        public static List<string> GetThemeConstants(string ConfigurationPath)
+        public static List<ThemeConstantsDefined> GetThemeConstants(string ConfigurationPath)
         {
             ThemeManifest ThemeInfos = GetActualTheme(ConfigurationPath);
 
@@ -1339,7 +1338,29 @@ namespace ThemeModifier.Services
             try
             {
                 var temp = (List<Object>)(thm.Constants);
-                return temp.Select(s => (string)s).ToList();
+                List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
+
+                foreach (dynamic el in temp)
+                {
+                    if (el is string)
+                    {
+                        themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)el });
+                    }
+                    else 
+                    {
+                        logger.Debug($"ThemeModifier - el: {JsonConvert.SerializeObject(el)}");
+
+                        foreach(var tt in el)
+                        {
+                            themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)(tt.Key), Description = (string)(tt.Value) });
+                        }
+                    }
+                }
+
+#if DEBUG
+                logger.Debug($"ThemeModifier - temp: {JsonConvert.SerializeObject(themeConstantsDefined)}");
+#endif     
+                return themeConstantsDefined;
             }
             catch(Exception ex)
             {
@@ -1347,7 +1368,7 @@ namespace ThemeModifier.Services
 #if DEBUG
                 Common.LogError(ex, "ThemeModifier", $"thm: {JsonConvert.SerializeObject(thm)}");
 #endif        
-                return new List<string>();
+                return new List<ThemeConstantsDefined>();
             }
         }
 
@@ -1355,15 +1376,20 @@ namespace ThemeModifier.Services
         {
             List<ThemeElement> ThemeDefaultConstants = new List<ThemeElement>();
 
-            List<string> ListThemeConstants = GetThemeConstants(ConfigurationPath);
-            foreach (string ConstantsName in ListThemeConstants) {
+            List<ThemeConstantsDefined> ListThemeConstants = GetThemeConstants(ConfigurationPath);
+            foreach (ThemeConstantsDefined ConstantsDefined in ListThemeConstants) {
                 try
                 {
-                    ThemeDefaultConstants.Add(new ThemeElement { Name = ConstantsName, Element = resources.GetResource(ConstantsName) });
+                    ThemeDefaultConstants.Add(new ThemeElement
+                    {
+                        Name = ConstantsDefined.Name,
+                        Description = ConstantsDefined.Description,
+                        Element = resources.GetResource(ConstantsDefined.Name)
+                    });
                 }
                 catch
                 {
-                    logger.Warn($"ThemeModifier - Resources don't exists {ConstantsName}");
+                    logger.Warn($"ThemeModifier - Resources don't exists {ConstantsDefined.Name}");
                 }
             }
 
@@ -1375,7 +1401,16 @@ namespace ThemeModifier.Services
             List<ThemeElement> ThemeActualConstants = new List<ThemeElement>();
 
             ThemeManifest ThemeInfos = GetActualTheme(ConfigurationPath);
-            ThemeConstants ThemeSettingsConstants = settings.ThemesConstants.Find(x => x.Id == ThemeInfos.Id);
+            ThemeConstants ThemeSettingsConstants = new ThemeConstants();
+
+            if (!ThemeInfos.Id.IsNullOrEmpty())
+            {
+                ThemeSettingsConstants = settings.ThemesConstants.Find(x => x.Id == ThemeInfos.Id);
+            }
+            else
+            {
+                ThemeSettingsConstants = settings.ThemesConstants.Find(x => x.Name == ThemeInfos.Name);
+            }
 
             if (ThemeSettingsConstants != null)
             {
@@ -1387,6 +1422,10 @@ namespace ThemeModifier.Services
                         ThemeActualConstants.Add(new ThemeElement { Name = elementConstants.Name, Element = ConvertedResource });
                     }
                 }
+            }
+            else
+            {
+                logger.Info($"ThemeModifier - No ThemeActualConstants find for {ThemeInfos.Id} & {ThemeInfos.Name}");
             }
 
             return ThemeActualConstants;
@@ -1440,20 +1479,7 @@ namespace ThemeModifier.Services
 
             return ThemesConstants;
         }
-
-        public static void SetThemeConstant(string Name, dynamic Element, ThemeModifierSettings settings, dynamic ElementDefault = null)
-        {
-
-        }
-
-        public static void RestoreConstant(List<ThemeElement> ThemeDefaultConstants, ThemeModifierSettings settings, bool withSettings = false)
-        {
-
-        }
         #endregion
-
-
-
 
 
         private static dynamic ConvertResourceWithString(dynamic Element, string ElementType)
@@ -1462,6 +1488,9 @@ namespace ThemeModifier.Services
 
             switch (ElementType.ToLower())
             {
+                case "bool":
+                    ConvertedResource = (bool)Element;
+                    break;
                 case "string":
                     ConvertedResource = (string)Element;
                     break;
@@ -1499,56 +1528,15 @@ namespace ThemeModifier.Services
 
 
                 case "visibility":
-                    if (((string)Element).ToLower() == "visible")
-                    {
-                        ConvertedResource = Visibility.Visible;
-                    }
-                    if (((string)Element).ToLower() == "hidden")
-                    {
-                        ConvertedResource = Visibility.Hidden;
-                    }
-                    if (((string)Element).ToLower() == "collapsed")
-                    {
-                        ConvertedResource = Visibility.Collapsed;
-                    }
+                    ConvertedResource = (Visibility)Element;
                     break;
 
                 case "verticalalignment":
-                    if (((string)Element).ToLower() == "bottom")
-                    {
-                        ConvertedResource = VerticalAlignment.Bottom;
-                    }
-                    if (((string)Element).ToLower() == "center")
-                    {
-                        ConvertedResource = VerticalAlignment.Center;
-                    }
-                    if (((string)Element).ToLower() == "stretch")
-                    {
-                        ConvertedResource = VerticalAlignment.Stretch;
-                    }
-                    if (((string)Element).ToLower() == "top")
-                    {
-                        ConvertedResource = VerticalAlignment.Top;
-                    }
+                    ConvertedResource = (VerticalAlignment)Element;
                     break;
 
                 case "horizontalalignment":
-                    if (((string)Element).ToLower() == "left")
-                    {
-                        ConvertedResource = HorizontalAlignment.Left;
-                    }
-                    if (((string)Element).ToLower() == "center")
-                    {
-                        ConvertedResource = HorizontalAlignment.Center;
-                    }
-                    if (((string)Element).ToLower() == "stretch")
-                    {
-                        ConvertedResource = HorizontalAlignment.Stretch;
-                    }
-                    if (((string)Element).ToLower() == "right")
-                    {
-                        ConvertedResource = HorizontalAlignment.Right;
-                    }
+                    ConvertedResource = (HorizontalAlignment)Element;
                     break;
 
                 default:
@@ -1561,8 +1549,12 @@ namespace ThemeModifier.Services
 
         private static ElementConstants ConvertResourceToThemeConstants(string Name, dynamic Element)
         {
-            ElementConstants ConvertedResource = new ElementConstants(); 
+            ElementConstants ConvertedResource = new ElementConstants();
 
+            if (Element is bool)
+            {
+                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "bool", Element = (bool)Element };
+            }
             if (Element is string)
             {
                 ConvertedResource = new ElementConstants { Name = Name, TypeResource = "string", Element = (string)Element };
@@ -1607,65 +1599,15 @@ namespace ThemeModifier.Services
 
             if (Element is Visibility)
             {
-                string ElString = string.Empty;
-                if ((Visibility)Element == Visibility.Collapsed)
-                {
-                    ElString = "collapsed";
-                }
-                if ((Visibility)Element == Visibility.Hidden)
-                {
-                    ElString = "hidden";
-                }
-                if ((Visibility)Element == Visibility.Visible)
-                {
-                    ElString = "visible";
-                }
-
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "visibility", Element = (string)ElString };
+                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "visibility", Element = (Visibility)Element };
             }
             if (Element is VerticalAlignment)
             {
-                string ElString = string.Empty;
-                if ((VerticalAlignment)Element == VerticalAlignment.Bottom)
-                {
-                    ElString = "bottom";
-                }
-                if ((VerticalAlignment)Element == VerticalAlignment.Center)
-                {
-                    ElString = "center";
-                }
-                if ((VerticalAlignment)Element == VerticalAlignment.Stretch)
-                {
-                    ElString = "stretch";
-                }
-                if ((VerticalAlignment)Element == VerticalAlignment.Top)
-                {
-                    ElString = "top";
-                }
-
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "verticalalignment", Element = (string)ElString };
+                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "verticalalignment", Element = (VerticalAlignment)Element };
             }
             if (Element is HorizontalAlignment)
             {
-                string ElString = string.Empty;
-                if ((HorizontalAlignment)Element == HorizontalAlignment.Center)
-                {
-                    ElString = "center";
-                }
-                if ((HorizontalAlignment)Element == HorizontalAlignment.Left)
-                {
-                    ElString = "left";
-                }
-                if ((HorizontalAlignment)Element == HorizontalAlignment.Right)
-                {
-                    ElString = "right";
-                }
-                if ((HorizontalAlignment)Element == HorizontalAlignment.Stretch)
-                {
-                    ElString = "stretch";
-                }
-
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "horizontalalignment", Element = (string)ElString };
+                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "horizontalalignment", Element = (HorizontalAlignment)Element };
             }
 
             return ConvertedResource;
