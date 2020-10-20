@@ -17,6 +17,7 @@ namespace ThemeModifier
         private readonly ThemeModifier plugin;
 
         public bool EnableCheckVersion { get; set; } = true;
+        public bool MenuInExtensions { get; set; } = true;
 
         public string ControlBackgroundBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient ControlBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
@@ -94,6 +95,10 @@ namespace ThemeModifier
             // LoadPluginSettings returns null if not saved data is available.
             if (savedSettings != null)
             {
+                EnableCheckVersion = savedSettings.EnableCheckVersion;
+                MenuInExtensions = savedSettings.MenuInExtensions;
+
+
                 ControlBackgroundBrush_Edit = savedSettings.ControlBackgroundBrush_Edit;
                 TextBrush_Edit = savedSettings.TextBrush_Edit;
                 TextBrushDarker_Edit = savedSettings.TextBrushDarker_Edit;

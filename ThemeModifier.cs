@@ -85,22 +85,50 @@ namespace ThemeModifier
             }
         }
 
-        public override IEnumerable<ExtensionFunction> GetFunctions()
+        // To add new game menu items override GetGameMenuItems
+        public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
         {
-            List<ExtensionFunction> listFunctions = new List<ExtensionFunction>();
+            List<GameMenuItem> gameMenuItems = new List<GameMenuItem>
+            {
+
+            };
 
 #if DEBUG
-            listFunctions.Add(
-                new ExtensionFunction(
-                    "ThemModifier Test",
-                    () =>
-                    {
-
-                    })
-                );
+            gameMenuItems.Add(new GameMenuItem
+            {
+                MenuSection = resources.GetString("LOCThemeModifier"),
+                Description = "Test",
+                Action = (mainMenuItem) => { }
+            });
 #endif
 
-            return listFunctions;
+            return gameMenuItems;
+        }
+
+        // To add new main menu items override GetMainMenuItems
+        public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
+        {
+            string MenuInExtensions = string.Empty;
+            if (settings.MenuInExtensions)
+            {
+                MenuInExtensions = "@";
+            }
+
+            List<MainMenuItem> mainMenuItems = new List<MainMenuItem>
+            {
+
+            };
+
+#if DEBUG
+            mainMenuItems.Add(new MainMenuItem
+            {
+                MenuSection = MenuInExtensions + resources.GetString("LOCThemeModifier"),
+                Description = "Test",
+                Action = (mainMenuItem) => { }
+            });
+#endif
+
+            return mainMenuItems;
         }
 
         public override void OnGameSelected(GameSelectionEventArgs args)
