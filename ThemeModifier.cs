@@ -78,8 +78,11 @@ namespace ThemeModifier
 #endif
 
             // Add modified values
-            ThemeClass.SetThemeSettings(settings);
-            ThemeClass.SetThemeSettingsConstants(ThemeActualConstants);
+            if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
+            {
+                ThemeClass.SetThemeSettings(settings);
+                ThemeClass.SetThemeSettingsConstants(ThemeActualConstants);
+            }
         }
 
         public override IEnumerable<ExtensionFunction> GetFunctions()
@@ -107,7 +110,10 @@ namespace ThemeModifier
                 if (args.NewValue != null && args.NewValue.Count == 1)
                 {
                     GameSelected = args.NewValue[0];
-                    IntegrationUI();
+                    if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
+                    {
+                        IntegrationUI();
+                    }
                 }
             }
             catch (Exception ex)
