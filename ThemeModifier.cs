@@ -16,7 +16,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
-using ThemeModifier.PlayniteResources;
 using ThemeModifier.Services;
 using ThemeModifier.Views;
 
@@ -157,9 +156,9 @@ namespace ThemeModifier
             {
                 try
                 {
-                    var PART_ControlGameView = ui.SearchElementByName("PART_ControlGameView");
-                    var PART_ImageIcon = ui.SearchElementByName("PART_ImageIcon", PART_ControlGameView);
-                    var PART_ThemeModifierIcon = ui.SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
+                    var PART_ControlGameView = PluginCommon.IntegrationUI.SearchElementByName("PART_ControlGameView");
+                    var PART_ImageIcon = PluginCommon.IntegrationUI.SearchElementByName("PART_ImageIcon", PART_ControlGameView);
+                    var PART_ThemeModifierIcon = PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
 
                     if (PART_ImageIcon != null || PART_ThemeModifierIcon != null)
                     {

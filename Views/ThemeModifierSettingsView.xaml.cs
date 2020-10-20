@@ -14,7 +14,6 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ThemeModifier.Models;
-using ThemeModifier.PlayniteResources;
 using ThemeModifier.Services;
 using YamlDotNet.Serialization;
 
@@ -35,7 +34,6 @@ namespace ThemeModifier.Views
         private Label lControl;
 
         public static List<ThemeElement> SettingsThemeConstants = new List<ThemeElement>();
-        private readonly IntegrationUI ui = new IntegrationUI();
 
         private dynamic colorDefault = null;
 
@@ -360,7 +358,7 @@ namespace ThemeModifier.Views
         {
             Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-            string Name = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+            string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
             bool Element = (bool)((CheckBox)sender).IsChecked;
 
             if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
@@ -382,7 +380,7 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
                 string Element = ((TextBox)sender).Text;
 
                 if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
@@ -411,7 +409,7 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
                 dynamic Element = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Tag;
 
                 if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
@@ -440,7 +438,7 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
                 string Type = (string)gdParent.Tag;
                 dynamic Element = null;
                 if (Type.ToLower() == "int")
@@ -507,9 +505,9 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string elName = (string)((Label)ui.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string elName = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
                 string elType = (string)gdParent.Tag;
-                FrameworkElement elControl = ui.SearchElementByName("PART_ThemeConstantsControl", gdParent);
+                FrameworkElement elControl = PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsControl", gdParent);
 
                 dynamic elDefault = ThemeModifier.ThemeDefaultConstants.Find(x => x.Name == elName).Element;
 

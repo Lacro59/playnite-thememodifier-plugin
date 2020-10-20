@@ -17,7 +17,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
-using ThemeModifier.PlayniteResources;
 using ThemeModifier.Views;
 using YamlDotNet.Serialization;
 
