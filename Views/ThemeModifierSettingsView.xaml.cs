@@ -46,7 +46,7 @@ namespace ThemeModifier.Views
             _PlayniteConfigurationPath = PlayniteConfigurationPath;
             _PluginUserDataPath = PluginUserDataPath;
 
-            SettingsThemeConstants = ThemeClass.GetThemeActualConstants(settings, PlayniteApi.Paths.ConfigurationPath);
+            SettingsThemeConstants = ThemeClass.GetThemeActualConstants(settings, PlayniteApi);
 
 
             InitializeComponent();
@@ -868,12 +868,12 @@ namespace ThemeModifier.Views
             _settings.UseIconSquareCorne = (bool)tbUseIconSquareCorne.IsChecked;
             _settings.UseIconWe4ponx = (bool)tbUseIconWe4ponx.IsChecked;
 
-            ThemeClass.SetThemeFile(_PlayniteConfigurationPath, _settings);
+            ThemeClass.SetThemeFile(_PlayniteApi, _settings);
         }
 
         private void BtRemoveIcons_Click(object sender, RoutedEventArgs e)
         {
-            ThemeClass.RestoreThemeFile(_PlayniteConfigurationPath);
+            ThemeClass.RestoreThemeFile(_PlayniteApi);
         }
         #endregion
 

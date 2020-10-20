@@ -63,12 +63,12 @@ namespace ThemeModifier
 
             // Theme default
             ThemeDefault = ThemeClass.GetThemeDefault();
-            ThemeDefaultConstants = ThemeClass.GetThemeDefaultConstants(api.Paths.ConfigurationPath);
+            ThemeDefaultConstants = ThemeClass.GetThemeDefaultConstants(PlayniteApi);
 
             // Theme actual
             if (ThemeDefaultConstants.Count > 0)
             {
-                ThemeActualConstants = ThemeClass.GetThemeActualConstants(settings, api.Paths.ConfigurationPath);
+                ThemeActualConstants = ThemeClass.GetThemeActualConstants(settings, PlayniteApi);
             }
 
 #if DEBUG
@@ -123,7 +123,7 @@ namespace ThemeModifier
             resourcesLists.Add(new ResourcesList { Key = "TM_ImageShape", Value = null });
             ui.AddResources(resourcesLists);
 
-            ThemeManifest ThemeInfos = ThemeClass.GetActualTheme(PlayniteApi.Paths.ConfigurationPath);
+            ThemeManifest ThemeInfos = ThemeClass.GetActualTheme(PlayniteApi);
             string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string ImageName = string.Empty;
 

@@ -172,7 +172,7 @@ namespace ThemeModifier
 
         public void EndEdit()
         {
-            ThemesConstants = ThemeClass.GetThemesConstants(plugin.PlayniteApi.Paths.ConfigurationPath, ThemeModifierSettingsView.SettingsThemeConstants, ThemesConstants);
+            ThemesConstants = ThemeClass.GetThemesConstants(plugin.PlayniteApi, ThemeModifierSettingsView.SettingsThemeConstants, ThemesConstants);
             ThemeModifier.ThemeActualConstants = ThemeModifierSettingsView.SettingsThemeConstants;
 
             ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);

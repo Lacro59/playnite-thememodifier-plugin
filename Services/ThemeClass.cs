@@ -888,60 +888,16 @@ namespace ThemeModifier.Services
         #endregion
 
         #region Theme icons
-        public static ThemeManifest GetActualTheme(string PlayniteConfigurationPath)
+        public static ThemeManifest GetActualTheme(IPlayniteAPI PlayniteApi)
         {
-            string path = Path.Combine(PlayniteConfigurationPath, "config.json");
-            string ThemeName = string.Empty;
-
-            // Get actual theme
-            try
-            {
-                if (File.Exists(path))
-                {
-                    ThemeName = ((dynamic)JsonConvert.DeserializeObject(File.ReadAllText(path))).Theme;
-
-                    var AllThemeInfos = ThemeManager.GetAvailableThemes(ApplicationMode.Desktop);
-#if DEBUG
-                    logger.Debug($"ThemeModifier - {JsonConvert.SerializeObject(AllThemeInfos)}");
-#endif
-                    ThemeManifest ThemeInfo = AllThemeInfos.Find(x => x.Name.ToLower() == ThemeName.ToLower());
-                    if (ThemeInfo != null)
-                    {
-                        return ThemeInfo;
-                    }
-                    ThemeInfo = AllThemeInfos.Find(x => x.LegacyDirId.ToLower() == ThemeName.ToLower());
-                    if (ThemeInfo != null)
-                    {
-                        return ThemeInfo;
-                    }
-
-                    ThemeInfo = AllThemeInfos.Find(x => x.DirectoryPath.ToLower().IndexOf(ThemeName.ToLower()) > -1);
-                    if (ThemeInfo != null)
-                    {
-                        return ThemeInfo;
-                    }
-
-                    logger.Warn($"ThemeModifier - No ThemeManifest find for {ThemeName}");
-
-                    return null;
-                }
-                else
-                {
-                    logger.Warn($"ThemeModifier - Not find config file {path}");
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, $"ThemeModifier - Failed to load config file {path}");
-            }
-
-            return null;
+            PlayniteTools.SetThemeInformation(PlayniteApi);
+            return ThemeManager.CurrentTheme;
         }
 
-        public static bool SetThemeFile(string PlayniteConfigurationPath, ThemeModifierSettings settings)
+        public static bool SetThemeFile(IPlayniteAPI PlayniteApi, ThemeModifierSettings settings)
         {
             string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            ThemeManifest ThemeInfos = GetActualTheme(PlayniteConfigurationPath);
+            ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
 
             ThemeFileToBackup = new List<string>();
 
@@ -1000,8 +956,8 @@ namespace ThemeModifier.Services
             return true;
         }
 
-        public static bool RestoreThemeFile(string PlayniteConfigurationPath) {
-            ThemeManifest ThemeInfos = GetActualTheme(PlayniteConfigurationPath);
+        public static bool RestoreThemeFile(IPlayniteAPI PlayniteApi) {
+            ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
 
             ThemeFileToBackup = new List<string>();
             ThemeFileToBackup.Add("DerivedStyles\\DetailsViewItemTemplate.xaml");
@@ -1325,9 +1281,9 @@ namespace ThemeModifier.Services
         #endregion
 
         #region Theme constants
-        public static List<ThemeConstantsDefined> GetThemeConstants(string ConfigurationPath)
+        public static List<ThemeConstantsDefined> GetThemeConstants(IPlayniteAPI PlayniteApi)
         {
-            ThemeManifest ThemeInfos = GetActualTheme(ConfigurationPath);
+            ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
 
             var deserializer = new DeserializerBuilder().Build();
             dynamic thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(ThemeInfos.DescriptionPath));
@@ -1371,11 +1327,11 @@ namespace ThemeModifier.Services
             }
         }
 
-        public static List<ThemeElement> GetThemeDefaultConstants(string ConfigurationPath)
+        public static List<ThemeElement> GetThemeDefaultConstants(IPlayniteAPI PlayniteApi)
         {
             List<ThemeElement> ThemeDefaultConstants = new List<ThemeElement>();
 
-            List<ThemeConstantsDefined> ListThemeConstants = GetThemeConstants(ConfigurationPath);
+            List<ThemeConstantsDefined> ListThemeConstants = GetThemeConstants(PlayniteApi);
             foreach (ThemeConstantsDefined ConstantsDefined in ListThemeConstants) {
                 try
                 {
@@ -1395,11 +1351,11 @@ namespace ThemeModifier.Services
             return ThemeDefaultConstants;
         }
 
-        public static List<ThemeElement> GetThemeActualConstants(ThemeModifierSettings settings, string ConfigurationPath)
+        public static List<ThemeElement> GetThemeActualConstants(ThemeModifierSettings settings, IPlayniteAPI PlayniteApi)
         {
             List<ThemeElement> ThemeActualConstants = new List<ThemeElement>();
 
-            ThemeManifest ThemeInfos = GetActualTheme(ConfigurationPath);
+            ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
             ThemeConstants ThemeSettingsConstants = new ThemeConstants();
 
             if (!ThemeInfos.Id.IsNullOrEmpty())
@@ -1450,9 +1406,9 @@ namespace ThemeModifier.Services
             }
         }
 
-        public static List<ThemeConstants> GetThemesConstants(string ConfigurationPath, List<ThemeElement> themesElements, List<ThemeConstants> ThemesConstants)
+        public static List<ThemeConstants> GetThemesConstants(IPlayniteAPI PlayniteApi, List<ThemeElement> themesElements, List<ThemeConstants> ThemesConstants)
         {
-            ThemeManifest ThemeInfos = GetActualTheme(ConfigurationPath);
+            ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
 
             try
             {
