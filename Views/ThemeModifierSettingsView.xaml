@@ -295,7 +295,7 @@
                 </Grid>
             </TabItem>
             
-            <TabItem Header="{DynamicResource LOCThemeModifierEditView}">
+            <TabItem Header="{DynamicResource LOCMenuView}">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -423,7 +423,7 @@
 
             <TabItem Width="110" IsEnabled="False"></TabItem>
 
-            <TabItem Header="{DynamicResource LOCThemeModifierEditIcon}">
+            <TabItem Header="{DynamicResource LOCGameIconTitle}">
                 <DockPanel Margin="10">
                     <CheckBox IsChecked="{Binding EnableIconChanger}" DockPanel.Dock="Top">
                         <Label Content="{DynamicResource LOCThemeModifierEnableIconChanger}" />

@@ -13,8 +13,8 @@
     -->
 
     <sys:String x:Key="LOCThemeModifierEditTheme">Editer le thème</sys:String>
-    <sys:String x:Key="LOCThemeModifierEditView">Vue</sys:String>
-    <sys:String x:Key="LOCThemeModifierEditIcon">Icônes</sys:String>
+    <sys:String x:Key="LOCMenuView">Vue</sys:String>
+    <sys:String x:Key="LOCGameIconTitle">Icônes</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageMenu">Gestion</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Charger</sys:String>
