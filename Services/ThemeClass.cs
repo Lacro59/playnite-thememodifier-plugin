@@ -49,7 +49,8 @@ namespace ThemeModifier.Services
             "NegativeRatingBrush",
             "MixedRatingBrush",
             "ExpanderBackgroundBrush",
-            "WindowBackgourndBrush"
+            "WindowBackgourndBrush",
+            "WarningBrush"
         };
 
         private static List<string> ThemeFileToBackup = new List<string>();
@@ -246,6 +247,15 @@ namespace ThemeModifier.Services
             catch
             {
                 logger.Warn($"ThemeModifier - Resources don't exists WindowBackgourndBrush");
+            }
+
+            try
+            {
+                ThemeDefault.Add(new ThemeElement { Name = "WarningBrush", Element = resources.GetResource("WarningBrush") });
+            }
+            catch
+            {
+                logger.Warn($"ThemeModifier - Resources don't exists WarningBrush");
             }
 
             return ThemeDefault;
@@ -501,6 +511,10 @@ namespace ThemeModifier.Services
                             case "MixedRatingBrush":
                                 settings.MixedRatingBrush_Edit = string.Empty;
                                 settings.MixedRatingBrush_EditGradient = themeLinearGradient;
+                                break;
+                            case "WarningBrush":
+                                settings.WarningBrush_Edit = string.Empty;
+                                settings.WarningBrush_EditGradient = themeLinearGradient;
                                 break;
                         }
                     }
@@ -875,6 +889,23 @@ namespace ThemeModifier.Services
                     {
                         Key = "WindowBackgourndBrush",
                         Value = settings.WindowBackgourndBrush_EditGradient.ToLinearGradientBrush
+                    });
+                }
+
+                if (!settings.WarningBrush_Edit.IsNullOrEmpty())
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "WarningBrush",
+                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WarningBrush_Edit))
+                    });
+                }
+                if (settings.WarningBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "WarningBrush",
+                        Value = settings.WarningBrush_EditGradient.ToLinearGradientBrush
                     });
                 }
 

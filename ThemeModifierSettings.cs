@@ -61,6 +61,8 @@ namespace ThemeModifier
         public ThemeLinearGradient ExpanderBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string WindowBackgourndBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient WindowBackgourndBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public string WarningBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient WarningBrush_EditGradient { get; set; } = new ThemeLinearGradient();
 
 
         public List<ThemeConstants> ThemesConstants = new List<ThemeConstants>();
@@ -120,6 +122,7 @@ namespace ThemeModifier
                 MixedRatingBrush_Edit = savedSettings.MixedRatingBrush_Edit;
                 ExpanderBackgroundBrush_Edit = savedSettings.ExpanderBackgroundBrush_Edit;
                 WindowBackgourndBrush_Edit = savedSettings.WindowBackgourndBrush_Edit;
+                WarningBrush_Edit = savedSettings.WarningBrush_Edit;
 
 
                 ControlBackgroundBrush_EditGradient = savedSettings.ControlBackgroundBrush_EditGradient;
@@ -143,6 +146,7 @@ namespace ThemeModifier
                 MixedRatingBrush_EditGradient = savedSettings.MixedRatingBrush_EditGradient;
                 ExpanderBackgroundBrush_EditGradient = savedSettings.ExpanderBackgroundBrush_EditGradient;
                 WindowBackgourndBrush_EditGradient = savedSettings.WindowBackgourndBrush_EditGradient;
+                WarningBrush_EditGradient = savedSettings.WarningBrush_EditGradient;
 
 
                 EnableIconChanger = savedSettings.EnableIconChanger;

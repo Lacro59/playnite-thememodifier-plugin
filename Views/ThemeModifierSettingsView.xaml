@@ -191,6 +191,13 @@
                                 <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                             </StackPanel>
 
+                            <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="9" Grid.Column="2">
+                                <TextBlock Height="28" Width="28" Background="{DynamicResource WarningBrush}" Name="tbWarningBrush"></TextBlock>
+                                <Label Margin="10,0" Width="130" FontSize="11">WarningBrush</Label>
+                                <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
+                                <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
+                            </StackPanel>
+
                             <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="10" Grid.Column="0">
                                 <TextBlock Height="28" Width="28" Background="{DynamicResource ExpanderBackgroundBrush}" Name="tbExpanderBackgroundBrush"></TextBlock>
                                 <Label Margin="10,0" Width="130" FontSize="11">ExpanderBackgroundBrush</Label>
