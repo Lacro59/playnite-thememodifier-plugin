@@ -94,7 +94,8 @@ namespace ThemeModifier.Views
                 {
                     Label lbDescription = new Label();
                     Grid.SetColumn(lbDescription, 0);
-                    lbDescription.Content = "\u2139";
+                    lbDescription.Content = "";
+                    lbDescription.FontFamily = new FontFamily(new Uri("pack://application:,,,/PluginCommon;component/Resources/"), "./#font");
                     lbDescription.ToolTip = themeElement.Description;
                     lbDescription.Margin = new Thickness(0, 0, 10, 0);
                     lbDescription.HorizontalAlignment = HorizontalAlignment.Right;
