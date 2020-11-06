@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainView -->
+
+    <sys:String x:Key="LOCThemeModifier">Modificatore del tema</sys:String>
+    
+    <!-- ThemeModifierSettingsView -->
+
+    <sys:String x:Key="LOCThemeModifierEditTheme">Modifica tema</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageMenu">Gestisci</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Carica</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Esporta</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">File salvato</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">File non salvato</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">Il file selezionato non è un file di tema</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierPick">scegli</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">ripristina</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">Ripristina predefinito</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Abilita cambio icone</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Applica icone</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Ripristina icone</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">Abilita nella descrizione</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Modifica le costanti del tema</sys:String>
+
+</ResourceDictionary>
