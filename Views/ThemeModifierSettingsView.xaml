@@ -9,10 +9,15 @@
     <Grid Margin="20">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
             <TabItem Width="67" IsEnabled="False"></TabItem>
-            
+
             <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}" Name="PART_TabEditTheme" IsSelected="True">
                 <Grid Margin="10">
-                    <Grid Name="PART_SelectorColor" Width="500" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200*"/>
+                        <ColumnDefinition Width="73*"/>
+                        <ColumnDefinition Width="274*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Name="PART_SelectorColor" Width="500" Visibility="Collapsed" Grid.ColumnSpan="3" Margin="23,0,24.2,0.4">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <controls:ControlPickerGradient Name="PART_SelectorColorPicker"></controls:ControlPickerGradient>
                         </StackPanel>
@@ -28,15 +33,15 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
-                        
+
                             <Button Name="PART_TM_ColorOK" Grid.Column="1" Grid.Row="1" Content="{DynamicResource LOCOKLabel}" 
                                     Click="PART_TM_ColorOK_Click"/>
                             <Button Name="PART_TM_ColorCancel" Grid.Column="3" Grid.Row="1" Content="{DynamicResource LOCCancelLabel}" 
                                     Click="PART_TM_ColorCancel_Click" />
                         </Grid>
                     </Grid>
-                
-                    <ScrollViewer Name="PART_ThemeColor">
+
+                    <ScrollViewer Name="PART_ThemeColor" Grid.ColumnSpan="3" Margin="0,0,0.2,0.4">
                         <Grid Grid.ColumnSpan="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
@@ -176,7 +181,7 @@
                                 <Button Click="BtPickColor_Click" Content="&#x270f;" Width="41" />
                                 <Button Click="BtRestore_Click" Content="&#x1f5d9;" Width="41" />
                             </StackPanel>
-                        
+
                             <StackPanel Orientation="Horizontal" Margin="0,5" Grid.Row="8" Grid.Column="2">
                                 <TextBlock Height="28" Width="28" Background="{DynamicResource NegativeRatingBrush}" Name="tbNegativeRatingBrush"></TextBlock>
                                 <Label Margin="10,0" Width="130" FontSize="11">NegativeRatingBrush</Label>
@@ -301,7 +306,7 @@
                     </ScrollViewer>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="{DynamicResource LOCMenuView}">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
