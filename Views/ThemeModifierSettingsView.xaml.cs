@@ -68,7 +68,7 @@ namespace ThemeModifier.Views
                 Grid gd = new Grid();
                 gd.Margin = new Thickness(0, 0, 0, 10);
                 ColumnDefinition c1 = new ColumnDefinition();
-                c1.Width = new GridLength(1, GridUnitType.Star);
+                c1.Width = new GridLength(350);
                 ColumnDefinition c2 = new ColumnDefinition();
                 c2.Width = new GridLength(1, GridUnitType.Star);
                 ColumnDefinition c3 = new ColumnDefinition();
@@ -87,8 +87,6 @@ namespace ThemeModifier.Views
                 lb.Content = themeElement.Name;
                 lb.Margin = new Thickness(0, 0, 10, 0);
 
-                gd.Children.Add(lb);
-
 
                 if (!themeElement.Description.IsNullOrEmpty())
                 {
@@ -96,12 +94,16 @@ namespace ThemeModifier.Views
                     Grid.SetColumn(lbDescription, 0);
                     lbDescription.Content = "";
                     lbDescription.FontFamily = new FontFamily(new Uri("pack://application:,,,/PluginCommon;component/Resources/"), "./#font");
-                    lbDescription.ToolTip = themeElement.Description;
+                    lbDescription.ToolTip = themeElement.Name;
                     lbDescription.Margin = new Thickness(0, 0, 10, 0);
                     lbDescription.HorizontalAlignment = HorizontalAlignment.Right;
 
+                    lb.Content = themeElement.Description;
+
                     gd.Children.Add(lbDescription);
                 }
+
+                gd.Children.Add(lb);
 
 
                 FrameworkElement control = new FrameworkElement();
