@@ -131,24 +131,6 @@ namespace ThemeModifier
             return mainMenuItems;
         }
 
-        public override void OnGameSelected(GameSelectionEventArgs args)
-        {
-            try
-            {
-                if (args.NewValue != null && args.NewValue.Count == 1)
-                {
-                    GameSelected = args.NewValue[0];
-                    if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
-                    {
-                        IntegrationUI();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex, "ThemModifier", $"Error on OnGameSelected()");
-            }
-        }
 
         private void IntegrationUI()
         {
@@ -303,45 +285,75 @@ namespace ThemeModifier
         }
 
 
+        public override void OnGameSelected(GameSelectionEventArgs args)
+        {
+            try
+            {
+                if (args.NewValue != null && args.NewValue.Count == 1)
+                {
+                    GameSelected = args.NewValue[0];
+                    if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
+                    {
+                        IntegrationUI();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "ThemModifier", $"Error on OnGameSelected()");
+            }
+        }
+        
+        // Add code to be executed when game is finished installing.
         public override void OnGameInstalled(Game game)
         {
-            // Add code to be executed when game is finished installing.
+
         }
 
+        // Add code to be executed when game is started running.
         public override void OnGameStarted(Game game)
         {
-            // Add code to be executed when game is started running.
+
         }
 
+        // Add code to be executed when game is preparing to be started.
         public override void OnGameStarting(Game game)
         {
-            // Add code to be executed when game is preparing to be started.
+
         }
 
+        // Add code to be executed when game is preparing to be started.
         public override void OnGameStopped(Game game, long elapsedSeconds)
         {
-            // Add code to be executed when game is preparing to be started.
+
         }
 
+        // Add code to be executed when game is uninstalled.
         public override void OnGameUninstalled(Game game)
         {
-            // Add code to be executed when game is uninstalled.
+
         }
 
+
+        // Add code to be executed when Playnite is initialized.
         public override void OnApplicationStarted()
         {
-            // Add code to be executed when Playnite is initialized.
+
         }
 
+        // Add code to be executed when Playnite is shutting down.
         public override void OnApplicationStopped()
         {
-            // Add code to be executed when Playnite is shutting down.
+
         }
 
+
+        // Add code to be executed when library is updated.
         public override void OnLibraryUpdated()
         {
-            // Add code to be executed when library is updated.
+
         }
+
 
         public override ISettings GetSettings(bool firstRunSettings)
         {
