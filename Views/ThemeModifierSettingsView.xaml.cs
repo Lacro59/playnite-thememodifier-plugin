@@ -85,6 +85,7 @@ namespace ThemeModifier.Views
                 Grid.SetColumn(lb, 0);
                 lb.Name = "PART_ThemeConstantsLabel";
                 lb.Content = themeElement.Name;
+                lb.Tag = themeElement.Name;
                 lb.Margin = new Thickness(0, 0, 10, 0);
 
 
@@ -361,7 +362,7 @@ namespace ThemeModifier.Views
         {
             Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-            string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+            string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
             bool Element = (bool)((CheckBox)sender).IsChecked;
 
             if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
@@ -383,7 +384,7 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
                 string Element = ((TextBox)sender).Text;
 
                 if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
@@ -412,7 +413,7 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
                 dynamic Element = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Tag;
 
                 if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
@@ -441,7 +442,7 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string Name = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
                 string Type = (string)gdParent.Tag;
                 dynamic Element = null;
                 if (Type.ToLower() == "int")
@@ -508,7 +509,7 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string elName = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Content;
+                string elName = (string)((Label)PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
                 string elType = (string)gdParent.Tag;
                 FrameworkElement elControl = PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeConstantsControl", gdParent);
 
@@ -655,7 +656,7 @@ namespace ThemeModifier.Views
             if (tbControl != null && lControl != null)
             {
                 dynamic elSaved = null;
-                string Name = (string)lControl.Content;
+                string Name = (string)tbControl.Tag;
                 string Type = (string)((Grid)tbControl.Parent).Tag;
 
                 if (colorDefault == null)

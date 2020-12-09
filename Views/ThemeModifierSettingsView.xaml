@@ -8,7 +8,7 @@
 
     <Grid Margin="20">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Width="67" IsEnabled="False"></TabItem>
+            <TabItem Width="130" IsEnabled="False" Name="PART_TabForMenu"></TabItem>
 
             <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}" Name="PART_TabEditTheme" IsSelected="True">
                 <Grid Margin="10">
@@ -433,7 +433,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Width="110" IsEnabled="False"></TabItem>
+            <TabItem Width="80" IsEnabled="False"></TabItem>
 
             <TabItem Header="{DynamicResource LOCGameIconTitle}">
                 <DockPanel Margin="10">
@@ -484,7 +484,8 @@
             </TabItem>
         </TabControl>
 
-        <Menu Name="PART_EditThemeMenu" Height="{Binding ElementName=PART_TabEditTheme, Path=ActualHeight}" Width="67"
+        <Menu Name="PART_EditThemeMenu" Height="{Binding ElementName=PART_TabEditTheme, Path=ActualHeight}" 
+              Width="{Binding ElementName=PART_TabForMenu, Path=Width}"
               VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="{DynamicResource LOCThemeModifierManageMenu}" Margin="5,0,0,0">
                 <MenuItem Header="{DynamicResource LOCThemeModifierManageMenuLoad}" Name="PART_EditThemeMenuLoad">
