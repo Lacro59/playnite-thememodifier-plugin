@@ -503,7 +503,7 @@
                         <Label Content="{DynamicResource LOCThemeModifierIntegrationFeatures}" />
                     </CheckBox>
 
-                    <CheckBox Grid.Column="0" Grid.Row="3" IsChecked="{Binding IntegrationFS}" VerticalAlignment="Center">
+                    <CheckBox Grid.Column="0" Grid.Row="3" IsChecked="{Binding EnableIntegrationFS}" VerticalAlignment="Center">
                         <Label Content="{DynamicResource LOCCommonIntegrationFullScreenEnable}" />
                     </CheckBox>
                 </Grid>
