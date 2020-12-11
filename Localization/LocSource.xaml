@@ -7,9 +7,9 @@
     
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Theme Editor</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Themes manager</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Load</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">Export</sys:String>
 
@@ -26,6 +26,9 @@
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restore icons</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Enable in description</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit theme constants</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+
+
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
 
 </ResourceDictionary>

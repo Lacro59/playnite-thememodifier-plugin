@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -30,8 +31,11 @@ namespace ThemeModifier
 
         public override Guid Id { get; } = Guid.Parse("ec2f4013-17e6-428a-b8a9-5e34a3b80009");
 
+        public static IcoFeatures icoFeatures { get; set; }
+
         private readonly IntegrationUI ui = new IntegrationUI();
-        private Game GameSelected { get; set; }
+        public static ThemeModifierUI themeModifierUI;
+        public static Game GameSelected { get; set; }
         public static List<ThemeElement> ThemeDefault = new List<ThemeElement>();
         public static List<ThemeElement> ThemeDefaultConstants = new List<ThemeElement>();
         public static List<ThemeElement> ThemeActualConstants = new List<ThemeElement>();
@@ -61,6 +65,9 @@ namespace ThemeModifier
                 }
             }
 
+            // Init ui interagration
+            themeModifierUI = new ThemeModifierUI(api, this.GetPluginUserDataPath(), settings);
+
             // Theme default
             ThemeDefault = ThemeClass.GetThemeDefault();
             ThemeDefaultConstants = ThemeClass.GetThemeDefaultConstants(PlayniteApi);
@@ -83,7 +90,41 @@ namespace ThemeModifier
                 ThemeClass.SetThemeSettings(settings);
                 ThemeClass.SetThemeSettingsConstants(ThemeActualConstants);
             }
+
+            // Features integration
+            icoFeatures = new IcoFeatures(pluginFolder);
+
+            // Add event fullScreen
+            if (api.ApplicationInfo.Mode == ApplicationMode.Fullscreen)
+            {
+                EventManager.RegisterClassHandler(typeof(Button), Button.ClickEvent, new RoutedEventHandler(BtFullScreen_ClickEvent));
+            }
         }
+
+
+        #region Custom event
+        private void BtFullScreen_ClickEvent(object sender, System.EventArgs e)
+        {
+            try
+            {
+                if (((Button)sender).Name == "PART_ButtonDetails")
+                {
+                    var TaskIntegrationUI = Task.Run(() =>
+                    {
+                        themeModifierUI.Initial();
+                        themeModifierUI.taskHelper.Check();
+                        var dispatcherOp = themeModifierUI.AddElementsFS();
+                        dispatcherOp.Completed += (s, ev) => { themeModifierUI.RefreshElements(GameSelected); };
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, "SuccessStory");
+            }
+        }
+        #endregion
+
 
         // To add new game menu items override GetGameMenuItems
         public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
@@ -295,6 +336,17 @@ namespace ThemeModifier
                     if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
                     {
                         IntegrationUI();
+
+                        var TaskIntegrationUI = Task.Run(() =>
+                        {
+                            themeModifierUI.Initial();
+                            themeModifierUI.taskHelper.Check();
+                            var dispatcherOp = themeModifierUI.AddElements();
+                            if (dispatcherOp != null)
+                            {
+                                dispatcherOp.Completed += (s, e) => { themeModifierUI.RefreshElements(args.NewValue[0]); };
+                            }
+                        });
                     }
                 }
             }

@@ -1018,5 +1018,22 @@ namespace ThemeModifier.Views
             }
         }
         #endregion
+
+
+
+        private void Checkbox_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+
+            if ((cb.Name == "Tm_IntegrationInCustomTheme") && (bool)cb.IsChecked)
+            {
+                Tm_IntegrationFeaturesList.IsChecked = false;
+            }
+            if ((cb.Name == "Tm_IntegrationFeaturesList") && (bool)cb.IsChecked)
+            {
+                Tm_IntegrationInCustomTheme.IsChecked = false;
+            }
+        }
+
     }
 }

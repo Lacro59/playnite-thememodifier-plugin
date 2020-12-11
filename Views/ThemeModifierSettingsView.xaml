@@ -8,7 +8,7 @@
 
     <Grid Margin="20">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Width="130" IsEnabled="False" Name="PART_TabForMenu"></TabItem>
+            <TabItem Width="80" IsEnabled="False" Name="PART_TabForMenu"></TabItem>
 
             <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}" Name="PART_TabEditTheme" IsSelected="True">
                 <Grid Margin="10">
@@ -481,6 +481,32 @@
                         <Button Name="btRemoveIcons" Content="{DynamicResource LOCThemeModifierBtRemoveIcons}" Click="BtRemoveIcons_Click" VerticalAlignment="Bottom" />
                     </StackPanel>
                 </DockPanel>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource LOCCommonIntegration}">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <CheckBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" IsChecked="{Binding EnableIntegrationInCustomTheme}" 
+                              Name="Tm_IntegrationInCustomTheme" Click="Checkbox_Click" VerticalAlignment="Center">
+                        <Label Content="{DynamicResource LOCCommonIntegrationInCustomTheme}" />
+                    </CheckBox>
+                    
+                    <CheckBox Grid.Column="0" Grid.Row="1" IsChecked="{Binding EnableIntegrationFeatures}" 
+                              Name="Tm_IntegrationFeaturesList" Click="Checkbox_Click" VerticalAlignment="Center">
+                        <Label Content="{DynamicResource LOCThemeModifierIntegrationFeatures}" />
+                    </CheckBox>
+
+                    <CheckBox Grid.Column="0" Grid.Row="3" IsChecked="{Binding IntegrationFS}" VerticalAlignment="Center">
+                        <Label Content="{DynamicResource LOCCommonIntegrationFullScreenEnable}" />
+                    </CheckBox>
+                </Grid>
             </TabItem>
         </TabControl>
 

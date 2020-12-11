@@ -19,6 +19,11 @@ namespace ThemeModifier
         public bool EnableCheckVersion { get; set; } = true;
         public bool MenuInExtensions { get; set; } = true;
 
+        public bool EnableIntegrationFeatures { get; set; } = false;
+        public bool EnableIntegrationInCustomTheme { get; set; } = false;
+
+        public bool EnableIntegrationFS { get; set; } = false;
+
         public string ControlBackgroundBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient ControlBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string TextBrush_Edit { get; set; } = string.Empty;
@@ -100,6 +105,10 @@ namespace ThemeModifier
                 EnableCheckVersion = savedSettings.EnableCheckVersion;
                 MenuInExtensions = savedSettings.MenuInExtensions;
 
+                EnableIntegrationFeatures = savedSettings.EnableIntegrationFeatures;
+                EnableIntegrationInCustomTheme = savedSettings.EnableIntegrationInCustomTheme;
+
+                EnableIntegrationFS = savedSettings.EnableIntegrationFS;
 
                 ControlBackgroundBrush_Edit = savedSettings.ControlBackgroundBrush_Edit;
                 TextBrush_Edit = savedSettings.TextBrush_Edit;
@@ -190,6 +199,13 @@ namespace ThemeModifier
             // Code executed when user decides to confirm changes made since BeginEdit was called.
             // This method should save settings made to Option1 and Option2.
             plugin.SavePluginSettings(this);
+
+            ThemeModifier.themeModifierUI.RemoveElements();
+            var TaskIntegrationUI = Task.Run(() =>
+            {
+                var dispatcherOp = ThemeModifier.themeModifierUI.AddElements();
+                dispatcherOp.Completed += (s, e) => { ThemeModifier.themeModifierUI.RefreshElements(ThemeModifier.GameSelected); };
+            });
         }
 
         public bool VerifySettings(out List<string> errors)
