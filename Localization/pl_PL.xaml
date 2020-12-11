@@ -7,9 +7,9 @@
     
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Edit theme</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Manage</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Load</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">Export</sys:String>
 
@@ -17,15 +17,18 @@
     <sys:String x:Key="LOCThemeModifierManageSaveKo">File not saved</sys:String>
     <sys:String x:Key="LOCThemeModifierManageNoFile">The selected file is not a theme file</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierPick">pick</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestore">restore</sys:String>
+    <sys:String x:Key="LOCThemeModifierPick">Choose</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">Restore</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Enable icon changer</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtSetIcons">Apply icons</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Enable icon modifier</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Apply modification to icons</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restore icons</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Enable in description</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit theme constants</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+
+
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
 
 </ResourceDictionary>

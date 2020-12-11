@@ -113,6 +113,7 @@ namespace ThemeModifier.Services
                     List<ResourcesList> resourcesLists = new List<ResourcesList>();
                     resourcesLists.Add(new ResourcesList { Key = "Tm_HasData", Value = false });
                     resourcesLists.Add(new ResourcesList { Key = "Tm_FeaturesList", Value = new List<FeaturesItem>() });
+                    resourcesLists.Add(new ResourcesList { Key = "Tm_FeaturesListCount", Value = 0 });
                     ui.AddResources(resourcesLists);
 
                     ThemeModifier.icoFeatures.SetCurrentFeaturesList(GameSelected);
@@ -122,6 +123,7 @@ namespace ThemeModifier.Services
                         resourcesLists = new List<ResourcesList>();
                         resourcesLists.Add(new ResourcesList { Key = "Tm_HasData", Value = true });
                         resourcesLists.Add(new ResourcesList { Key = "Tm_FeaturesList", Value = ThemeModifier.icoFeatures.CurrentFeaturesList });
+                        resourcesLists.Add(new ResourcesList { Key = "Tm_FeaturesListCount", Value = ThemeModifier.icoFeatures.CurrentFeaturesList.Count });
                         ui.AddResources(resourcesLists);
                     }
                 }

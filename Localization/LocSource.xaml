@@ -4,7 +4,7 @@
     <!-- MainView -->
 
     <sys:String x:Key="LOCThemeModifier">ThemeModifier</sys:String>
-    
+
     <!-- ThemeModifierSettingsView -->
 
     <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>

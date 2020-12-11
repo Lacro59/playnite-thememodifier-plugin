@@ -7,9 +7,9 @@
     
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Редактировать тему</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Управлeние</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Загрузить</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">Экспорт</sys:String>
 
@@ -17,15 +17,18 @@
     <sys:String x:Key="LOCThemeModifierManageSaveKo">Файл не сохранён</sys:String>
     <sys:String x:Key="LOCThemeModifierManageNoFile">Выбранный файл не является файлом темы</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierPick">выбрать</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestore">восстановить</sys:String>
+    <sys:String x:Key="LOCThemeModifierPick">Выбрать</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">Восстановить</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">По умолчанию</sys:String>
 
     <sys:String x:Key="LOCThemeModifierEnableIconChanger">Включить изменение иконок</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtSetIcons">Применить иконку</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Применить изменения к значкам</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Восстановление иконок</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Искать в описании</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Редактирование настроек темы</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+
+
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
 
 </ResourceDictionary>
