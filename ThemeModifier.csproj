@@ -78,7 +78,7 @@
     <Compile Include="Views\InterfaceFS\FeaturesListFS.xaml.cs">
       <DependentUpon>FeaturesListFS.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Interfaces\FeaturesList.xaml.cs">
+    <Compile Include="Views\Interface\FeaturesList.xaml.cs">
       <DependentUpon>FeaturesList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ThemeModifierSettingsView.xaml.cs">
@@ -203,7 +203,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Interfaces\FeaturesList.xaml">
+    <Page Include="Views\Interface\FeaturesList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1334,8 +1334,9 @@ namespace ThemeModifier.Services
                     }
                     else 
                     {
+#if DEBUG
                         logger.Debug($"ThemeModifier - el: {JsonConvert.SerializeObject(el)}");
-
+#endif
                         foreach(var tt in el)
                         {
                             themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)(tt.Key), Description = (string)(tt.Value) });
@@ -1345,7 +1346,7 @@ namespace ThemeModifier.Services
 
 #if DEBUG
                 logger.Debug($"ThemeModifier - temp: {JsonConvert.SerializeObject(themeConstantsDefined)}");
-#endif     
+#endif
                 return themeConstantsDefined;
             }
             catch(Exception ex)
@@ -1353,7 +1354,7 @@ namespace ThemeModifier.Services
                 logger.Warn($"ThemeModifier - No the constants defined");
 #if DEBUG
                 Common.LogError(ex, "ThemeModifier", $"thm: {JsonConvert.SerializeObject(thm)}");
-#endif        
+#endif
                 return new List<ThemeConstantsDefined>();
             }
         }
@@ -1465,7 +1466,7 @@ namespace ThemeModifier.Services
 
             return ThemesConstants;
         }
-        #endregion
+#endregion
 
 
         private static dynamic ConvertResourceWithString(dynamic Element, string ElementType)

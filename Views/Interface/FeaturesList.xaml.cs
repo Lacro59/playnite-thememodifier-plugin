@@ -52,6 +52,8 @@ namespace ThemeModifier.Views.Interfaces
                         PART_FeaturesList.ItemsSource = null;
                         PART_FeaturesList.ItemsSource = ThemeModifier.icoFeatures.CurrentFeaturesList;
 
+                        this.Width = 40 * ThemeModifier.icoFeatures.CurrentFeaturesList.Count;
+
                         this.DataContext = new
                         {
                             CountItems = ThemeModifier.icoFeatures.CurrentFeaturesList.Count

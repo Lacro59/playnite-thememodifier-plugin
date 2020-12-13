@@ -16,7 +16,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Width="40" Height="40">
-                        <Image Width="38" Source="{Binding Icon}" Stretch="UniformToFill" 
+                        <Image Width="38" Source="{Binding Icon, IsAsync=True}" Stretch="UniformToFill" 
                                ToolTip="{Binding Name}" Margin="0,8.3,0,0" />
                     </StackPanel>
                 </DataTemplate>
