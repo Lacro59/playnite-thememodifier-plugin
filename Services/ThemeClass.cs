@@ -1312,15 +1312,16 @@ namespace ThemeModifier.Services
         #region Theme constants
         public static List<ThemeConstantsDefined> GetThemeConstants(IPlayniteAPI PlayniteApi)
         {
-            ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
-
-            var deserializer = new DeserializerBuilder().Build();
-            dynamic thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(ThemeInfos.DescriptionPath));
-#if DEBUG
-            logger.Debug($"ThemeModifier  [Ignored]- thm: {JsonConvert.SerializeObject(thm)}");
-#endif        
             try
             {
+                ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
+
+                var deserializer = new DeserializerBuilder().Build();
+                dynamic thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(ThemeInfos.DescriptionPath));
+#if DEBUG
+                logger.Debug($"ThemeModifier  [Ignored]- thm: {JsonConvert.SerializeObject(thm)}");
+#endif        
+
                 var temp = (List<Object>)(thm.Constants);
                 List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
 
