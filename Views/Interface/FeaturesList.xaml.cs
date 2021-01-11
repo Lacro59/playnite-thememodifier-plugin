@@ -48,6 +48,10 @@ namespace ThemeModifier.Views.Interfaces
                             this.Visibility = Visibility.Collapsed;
                             return;
                         }
+                        else
+                        {
+                            this.Visibility = Visibility.Visible;
+                        }
                         
                         PART_FeaturesList.ItemsSource = null;
                         PART_FeaturesList.ItemsSource = ThemeModifier.icoFeatures.CurrentFeaturesList;

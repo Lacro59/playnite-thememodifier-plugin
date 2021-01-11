@@ -41,7 +41,11 @@ namespace ThemeModifier.Views.InterfaceFS
                     this.Visibility = Visibility.Collapsed;
                     return;
                 }
-                
+                else
+                {
+                    this.Visibility = Visibility.Visible;
+                }
+
                 PART_FeaturesList.ItemsSource = ThemeModifier.icoFeatures.CurrentFeaturesList;
 
                 this.DataContext = new
