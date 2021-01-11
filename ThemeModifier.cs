@@ -77,9 +77,9 @@ namespace ThemeModifier
             }
 
 #if DEBUG
-            logger.Debug($"ThemeModifier - ThemeDefault: {JsonConvert.SerializeObject(ThemeDefault)}");
-            logger.Debug($"ThemeModifier - ThemeDefaultConstants: {JsonConvert.SerializeObject(ThemeDefaultConstants)}");
-            logger.Debug($"ThemeModifier - ThemeActualConstants: {JsonConvert.SerializeObject(ThemeActualConstants)}");
+            logger.Debug($"ThemeModifier [Ignored] - ThemeDefault: {JsonConvert.SerializeObject(ThemeDefault)}");
+            logger.Debug($"ThemeModifier [Ignored] - ThemeDefaultConstants: {JsonConvert.SerializeObject(ThemeDefaultConstants)}");
+            logger.Debug($"ThemeModifier [Ignored] - ThemeActualConstants: {JsonConvert.SerializeObject(ThemeActualConstants)}");
 #endif
 
             // Add modified values
@@ -219,14 +219,14 @@ namespace ThemeModifier
                     {
                         double MaxHeight = 10;
 #if DEBUG
-                        logger.Debug($"ThemeModifier - PART_ImageIcon.MaxHeight: {PART_ImageIcon.MaxHeight} - MaxHeight: {MaxHeight}");
+                        logger.Debug($"ThemeModifier [Ignored] - PART_ImageIcon.MaxHeight: {PART_ImageIcon.MaxHeight} - MaxHeight: {MaxHeight}");
 #endif
                         if (!double.IsNaN(PART_ImageIcon.MaxHeight) && (MaxHeight < 11 || double.IsInfinity(MaxHeight)))
                         {
                             MaxHeight = PART_ImageIcon.MaxHeight;
                         }
 #if DEBUG
-                        logger.Debug($"ThemeModifier - PART_ImageIcon.Height: {PART_ImageIcon.Height} - MaxHeight: {MaxHeight}");
+                        logger.Debug($"ThemeModifier [Ignored] - PART_ImageIcon.Height: {PART_ImageIcon.Height} - MaxHeight: {MaxHeight}");
 #endif
                         if (!double.IsNaN(PART_ImageIcon.Height) && (MaxHeight < 11 || double.IsInfinity(MaxHeight)))
                         {
@@ -234,14 +234,14 @@ namespace ThemeModifier
                             MaxHeight = PART_ImageIcon.Height;
                         }
 #if DEBUG
-                        logger.Debug($"ThemeModifier - PART_ImageIcon.MaxWidth: {PART_ImageIcon.MaxWidth} - MaxHeight: {MaxHeight}");
+                        logger.Debug($"ThemeModifier [Ignored] - PART_ImageIcon.MaxWidth: {PART_ImageIcon.MaxWidth} - MaxHeight: {MaxHeight}");
 #endif
                         if (!double.IsNaN(PART_ImageIcon.MaxWidth) && (MaxHeight < 11 || double.IsInfinity(MaxHeight)))
                         {
                             MaxHeight = PART_ImageIcon.MaxWidth;
                         }
 #if DEBUG
-                        logger.Debug($"ThemeModifier - PART_ImageIcon.Width: {PART_ImageIcon.Width} - MaxHeight: {MaxHeight}");
+                        logger.Debug($"ThemeModifier [Ignored] - PART_ImageIcon.Width: {PART_ImageIcon.Width} - MaxHeight: {MaxHeight}");
 #endif
                         if (!double.IsNaN(PART_ImageIcon.Width) && (MaxHeight < 11 || double.IsInfinity(MaxHeight)))
                         {
@@ -249,7 +249,7 @@ namespace ThemeModifier
                         }
 
 #if DEBUG
-                        logger.Debug($"ThemeModifier - MaxHeight: {MaxHeight}");
+                        logger.Debug($"ThemeModifier [Ignored] - MaxHeight: {MaxHeight}");
 #endif
 
                         BitmapImage OriginalSource = new BitmapImage();
@@ -272,7 +272,7 @@ namespace ThemeModifier
                             if (PART_ThemeModifierIcon != null)
                             {
 #if DEBUG
-                                logger.Debug("ThemeModifier - Remove PART_ThemeModifierIcon");
+                                logger.Debug("ThemeModifier [Ignored] - Remove PART_ThemeModifierIcon");
 #endif
                                 ((Image)PART_ImageIcon).Source = OriginalSource;
                                 ((Image)PART_ImageIcon).UpdateLayout();
@@ -280,8 +280,8 @@ namespace ThemeModifier
                             else if (PART_ImageIcon != null)
                             {
 #if DEBUG
-                                logger.Debug("ThemeModifier - Remove PART_ImageIcon");
-                                logger.Debug($"ThemeModifier - PART_ImageIcon.Parent is {PART_ImageIcon.Parent.ToString()}");
+                                logger.Debug("ThemeModifier [Ignored] - Remove PART_ImageIcon");
+                                logger.Debug($"ThemeModifier [Ignored] - PART_ImageIcon.Parent is {PART_ImageIcon.Parent.ToString()}");
 #endif
                                 if (PART_ImageIcon.Parent is DockPanel)
                                 {

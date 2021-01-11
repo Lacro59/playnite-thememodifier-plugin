@@ -293,10 +293,7 @@
       <Name>CommonPluginsResources</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="PlayniteResources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\dark\ico_achievements.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

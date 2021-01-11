@@ -1152,7 +1152,7 @@ namespace ThemeModifier.Services
             Parallel.ForEach(Directory.EnumerateFiles(PathThemeColors, "*.json"), (objectFile) =>
             {
 #if DEBUG
-                logger.Debug($"ThemeModifier - GetListThemeColors() - {objectFile}");
+                logger.Debug($"ThemeModifier [Ignored] - GetListThemeColors() - {objectFile}");
 #endif
 
                 try
@@ -1168,7 +1168,7 @@ namespace ThemeModifier.Services
             });
 
 #if DEBUG
-            logger.Debug($"ThemeModifier - GetListThemeColors() - {JsonConvert.SerializeObject(ListThemeColors)}");
+            logger.Debug($"ThemeModifier [Ignored] - GetListThemeColors() - {JsonConvert.SerializeObject(ListThemeColors)}");
 #endif
 
             return ListThemeColors;
@@ -1317,7 +1317,7 @@ namespace ThemeModifier.Services
             var deserializer = new DeserializerBuilder().Build();
             dynamic thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(ThemeInfos.DescriptionPath));
 #if DEBUG
-            logger.Debug($"ThemeModifier - thm: {JsonConvert.SerializeObject(thm)}");
+            logger.Debug($"ThemeModifier  [Ignored]- thm: {JsonConvert.SerializeObject(thm)}");
 #endif        
             try
             {
@@ -1333,7 +1333,7 @@ namespace ThemeModifier.Services
                     else 
                     {
 #if DEBUG
-                        logger.Debug($"ThemeModifier - el: {JsonConvert.SerializeObject(el)}");
+                        logger.Debug($"ThemeModifier [Ignored] - el: {JsonConvert.SerializeObject(el)}");
 #endif
                         foreach(var tt in el)
                         {
@@ -1351,7 +1351,7 @@ namespace ThemeModifier.Services
             {
                 logger.Warn($"ThemeModifier - No the constants defined");
 #if DEBUG
-                Common.LogError(ex, "ThemeModifier", $"thm: {JsonConvert.SerializeObject(thm)}");
+                Common.LogError(ex, "ThemeModifier [Ignored]", $"thm: {JsonConvert.SerializeObject(thm)}");
 #endif
                 return new List<ThemeConstantsDefined>();
             }

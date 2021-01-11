@@ -1,6 +1,6 @@
 # playnite-thememodifier-plugin
 Generic plugin for [Playnite](https://playnite.link/) application.
-The plugin can edit some element from current theme.     
+This plugin can edit some elements from current theme.     
 
 More information here: https://playnite.link/forum/thread-388.html
 

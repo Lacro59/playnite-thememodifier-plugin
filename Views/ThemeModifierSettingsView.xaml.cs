@@ -373,7 +373,7 @@ namespace ThemeModifier.Views
                 SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
             }
 #if DEBUG
-            logger.Debug($"ThemeModifier - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
+            logger.Debug($"ThemeModifier [Ignored] - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
 #endif
         }
 
@@ -395,13 +395,13 @@ namespace ThemeModifier.Views
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
 #if DEBUG
-                logger.Debug($"ThemeModifier - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
+                logger.Debug($"ThemeModifier [Ignored] - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
 #endif
             }
             catch (Exception ex)
             {
 #if DEBUG
-                //Common.LogError(ex, "ThemeModifier", $"ThemeModifier - Error on TbThemeConstants_KeyUp()");
+                Common.LogError(ex, "ThemeModifier [Ignored]");
 #endif
             }
         }
@@ -424,13 +424,13 @@ namespace ThemeModifier.Views
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
 #if DEBUG
-                logger.Debug($"ThemeModifier - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
+                logger.Debug($"ThemeModifier [Ignored] - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
 #endif
             }
             catch (Exception ex)
             {
 #if DEBUG
-                //Common.LogError(ex, "ThemeModifier", $"ThemeModifier - Error on CbThemeConstants_SelectionChanged()");
+                Common.LogError(ex, "ThemeModifier [Ignored]");
 #endif
             }
         }
@@ -462,13 +462,13 @@ namespace ThemeModifier.Views
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
 #if DEBUG
-                logger.Debug($"ThemeModifier - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
+                logger.Debug($"ThemeModifier [Ignored] - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
 #endif
             }
             catch (Exception ex)
             {
 #if DEBUG
-                //Common.LogError(ex, "ThemeModifier", $"ThemeModifier - Error on sThemeConstants_ValueChanged()");
+                Common.LogError(ex, "ThemeModifier [Ignored]");
 #endif
             }
         }

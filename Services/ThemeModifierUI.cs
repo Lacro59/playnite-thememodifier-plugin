@@ -64,7 +64,7 @@ namespace ThemeModifier.Services
                 if (IsFirstLoad)
                 {
 #if DEBUG
-                    logger.Debug($"ThemeMofidier - IsFirstLoad");
+                    logger.Debug($"ThemeMofidier [Ignored] - IsFirstLoad");
 #endif
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new ThreadStart(delegate
                     {
@@ -80,7 +80,7 @@ namespace ThemeModifier.Services
                     if (_settings.EnableIntegrationFeatures)
                     {
 #if DEBUG
-                        logger.Debug($"ThemeMofidier - AddSpDescription()");
+                        logger.Debug($"ThemeMofidier [Ignored] - AddSpDescription()");
 #endif
                         AddBtActionBar();
                     }
@@ -88,7 +88,7 @@ namespace ThemeModifier.Services
                     if (_settings.EnableIntegrationInCustomTheme)
                     {
 #if DEBUG
-                        logger.Debug($"ThemeMofidier - AddCustomElements()");
+                        logger.Debug($"ThemeMofidier [Ignored] - AddCustomElements()");
 #endif
                         AddCustomElements();
                     }
@@ -147,7 +147,7 @@ namespace ThemeModifier.Services
             if (PART_BtActionBar != null)
             {
 #if DEBUG
-                logger.Debug($"ThemeModifier - PART_BtActionBar allready insert");
+                logger.Debug($"ThemeModifier [Ignored] - PART_BtActionBar allready insert");
 #endif
                 return;
             }
@@ -182,7 +182,7 @@ namespace ThemeModifier.Services
             if (PART_SpDescription != null)
             {
 #if DEBUG
-                logger.Debug($"ThemeModifier - PART_SpDescription allready insert");
+                logger.Debug($"ThemeModifier [Ignored] - PART_SpDescription allready insert");
 #endif
                 return;
             }
@@ -217,7 +217,7 @@ namespace ThemeModifier.Services
             if (ListCustomElements.Count > 0)
             {
 #if DEBUG
-                logger.Debug($"ThemeModifier - CustomElements allready insert - {ListCustomElements.Count}");
+                logger.Debug($"ThemeModifier [Ignored] - CustomElements allready insert - {ListCustomElements.Count}");
 #endif
                 return;
             }
@@ -249,7 +249,7 @@ namespace ThemeModifier.Services
             else
             {
 #if DEBUG
-                logger.Debug($"ThemeModifier - PART_TmFeaturesList not find");
+                logger.Debug($"ThemeModifier [Ignored] - PART_TmFeaturesList not find");
 #endif
             }
         }
@@ -269,7 +269,7 @@ namespace ThemeModifier.Services
                 if (IsFirstLoad)
                 {
 #if DEBUG
-                    logger.Debug($"ThemeModifier - IsFirstLoad");
+                    logger.Debug($"ThemeModifier [Ignored] - IsFirstLoad");
 #endif
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new ThreadStart(delegate
                     {
@@ -283,7 +283,7 @@ namespace ThemeModifier.Services
                     if (_settings.EnableIntegrationFS)
                     {
 #if DEBUG
-                        logger.Debug($"ThemeModifier - AddBtInfoBarFS()");
+                        logger.Debug($"ThemeModifier [Ignored] - AddBtInfoBarFS()");
 #endif
                         AddSpInfoBarFS();
                     }
@@ -319,7 +319,7 @@ namespace ThemeModifier.Services
             if (PART_SpInfoBarFS != null)
             {
 #if DEBUG
-                logger.Debug($"ThemeModifier - PART_BtInfoBar allready insert");
+                logger.Debug($"ThemeModifier [Ignored] - PART_BtInfoBar allready insert");
 #endif
 
                 ((FeaturesListFS)PART_SpInfoBarFS).SetData(ThemeModifier.GameSelected);
