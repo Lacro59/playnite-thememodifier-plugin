@@ -3,11 +3,7 @@ using Playnite.SDK;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
-using PluginCommon;
-using PluginCommon.PlayniteResources;
-using PluginCommon.PlayniteResources.API;
-using PluginCommon.PlayniteResources.Common;
-using PluginCommon.PlayniteResources.Converters;
+using CommonPluginsShared;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,6 +15,7 @@ using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
 using ThemeModifier.Views;
+using CommonPluginsPlaynite;
 
 namespace ThemeModifier
 {
@@ -50,9 +47,10 @@ namespace ThemeModifier
             string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             // Add plugin localization in application ressource.
-            PluginCommon.PluginLocalization.SetPluginLanguage(pluginFolder, api.ApplicationSettings.Language);
+            PluginLocalization.SetPluginLanguage(pluginFolder, api.ApplicationSettings.Language);
             // Add common in application ressource.
-            PluginCommon.Common.Load(pluginFolder);
+            Common.Load(pluginFolder);
+            Common.SetEvent(PlayniteApi);
 
             // Check version
             if (settings.EnableCheckVersion)
@@ -213,9 +211,9 @@ namespace ThemeModifier
             {
                 try
                 {
-                    var PART_ControlGameView = PluginCommon.IntegrationUI.SearchElementByName("PART_ControlGameView");
-                    var PART_ImageIcon = PluginCommon.IntegrationUI.SearchElementByName("PART_ImageIcon", PART_ControlGameView);
-                    var PART_ThemeModifierIcon = PluginCommon.IntegrationUI.SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
+                    var PART_ControlGameView = CommonPluginsShared.IntegrationUI.SearchElementByName("PART_ControlGameView");
+                    var PART_ImageIcon = CommonPluginsShared.IntegrationUI.SearchElementByName("PART_ImageIcon", PART_ControlGameView);
+                    var PART_ThemeModifierIcon = CommonPluginsShared.IntegrationUI.SearchElementByName("PART_ThemeModifierIcon", PART_ControlGameView);
 
                     if (PART_ImageIcon != null || PART_ThemeModifierIcon != null)
                     {
