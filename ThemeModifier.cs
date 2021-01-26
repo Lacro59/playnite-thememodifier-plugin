@@ -56,11 +56,7 @@ namespace ThemeModifier
             if (settings.EnableCheckVersion)
             {
                 CheckVersion cv = new CheckVersion();
-
-                if (cv.Check("ThemeModifier", pluginFolder))
-                {
-                    cv.ShowNotification(api, "ThemeModifier - " + resources.GetString("LOCUpdaterWindowTitle"));
-                }
+                cv.Check("ThemeModifier", pluginFolder, api);
             }
 
             // Init ui interagration
