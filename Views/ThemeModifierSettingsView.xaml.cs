@@ -506,8 +506,7 @@ namespace ThemeModifier.Views
 
                 if (tbControl.Background is SolidColorBrush)
                 {
-                    Color color = ((SolidColorBrush)tbControl.Background).Color;
-                    PART_SelectorColorPickerConstants.SetColors(color);
+                    PART_SelectorColorPickerConstants.SetColors((SolidColorBrush)tbControl.Background);
                 }
                 if (tbControl.Background is LinearGradientBrush)
                 {
@@ -672,6 +671,7 @@ namespace ThemeModifier.Views
         private void PART_TM_ColorOKConstants_Click(object sender, RoutedEventArgs e)
         {
             Color color = default(Color);
+            SolidColorBrush colorBrush = default(SolidColorBrush);
             LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
 
             if (tbControl != null && lControl != null)
@@ -679,13 +679,15 @@ namespace ThemeModifier.Views
                 dynamic elSaved = null;
                 string Name = (string)tbControl.Tag;
                 string Type = (string)((Grid)tbControl.Parent).Tag;
+                double Opacity = 1;
 
                 if (colorDefault == null)
                 {
                     if (PART_SelectorColorPickerConstants.IsSimpleColor)
                     {
                         color = PART_SelectorColorPickerConstants.SimpleColor;
-                        tbControl.Background = new SolidColorBrush(color);
+                        colorBrush = PART_SelectorColorPickerConstants.SimpleSolidColorBrush;
+                        tbControl.Background = colorBrush;
 
                         if (Type == "color")
                         {
@@ -694,7 +696,8 @@ namespace ThemeModifier.Views
                         else
                         {
                             ((Grid)tbControl.Parent).Tag = "solidcolorbrush";
-                            elSaved = new SolidColorBrush(color);
+                            Opacity = colorBrush.Opacity;
+                            elSaved = colorBrush;
                         }
                     }
                     else
@@ -724,10 +727,11 @@ namespace ThemeModifier.Views
                 if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
                 {
                     SettingsThemeConstants.Find(x => x.Name == Name).Element = elSaved;
+                    SettingsThemeConstants.Find(x => x.Name == Name).Opacity = Opacity;
                 }
                 else
                 {
-                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = elSaved });
+                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = elSaved, Opacity = Opacity });
                 }
             }
             else
@@ -757,8 +761,9 @@ namespace ThemeModifier.Views
 
                 if (tbControl.Background is SolidColorBrush)
                 {
-                    Color color = ((SolidColorBrush)tbControl.Background).Color;
-                    PART_SelectorColorPicker.SetColors(color);
+                    //Color color = ((SolidColorBrush)tbControl.Background).Color;
+                    //PART_SelectorColorPicker.SetColors(color);
+                    PART_SelectorColorPicker.SetColors((SolidColorBrush)tbControl.Background);
                 }
                 if (tbControl.Background is LinearGradientBrush)
                 {
@@ -822,16 +827,14 @@ namespace ThemeModifier.Views
 
         private void PART_TM_ColorOK_Click(object sender, RoutedEventArgs e)
         {
-            Color color = default(Color);
             LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
 
             if (tbControl != null && lControl != null)
             {
                 if (PART_SelectorColorPicker.IsSimpleColor)
                 {
-                    color = PART_SelectorColorPicker.SimpleColor;
-                    tbControl.Background = new SolidColorBrush(color);
-                    ThemeClass.SetThemeColor(lControl.Content.ToString(), new SolidColorBrush(color), _settings);
+                    tbControl.Background = PART_SelectorColorPicker.SimpleSolidColorBrush;
+                    ThemeClass.SetThemeColor(lControl.Content.ToString(), PART_SelectorColorPicker.SimpleSolidColorBrush, _settings);
                 }
                 else
                 {

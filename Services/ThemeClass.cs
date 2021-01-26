@@ -279,7 +279,7 @@ namespace ThemeModifier.Services
 
                     if (color is SolidColorBrush)
                     {
-                        colorString = ((SolidColorBrush)color).Color.ToString();
+                        colorString = ((SolidColorBrush)color).Color.ToString() + "-" + ((SolidColorBrush)color).Opacity.ToString();
                         resourcesLists.Add(new ResourcesList { Key = name, Value = color });
                     }
                     else if (color is LinearGradientBrush)
@@ -534,12 +534,24 @@ namespace ThemeModifier.Services
                 IntegrationUI ui = new IntegrationUI();
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
+                SolidColorBrush color = new SolidColorBrush();
+
                 if (!settings.ControlBackgroundBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.ControlBackgroundBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ControlBackgroundBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.ControlBackgroundBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ControlBackgroundBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "ControlBackgroundBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ControlBackgroundBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.ControlBackgroundBrush_EditGradient.GradientStop1 != null)
@@ -553,10 +565,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.TextBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.TextBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.TextBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "TextBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.TextBrush_EditGradient.GradientStop1 != null)
@@ -570,10 +592,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.TextBrushDarker_Edit.IsNullOrEmpty())
                 {
+                    if (settings.TextBrushDarker_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDarker_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.TextBrushDarker_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDarker_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "TextBrushDarker",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDarker_Edit))
+                        Value = color
                     });
                 }
                 if (settings.TextBrushDarker_EditGradient.GradientStop1 != null)
@@ -587,10 +619,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.TextBrushDark_Edit.IsNullOrEmpty())
                 {
+                    if (settings.TextBrushDark_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDark_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.TextBrushDark_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDark_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "TextBrushDark",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TextBrushDark_Edit))
+                        Value = color
                     });
                 }
                 if (settings.TextBrushDark_EditGradient.GradientStop1 != null)
@@ -604,10 +646,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.NormalBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.NormalBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.NormalBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "NormalBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.NormalBrush_EditGradient.GradientStop1 != null)
@@ -621,10 +673,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.NormalBrushDark_Edit.IsNullOrEmpty())
                 {
+                    if (settings.NormalBrushDark_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrushDark_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.NormalBrushDark_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrushDark_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "NormalBrushDark",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBrushDark_Edit))
+                        Value = color
                     });
                 }
                 if (settings.NormalBrushDark_EditGradient.GradientStop1 != null)
@@ -638,10 +700,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.NormalBorderBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.NormalBorderBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBorderBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.NormalBorderBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBorderBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "NormalBorderBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NormalBorderBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.NormalBorderBrush_EditGradient.GradientStop1 != null)
@@ -655,10 +727,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.HoverBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.HoverBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.HoverBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.HoverBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.HoverBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "HoverBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.HoverBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.HoverBrush_EditGradient.GradientStop1 != null)
@@ -672,10 +754,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.GlyphBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.GlyphBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.GlyphBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.GlyphBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.GlyphBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "GlyphBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.GlyphBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.GlyphBrush_EditGradient.GradientStop1 != null)
@@ -689,10 +781,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.HighlightGlyphBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.HighlightGlyphBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.HighlightGlyphBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.HighlightGlyphBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.HighlightGlyphBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "HighlightGlyphBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.HighlightGlyphBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.HighlightGlyphBrush_EditGradient.GradientStop1 != null)
@@ -706,10 +808,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.PopupBorderBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.PopupBorderBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PopupBorderBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.PopupBorderBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PopupBorderBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "PopupBorderBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PopupBorderBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.PopupBorderBrush_EditGradient.GradientStop1 != null)
@@ -723,10 +835,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.TooltipBackgroundBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.TooltipBackgroundBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TooltipBackgroundBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.TooltipBackgroundBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TooltipBackgroundBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "TooltipBackgroundBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.TooltipBackgroundBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.TooltipBackgroundBrush_EditGradient.GradientStop1 != null)
@@ -740,10 +862,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.ButtonBackgroundBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.ButtonBackgroundBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ButtonBackgroundBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.ButtonBackgroundBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ButtonBackgroundBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "ButtonBackgroundBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ButtonBackgroundBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.ButtonBackgroundBrush_EditGradient.GradientStop1 != null)
@@ -757,10 +889,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.GridItemBackgroundBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.GridItemBackgroundBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.GridItemBackgroundBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.GridItemBackgroundBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.GridItemBackgroundBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "GridItemBackgroundBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.GridItemBackgroundBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.GridItemBackgroundBrush_EditGradient.GradientStop1 != null)
@@ -774,10 +916,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.PanelSeparatorBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.PanelSeparatorBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PanelSeparatorBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.PanelSeparatorBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PanelSeparatorBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "PanelSeparatorBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PanelSeparatorBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.PanelSeparatorBrush_EditGradient.GradientStop1 != null)
@@ -791,10 +943,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.PopupBackgroundBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.PopupBackgroundBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PopupBackgroundBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.PopupBackgroundBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PopupBackgroundBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "PopupBackgroundBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PopupBackgroundBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.PopupBackgroundBrush_EditGradient.GradientStop1 != null)
@@ -808,10 +970,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.PositiveRatingBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.PositiveRatingBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PositiveRatingBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.PositiveRatingBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PositiveRatingBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "PositiveRatingBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.PositiveRatingBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.PositiveRatingBrush_EditGradient.GradientStop1 != null)
@@ -825,10 +997,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.NegativeRatingBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.NegativeRatingBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NegativeRatingBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.NegativeRatingBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NegativeRatingBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "NegativeRatingBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.NegativeRatingBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.NegativeRatingBrush_EditGradient.GradientStop1 != null)
@@ -842,10 +1024,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.MixedRatingBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.MixedRatingBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.MixedRatingBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.MixedRatingBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.MixedRatingBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "MixedRatingBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.MixedRatingBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.MixedRatingBrush_EditGradient.GradientStop1 != null)
@@ -859,10 +1051,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.ExpanderBackgroundBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.ExpanderBackgroundBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ExpanderBackgroundBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.ExpanderBackgroundBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ExpanderBackgroundBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "ExpanderBackgroundBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.ExpanderBackgroundBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.ExpanderBackgroundBrush_EditGradient.GradientStop1 != null)
@@ -876,10 +1078,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.WindowBackgourndBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.WindowBackgourndBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WindowBackgourndBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.WindowBackgourndBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WindowBackgourndBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "WindowBackgourndBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WindowBackgourndBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.WindowBackgourndBrush_EditGradient.GradientStop1 != null)
@@ -893,10 +1105,20 @@ namespace ThemeModifier.Services
 
                 if (!settings.WarningBrush_Edit.IsNullOrEmpty())
                 {
+                    if (settings.WarningBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WarningBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.WarningBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WarningBrush_Edit));
+                    }
+
                     resourcesLists.Add(new ResourcesList
                     {
                         Key = "WarningBrush",
-                        Value = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WarningBrush_Edit))
+                        Value = color
                     });
                 }
                 if (settings.WarningBrush_EditGradient.GradientStop1 != null)
@@ -1122,7 +1344,15 @@ namespace ThemeModifier.Services
 
                     if (!themeColorsElement.ColorString.IsNullOrEmpty())
                     {
-                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(themeColorsElement.ColorString));
+                        if (themeColorsElement.ColorString.IndexOf("-") > -1)
+                        {
+                            color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(themeColorsElement.ColorString.Split('-')[0]));
+                            color.Opacity = double.Parse(themeColorsElement.ColorString.Split('-')[1]);
+                        }
+                        else
+                        {
+                            color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(themeColorsElement.ColorString));
+                        }
                     }
                     if (themeColorsElement.ColorLinear.GradientStop1 != null)
                     {
@@ -1257,7 +1487,7 @@ namespace ThemeModifier.Services
 
                         if (color is SolidColorBrush)
                         {
-                            themeColors.ThemeColorsElements.Add(new ThemeColorsElement { Name = ControlName, ColorString = color.Color.ToString() });
+                            themeColors.ThemeColorsElements.Add(new ThemeColorsElement { Name = ControlName, ColorString = color.Color.ToString() + "-" + color.Opacity.ToString() });
                         }
 
                         if (color is LinearGradientBrush)
@@ -1430,7 +1660,7 @@ namespace ThemeModifier.Services
             {
                 foreach (ElementConstants elementConstants in ThemeSettingsConstants.Constants)
                 {
-                    dynamic ConvertedResource = ConvertResourceWithString(elementConstants.Element, elementConstants.TypeResource);
+                    dynamic ConvertedResource = ConvertResourceWithString(elementConstants.Element, elementConstants.TypeResource, elementConstants.Opacity);
                     if (ConvertedResource != null)
                     {
                         ThemeActualConstants.Add(new ThemeElement
@@ -1500,7 +1730,7 @@ namespace ThemeModifier.Services
 #endregion
 
 
-        private static dynamic ConvertResourceWithString(dynamic Element, string ElementType)
+        private static dynamic ConvertResourceWithString(dynamic Element, string ElementType, double ElementOpacity)
         {
             dynamic ConvertedResource = null;
 
@@ -1533,6 +1763,7 @@ namespace ThemeModifier.Services
                     if (Element is string)
                     {
                         ConvertedResource = new SolidColorBrush((Color)ColorConverter.ConvertFromString((string)Element));
+                        ConvertedResource.Opacity = ElementOpacity;
                     }
                     if (Element is Color)
                     {
@@ -1592,7 +1823,7 @@ namespace ThemeModifier.Services
             }
             if (Element is SolidColorBrush)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "solidcolorbrush", Element = (Color)((SolidColorBrush)Element).Color };
+                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "solidcolorbrush", Element = (Color)((SolidColorBrush)Element).Color, Opacity = ((SolidColorBrush)Element).Opacity };
             }
             if (Element is LinearGradientBrush)
             {

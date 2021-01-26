@@ -5,6 +5,7 @@
         public string Name { get; set; }
         public string Description { get; set; } = string.Empty;
         public dynamic Element { get; set; }
+        public double Opacity { get; set; } = 1;
         public ThemeSliderLimit themeSliderLimit { get; set; } = new ThemeSliderLimit();
     }
 

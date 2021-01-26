@@ -14,6 +14,7 @@ namespace ThemeModifier.Models
         public string Name { get; set; }
         public string TypeResource { get; set; }
         public dynamic Element { get; set; }
+        public double Opacity { get; set; } = 1;
     }
 
     public class ThemeConstantsDefined
