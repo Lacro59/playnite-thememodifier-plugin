@@ -93,7 +93,7 @@ namespace ThemeModifier.Views
                     Label lbDescription = new Label();
                     Grid.SetColumn(lbDescription, 0);
                     lbDescription.Content = "";
-                    lbDescription.FontFamily = new FontFamily(new Uri("pack://application:,,,/PluginCommon;component/Resources/"), "./#font");
+                    lbDescription.FontFamily = (FontFamily)resources.GetResource("CommonFont");
                     lbDescription.ToolTip = themeElement.Name;
                     lbDescription.Margin = new Thickness(0, 0, 10, 0);
                     lbDescription.HorizontalAlignment = HorizontalAlignment.Right;
