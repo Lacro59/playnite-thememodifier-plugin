@@ -17,6 +17,7 @@ using ThemeModifier.Views;
 using YamlDotNet.Serialization;
 using CommonPluginsPlaynite;
 using CommonPluginsPlaynite.Common;
+using System.Text.RegularExpressions;
 
 namespace ThemeModifier.Services
 {
@@ -1364,14 +1365,40 @@ namespace ThemeModifier.Services
             List<ThemeElement> ThemeDefaultConstants = new List<ThemeElement>();
 
             List<ThemeConstantsDefined> ListThemeConstants = GetThemeConstants(PlayniteApi);
-            foreach (ThemeConstantsDefined ConstantsDefined in ListThemeConstants) {
+            foreach (ThemeConstantsDefined ConstantsDefined in ListThemeConstants)
+            {
                 try
                 {
+                    string param = Regex.Match(ConstantsDefined.Name, @"(\([+-]?([0-9]*[.])?[0-9]+,[ ]?[+-]?([0-9]*[.])?[0-9]+\))").Value;
+                    ThemeSliderLimit themeSliderLimit = new ThemeSliderLimit();
+                    if (!param.IsNullOrEmpty())
+                    {
+                        ConstantsDefined.Name = ConstantsDefined.Name.Replace(param, string.Empty);
+
+                        try
+                        {
+                            double Min = 0;
+                            double Max = 30;
+
+                            param = param.Replace("(", string.Empty).Replace(")", string.Empty);
+                            double.TryParse(param.Split(',')[0], out Min);
+                            double.TryParse(param.Split(',')[1], out Max);
+
+                            themeSliderLimit.Min = Min;
+                            themeSliderLimit.Max = Max;
+                        }
+                        catch (Exception ex)
+                        {
+                            Common.LogError(ex, "ThemeModifier");
+                        }
+                    }
+
                     ThemeDefaultConstants.Add(new ThemeElement
                     {
                         Name = ConstantsDefined.Name,
                         Description = ConstantsDefined.Description,
-                        Element = resources.GetResource(ConstantsDefined.Name)
+                        Element = resources.GetResource(ConstantsDefined.Name),
+                        themeSliderLimit = themeSliderLimit
                     });
                 }
                 catch
@@ -1406,7 +1433,11 @@ namespace ThemeModifier.Services
                     dynamic ConvertedResource = ConvertResourceWithString(elementConstants.Element, elementConstants.TypeResource);
                     if (ConvertedResource != null)
                     {
-                        ThemeActualConstants.Add(new ThemeElement { Name = elementConstants.Name, Element = ConvertedResource });
+                        ThemeActualConstants.Add(new ThemeElement
+                        {
+                            Name = elementConstants.Name,
+                            Element = ConvertedResource
+                        });
                     }
                 }
             }

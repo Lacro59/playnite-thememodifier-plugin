@@ -156,12 +156,23 @@ namespace ThemeModifier.Views
                     control = new Slider();
                     ((Slider)control).ValueChanged += sThemeConstants_ValueChanged;
                     ((Slider)control).SmallChange = 0.1;
-                    ((Slider)control).Minimum = 0;
-                    ((Slider)control).Maximum = 30;
+                    ((Slider)control).Minimum = themeElement.themeSliderLimit.Min;
+                    ((Slider)control).Maximum = themeElement.themeSliderLimit.Max;
                     ((Slider)control).AutoToolTipPlacement = AutoToolTipPlacement.TopLeft;
                     ((Slider)control).AutoToolTipPrecision = 1;
+                    ((Slider)control).VerticalAlignment = VerticalAlignment.Center;
 
-                    ((Slider)control).Value = (double)elSaved;
+                    double ActualValue = (double)elSaved;
+                    if (ActualValue < themeElement.themeSliderLimit.Min)
+                    {
+                        ActualValue = themeElement.themeSliderLimit.Min;
+                    }
+                    if (ActualValue > themeElement.themeSliderLimit.Max)
+                    {
+                        ActualValue = themeElement.themeSliderLimit.Max;
+                    }
+
+                    ((Slider)control).Value = ActualValue;
                 }
 
                 if (elSaved is int)
@@ -171,11 +182,22 @@ namespace ThemeModifier.Views
                     control = new Slider();
                     ((Slider)control).ValueChanged += sThemeConstants_ValueChanged;
                     ((Slider)control).SmallChange = 1;
-                    ((Slider)control).Minimum = 0;
-                    ((Slider)control).Maximum = 30;
+                    ((Slider)control).Minimum = themeElement.themeSliderLimit.Min;
+                    ((Slider)control).Maximum = themeElement.themeSliderLimit.Max;
                     ((Slider)control).AutoToolTipPlacement = AutoToolTipPlacement.TopLeft;
+                    ((Slider)control).VerticalAlignment = VerticalAlignment.Center;
 
-                    ((Slider)control).Value = (int)elSaved;
+                    int ActualValue = (int)elSaved;
+                    if (ActualValue < themeElement.themeSliderLimit.Min)
+                    {
+                        ActualValue = (int)themeElement.themeSliderLimit.Min;
+                    }
+                    if (ActualValue > themeElement.themeSliderLimit.Max)
+                    {
+                        ActualValue = (int)themeElement.themeSliderLimit.Max;
+                    }
+
+                    ((Slider)control).Value = ActualValue;
                 }
 
                 if (elSaved is Color)
