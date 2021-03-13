@@ -125,7 +125,25 @@ namespace ThemeModifier.Views
                 dynamic elSaved = themeElement.Element;
                 if (ThemeModifier.ThemeActualConstants.Find(x => x.Name == themeElement.Name) != null)
                 {
-                    elSaved = ThemeModifier.ThemeActualConstants.Find(x => x.Name == themeElement.Name).Element;
+                    Type TypeActual = themeElement.Element.GetType();
+                    Type TypeNew = ThemeModifier.ThemeActualConstants.Find(x => x.Name == themeElement.Name).Element.GetType();
+
+                    if (TypeActual != TypeNew)
+                    {
+                        if ((TypeActual.Name == "SolidColorBrush" || TypeActual.Name == "LinearGradientBrush")
+                            && (TypeNew.Name == "SolidColorBrush" || TypeNew.Name == "LinearGradientBrush"))
+                        {
+                            elSaved = ThemeModifier.ThemeActualConstants.Find(x => x.Name == themeElement.Name).Element;
+                        }
+                        else
+                        {
+                            logger.Warn($"Different type for {themeElement.Name}");
+                        }
+                    }
+                    else
+                    {
+                        elSaved = ThemeModifier.ThemeActualConstants.Find(x => x.Name == themeElement.Name).Element;
+                    }
                 }
 
                 // Create control
