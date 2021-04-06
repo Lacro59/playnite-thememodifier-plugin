@@ -98,12 +98,6 @@
     <Compile Include="Services\ThemeClass.cs" />
     <Compile Include="ThemeModifier.cs" />
     <Compile Include="ThemeModifierSettings.cs" />
-    <Compile Include="Views\InterfaceFS\FeaturesListFS.xaml.cs">
-      <DependentUpon>FeaturesListFS.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Interface\FeaturesList.xaml.cs">
-      <DependentUpon>FeaturesList.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ThemeModifierSettingsView.xaml.cs">
       <DependentUpon>ThemeModifierSettingsView.xaml</DependentUpon>
     </Compile>
@@ -233,14 +227,6 @@
     <Page Include="playnite-plugincommon\CommonPluginsControls\Views\OptionsDownloadData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\InterfaceFS\FeaturesListFS.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Interface\FeaturesList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ThemeModifierSettingsView.xaml">
       <SubType>Designer</SubType>
