@@ -74,7 +74,7 @@ namespace ThemeModifier.Views.Interfaces
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemModifier");
+                Common.LogError(ex, false);
             }
         }
     }

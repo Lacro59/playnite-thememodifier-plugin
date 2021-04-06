@@ -16,23 +16,19 @@ using ThemeModifier.Models;
 using ThemeModifier.Services;
 using ThemeModifier.Views;
 using CommonPluginsPlaynite;
+using CommonPluginsShared.PlayniteExtended;
+using CommonPlayniteShared.Manifests;
 
 namespace ThemeModifier
 {
-    public class ThemeModifier : Plugin
+    public class ThemeModifier : PluginExtended<ThemeModifierSettingsViewModel>
     {
-        private static readonly ILogger logger = LogManager.GetLogger();
-        private static IResourceProvider resources = new ResourceProvider();
-
-        private ThemeModifierSettings settings { get; set; }
-
         public override Guid Id { get; } = Guid.Parse("ec2f4013-17e6-428a-b8a9-5e34a3b80009");
 
         public static IcoFeatures icoFeatures { get; set; }
 
         private readonly IntegrationUI ui = new IntegrationUI();
-        public static ThemeModifierUI themeModifierUI;
-        public static Game GameSelected { get; set; }
+
         public static List<ThemeElement> ThemeDefault = new List<ThemeElement>();
         public static List<ThemeElement> ThemeDefaultConstants = new List<ThemeElement>();
         public static List<ThemeElement> ThemeActualConstants = new List<ThemeElement>();
@@ -40,28 +36,6 @@ namespace ThemeModifier
 
         public ThemeModifier(IPlayniteAPI api) : base(api)
         {
-            settings = new ThemeModifierSettings(this);
-
-
-            // Get plugin's location 
-            string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            // Add plugin localization in application ressource.
-            PluginLocalization.SetPluginLanguage(pluginFolder, api.ApplicationSettings.Language);
-            // Add common in application ressource.
-            Common.Load(pluginFolder);
-            Common.SetEvent(PlayniteApi);
-
-            // Check version
-            if (settings.EnableCheckVersion)
-            {
-                CheckVersion cv = new CheckVersion();
-                cv.Check("ThemeModifier", pluginFolder, api);
-            }
-
-            // Init ui interagration
-            themeModifierUI = new ThemeModifierUI(api, this.GetPluginUserDataPath(), settings);
-
             // Theme default
             ThemeDefault = ThemeClass.GetThemeDefault();
             ThemeDefaultConstants = ThemeClass.GetThemeDefaultConstants(PlayniteApi);
@@ -69,7 +43,7 @@ namespace ThemeModifier
             // Theme actual
             if (ThemeDefaultConstants.Count > 0)
             {
-                ThemeActualConstants = ThemeClass.GetThemeActualConstants(settings, PlayniteApi);
+                ThemeActualConstants = ThemeClass.GetThemeActualConstants(PluginSettings.Settings, PlayniteApi);
             }
 
 #if DEBUG
@@ -81,45 +55,21 @@ namespace ThemeModifier
             // Add modified values
             if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
             {
-                ThemeClass.SetThemeSettings(settings);
+                ThemeClass.SetThemeSettings(PluginSettings.Settings);
                 ThemeClass.SetThemeSettingsConstants(ThemeActualConstants);
             }
 
             // Features integration
-            icoFeatures = new IcoFeatures(pluginFolder);
-
-            // Add event fullScreen
-            if (api.ApplicationInfo.Mode == ApplicationMode.Fullscreen)
-            {
-                EventManager.RegisterClassHandler(typeof(Button), Button.ClickEvent, new RoutedEventHandler(BtFullScreen_ClickEvent));
-            }
+            //icoFeatures = new IcoFeatures(pluginFolder);
         }
 
 
         #region Custom event
-        private void BtFullScreen_ClickEvent(object sender, System.EventArgs e)
-        {
-            try
-            {
-                if (((Button)sender).Name == "PART_ButtonDetails")
-                {
-                    var TaskIntegrationUI = Task.Run(() =>
-                    {
-                        themeModifierUI.Initial();
-                        themeModifierUI.taskHelper.Check();
-                        var dispatcherOp = themeModifierUI.AddElementsFS();
-                        dispatcherOp.Completed += (s, ev) => { themeModifierUI.RefreshElements(GameSelected); };
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                Common.LogError(ex, "SuccessStory");
-            }
-        }
+
         #endregion
 
 
+        #region Game event
         // To add new game menu items override GetGameMenuItems
         public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
         {
@@ -144,7 +94,7 @@ namespace ThemeModifier
         public override List<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
         {
             string MenuInExtensions = string.Empty;
-            if (settings.MenuInExtensions)
+            if (PluginSettings.Settings.MenuInExtensions)
             {
                 MenuInExtensions = "@";
             }
@@ -165,8 +115,10 @@ namespace ThemeModifier
 
             return mainMenuItems;
         }
+        #endregion
 
 
+        /*
         private void IntegrationUI()
         {
             List<ResourcesList> resourcesLists = new List<ResourcesList>();
@@ -178,7 +130,7 @@ namespace ThemeModifier
             string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string ImageName = string.Empty;
 
-            if (ThemeInfos != null && settings.EnableIconChanger)
+            if (ThemeInfos != null && PluginSettings.Settings.EnableIconChanger)
             {
                 if (settings.UseIconCircle)
                 {
@@ -203,7 +155,7 @@ namespace ThemeModifier
                 ui.AddResources(resourcesLists);
             }
 
-            if (ThemeInfos != null && settings.EnableIconChanger && settings.EnableInDescription && File.Exists(Path.Combine(ThemeInfos.DirectoryPath, "apply")))
+            if (ThemeInfos != null && PluginSettings.Settings.EnableIconChanger && PluginSettings.Settings.EnableInDescription && File.Exists(Path.Combine(ThemeInfos.DirectoryPath, "apply")))
             {
                 try
                 {
@@ -314,14 +266,17 @@ namespace ThemeModifier
                 }
                 catch (Exception ex)
                 {
-                    Common.LogError(ex, "ThemeModifier", "Error integration in Details View");
+                    Common.LogError(ex, false, "Error integration in Details View");
                 }
             }
         }
+        */
 
 
+        #region Game event
         public override void OnGameSelected(GameSelectionEventArgs args)
         {
+            /*
             try
             {
                 if (args.NewValue != null && args.NewValue.Count == 1)
@@ -346,8 +301,9 @@ namespace ThemeModifier
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemModifier", $"Error on OnGameSelected()");
+                Common.LogError(ex, false, $"Error on OnGameSelected()");
             }
+            */
         }
         
         // Add code to be executed when game is finished installing.
@@ -379,8 +335,10 @@ namespace ThemeModifier
         {
 
         }
+        #endregion
 
 
+        #region Application event
         // Add code to be executed when Playnite is initialized.
         public override void OnApplicationStarted()
         {
@@ -392,6 +350,7 @@ namespace ThemeModifier
         {
 
         }
+        #endregion
 
 
         // Add code to be executed when library is updated.
@@ -401,14 +360,16 @@ namespace ThemeModifier
         }
 
 
+        #region Settings
         public override ISettings GetSettings(bool firstRunSettings)
         {
-            return settings;
+            return PluginSettings;
         }
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            return new ThemeModifierSettingsView(PlayniteApi, settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath, this.GetPluginUserDataPath());
+            return new ThemeModifierSettingsView(PlayniteApi, PluginSettings.Settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath, this.GetPluginUserDataPath());
         }
+        #endregion
     }
 }

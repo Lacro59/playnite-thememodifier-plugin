@@ -440,9 +440,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-#if DEBUG
-                Common.LogError(ex, "ThemeModifier [Ignored]");
-#endif
+                Common.LogError(ex, true);
             }
         }
 
@@ -469,9 +467,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-#if DEBUG
-                Common.LogError(ex, "ThemeModifier [Ignored]");
-#endif
+                Common.LogError(ex,true);
             }
         }
 
@@ -507,9 +503,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-#if DEBUG
-                Common.LogError(ex, "ThemeModifier [Ignored]");
-#endif
+                Common.LogError(ex, true);
             }
         }
 
@@ -537,7 +531,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemeModifier", "Error on BtPickColorConstants_Click()");
+                Common.LogError(ex, false);
             }
         }
 
@@ -682,7 +676,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemeModifier", "Error on BtRestoreConstants_Click()");
+                Common.LogError(ex, false);
             }
         }
 
@@ -794,7 +788,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemeModifier", "Error on BtPickColor_Click()");
+                Common.LogError(ex, false);
             }
         }
 
@@ -812,7 +806,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemeModifier", "Error on BtRestore_Click()");
+                Common.LogError(ex, false);
             }
         }
 
@@ -838,7 +832,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemeModifier", "Error on BtRestoreDefault_Click()");
+                Common.LogError(ex, false);
             }
         }
 
@@ -977,7 +971,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemeModifier", $"Error on load {PathFileName}");
+                Common.LogError(ex, false, $"Error on load {PathFileName}");
             }
         }
 
@@ -994,7 +988,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, "ThemeModifier", $"Error on remove {((FrameworkElement)sender).Tag.ToString()}");
+                Common.LogError(ex, false, $"Error on remove {((FrameworkElement)sender).Tag.ToString()}");
             }
         }
 
