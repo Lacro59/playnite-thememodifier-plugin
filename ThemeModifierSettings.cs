@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThemeModifier.Models;
+using ThemeModifier.Services;
 
 namespace ThemeModifier
 {
@@ -127,6 +128,12 @@ namespace ThemeModifier
         public void CancelEdit()
         {
             Settings = EditingClone;
+
+            ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, Settings);
+            ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, Settings, true);
+
+            ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);
+            ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeActualConstants);
         }
 
         // Code executed when user decides to confirm changes made since BeginEdit was called.

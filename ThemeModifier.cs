@@ -25,10 +25,6 @@ namespace ThemeModifier
     {
         public override Guid Id { get; } = Guid.Parse("ec2f4013-17e6-428a-b8a9-5e34a3b80009");
 
-        public static IcoFeatures icoFeatures { get; set; }
-
-        private readonly IntegrationUI ui = new IntegrationUI();
-
         public static List<ThemeElement> ThemeDefault = new List<ThemeElement>();
         public static List<ThemeElement> ThemeDefaultConstants = new List<ThemeElement>();
         public static List<ThemeElement> ThemeActualConstants = new List<ThemeElement>();
@@ -58,9 +54,6 @@ namespace ThemeModifier
                 ThemeClass.SetThemeSettings(PluginSettings.Settings);
                 ThemeClass.SetThemeSettingsConstants(ThemeActualConstants);
             }
-
-            // Features integration
-            //icoFeatures = new IcoFeatures(pluginFolder);
         }
 
 

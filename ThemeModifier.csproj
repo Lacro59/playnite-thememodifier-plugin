@@ -39,6 +39,15 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug9|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\Dropbox\Playnite\Playnite9\Extensions\playnite-thememodifier-plugin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="akr.WPF.Controls.ColorPicker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -94,7 +103,6 @@
     <Compile Include="playnite-plugincommon\CommonPluginsControls\Views\OptionsDownloadData.xaml.cs">
       <DependentUpon>OptionsDownloadData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Services\IcoFeatures.cs" />
     <Compile Include="Services\ThemeClass.cs" />
     <Compile Include="ThemeModifier.cs" />
     <Compile Include="ThemeModifierSettings.cs" />

@@ -23,6 +23,7 @@ namespace ThemeModifier.Views
         private static readonly ILogger logger = LogManager.GetLogger();
         private static IResourceProvider resources = new ResourceProvider();
         private IPlayniteAPI _PlayniteApi;
+
         private ThemeModifierSettings _settings;
 
         private List<ThemeElement> _ThemeDefault;
@@ -47,12 +48,9 @@ namespace ThemeModifier.Views
 
             SettingsThemeConstants = ThemeClass.GetThemeActualConstants(settings, PlayniteApi);
 
-
             InitializeComponent();
 
-
             SetMenuItems();
-
             SetThemeConstants();
         }
 
@@ -1054,22 +1052,5 @@ namespace ThemeModifier.Views
             }
         }
         #endregion
-
-
-
-        private void Checkbox_Click(object sender, RoutedEventArgs e)
-        {
-            CheckBox cb = (CheckBox)sender;
-
-            if ((cb.Name == "Tm_IntegrationInCustomTheme") && (bool)cb.IsChecked)
-            {
-                Tm_IntegrationFeaturesList.IsChecked = false;
-            }
-            if ((cb.Name == "Tm_IntegrationFeaturesList") && (bool)cb.IsChecked)
-            {
-                Tm_IntegrationInCustomTheme.IsChecked = false;
-            }
-        }
-
     }
 }
