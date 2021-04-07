@@ -66,7 +66,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists ControlBackgroundBrush");
+                logger.Warn($"Resources don't exists ControlBackgroundBrush");
             }
 
             try
@@ -75,7 +75,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists TextBrush");
+                logger.Warn($"Resources don't exists TextBrush");
             }
 
             try
@@ -84,7 +84,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists TextBrushDarker");
+                logger.Warn($"Resources don't exists TextBrushDarker");
             }
 
             try
@@ -93,7 +93,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists TextBrushDark");
+                logger.Warn($"Resources don't exists TextBrushDark");
             }
 
             try
@@ -102,7 +102,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists NormalBrush");
+                logger.Warn($"Resources don't exists NormalBrush");
             }
 
             try
@@ -111,7 +111,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists NormalBrushDark");
+                logger.Warn($"Resources don't exists NormalBrushDark");
             }
 
             try
@@ -120,7 +120,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists NormalBorderBrush");
+                logger.Warn($"Resources don't exists NormalBorderBrush");
             }
 
             try
@@ -129,7 +129,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists HoverBrush");
+                logger.Warn($"Resources don't exists HoverBrush");
             }
 
             try
@@ -138,7 +138,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists GlyphBrush");
+                logger.Warn($"Resources don't exists GlyphBrush");
             }
 
             try
@@ -147,7 +147,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists HighlightGlyphBrush");
+                logger.Warn($"Resources don't exists HighlightGlyphBrush");
             }
 
             try
@@ -156,7 +156,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists PopupBorderBrush");
+                logger.Warn($"Resources don't exists PopupBorderBrush");
             }
 
             try
@@ -174,7 +174,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists ButtonBackgroundBrush");
+                logger.Warn($"Resources don't exists ButtonBackgroundBrush");
             }
 
             try
@@ -192,7 +192,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists PanelSeparatorBrush");
+                logger.Warn($"Resources don't exists PanelSeparatorBrush");
             }
 
             try
@@ -201,7 +201,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists PopupBackgroundBrush");
+                logger.Warn($"Resources don't exists PopupBackgroundBrush");
             }
 
             try
@@ -210,7 +210,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists PositiveRatingBrush");
+                logger.Warn($"Resources don't exists PositiveRatingBrush");
             }
 
             try
@@ -219,7 +219,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists NegativeRatingBrush");
+                logger.Warn($"Resources don't exists NegativeRatingBrush");
             }
 
             try
@@ -228,7 +228,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists MixedRatingBrush");
+                logger.Warn($"Resources don't exists MixedRatingBrush");
             }
 
             try
@@ -246,7 +246,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists WindowBackgourndBrush");
+                logger.Warn($"Resources don't exists WindowBackgourndBrush");
             }
 
             try
@@ -255,7 +255,7 @@ namespace ThemeModifier.Services
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists WarningBrush");
+                logger.Warn($"Resources don't exists WarningBrush");
             }
 
             return ThemeDefault;
@@ -305,7 +305,7 @@ namespace ThemeModifier.Services
                     }
                     else
                     {
-                        logger.Warn($"ThemeModifier - color is {color.toString()}");
+                        logger.Warn($"Color is {color.toString()}");
                     }
                 }
                 else if (colorDefault != null)
@@ -314,7 +314,7 @@ namespace ThemeModifier.Services
                 }
                 else
                 {
-                    logger.Warn($"ThemeModifier - No default color");
+                    logger.Warn($"No default color");
                 }
 
 
@@ -1189,20 +1189,20 @@ namespace ThemeModifier.Services
                         }
                         else
                         {
-                            logger.Error($"ThemeModifier - File {Path.Combine(pluginFolder, "Themes", FileName)} not found");
+                            logger.Error($"File {Path.Combine(pluginFolder, "Themes", FileName)} not found");
                             return false;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    logger.Error(ex, $"ThemeModifier - Failed to set file");
+                    Common.LogError(ex, false, $"Failed to set file");
                     return false;
                 }
             }
             else
             {
-                logger.Warn($"ThemeModifier - No ThemeManifest find for actual theme");
+                logger.Warn($"No ThemeManifest find for actual theme");
                 return false;
             }
 
@@ -1240,13 +1240,13 @@ namespace ThemeModifier.Services
                 }
                 catch (Exception ex)
                 {
-                    logger.Error(ex, $"ThemeModifier - Failed to set file");
+                    Common.LogError(ex, false, $"Failed to set file");
                     return false;
                 }
             }
             else
             {
-                logger.Warn($"ThemeModifier - No ThemeManifest find for actual theme");
+                logger.Warn($"No ThemeManifest find for actual theme");
                 return false;
             }
 
@@ -1365,7 +1365,7 @@ namespace ThemeModifier.Services
                 }
                 else
                 {
-                    logger.Warn($"ThemeModifier - Bad control {"tb" + themeColorsElement.Name}: {control.ToString()}");
+                    logger.Warn($"Bad control {"tb" + themeColorsElement.Name}: {control.ToString()}");
                 }
             }
         }
@@ -1383,9 +1383,7 @@ namespace ThemeModifier.Services
 
             Parallel.ForEach(Directory.EnumerateFiles(PathThemeColors, "*.json"), (objectFile) =>
             {
-#if DEBUG
-                logger.Debug($"ThemeModifier [Ignored] - GetListThemeColors() - {objectFile}");
-#endif
+                Common.LogDebug(true, $"GetListThemeColors() - {objectFile}");
 
                 try
                 {
@@ -1399,9 +1397,7 @@ namespace ThemeModifier.Services
                 }
             });
 
-#if DEBUG
-            logger.Debug($"ThemeModifier [Ignored] - GetListThemeColors() - {JsonConvert.SerializeObject(ListThemeColors)}");
-#endif
+            Common.LogDebug(true, $"GetListThemeColors() - {JsonConvert.SerializeObject(ListThemeColors)}");
 
             return ListThemeColors;
         }
@@ -1516,7 +1512,7 @@ namespace ThemeModifier.Services
                     }
                     else
                     {
-                        logger.Warn($"ThemeModifier - Bad control {"tb" + ControlName}: {control.ToString()}");
+                        logger.Warn($"Bad control {"tb" + ControlName}: {control.ToString()}");
                     }
                 }
 
@@ -1551,9 +1547,8 @@ namespace ThemeModifier.Services
 
                 var deserializer = new DeserializerBuilder().Build();
                 thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(ThemeInfos.DescriptionPath));
-#if DEBUG
-                logger.Debug($"ThemeModifier  [Ignored]- thm: {JsonConvert.SerializeObject(thm)}");
-#endif        
+
+                Common.LogDebug(true, $"thm: {JsonConvert.SerializeObject(thm)}");     
 
                 var temp = (List<Object>)(thm.Constants);
                 List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
@@ -1566,9 +1561,8 @@ namespace ThemeModifier.Services
                     }
                     else 
                     {
-#if DEBUG
-                        logger.Debug($"ThemeModifier [Ignored] - el: {JsonConvert.SerializeObject(el)}");
-#endif
+                        Common.LogDebug(true, $"el: {JsonConvert.SerializeObject(el)}");
+
                         foreach(var tt in el)
                         {
                             themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)(tt.Key), Description = (string)(tt.Value) });
@@ -1576,14 +1570,12 @@ namespace ThemeModifier.Services
                     }
                 }
 
-#if DEBUG
-                logger.Debug($"ThemeModifier - temp: {JsonConvert.SerializeObject(themeConstantsDefined)}");
-#endif
+                Common.LogDebug(true, $"temp: {JsonConvert.SerializeObject(themeConstantsDefined)}");
                 return themeConstantsDefined;
             }
             catch(Exception ex)
             {
-                logger.Warn($"ThemeModifier - No the constants defined");
+                logger.Warn($"No the constants defined");
                 Common.LogError(ex, true, $"thm: {JsonConvert.SerializeObject(thm)}");
 
                 return new List<ThemeConstantsDefined>();
@@ -1633,7 +1625,7 @@ namespace ThemeModifier.Services
                 }
                 catch
                 {
-                    logger.Warn($"ThemeModifier - Resources don't exists {ConstantsDefined.Name}");
+                    logger.Warn($"Resources don't exists {ConstantsDefined.Name}");
                 }
             }
 
@@ -1673,7 +1665,7 @@ namespace ThemeModifier.Services
             }
             else
             {
-                logger.Info($"ThemeModifier - No ThemeActualConstants find for {ThemeInfos.Id} & {ThemeInfos.Name}");
+                logger.Info($"No ThemeActualConstants find for {ThemeInfos.Id} & {ThemeInfos.Name}");
             }
 
             return ThemeActualConstants;
@@ -1789,7 +1781,7 @@ namespace ThemeModifier.Services
                     break;
 
                 default:
-                    logger.Warn($"ThemeModifier - Element type not supported: {ElementType}");
+                    logger.Warn($"Element type not supported: {ElementType}");
                     break;
             }
 

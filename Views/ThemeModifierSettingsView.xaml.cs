@@ -410,9 +410,7 @@ namespace ThemeModifier.Views
             {
                 SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
             }
-#if DEBUG
-            logger.Debug($"ThemeModifier [Ignored] - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
-#endif
+            Common.LogDebug(true, $"SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
         }
 
         private void TbThemeConstants_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
@@ -432,9 +430,7 @@ namespace ThemeModifier.Views
                 {
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
-#if DEBUG
-                logger.Debug($"ThemeModifier [Ignored] - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
-#endif
+                Common.LogDebug(true, $"SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
             }
             catch (Exception ex)
             {
@@ -459,9 +455,7 @@ namespace ThemeModifier.Views
                 {
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
-#if DEBUG
-                logger.Debug($"ThemeModifier [Ignored] - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
-#endif
+                Common.LogDebug(true, $"SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
             }
             catch (Exception ex)
             {
@@ -495,9 +489,7 @@ namespace ThemeModifier.Views
                 {
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
-#if DEBUG
-                logger.Debug($"ThemeModifier [Ignored] - SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
-#endif
+                Common.LogDebug(true, $"SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
             }
             catch (Exception ex)
             {
@@ -746,7 +738,7 @@ namespace ThemeModifier.Views
             }
             else
             {
-                logger.Warn("ThemeModifier - One control is undefined");
+                logger.Warn("One control is undefined");
             }
 
             PART_SelectorColorConstants.Visibility = Visibility.Collapsed;
@@ -824,7 +816,7 @@ namespace ThemeModifier.Views
                     }
                     else
                     {
-                        logger.Warn($"ThemeModifier - Bad control {"tb" + themeElement.Name}: {control.ToString()}");
+                        logger.Warn($"Bad control {"tb" + themeElement.Name}: {control.ToString()}");
                     }                    
                 }
             }
@@ -855,7 +847,7 @@ namespace ThemeModifier.Views
             }
             else
             {
-                logger.Warn("ThemeModifier - One control is undefined");
+                logger.Warn("One control is undefined");
             }
 
             PART_SelectorColor.Visibility = Visibility.Collapsed;

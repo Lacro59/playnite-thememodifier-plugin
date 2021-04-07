@@ -42,11 +42,9 @@ namespace ThemeModifier
                 ThemeActualConstants = ThemeClass.GetThemeActualConstants(PluginSettings.Settings, PlayniteApi);
             }
 
-#if DEBUG
-            logger.Debug($"ThemeModifier [Ignored] - ThemeDefault: {JsonConvert.SerializeObject(ThemeDefault)}");
-            logger.Debug($"ThemeModifier [Ignored] - ThemeDefaultConstants: {JsonConvert.SerializeObject(ThemeDefaultConstants)}");
-            logger.Debug($"ThemeModifier [Ignored] - ThemeActualConstants: {JsonConvert.SerializeObject(ThemeActualConstants)}");
-#endif
+            Common.LogDebug(true, $"ThemeDefault: {JsonConvert.SerializeObject(ThemeDefault)}");
+            Common.LogDebug(true, $"ThemeDefaultConstants: {JsonConvert.SerializeObject(ThemeDefaultConstants)}");
+            Common.LogDebug(true, $"ThemeActualConstants: {JsonConvert.SerializeObject(ThemeActualConstants)}");
 
             // Add modified values
             if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)
