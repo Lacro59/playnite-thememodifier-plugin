@@ -78,12 +78,13 @@ namespace ThemeModifier.Views
                 gd.ColumnDefinitions.Add(c4);
 
 
-                Label lb = new Label();
-                Grid.SetColumn(lb, 0);
-                lb.Name = "PART_ThemeConstantsLabel";
-                lb.Content = themeElement.Name;
-                lb.Tag = themeElement.Name;
-                lb.Margin = new Thickness(0, 0, 10, 0);
+                TextBlock tb = new TextBlock();
+                Grid.SetColumn(tb, 0);
+                tb.VerticalAlignment = VerticalAlignment.Center;
+                tb.Name = "PART_ThemeConstantsLabel";
+                tb.Text = themeElement.Name;
+                tb.Tag = themeElement.Name;
+                tb.Margin = new Thickness(0, 0, 10, 0);
 
 
                 if (!themeElement.Description.IsNullOrEmpty())
@@ -96,12 +97,12 @@ namespace ThemeModifier.Views
                     lbDescription.Margin = new Thickness(0, 0, 10, 0);
                     lbDescription.HorizontalAlignment = HorizontalAlignment.Right;
 
-                    lb.Content = themeElement.Description;
+                    tb.Text = themeElement.Description;
 
                     gd.Children.Add(lbDescription);
                 }
 
-                gd.Children.Add(lb);
+                gd.Children.Add(tb);
 
 
                 FrameworkElement control = new FrameworkElement();
@@ -145,8 +146,12 @@ namespace ThemeModifier.Views
                 }
 
                 // Create control
+                bool IsTitle = true;
+
                 if (elSaved is bool)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "bool";
 
                     control = new CheckBox();
@@ -157,6 +162,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is string)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "string";
 
                     control = new TextBox();
@@ -167,6 +174,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is double)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "double";
 
                     control = new Slider();
@@ -193,6 +202,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is int)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "int";
 
                     control = new Slider();
@@ -218,6 +229,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is Color)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "color";
 
                     control = new TextBlock();
@@ -231,6 +244,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is SolidColorBrush)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "solidcolorbrush";
 
                     control = new TextBlock();
@@ -244,6 +259,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is LinearGradientBrush)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "lineargradientbrush";
 
                     control = new TextBlock();
@@ -257,6 +274,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is Visibility)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "visibility";
 
                     control = new ComboBox();
@@ -264,15 +283,15 @@ namespace ThemeModifier.Views
                     ComboBoxItem cbItem1 = new ComboBoxItem();
                     cbItem1.Tag = Visibility.Collapsed;
                     cbItem1.Content = "Collapsed";
-                    ComboBoxItem cbItem2 = new ComboBoxItem();
-                    cbItem2.Tag = Visibility.Hidden;
-                    cbItem2.Content = "Hidden";
+                    //ComboBoxItem cbItem2 = new ComboBoxItem();
+                    //cbItem2.Tag = Visibility.Hidden;
+                    //cbItem2.Content = "Hidden";
                     ComboBoxItem cbItem3 = new ComboBoxItem();
                     cbItem3.Tag = Visibility.Visible;
                     cbItem3.Content = "Visible";
 
                     ((ComboBox)control).Items.Add(cbItem1);
-                    ((ComboBox)control).Items.Add(cbItem2);
+                    //((ComboBox)control).Items.Add(cbItem2);
                     ((ComboBox)control).Items.Add(cbItem3);
 
                     switch (elSaved)
@@ -291,6 +310,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is VerticalAlignment)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "verticalalignment";
 
                     control = new ComboBox();
@@ -332,6 +353,8 @@ namespace ThemeModifier.Views
 
                 if (elSaved is HorizontalAlignment)
                 {
+                    IsTitle = false;
+
                     gd.Tag = "horizontalalignment";
 
                     control = new ComboBox();
@@ -371,6 +394,11 @@ namespace ThemeModifier.Views
                     }
                 }
 
+                if (IsTitle)
+                {
+                    tb.FontWeight = FontWeights.Bold;
+                    tb.TextDecorations = TextDecorations.Underline;
+                }
 
                 control.Name = "PART_ThemeConstantsControl";
                 control.Tag = themeElement.Name;
@@ -380,7 +408,11 @@ namespace ThemeModifier.Views
                 {
                     gd.Children.Add(btPickColor);
                 }
-                gd.Children.Add(btRestore);
+
+                if (!IsTitle)
+                {
+                    gd.Children.Add(btRestore);
+                }
 
 
                 // Add control
