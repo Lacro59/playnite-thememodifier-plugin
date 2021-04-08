@@ -865,6 +865,8 @@ namespace ThemeModifier.Views
         #region Icon changer
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
+            ThemeModifierSettingsViewModel PluginSettings = (ThemeModifierSettingsViewModel)this.DataContext;
+
             ToggleButton tb = (ToggleButton)sender;
             if (!(bool)tb.IsChecked)
             {
@@ -887,23 +889,19 @@ namespace ThemeModifier.Views
             {
                 tbUseIconWe4ponx.IsChecked = false;
             }
+
+            PluginSettings.Settings.UseIconCircle = (bool)tbUseIconCircle.IsChecked;
+            PluginSettings.Settings.UseIconClock = (bool)tbUseIconClock.IsChecked;
+            PluginSettings.Settings.UseIconSquareCorne = (bool)tbUseIconSquareCorne.IsChecked;
+            PluginSettings.Settings.UseIconWe4ponx = (bool)tbUseIconWe4ponx.IsChecked;
         }
 
         private void BtSetIcons_Click(object sender, RoutedEventArgs e)
         {
-            _settings.EnableInDescription = (bool)cEnableInDescription.IsChecked;
-
             _settings.UseIconCircle = (bool)tbUseIconCircle.IsChecked;
             _settings.UseIconClock = (bool)tbUseIconClock.IsChecked;
             _settings.UseIconSquareCorne = (bool)tbUseIconSquareCorne.IsChecked;
             _settings.UseIconWe4ponx = (bool)tbUseIconWe4ponx.IsChecked;
-
-            ThemeClass.SetThemeFile(_PlayniteApi, _settings);
-        }
-
-        private void BtRemoveIcons_Click(object sender, RoutedEventArgs e)
-        {
-            ThemeClass.RestoreThemeFile(_PlayniteApi);
         }
         #endregion
 

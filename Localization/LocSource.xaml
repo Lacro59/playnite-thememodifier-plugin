@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCThemeModifierRestore">Restore</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Enable icon modifier</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">Apply modification to icons</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restore icons</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Enable in description</sys:String>

@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:CommonPluginsControls.Controls"
+             xmlns:AttachedProperties="clr-namespace:CommonPluginsShared.Controls"
              mc:Ignorable="d">
 
     <Grid Margin="20">
@@ -433,54 +434,71 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Width="80" IsEnabled="False"></TabItem>
-
-            <TabItem Header="{DynamicResource LOCGameIconTitle}">
-                <DockPanel Margin="10">
-                    <CheckBox IsChecked="{Binding EnableIconChanger}" DockPanel.Dock="Top">
-                        <Label Content="{DynamicResource LOCThemeModifierEnableIconChanger}" />
-                    </CheckBox>
-
-                    <Grid IsEnabled="{Binding EnableIconChanger}" Margin="30,5,0,0" DockPanel.Dock="Top">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+            <TabItem Header="{DynamicResource LOCCommonIntegration}">
+                <StackPanel Margin="10">
+                    <Label Content="{DynamicResource LOCCommonControlsAvailable}" />
+                    <Separator Margin="0,0,0,10" />
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
-                        <ToggleButton IsChecked="{Binding UseIconCircle}" Grid.Column="0" Grid.Row="0" Margin="5" 
-                                      Name="tbUseIconCircle" Click="ToggleButton_Click">
-                            <Image Source="/ThemeModifier;component/Themes/Images/circleResource.png" Width="48"/>
-                        </ToggleButton>
-                        <ToggleButton IsChecked="{Binding UseIconClock}" Grid.Column="1" Grid.Row="0" Margin="5" 
-                                      Name="tbUseIconClock" Click="ToggleButton_Click">
-                            <Image Source="/ThemeModifier;component/Themes/Images/clockResource.png" Width="48"/>
-                        </ToggleButton>
-                        <ToggleButton IsChecked="{Binding UseIconSquareCorne}" Grid.Column="2" Grid.Row="0" Margin="5" 
-                                      Name="tbUseIconSquareCorne" Click="ToggleButton_Click">
-                            <Image Source="/ThemeModifier;component/Themes/Images/squareCorneResource.png" Width="48"/>
-                        </ToggleButton>
-                        <ToggleButton IsChecked="{Binding UseIconWe4ponx}" Grid.Column="3" Grid.Row="0" Margin="5" 
-                                      Name="tbUseIconWe4ponx" Click="ToggleButton_Click">
-                            <Image Source="/ThemeModifier;component/Themes/Images/we4ponxResource.png" Width="48"/>
-                        </ToggleButton>
+                        <Expander Grid.Row="0">
+                            <Expander.Style>
+                                <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Style>
+                            </Expander.Style>
+
+                            <Expander.Header>
+                                <CheckBox IsChecked="{Binding Settings.EnableIntegrationIcon}" Name="PART_IntegrationIcon">
+                                    <Label Content="{DynamicResource LOCThemeModifierEnableIconChanger}" />
+                                </CheckBox>
+                            </Expander.Header>
+
+                            <Expander.Content>
+                                <Border IsEnabled="{Binding ElementName=PART_IntegrationIcon, Path=IsChecked}"
+				                        Margin="5" Padding="10"
+				                        BorderBrush="{DynamicResource PopupBorderBrush}"
+				                        BorderThickness="{DynamicResource PopupBorderThickness}">
+                                    <Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <ToggleButton IsChecked="{Binding UseIconCircle}" Grid.Column="0" Grid.Row="0" Margin="5" 
+                                                          Name="tbUseIconCircle" Click="ToggleButton_Click">
+                                                <Image Source="/ThemeModifier;component/Resources/Images/circleResource.png" Width="48"/>
+                                            </ToggleButton>
+                                            <ToggleButton IsChecked="{Binding UseIconClock}" Grid.Column="1" Grid.Row="0" Margin="5" 
+                                                          Name="tbUseIconClock" Click="ToggleButton_Click">
+                                                <Image Source="/ThemeModifier;component/Resources/Images/clockResource.png" Width="48"/>
+                                            </ToggleButton>
+                                            <ToggleButton IsChecked="{Binding UseIconSquareCorne}" Grid.Column="2" Grid.Row="0" Margin="5" 
+                                                          Name="tbUseIconSquareCorne" Click="ToggleButton_Click">
+                                                <Image Source="/ThemeModifier;component/Resources/Images/squareCorneResource.png" Width="48"/>
+                                            </ToggleButton>
+                                            <ToggleButton IsChecked="{Binding UseIconWe4ponx}" Grid.Column="3" Grid.Row="0" Margin="5" 
+                                                          Name="tbUseIconWe4ponx" Click="ToggleButton_Click">
+                                                <Image Source="/ThemeModifier;component/Resources/Images/we4ponxResource.png" Width="48"/>
+                                            </ToggleButton>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </Expander.Content>
+                        </Expander>
                     </Grid>
-
-                    <CheckBox IsEnabled="{Binding EnableIconChanger}" IsChecked="{Binding EnableInDescription}" Margin="30,5,0,0" DockPanel.Dock="Top" Name="cEnableInDescription">
-                        <Label Content="{DynamicResource LOCThemeModifierEnableInDescription}" />
-                    </CheckBox>
-
-
-                    <StackPanel DockPanel.Dock="Bottom" Margin="0,30,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Name="btSetIcons" Content="{DynamicResource LOCThemeModifierBtSetIcons}" Margin="0,0,10,0" Click="BtSetIcons_Click" VerticalAlignment="Bottom" />
-                        <Button Name="btRemoveIcons" Content="{DynamicResource LOCThemeModifierBtRemoveIcons}" Click="BtRemoveIcons_Click" VerticalAlignment="Bottom" />
-                    </StackPanel>
-                </DockPanel>
+                </StackPanel>
             </TabItem>
         </TabControl>
 

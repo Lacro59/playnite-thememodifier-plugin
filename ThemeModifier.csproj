@@ -90,6 +90,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\PluginIcon.xaml.cs">
+      <DependentUpon>PluginIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\ThemeColors.cs" />
     <Compile Include="Models\ThemeConstants.cs" />
     <Compile Include="Models\ThemeElement.cs" />
@@ -125,11 +128,6 @@
     </Page>
     <None Include="README.md" />
     <None Include="Localization\LocSource.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Themes\DerivedStyles\DetailsViewItemTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -224,6 +222,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Include="Controls\PluginIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="playnite-plugincommon\CommonPluginsControls\Controls\ControlPickerGradient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -247,48 +249,48 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Themes\Images\circleResource.png">
+    <Resource Include="Resources\Images\circleResource.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Themes\Images\circle.png">
+    <None Include="Resources\Images\circle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Themes\Images\circleShape.png">
+    <None Include="Resources\Images\circleShape.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Themes\Images\clock.png">
+    <None Include="Resources\Images\clock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Themes\Images\clockShape.png">
+    <None Include="Resources\Images\clockShape.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Themes\Images\squareCorne.png">
+    <None Include="Resources\Images\squareCorne.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Themes\Images\squareCorneShape.png">
+    <None Include="Resources\Images\squareCorneShape.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Themes\Images\we4ponx.png">
+    <None Include="Resources\Images\we4ponx.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Themes\Images\we4ponxShape.png">
+    <None Include="Resources\Images\we4ponxShape.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Themes\Images\clockResource.png">
+    <Resource Include="Resources\Images\clockResource.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Themes\Images\squareCorneResource.png">
+    <Resource Include="Resources\Images\squareCorneResource.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Themes\Images\we4ponxResource.png">
+    <Resource Include="Resources\Images\we4ponxResource.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -298,9 +300,7 @@
       <Name>CommonPluginsResources</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="playnite-plugincommon\CommonPlayniteShared\CommonPlayniteShared.projitems" Label="Shared" />
   <Import Project="playnite-plugincommon\CommonPluginsShared\CommonPluginsShared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

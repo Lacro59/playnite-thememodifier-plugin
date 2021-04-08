@@ -65,12 +65,21 @@ namespace ThemeModifier
         public List<ThemeConstants> ThemesConstants = new List<ThemeConstants>();
 
 
-        public bool EnableIconChanger { get; set; } = false;
+        private bool _EnableIntegrationIcon { get; set; } = false;
+        public bool EnableIntegrationIcon
+        {
+            get => _EnableIntegrationIcon;
+            set
+            {
+                _EnableIntegrationIcon = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool UseIconCircle { get; set; } = true;
         public bool UseIconClock { get; set; } = false;
         public bool UseIconSquareCorne { get; set; } = false;
         public bool UseIconWe4ponx { get; set; } = false;
-        public bool EnableInDescription { get; set; } = true;
         #endregion
 
         // Playnite serializes settings object to a JSON object and saves it as text file.
@@ -141,6 +150,7 @@ namespace ThemeModifier
         public void EndEdit()
         {
             Plugin.SavePluginSettings(Settings);
+            this.OnPropertyChanged();
         }
 
         // Code execute when user decides to confirm changes made since BeginEdit was called.

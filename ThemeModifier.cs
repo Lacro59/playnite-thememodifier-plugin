@@ -18,6 +18,7 @@ using ThemeModifier.Views;
 using CommonPluginsPlaynite;
 using CommonPluginsShared.PlayniteExtended;
 using CommonPlayniteShared.Manifests;
+using ThemeModifier.Controls;
 
 namespace ThemeModifier
 {
@@ -52,11 +53,38 @@ namespace ThemeModifier
                 ThemeClass.SetThemeSettings(PluginSettings.Settings);
                 ThemeClass.SetThemeSettingsConstants(ThemeActualConstants);
             }
+
+            // Custom elements integration
+            AddCustomElementSupport(new AddCustomElementSupportArgs
+            {
+                ElementList = new List<string> { "PluginIcon" },
+                SourceName = "ThemeModifier",
+                SettingsRoot = $"{nameof(PluginSettings)}.{nameof(PluginSettings.Settings)}"
+            });
         }
 
 
         #region Custom event
 
+        #endregion
+
+
+        #region Theme integration
+        public override List<TopPanelItem> GetTopPanelItems()
+        {
+            return null;
+        }
+
+        // List custom controls
+        public override Control GetGameViewControl(GetGameViewControlArgs args)
+        {
+            if (args.Name == "PluginIcon")
+            {
+                return new PluginIcon(PlayniteApi, PluginSettings);
+            }
+
+            return null;
+        }
         #endregion
 
 
