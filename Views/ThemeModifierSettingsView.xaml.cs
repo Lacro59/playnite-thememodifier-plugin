@@ -414,7 +414,6 @@ namespace ThemeModifier.Views
                     gd.Children.Add(btRestore);
                 }
 
-
                 // Add control
                 Grid.SetColumn(gd, 0);
                 Grid.SetRow(gd, iRow);
