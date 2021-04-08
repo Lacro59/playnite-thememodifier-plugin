@@ -136,9 +136,10 @@ namespace ThemeModifier
         // This method should revert any changes made to Option1 and Option2.
         public void CancelEdit()
         {
+            ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, Settings);
+
             Settings = EditingClone;
 
-            ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, Settings);
             ThemeClass.RestoreColor(ThemeModifier.ThemeDefault, Settings, true);
 
             ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);
