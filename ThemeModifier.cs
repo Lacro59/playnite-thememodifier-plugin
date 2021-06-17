@@ -58,6 +58,12 @@ namespace ThemeModifier
             AddCustomElementSupport(new AddCustomElementSupportArgs
             {
                 ElementList = new List<string> { "PluginIcon" },
+                SourceName = "ThemeModifier"
+            });
+
+            // Settings integration
+            AddSettingsSupport(new AddSettingsSupportArgs
+            {
                 SourceName = "ThemeModifier",
                 SettingsRoot = $"{nameof(PluginSettings)}.{nameof(PluginSettings.Settings)}"
             });
@@ -88,7 +94,7 @@ namespace ThemeModifier
         #endregion
 
 
-        #region Game event
+        #region Menus
         // To add new game menu items override GetGameMenuItems
         public override List<GameMenuItem> GetGameMenuItems(GetGameMenuItemsArgs args)
         {
@@ -98,6 +104,11 @@ namespace ThemeModifier
             };
 
 #if DEBUG
+            gameMenuItems.Add(new GameMenuItem
+            {
+                MenuSection = resources.GetString("LOCThemeModifier"),
+                Description = "-"
+            });
             gameMenuItems.Add(new GameMenuItem
             {
                 MenuSection = resources.GetString("LOCThemeModifier"),
@@ -124,6 +135,11 @@ namespace ThemeModifier
             };
 
 #if DEBUG
+            mainMenuItems.Add(new MainMenuItem
+            {
+                MenuSection = MenuInExtensions + resources.GetString("LOCSsv"),
+                Description = "-"
+            });
             mainMenuItems.Add(new MainMenuItem
             {
                 MenuSection = MenuInExtensions + resources.GetString("LOCThemeModifier"),

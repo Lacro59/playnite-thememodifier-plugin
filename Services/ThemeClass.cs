@@ -265,7 +265,7 @@ namespace ThemeModifier.Services
         {
             try
             {
-                IntegrationUI ui = new IntegrationUI();
+                UI ui = new UI();
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
                 string colorString = string.Empty;
@@ -425,7 +425,7 @@ namespace ThemeModifier.Services
                 }
                 else
                 {
-                    IntegrationUI ui = new IntegrationUI();
+                    UI ui = new UI();
                     List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
                     foreach (ThemeElement themeElement in ThemeDefault)
@@ -532,7 +532,7 @@ namespace ThemeModifier.Services
         {
             try
             {
-                IntegrationUI ui = new IntegrationUI();
+                UI ui = new UI();
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
                 SolidColorBrush color = new SolidColorBrush();
@@ -1556,10 +1556,6 @@ namespace ThemeModifier.Services
                     }
                 }
             }
-            else
-            {
-                logger.Info($"No ThemeActualConstants find for {ThemeInfos.Id} & {ThemeInfos.Name}");
-            }
 
             return ThemeActualConstants;
         }
@@ -1568,7 +1564,7 @@ namespace ThemeModifier.Services
         {
             try
             {
-                IntegrationUI ui = new IntegrationUI();
+                UI ui = new UI();
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
                 
                 foreach (ThemeElement themeElement in ThemeConstants)
