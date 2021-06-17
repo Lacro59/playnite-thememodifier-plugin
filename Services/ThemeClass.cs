@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Playnite.SDK;
+﻿using Playnite.SDK;
+using Playnite.SDK.Data;
 using CommonPluginsShared;
 using System;
 using System.Linq;
@@ -1224,7 +1224,7 @@ namespace ThemeModifier.Services
         #region Theme manage
         public static void LoadThemeColors(string PathFileName, ThemeModifierSettings settings, ThemeModifierSettingsView settingsView)
         {
-            ThemeColors themeColors = JsonConvert.DeserializeObject<ThemeColors>(File.ReadAllText(PathFileName));
+            ThemeColors themeColors = Serialization.FromJsonFile<ThemeColors>(PathFileName);
             LoadThemeColors(themeColors, settings, settingsView);
         }
         public static void LoadThemeColors(ThemeColors themeColors, ThemeModifierSettings settings, ThemeModifierSettingsView settingsView)
@@ -1280,7 +1280,7 @@ namespace ThemeModifier.Services
 
                 try
                 {
-                    ThemeColors themeColors = JsonConvert.DeserializeObject<ThemeColors>(File.ReadAllText(objectFile));
+                    ThemeColors themeColors = Serialization.FromJsonFile<ThemeColors>(objectFile);
                     themeColors.FileName = objectFile;
                     ListThemeColors.Add(themeColors);
                 }
@@ -1289,8 +1289,6 @@ namespace ThemeModifier.Services
                     Common.LogError(ex, false, $"Error to parse file {objectFile}");
                 }
             });
-
-            Common.LogDebug(true, $"GetListThemeColors() - {JsonConvert.SerializeObject(ListThemeColors)}");
 
             return ListThemeColors;
         }
@@ -1319,7 +1317,7 @@ namespace ThemeModifier.Services
             {
                 try
                 {
-                    ThemeColors themeColorsTEMP = JsonConvert.DeserializeObject<ThemeColors>(File.ReadAllText(objectFile));
+                    ThemeColors themeColorsTEMP = Serialization.FromJsonFile<ThemeColors>(objectFile);
                     
                     if (themeColorsTEMP.FileName == themeColors.FileName)
                     {
@@ -1345,7 +1343,7 @@ namespace ThemeModifier.Services
                     Directory.CreateDirectory(PathThemeColors);
                 }
 
-                File.WriteAllText(PathThemeColorsFile, JsonConvert.SerializeObject(themeColors));
+                Serialization.ToFile(themeColors, PathThemeColorsFile, Format.Json);
             }
             catch (Exception ex)
             {
@@ -1410,7 +1408,7 @@ namespace ThemeModifier.Services
                 }
 
                 //SaveThemeColors object
-                File.WriteAllText(PathThemeColorsFile, JsonConvert.SerializeObject(themeColors));
+                Serialization.ToFile(themeColors, PathThemeColorsFile, Format.Json);
             }
             catch (Exception ex)
             {
@@ -1441,8 +1439,6 @@ namespace ThemeModifier.Services
                 var deserializer = new DeserializerBuilder().Build();
                 thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(ThemeInfos.DescriptionPath));
 
-                Common.LogDebug(true, $"thm: {JsonConvert.SerializeObject(thm)}");     
-
                 var temp = (List<Object>)(thm.Constants);
                 List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
 
@@ -1454,8 +1450,6 @@ namespace ThemeModifier.Services
                     }
                     else 
                     {
-                        Common.LogDebug(true, $"el: {JsonConvert.SerializeObject(el)}");
-
                         foreach(var tt in el)
                         {
                             themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)(tt.Key), Description = (string)(tt.Value) });
@@ -1463,13 +1457,12 @@ namespace ThemeModifier.Services
                     }
                 }
 
-                Common.LogDebug(true, $"temp: {JsonConvert.SerializeObject(themeConstantsDefined)}");
                 return themeConstantsDefined;
             }
             catch(Exception ex)
             {
                 logger.Warn($"No the constants defined");
-                Common.LogError(ex, true, $"thm: {JsonConvert.SerializeObject(thm)}");
+                Common.LogError(ex, true);
 
                 return new List<ThemeConstantsDefined>();
             }
@@ -1653,7 +1646,7 @@ namespace ThemeModifier.Services
                     
                     break;
                 case "lineargradientbrush":
-                    ConvertedResource = (JsonConvert.DeserializeObject<ThemeLinearGradient>(JsonConvert.SerializeObject(Element))).ToLinearGradientBrush;
+                    ConvertedResource = (Serialization.FromJson<ThemeLinearGradient>(Serialization.ToJson(Element))).ToLinearGradientBrush;
                     break;
 
 

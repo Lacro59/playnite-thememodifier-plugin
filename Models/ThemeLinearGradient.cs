@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using Playnite.SDK.Data;
 using System;
 using System.Windows;
 using System.Windows.Media;
@@ -13,7 +13,7 @@ namespace ThemeModifier.Models
         public ThemeGradientColor GradientStop1 { get; set; }
         public ThemeGradientColor GradientStop2 { get; set; }
 
-        [JsonIgnore]
+        [DontSerialize]
         public LinearGradientBrush ToLinearGradientBrush
         {
             get
@@ -43,6 +43,6 @@ namespace ThemeModifier.Models
     public class ThemeGradientColor
     {
         public string ColorString { get; set; }
-        public Double ColorOffset { get; set; }
+        public double ColorOffset { get; set; }
     }
 }

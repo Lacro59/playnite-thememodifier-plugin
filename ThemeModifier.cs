@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Playnite.SDK;
+﻿using Playnite.SDK;
+using Playnite.SDK.Data;
 using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -42,10 +42,6 @@ namespace ThemeModifier
             {
                 ThemeActualConstants = ThemeClass.GetThemeActualConstants(PluginSettings.Settings, PlayniteApi);
             }
-
-            Common.LogDebug(true, $"ThemeDefault: {JsonConvert.SerializeObject(ThemeDefault)}");
-            Common.LogDebug(true, $"ThemeDefaultConstants: {JsonConvert.SerializeObject(ThemeDefaultConstants)}");
-            Common.LogDebug(true, $"ThemeActualConstants: {JsonConvert.SerializeObject(ThemeActualConstants)}");
 
             // Add modified values
             if (PlayniteApi.ApplicationInfo.Mode == ApplicationMode.Desktop)

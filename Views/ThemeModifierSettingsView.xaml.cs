@@ -1,6 +1,5 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Playnite.SDK;
+﻿using Playnite.SDK;
+using Playnite.SDK.Data;
 using CommonPluginsShared;
 using System;
 using System.Collections.Generic;
@@ -445,7 +444,6 @@ namespace ThemeModifier.Views
                 {
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
-                Common.LogDebug(true, $"SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
             }
             catch (Exception ex)
             {
@@ -475,7 +473,6 @@ namespace ThemeModifier.Views
                 {
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
-                Common.LogDebug(true, $"SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
             }
             catch (Exception ex)
             {
@@ -505,7 +502,6 @@ namespace ThemeModifier.Views
                 {
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
-                Common.LogDebug(true, $"SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
             }
             catch (Exception ex)
             {
@@ -539,7 +535,6 @@ namespace ThemeModifier.Views
                 {
                     SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
                 }
-                Common.LogDebug(true, $"SettingsThemeConstants: {JsonConvert.SerializeObject(SettingsThemeConstants)}");
             }
             catch (Exception ex)
             {
@@ -1038,7 +1033,7 @@ namespace ThemeModifier.Views
 
                 try
                 {
-                    themeColors = JsonConvert.DeserializeObject<ThemeColors>(File.ReadAllText(targetPath));
+                    themeColors = Serialization.FromJsonFile<ThemeColors>(targetPath);
                 }
                 catch
                 {
