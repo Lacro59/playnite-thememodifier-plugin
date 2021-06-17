@@ -1567,7 +1567,7 @@ namespace ThemeModifier.Services
                 UI ui = new UI();
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
                 
-                foreach (ThemeElement themeElement in ThemeConstants)
+                foreach (ThemeElement themeElement in ThemeConstants.Where(x => x.Element != null).ToList())
                 {
                     resourcesLists.Add(new ResourcesList { Key = themeElement.Name, Value = themeElement.Element });
                 }

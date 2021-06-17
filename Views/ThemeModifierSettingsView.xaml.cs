@@ -657,11 +657,8 @@ namespace ThemeModifier.Views
                         case Visibility.Collapsed:
                             ((ComboBox)elControl).SelectedIndex = 0;
                             break;
-                        case Visibility.Hidden:
-                            ((ComboBox)elControl).SelectedIndex = 1;
-                            break;
                         case Visibility.Visible:
-                            ((ComboBox)elControl).SelectedIndex = 2;
+                            ((ComboBox)elControl).SelectedIndex = 1;
                             break;
                     }
 
@@ -834,7 +831,8 @@ namespace ThemeModifier.Views
 
         private void BtRestore_Click(object sender, RoutedEventArgs e)
         {
-            try { 
+            try
+            { 
                 TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
                 Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
