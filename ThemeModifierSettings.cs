@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
+using ThemeModifier.Views;
 
 namespace ThemeModifier
 {
@@ -150,6 +151,13 @@ namespace ThemeModifier
         // This method should save settings made to Option1 and Option2.
         public void EndEdit()
         {
+            Settings.ThemesConstants = ThemeClass.GetThemesConstants(Plugin.PlayniteApi, ThemeModifierSettingsView.SettingsThemeConstants, Settings.ThemesConstants);
+            ThemeModifier.ThemeActualConstants = ThemeModifierSettingsView.SettingsThemeConstants;
+
+            ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);
+            ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeActualConstants);
+
+
             Plugin.SavePluginSettings(Settings);
             this.OnPropertyChanged();
         }
