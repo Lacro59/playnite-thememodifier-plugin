@@ -4,8 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:CommonPluginsControls.Controls"
+             xmlns:ThemeModifier="clr-namespace:ThemeModifier"
              xmlns:AttachedProperties="clr-namespace:CommonPluginsShared.Controls"
-             mc:Ignorable="d">
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance ThemeModifier:ThemeModifierSettingsViewModel}">
 
     <Grid Margin="20">
         <TabControl SelectionChanged="TabControl_SelectionChanged">

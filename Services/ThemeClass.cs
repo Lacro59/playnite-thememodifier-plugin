@@ -53,7 +53,8 @@ namespace ThemeModifier.Services
             "WarningBrush"
         };
 
-        private static List<string> ThemeFileToBackup = new List<string>();
+        private static readonly List<string> ThemeFileToBackup = new List<string>();
+
 
         #region Theme colors
         public static List<ThemeElement> GetThemeDefault()
@@ -1140,6 +1141,7 @@ namespace ThemeModifier.Services
         }
         #endregion
 
+
         #region Theme icons
         public static ThemeManifest GetActualTheme(IPlayniteAPI PlayniteApi)
         {
@@ -1220,6 +1222,7 @@ namespace ThemeModifier.Services
             return null;
         }
         #endregion
+
 
         #region Theme manage
         public static void LoadThemeColors(string PathFileName, ThemeModifierSettings settings, ThemeModifierSettingsView settingsView)
@@ -1427,6 +1430,7 @@ namespace ThemeModifier.Services
             return File.Exists(PathThemeColorsFile);
         }
         #endregion
+
 
         #region Theme constants
         public static List<ThemeConstantsDefined> GetThemeConstants(IPlayniteAPI PlayniteApi)
@@ -1643,12 +1647,10 @@ namespace ThemeModifier.Services
                     {
                         ConvertedResource = new SolidColorBrush((Color)Element);
                     }
-                    
                     break;
                 case "lineargradientbrush":
                     ConvertedResource = (Serialization.FromJson<ThemeLinearGradient>(Serialization.ToJson(Element))).ToLinearGradientBrush;
                     break;
-
 
                 case "visibility":
                     ConvertedResource = (Visibility)Element;
