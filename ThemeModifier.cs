@@ -133,7 +133,7 @@ namespace ThemeModifier
 #if DEBUG
             mainMenuItems.Add(new MainMenuItem
             {
-                MenuSection = MenuInExtensions + resources.GetString("LOCSsv"),
+                MenuSection = MenuInExtensions + resources.GetString("LOCThemeModifier"),
                 Description = "-"
             });
             mainMenuItems.Add(new MainMenuItem
