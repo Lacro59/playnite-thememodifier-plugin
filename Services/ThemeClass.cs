@@ -19,6 +19,7 @@ using CommonPluginsPlaynite;
 using CommonPluginsPlaynite.Common;
 using System.Text.RegularExpressions;
 using CommonPlayniteShared.Manifests;
+using System.Text;
 
 namespace ThemeModifier.Services
 {
@@ -1346,7 +1347,7 @@ namespace ThemeModifier.Services
                     Directory.CreateDirectory(PathThemeColors);
                 }
 
-                Serialization.ToFile(themeColors, PathThemeColorsFile, Format.Json);
+                File.WriteAllText(PathThemeColorsFile, Serialization.ToJson(themeColors), Encoding.UTF8);
             }
             catch (Exception ex)
             {
@@ -1411,7 +1412,7 @@ namespace ThemeModifier.Services
                 }
 
                 //SaveThemeColors object
-                Serialization.ToFile(themeColors, PathThemeColorsFile, Format.Json);
+                File.WriteAllText(PathThemeColorsFile, Serialization.ToJson(themeColors), Encoding.UTF8);
             }
             catch (Exception ex)
             {
