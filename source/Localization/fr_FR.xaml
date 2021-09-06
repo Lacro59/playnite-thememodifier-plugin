@@ -4,7 +4,7 @@
     <!-- MainView -->
 
     <sys:String x:Key="LOCThemeModifier">ThemeModifier</sys:String>
-    
+
     <!-- ThemeModifierSettingsView -->
 
     <sys:String x:Key="LOCThemeModifierEditTheme">Éditeur</sys:String>
@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCThemeModifierRestore">Restaurer</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">Remise à zéro</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Activer le changement d'icône</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Afficher un cadre d'icône</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">Appliquer la modification aux icônes</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restaurer les icônes</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Activer dans la description</sys:String>

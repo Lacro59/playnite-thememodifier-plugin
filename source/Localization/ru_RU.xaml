@@ -4,7 +4,7 @@
     <!-- MainView -->
 
     <sys:String x:Key="LOCThemeModifier">Редактор темы</sys:String>
-    
+
     <!-- ThemeModifierSettingsView -->
 
     <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCThemeModifierRestore">Восстановить</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">По умолчанию</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Включить изменение иконок</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">Применить изменения к значкам</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Восстановление иконок</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Искать в описании</sys:String>

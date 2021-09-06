@@ -4,12 +4,12 @@
     <!-- MainView -->
 
     <sys:String x:Key="LOCThemeModifier">Modificatore del tema</sys:String>
-    
+
     <!-- ThemeModifierSettingsView -->
 
     <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Gestore</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Carica</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">Esporta</sys:String>
 
@@ -21,14 +21,14 @@
     <sys:String x:Key="LOCThemeModifierRestore">Ripristina</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">Ripristina predefinito</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Abilita il modificatore dell'icona</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Mostra un riquadro icona</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">Applica la modifica alle icone</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Ripristina icone</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Abilita nella descrizione</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Modifica costanti</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Abilita l'integrazione dell'elenco delle funzionalità nei dettagli del gioco</sys:String>
 
 </ResourceDictionary>
