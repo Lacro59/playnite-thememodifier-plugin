@@ -1,0 +1,34 @@
+﻿<?xml version="1.0"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainView -->
+
+    <sys:String x:Key="LOCThemeModifier">Редактор темы</sys:String>
+    
+    <!-- ThemeModifierSettingsView -->
+
+    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Загрузить</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Экспорт</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">Файл сохранен</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">Файл не сохранён</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">Выбранный файл не является файлом темы</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierPick">Выбрать</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">Восстановить</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">По умолчанию</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Включить изменение иконок</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Применить изменения к значкам</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Восстановление иконок</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">Искать в описании</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+
+
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
+
+</ResourceDictionary>

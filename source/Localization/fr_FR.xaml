@@ -1,0 +1,34 @@
+﻿<?xml version="1.0"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainView -->
+
+    <sys:String x:Key="LOCThemeModifier">ThemeModifier</sys:String>
+    
+    <!-- ThemeModifierSettingsView -->
+
+    <sys:String x:Key="LOCThemeModifierEditTheme">Éditeur</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageMenu">Gestion</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Charger</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Exporter</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">Fichier sauvegardé</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">Fichier non sauvegardé</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">Le fichier sélectionné n'est pas un fichier theme</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierPick">Choisir</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">Restaurer</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">Remise à zéro</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Activer le changement d'icône</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Appliquer la modification aux icônes</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restaurer les icônes</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">Activer dans la description</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Éditer les constantes</sys:String>
+
+
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Activer l'intégration de la liste des fonctionnalités dans les détails du jeu</sys:String>
+
+</ResourceDictionary>
