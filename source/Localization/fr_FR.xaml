@@ -13,8 +13,8 @@
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Charger</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">Exporter</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageSaveOk">Fichier sauvegardé</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageSaveKo">Fichier non sauvegardé</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">Fichier sauvegard</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">Fichier non sauvegard</sys:String>
     <sys:String x:Key="LOCThemeModifierManageNoFile">Le fichier sélectionné n'est pas un fichier theme</sys:String>
 
     <sys:String x:Key="LOCThemeModifierPick">Choisir</sys:String>
