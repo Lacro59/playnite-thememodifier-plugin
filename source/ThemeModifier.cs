@@ -19,6 +19,7 @@ using CommonPluginsPlaynite;
 using CommonPluginsShared.PlayniteExtended;
 using CommonPlayniteShared.Manifests;
 using ThemeModifier.Controls;
+using System.Windows.Media;
 
 namespace ThemeModifier
 {
@@ -74,6 +75,26 @@ namespace ThemeModifier
         #region Theme integration
         public override IEnumerable<TopPanelItem> GetTopPanelItems()
         {
+            if (PluginSettings.Settings.EnableIntegrationButtonHeader && ThemeDefaultConstants.Count > 0)
+            {
+                yield return new TopPanelItem()
+                {
+                    Icon = new TextBlock
+                    {
+                        Text = "\ue91c",
+                        FontSize = 20,
+                        FontFamily = resources.GetResource("CommonFont") as FontFamily
+                    },
+                    Title = resources.GetString("LOCGameActivityViewGamesActivities"),
+                    Activated = () =>
+                    {
+                        PluginSettings.Settings.OnlyEditConstant = true;
+                        this.OpenSettingsView();
+                        PluginSettings.Settings.OnlyEditConstant = false;
+                    }
+                };
+            }
+
             yield break;
         }
 

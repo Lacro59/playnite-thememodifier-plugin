@@ -6,14 +6,23 @@
              xmlns:controls="clr-namespace:CommonPluginsControls.Controls"
              xmlns:ThemeModifier="clr-namespace:ThemeModifier"
              xmlns:AttachedProperties="clr-namespace:CommonPluginsShared.Controls"
+             xmlns:converters="clr-namespace:CommonPluginsPlaynite.Converters"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance ThemeModifier:ThemeModifierSettingsViewModel}">
 
+    <UserControl.Resources>
+        <converters:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+        <converters:InvertedBoolenConverter x:Key="InvertedBoolenConverter" />
+    </UserControl.Resources>
+    
     <Grid Margin="20">
         <TabControl SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Width="80" IsEnabled="False" Name="PART_TabForMenu"></TabItem>
+            <TabItem Width="80" IsEnabled="False" Name="PART_TabForMenu" 
+                     Visibility="{Binding Settings.OnlyEditConstant, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
 
-            <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}" Name="PART_TabEditTheme" IsSelected="True">
+            <TabItem Header="{DynamicResource LOCThemeModifierEditTheme}" Name="PART_TabEditTheme" 
+                     IsSelected="{Binding Settings.OnlyEditConstant, Converter={StaticResource InvertedBoolenConverter}}"
+                     Visibility="{Binding Settings.OnlyEditConstant, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200*"/>
@@ -227,7 +236,8 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{DynamicResource LOCThemeModifierEditThemeConstants}">
+            <TabItem Header="{DynamicResource LOCThemeModifierEditThemeConstants}"
+                     IsSelected="{Binding Settings.OnlyEditConstant}">
                 <Grid Margin="10">
                     <Grid Name="PART_SelectorColorConstants" Width="500" Visibility="Collapsed">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -354,7 +364,8 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{DynamicResource LOCMenuView}">
+            <TabItem Header="{DynamicResource LOCMenuView}"
+                     Visibility="{Binding Settings.OnlyEditConstant, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -480,7 +491,8 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{DynamicResource LOCCommonIntegration}">
+            <TabItem Header="{DynamicResource LOCCommonIntegration}"
+                     Visibility="{Binding Settings.OnlyEditConstant, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
                 <StackPanel Margin="10">
                     <Label Content="{DynamicResource LOCCommonControlsAvailable}" />
                     <Separator Margin="0,0,0,10" />
@@ -491,7 +503,21 @@
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
 
-                        <Expander Grid.Row="0">
+                        <Expander Grid.Row="0" AttachedProperties:ExpanderAttachedProperties.HideExpanderArrow="True">
+                            <Expander.Style>
+                                <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Style>
+                            </Expander.Style>
+
+                            <Expander.Header>
+                                <CheckBox VerticalAlignment="Center" IsChecked="{Binding Settings.EnableIntegrationButtonHeader}">
+                                    <Label Content="{DynamicResource LOCCommonIntegrationButtonHeader}" />
+                                </CheckBox>
+                            </Expander.Header>
+                        </Expander>
+
+                        <Expander Grid.Row="2">
                             <Expander.Style>
                                 <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
                                     <Setter Property="Background" Value="Transparent" />
@@ -550,6 +576,7 @@
 
         <Menu Name="PART_EditThemeMenu" Height="{Binding ElementName=PART_TabEditTheme, Path=ActualHeight}" 
               Width="{Binding ElementName=PART_TabForMenu, Path=Width}"
+              Visibility="{Binding Settings.OnlyEditConstant, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
               VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="{DynamicResource LOCThemeModifierManageMenu}" Margin="5,0,0,0">
                 <MenuItem Header="{DynamicResource LOCThemeModifierManageMenuLoad}" Name="PART_EditThemeMenuLoad">

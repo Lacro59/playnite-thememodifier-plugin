@@ -17,6 +17,10 @@ namespace ThemeModifier
         public bool MenuInExtensions { get; set; } = true;
 
 
+        public bool EnableIntegrationButtonHeader { get; set; } = true;
+        [DontSerialize]
+        public bool OnlyEditConstant { get; set; } = false;
+
         public string ControlBackgroundBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient ControlBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string TextBrush_Edit { get; set; } = string.Empty;
