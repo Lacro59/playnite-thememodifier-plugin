@@ -13,7 +13,7 @@ Packages:
   - Version: 2.1
     RequiredApiVersion: 6.0.0
     ReleaseDate: 2021-09-08
-    PackageUrl: https://github.com/Lacro59/playnite-thememodifier-plugin/releases/download/v2.0/playnite-ThemeModifier-plugin_2_1.pext
+    PackageUrl: https://github.com/Lacro59/playnite-thememodifier-plugin/releases/download/v2.1/playnite-ThemeModifier-plugin_2_1.pext
     Changelog:
       - Playnite 9 beta version (not compatible with Playnite 8)
       - Moved theme constants definition (see wiki on GitHub)
