@@ -1441,8 +1441,10 @@ namespace ThemeModifier.Services
             {
                 ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
 
+                string PathYaml = ThemeInfos.DescriptionPath.Replace("theme.yaml", "thememodifier.yaml");
+
                 var deserializer = new DeserializerBuilder().Build();
-                thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(ThemeInfos.DescriptionPath));
+                thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(PathYaml));
 
                 var temp = (List<Object>)(thm.Constants);
                 List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
