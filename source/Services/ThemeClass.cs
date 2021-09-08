@@ -1440,26 +1440,28 @@ namespace ThemeModifier.Services
             try
             {
                 ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
-
+                List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
                 string PathYaml = ThemeInfos.DescriptionPath.Replace("theme.yaml", "thememodifier.yaml");
 
-                var deserializer = new DeserializerBuilder().Build();
-                thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(PathYaml));
-
-                var temp = (List<Object>)(thm.Constants);
-                List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
-
-                foreach (dynamic el in temp)
+                if (File.Exists(PathYaml))
                 {
-                    if (el is string)
+                    var deserializer = new DeserializerBuilder().Build();
+                    thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(PathYaml));
+
+                    var temp = (List<Object>)(thm.Constants);
+
+                    foreach (dynamic el in temp)
                     {
-                        themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)el });
-                    }
-                    else 
-                    {
-                        foreach(var tt in el)
+                        if (el is string)
                         {
-                            themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)(tt.Key), Description = (string)(tt.Value) });
+                            themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)el });
+                        }
+                        else
+                        {
+                            foreach (var tt in el)
+                            {
+                                themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)(tt.Key), Description = (string)(tt.Value) });
+                            }
                         }
                     }
                 }
