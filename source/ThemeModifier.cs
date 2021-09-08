@@ -85,7 +85,7 @@ namespace ThemeModifier
                         FontSize = 20,
                         FontFamily = resources.GetResource("CommonFont") as FontFamily
                     },
-                    Title = resources.GetString("LOCGameActivityViewGamesActivities"),
+                    Title = resources.GetString("LOCThemeModifierEditThemeConstants"),
                     Activated = () =>
                     {
                         PluginSettings.Settings.OnlyEditConstant = true;
