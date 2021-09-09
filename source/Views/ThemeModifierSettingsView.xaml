@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:CommonPluginsControls.Controls"
              xmlns:ThemeModifier="clr-namespace:ThemeModifier"
+             xmlns:pcmd="clr-namespace:CommonPluginsShared"
              xmlns:AttachedProperties="clr-namespace:CommonPluginsShared.Controls"
              xmlns:converters="clr-namespace:CommonPluginsPlaynite.Converters"
              mc:Ignorable="d" 
@@ -511,7 +512,9 @@
                             </Expander.Style>
 
                             <Expander.Header>
-                                <CheckBox VerticalAlignment="Center" IsChecked="{Binding Settings.EnableIntegrationButtonHeader}">
+                                <CheckBox VerticalAlignment="Center" IsChecked="{Binding Settings.EnableIntegrationButtonHeader}"
+                                          Command="{x:Static pcmd:Commands.RestartRequired}" 
+                                          CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                                     <Label Content="{DynamicResource LOCCommonIntegrationButtonHeader}" />
                                 </CheckBox>
                             </Expander.Header>
