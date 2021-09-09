@@ -81,24 +81,13 @@ namespace ThemeModifier.Views
                 Grid.SetColumn(tb, 0);
                 tb.VerticalAlignment = VerticalAlignment.Center;
                 tb.Name = "PART_ThemeConstantsLabel";
-                tb.Text = themeElement.Name;
                 tb.Tag = themeElement.Name;
                 tb.Margin = new Thickness(0, 0, 10, 0);
 
-
+                tb.Text = themeElement.Name;
                 if (!themeElement.Description.IsNullOrEmpty())
                 {
-                    Label lbDescription = new Label();
-                    Grid.SetColumn(lbDescription, 0);
-                    lbDescription.Content = "";
-                    lbDescription.FontFamily = (FontFamily)resources.GetResource("CommonFont");
-                    lbDescription.ToolTip = themeElement.Name;
-                    lbDescription.Margin = new Thickness(0, 0, 10, 0);
-                    lbDescription.HorizontalAlignment = HorizontalAlignment.Right;
-
                     tb.Text = themeElement.Description;
-
-                    gd.Children.Add(lbDescription);
                 }
 
                 gd.Children.Add(tb);
