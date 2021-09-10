@@ -1441,7 +1441,7 @@ namespace ThemeModifier.Services
             {
                 ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
                 List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
-                string PathYaml = ThemeInfos.DescriptionPath.Replace("theme.yaml", "thememodifier.yaml");
+                string PathYaml = Path.Combine(ThemeInfos.DirectoryPath, "thememodifier.yaml");
 
                 if (File.Exists(PathYaml))
                 {
