@@ -45,13 +45,18 @@ namespace ThemeModifier.Services
             "ButtonBackgroundBrush",
             "GridItemBackgroundBrush",
             "PanelSeparatorBrush",
+            "WindowPanelSeparatorBrush",
             "PopupBackgroundBrush",
+            "CheckBoxCheckMarkBkBrush",
+
             "PositiveRatingBrush",
             "NegativeRatingBrush",
             "MixedRatingBrush",
+
+            "WarningBrush",
+
             "ExpanderBackgroundBrush",
             "WindowBackgourndBrush",
-            "WarningBrush"
         };
 
         private static readonly List<string> ThemeFileToBackup = new List<string>();
@@ -199,11 +204,29 @@ namespace ThemeModifier.Services
 
             try
             {
+                ThemeDefault.Add(new ThemeElement { Name = "WindowPanelSeparatorBrush", Element = resources.GetResource("WindowPanelSeparatorBrush") });
+            }
+            catch
+            {
+                logger.Warn($"Resources don't exists WindowPanelSeparatorBrush");
+            }
+
+            try
+            {
                 ThemeDefault.Add(new ThemeElement { Name = "PopupBackgroundBrush", Element = resources.GetResource("PopupBackgroundBrush") });
             }
             catch
             {
                 logger.Warn($"Resources don't exists PopupBackgroundBrush");
+            }
+
+            try
+            {
+                ThemeDefault.Add(new ThemeElement { Name = "CheckBoxCheckMarkBkBrush", Element = resources.GetResource("CheckBoxCheckMarkBkBrush") });
+            }
+            catch
+            {
+                logger.Warn($"Resources don't exists CheckBoxCheckMarkBkBrush");
             }
 
             try
@@ -385,10 +408,19 @@ namespace ThemeModifier.Services
                         settings.PanelSeparatorBrush_Edit = colorString;
                         settings.PanelSeparatorBrush_EditGradient = themeLinearGradient;
                         break;
+                    case "WindowPanelSeparatorBrush":
+                        settings.WindowPanelSeparatorBrush_Edit = colorString;
+                        settings.WindowPanelSeparatorBrush_EditGradient = themeLinearGradient;
+                        break;
                     case "PopupBackgroundBrush":
                         settings.PopupBackgroundBrush_Edit = colorString;
                         settings.PopupBackgroundBrush_EditGradient = themeLinearGradient;
                         break;
+                    case "CheckBoxCheckMarkBkBrush":
+                        settings.CheckBoxCheckMarkBkBrush_Edit = colorString;
+                        settings.CheckBoxCheckMarkBkBrush_EditGradient = themeLinearGradient;
+                        break;
+
                     case "PositiveRatingBrush":
                         settings.PositiveRatingBrush_Edit = colorString;
                         settings.PositiveRatingBrush_EditGradient = themeLinearGradient;
@@ -401,6 +433,7 @@ namespace ThemeModifier.Services
                         settings.MixedRatingBrush_Edit = colorString;
                         settings.MixedRatingBrush_EditGradient = themeLinearGradient;
                         break;
+
                     case "ExpanderBackgroundBrush":
                         settings.ExpanderBackgroundBrush_Edit = colorString;
                         settings.ExpanderBackgroundBrush_EditGradient = themeLinearGradient;
@@ -498,9 +531,17 @@ namespace ThemeModifier.Services
                                 settings.PanelSeparatorBrush_Edit = string.Empty;
                                 settings.PanelSeparatorBrush_EditGradient = themeLinearGradient;
                                 break;
+                            case "WindowPanelSeparatorBrush":
+                                settings.WindowPanelSeparatorBrush_Edit = string.Empty;
+                                settings.WindowPanelSeparatorBrush_EditGradient = themeLinearGradient;
+                                break;
                             case "PopupBackgroundBrush":
                                 settings.PopupBackgroundBrush_Edit = string.Empty;
                                 settings.PopupBackgroundBrush_EditGradient = themeLinearGradient;
+                                break;
+                            case "CheckBoxCheckMarkBkBrush":
+                                settings.CheckBoxCheckMarkBkBrush_Edit = string.Empty;
+                                settings.CheckBoxCheckMarkBkBrush_EditGradient = themeLinearGradient;
                                 break;
                             case "PositiveRatingBrush":
                                 settings.PositiveRatingBrush_Edit = string.Empty;
@@ -939,8 +980,35 @@ namespace ThemeModifier.Services
                 {
                     resourcesLists.Add(new ResourcesList
                     {
-                        Key = "GridPanelSeparatorBrushItemBackgroundBrush",
+                        Key = "PanelSeparatorBrush",
                         Value = settings.PanelSeparatorBrush_EditGradient.ToLinearGradientBrush
+                    });
+                }
+
+                if (!settings.WindowPanelSeparatorBrush_Edit.IsNullOrEmpty())
+                {
+                    if (settings.WindowPanelSeparatorBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WindowPanelSeparatorBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.WindowPanelSeparatorBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.WindowPanelSeparatorBrush_Edit));
+                    }
+
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "WindowPanelSeparatorBrush",
+                        Value = color
+                    });
+                }
+                if (settings.WindowPanelSeparatorBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "WindowPanelSeparatorBrush",
+                        Value = settings.WindowPanelSeparatorBrush_EditGradient.ToLinearGradientBrush
                     });
                 }
 
@@ -968,6 +1036,33 @@ namespace ThemeModifier.Services
                     {
                         Key = "PopupBackgroundBrush",
                         Value = settings.PopupBackgroundBrush_EditGradient.ToLinearGradientBrush
+                    });
+                }
+
+                if (!settings.CheckBoxCheckMarkBkBrush_Edit.IsNullOrEmpty())
+                {
+                    if (settings.CheckBoxCheckMarkBkBrush_Edit.IndexOf("-") > -1)
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.CheckBoxCheckMarkBkBrush_Edit.Split('-')[0]));
+                        color.Opacity = double.Parse(settings.CheckBoxCheckMarkBkBrush_Edit.Split('-')[1]);
+                    }
+                    else
+                    {
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString(settings.CheckBoxCheckMarkBkBrush_Edit));
+                    }
+
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "CheckBoxCheckMarkBkBrush",
+                        Value = color
+                    });
+                }
+                if (settings.CheckBoxCheckMarkBkBrush_EditGradient.GradientStop1 != null)
+                {
+                    resourcesLists.Add(new ResourcesList
+                    {
+                        Key = "CheckBoxCheckMarkBkBrush",
+                        Value = settings.CheckBoxCheckMarkBkBrush_EditGradient.ToLinearGradientBrush
                     });
                 }
 

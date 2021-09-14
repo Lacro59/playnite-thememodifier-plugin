@@ -51,20 +51,27 @@ namespace ThemeModifier
         public ThemeLinearGradient GridItemBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string PanelSeparatorBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient PanelSeparatorBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public string WindowPanelSeparatorBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient WindowPanelSeparatorBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string PopupBackgroundBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient PopupBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public string CheckBoxCheckMarkBkBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient CheckBoxCheckMarkBkBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+
         public string PositiveRatingBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient PositiveRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string NegativeRatingBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient NegativeRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string MixedRatingBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient MixedRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+
+        public string WarningBrush_Edit { get; set; } = string.Empty;
+        public ThemeLinearGradient WarningBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+
         public string ExpanderBackgroundBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient ExpanderBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
         public string WindowBackgourndBrush_Edit { get; set; } = string.Empty;
         public ThemeLinearGradient WindowBackgourndBrush_EditGradient { get; set; } = new ThemeLinearGradient();
-        public string WarningBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient WarningBrush_EditGradient { get; set; } = new ThemeLinearGradient();
 
 
         public List<ThemeConstants> ThemesConstants = new List<ThemeConstants>();
