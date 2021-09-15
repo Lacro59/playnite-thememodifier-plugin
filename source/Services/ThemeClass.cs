@@ -1565,9 +1565,7 @@ namespace ThemeModifier.Services
             }
             catch(Exception ex)
             {
-                logger.Warn($"No the constants defined");
-                Common.LogError(ex, true);
-
+                Common.LogError(ex, false);
                 return new List<ThemeConstantsDefined>();
             }
         }
