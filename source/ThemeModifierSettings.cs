@@ -18,6 +18,7 @@ namespace ThemeModifier
 
 
         public bool EnableIntegrationButtonHeader { get; set; } = true;
+
         [DontSerialize]
         public bool OnlyEditConstant { get; set; } = false;
 
@@ -77,7 +78,7 @@ namespace ThemeModifier
         public List<ThemeConstants> ThemesConstants = new List<ThemeConstants>();
 
 
-        private bool _EnableIntegrationIcon { get; set; } = false;
+        private bool _EnableIntegrationIcon { get; set; } = true;
         public bool EnableIntegrationIcon
         {
             get => _EnableIntegrationIcon;
