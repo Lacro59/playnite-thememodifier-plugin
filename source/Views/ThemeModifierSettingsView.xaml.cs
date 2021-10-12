@@ -719,7 +719,7 @@ namespace ThemeModifier.Views
                     if (PART_SelectorColorPickerConstants.IsSimpleColor)
                     {
                         color = PART_SelectorColorPickerConstants.SimpleColor;
-                        colorBrush = PART_SelectorColorPickerConstants.SimpleSolidColorBrush;
+                        colorBrush = PART_SelectorColorPickerConstants.GetSolidColorBrush();
                         tbControl.Background = colorBrush;
 
                         if (Type == "color")
@@ -735,7 +735,7 @@ namespace ThemeModifier.Views
                     }
                     else
                     {
-                        linearGradientBrush = PART_SelectorColorPickerConstants.linearGradientBrush;
+                        linearGradientBrush = PART_SelectorColorPickerConstants.GetLinearGradientBrush();
                         tbControl.Background = linearGradientBrush;
 
                         if (Type == "color")
@@ -789,13 +789,14 @@ namespace ThemeModifier.Views
         {
             try
             {
+                tbControl = null;
+                lControl = null;
+
                 tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
                 lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
                 if (tbControl.Background is SolidColorBrush)
                 {
-                    //Color color = ((SolidColorBrush)tbControl.Background).Color;
-                    //PART_SelectorColorPicker.SetColors(color);
                     PART_SelectorColorPicker.SetColors((SolidColorBrush)tbControl.Background);
                 }
                 if (tbControl.Background is LinearGradientBrush)
@@ -861,20 +862,17 @@ namespace ThemeModifier.Views
 
         private void PART_TM_ColorOK_Click(object sender, RoutedEventArgs e)
         {
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
-
             if (tbControl != null && lControl != null)
             {
                 if (PART_SelectorColorPicker.IsSimpleColor)
                 {
-                    tbControl.Background = PART_SelectorColorPicker.SimpleSolidColorBrush;
-                    ThemeClass.SetThemeColor(lControl.Content.ToString(), PART_SelectorColorPicker.SimpleSolidColorBrush, _settings);
+                    tbControl.Background = PART_SelectorColorPicker.GetSolidColorBrush();
+                    ThemeClass.SetThemeColor(lControl.Content.ToString(), PART_SelectorColorPicker.GetSolidColorBrush(), _settings);
                 }
                 else
                 {
-                    linearGradientBrush = PART_SelectorColorPicker.linearGradientBrush;
-                    tbControl.Background = linearGradientBrush;
-                    ThemeClass.SetThemeColor(lControl.Content.ToString(), linearGradientBrush, _settings);
+                    tbControl.Background = PART_SelectorColorPicker.GetLinearGradientBrush();
+                    ThemeClass.SetThemeColor(lControl.Content.ToString(), PART_SelectorColorPicker.GetLinearGradientBrush(), _settings);
                 }
             }
             else
