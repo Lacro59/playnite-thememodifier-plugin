@@ -1540,24 +1540,34 @@ namespace ThemeModifier.Services
 
                 if (File.Exists(PathYaml))
                 {
-                    var deserializer = new DeserializerBuilder().Build();
-                    thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(PathYaml));
-
-                    var temp = (List<Object>)(thm.Constants);
-
-                    foreach (dynamic el in temp)
+                    try
                     {
-                        if (el is string)
+                        var deserializer = new DeserializerBuilder().Build();
+                        thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(PathYaml));
+
+                        if (thm != null && thm.Constants != null)
                         {
-                            themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)el });
-                        }
-                        else
-                        {
-                            foreach (var tt in el)
+                            var temp = (List<Object>)(thm.Constants);
+
+                            foreach (dynamic el in temp)
                             {
-                                themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)(tt.Key), Description = (string)(tt.Value) });
+                                if (el is string)
+                                {
+                                    themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)el });
+                                }
+                                else
+                                {
+                                    foreach (var tt in el)
+                                    {
+                                        themeConstantsDefined.Add(new ThemeConstantsDefined { Name = (string)(tt.Key), Description = (string)(tt.Value) });
+                                    }
+                                }
                             }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        Common.LogError(ex, false);
                     }
                 }
 
