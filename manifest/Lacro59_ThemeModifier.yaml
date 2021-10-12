@@ -26,3 +26,10 @@ Packages:
       - Playnite 9 beta version (not compatible with Playnite 8)
       - Added new theme color constants
       - Fixed an issue to load custom theme constants
+  - Version: 2.2.1
+    RequiredApiVersion: 6.0.0
+    ReleaseDate: 2021-10-12
+    PackageUrl: https://github.com/Lacro59/playnite-thememodifier-plugin/releases/download/v2.2.1/playnite-ThemeModifier-plugin_2_2_1.pext
+    Changelog:
+      - Playnite 9 version (not compatible with Playnite 8)
+      - Fixed many bugs
