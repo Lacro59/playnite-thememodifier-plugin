@@ -7,7 +7,7 @@
              xmlns:ThemeModifier="clr-namespace:ThemeModifier"
              xmlns:pcmd="clr-namespace:CommonPluginsShared"
              xmlns:AttachedProperties="clr-namespace:CommonPluginsShared.Controls"
-             xmlns:converters="clr-namespace:CommonPluginsPlaynite.Converters"
+             xmlns:converters="clr-namespace:CommonPlayniteShared.Converters"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance ThemeModifier:ThemeModifierSettingsViewModel}">
 

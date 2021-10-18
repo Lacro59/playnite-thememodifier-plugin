@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
 using ThemeModifier.Views;
-using CommonPluginsPlaynite;
+using CommonPlayniteShared;
 using CommonPluginsShared.PlayniteExtended;
 using CommonPlayniteShared.Manifests;
 using ThemeModifier.Controls;
