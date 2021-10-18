@@ -7,9 +7,9 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Редакто</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Редактор</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Менедже</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Менеджер</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Завантажити</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">Експортувати</sys:String>
 
@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCThemeModifierRestore">Відновити</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">Відновити значення за замовчуванням</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Показати рамку іконки</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">Застосувати зміни до іконок</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Відновити іконки</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Увімкнути в описі</sys:String>
@@ -29,6 +29,6 @@
     <sys:String x:Key="LOCThemeModifierEditThemeConstants">Редагувати константи</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Увімкнути інтеграцію списку функцій у ігровій деталя</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Увімкнути інтеграцію списку функцій у ігрових деталях</sys:String>
 
 </ResourceDictionary>
