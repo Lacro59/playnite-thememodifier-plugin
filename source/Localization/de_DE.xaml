@@ -21,14 +21,14 @@
     <sys:String x:Key="LOCThemeModifierRestore">Wiederherstellen</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">Standard wiederherstellen</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtSetIcons">Änderung auf Symbole anwenden</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Symbole wiederherstellen</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Icon Rahmen anzeigen </sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Änderung auf Icon anwenden</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Icon wiederherstellen</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">In Beschreibung aktivieren</sys:String>
 
     <sys:String x:Key="LOCThemeModifierEditThemeConstants">Konstanten bearbeiten</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Aktiviere die Integration der Feature-Liste in Spieldetails</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Aktiviere die Integration der Featureliste in Spieldetails</sys:String>
 
 </ResourceDictionary>
