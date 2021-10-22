@@ -7,9 +7,9 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Редактор</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Редакто</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Менеджер</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Менедже</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Завантажити</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">Експортувати</sys:String>
 
@@ -29,6 +29,6 @@
     <sys:String x:Key="LOCThemeModifierEditThemeConstants">Редагувати константи</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Увімкнути інтеграцію списку функцій у ігрових деталях</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Увімкнути інтеграцію списку функцій у ігрових деталя</sys:String>
 
 </ResourceDictionary>
