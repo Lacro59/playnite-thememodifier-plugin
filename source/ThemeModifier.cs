@@ -4,7 +4,6 @@ using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
@@ -268,7 +267,6 @@ namespace ThemeModifier
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            PluginSettings.Settings.OnlyEditConstant = false;
             return new ThemeModifierSettingsView(PlayniteApi, PluginSettings.Settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath, this.GetPluginUserDataPath());
         }
         #endregion

@@ -3,7 +3,6 @@ using Playnite.SDK.Data;
 using CommonPluginsShared;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -13,7 +12,6 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
-using YamlDotNet.Serialization;
 
 namespace ThemeModifier.Views
 {
