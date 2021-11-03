@@ -140,54 +140,15 @@ namespace ThemeModifier.Controls
     }
 
 
-    public class PluginIconDataContext : ObservableObject, IDataContext
+    public class PluginIconDataContext : ObservableObjectExtend, IDataContext
     {
-        private bool _IsActivated { get; set; }
-        public bool IsActivated
-        {
-            get => _IsActivated;
-            set
-            {
-                if (value.Equals(_IsActivated) == true)
-                {
-                    return;
-                }
+        private bool _IsActivated;
+        public bool IsActivated { get => _IsActivated; set => SetValue(ref _IsActivated, value);  }
 
-                _IsActivated = value;
-                OnPropertyChanged();
-            }
-        }
+        private BitmapImage _ImageFrame;
+        public BitmapImage ImageFrame { get => _ImageFrame; set => SetValue(ref _ImageFrame, value); }
 
-        private BitmapImage _ImageFrame { get; set; }
-        public BitmapImage ImageFrame
-        {
-            get => _ImageFrame;
-            set
-            {
-                if (value?.UriSource?.Equals(_ImageFrame?.UriSource) == true)
-                {
-                    return;
-                }
-
-                _ImageFrame = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private BitmapImage _ImageShape { get; set; }
-        public BitmapImage ImageShape
-        {
-            get => _ImageShape;
-            set
-            {
-                if (value?.UriSource?.Equals(_ImageShape?.UriSource) == true)
-                {
-                    return;
-                }
-
-                _ImageShape = value;
-                OnPropertyChanged();
-            }
-        }
+        private BitmapImage _ImageShape;
+        public BitmapImage ImageShape { get => _ImageShape; set => SetValue(ref _ImageShape, value); }
     }
 }
