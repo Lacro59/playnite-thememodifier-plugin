@@ -1241,7 +1241,7 @@ namespace ThemeModifier.Services
         #region Theme icons
         public static ThemeManifest GetActualTheme(IPlayniteAPI PlayniteApi)
         {
-            PlayniteTools.SetThemeInformation(PlayniteApi);
+            PlayniteTools.SetThemeInformation();
             return ThemeManager.CurrentTheme;
         }
 
