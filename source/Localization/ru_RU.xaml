@@ -7,11 +7,11 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Редактор</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Управлeние</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Загрузить</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuExport">Экспор</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Экспо</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageSaveOk">Файл сохранен</sys:String>
     <sys:String x:Key="LOCThemeModifierManageSaveKo">Файл не сохранён</sys:String>
@@ -21,14 +21,14 @@
     <sys:String x:Key="LOCThemeModifierRestore">Восстановить</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">По умолчанию</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Показать рамку значка</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">Применить изменения к значкам</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Восстановление иконок</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">Искать в описании</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Изменить константы</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Включить интеграцию с функциями в подробности игры</sys:String>
 
 </ResourceDictionary>

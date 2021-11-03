@@ -7,28 +7,28 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Redigering</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Load</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuExport">Export</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Håndtering</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Last inn</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Eksporter</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageSaveOk">File saved</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageSaveKo">File not saved</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageNoFile">The selected file is not a theme file</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">Fil lagret</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">Filen ble ikke lagret</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">Den valgte filen er ikke en temafil</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierPick">Choose</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestore">Restore</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
+    <sys:String x:Key="LOCThemeModifierPick">Velg</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">Gjenopprett</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">Gjenopprett standardverdi</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtSetIcons">Apply modification to icons</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restore icons</sys:String>
-    <sys:String x:Key="LOCThemeModifierEnableInDescription">Enable in description</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Vis ikonramme</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Bruk endring på ikoner</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Gjenopprett ikoner</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">Aktiver i beskrivelse</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Rediger konstanter</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Aktiver integrasjon av funksjonsliste i spilldetaljer</sys:String>
 
 </ResourceDictionary>
