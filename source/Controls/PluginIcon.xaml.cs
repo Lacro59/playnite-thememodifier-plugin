@@ -1,26 +1,18 @@
-﻿using CommonPluginsShared.Collections;
+﻿using CommonPlayniteShared;
+using CommonPluginsShared;
 using CommonPluginsShared.Controls;
 using CommonPluginsShared.Interfaces;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Threading;
 
 namespace ThemeModifier.Controls
 {
@@ -29,7 +21,7 @@ namespace ThemeModifier.Controls
     /// </summary>
     public partial class PluginIcon : PluginUserControlExtendBase
     {
-        private PluginIconDataContext ControlDataContext;
+        private PluginIconDataContext ControlDataContext = new PluginIconDataContext();
         internal override IDataContext _ControlDataContext
         {
             get
@@ -46,6 +38,35 @@ namespace ThemeModifier.Controls
         private ThemeModifierSettingsViewModel PluginSettings;
         private string PluginFolder;
 
+        private object CurrentIcon { get; set; }
+
+
+        #region Properties
+        public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
+            nameof(Icon),
+            typeof(string),
+            typeof(PluginIcon),
+            new FrameworkPropertyMetadata(string.Empty, IconChanged)
+        );
+        public string Icon
+        {
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+        private static void IconChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            try
+            {
+                var control = (PluginIcon)obj;
+                control.LoadNewIcon(args.NewValue, args.OldValue);
+            }
+            catch (Exception ex)
+            {
+                Common.LogError(ex, false);
+            }
+        }
+        #endregion
+
 
         public PluginIcon(IPlayniteAPI PlayniteApi, ThemeModifierSettingsViewModel PluginSettings)
         {
@@ -55,101 +76,106 @@ namespace ThemeModifier.Controls
 
             InitializeComponent();
 
-            Task.Run(() =>
-            {
-                this.Dispatcher.BeginInvoke((Action)delegate
-                {
-                    this.PluginSettings.PropertyChanged += PluginSettings_PropertyChanged;
-                    this.PlayniteApi.Database.Games.ItemUpdated += Games_ItemUpdated;
+            this.DataContext = ControlDataContext;
 
-                    // Apply settings
-                    PluginSettings_PropertyChanged(null, null);
-                });
-            });
+            this.PluginSettings.PropertyChanged += PluginSettings_PropertyChanged;
+            this.PlayniteApi.Database.Games.ItemUpdated += Games_ItemUpdated;
+
+            // Apply settings
+            PluginSettings_PropertyChanged(null, null);
         }
 
 
         public override void SetDefaultDataContext()
         {
-            ControlDataContext = new PluginIconDataContext
-            {
-                IsActivated = PluginSettings.Settings.EnableIntegrationIcon,
+            ControlDataContext.IsActivated = PluginSettings.Settings.EnableIntegrationIcon;
 
-                ImageBitmap = null,
-                ImageFrame = string.Empty,
-                ImageShape = string.Empty
-            };
+            ControlDataContext.ImageFrame = PluginSettings.Settings.BitmapFrame;
+            ControlDataContext.ImageShape = PluginSettings.Settings.BitmapShape;
         }
          
 
-        public override Task<bool> SetData(Game newContext)
+        public override void SetData(Game newContext)
         {
-            string Icon = GameContext.Icon;
-            BitmapImage GameIcon = null;
+            this.Icon = PlayniteApi.Database.GetFullFilePath(GameContext.Icon);
+        }
 
-            if (!Icon.IsNullOrEmpty())
+
+        private async void LoadNewIcon(object newSource, object oldSource)
+        {
+            if (newSource?.Equals(CurrentIcon) == true)
             {
-                string IconPath = PlayniteApi.Database.GetFullFilePath(Icon);
-
-                if (File.Exists(IconPath))
-                {
-                    GameIcon = BitmapExtensions.BitmapFromFile(IconPath);
-                }
+                return;
             }
 
-            if (GameIcon == null)
+            CurrentIcon = newSource;
+            BitmapImage image = null;
+
+            if (newSource != null)
             {
-                GameIcon = (BitmapImage)resources.GetResource("DefaultGameIcon");
+                image = await Task.Factory.StartNew(() =>
+                {
+                    if (newSource is string str)
+                    {
+                        BitmapImage tmpImage = ImageSourceManager.GetImage(str, false);
+
+                        if (tmpImage != null)
+                        {
+                            return tmpImage;
+                        }
+                    }
+
+                    return (BitmapImage)resources.GetResource("DefaultGameIcon");
+                });
             }
 
-            return Task.Run(() =>
-            {
-                string ImageName = string.Empty;
-                if (PluginSettings.Settings.UseIconCircle)
-                {
-                    ImageName = "circle";
-                }
-                if (PluginSettings.Settings.UseIconClock)
-                {
-                    ImageName = "clock";
-                }
-                if (PluginSettings.Settings.UseIconSquareCorne)
-                {
-                    ImageName = "squareCorne";
-                }
-                if (PluginSettings.Settings.UseIconWe4ponx)
-                {
-                    ImageName = "we4ponx";
-                }
-
-                string ImageFramePath = Path.Combine(PluginFolder, "Resources", "Images", ImageName + ".png");
-                string ImageShapePath = Path.Combine(PluginFolder, "Resources", "Images", ImageName + "Shape.png");
-
-                if (File.Exists(ImageFramePath) && File.Exists(ImageShapePath))
-                {
-                    ControlDataContext.ImageFrame = ImageFramePath;
-                    ControlDataContext.ImageShape = ImageShapePath;
-                }
-
-                ControlDataContext.ImageBitmap = GameIcon;
-
-                this.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new ThreadStart(delegate
-                {
-                    this.DataContext = ControlDataContext;
-                }));
-
-                return true;
-            });
+            PART_Image.Source = image;
         }
     }
 
 
-    public class PluginIconDataContext : IDataContext
+    public class PluginIconDataContext : ObservableObject, IDataContext
     {
-        public bool IsActivated { get; set; }
-        
-        public BitmapImage ImageBitmap { get; set; }
-        public string ImageFrame { get; set; }
-        public string ImageShape { get; set; }
+        private bool _IsActivated { get; set; }
+        public bool IsActivated
+        {
+            get => _IsActivated;
+            set
+            {
+                _IsActivated = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private BitmapImage _ImageFrame { get; set; }
+        public BitmapImage ImageFrame
+        {
+            get => _ImageFrame;
+            set
+            {
+                if (value?.UriSource?.Equals(_ImageFrame?.UriSource) == true)
+                {
+                    return;
+                }
+
+                _ImageFrame = value;
+                OnPropertyChanged();
+            }
+        }
+        private BitmapImage _ImageShape { get; set; }
+        public BitmapImage ImageShape
+        {
+            get => _ImageShape;
+            set
+            {
+                if (value?.UriSource?.Equals(_ImageShape?.UriSource) == true)
+                {
+                    return;
+                }
+
+                _ImageShape = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

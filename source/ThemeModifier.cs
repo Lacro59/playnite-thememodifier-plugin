@@ -64,6 +64,43 @@ namespace ThemeModifier
                 SourceName = "ThemeModifier",
                 SettingsRoot = $"{nameof(PluginSettings)}.{nameof(PluginSettings.Settings)}"
             });
+
+
+            SetFrame(PluginSettings, PluginFolder);
+        }
+
+
+        public static void SetFrame(ThemeModifierSettingsViewModel PluginSettings, string PluginFolder)
+        {
+            if (PluginSettings.Settings.EnableIntegrationIcon)
+            {
+                string ImageName = string.Empty;
+                if (PluginSettings.Settings.UseIconCircle)
+                {
+                    ImageName = "circle";
+                }
+                if (PluginSettings.Settings.UseIconClock)
+                {
+                    ImageName = "clock";
+                }
+                if (PluginSettings.Settings.UseIconSquareCorne)
+                {
+                    ImageName = "squareCorne";
+                }
+                if (PluginSettings.Settings.UseIconWe4ponx)
+                {
+                    ImageName = "we4ponx";
+                }
+
+                string ImageFramePath = Path.Combine(PluginFolder, "Resources", "Images", ImageName + ".png");
+                string ImageShapePath = Path.Combine(PluginFolder, "Resources", "Images", ImageName + "Shape.png");
+
+                if (File.Exists(ImageFramePath) && File.Exists(ImageShapePath))
+                {
+                    PluginSettings.Settings.BitmapFrame = new BitmapImage(new Uri(ImageFramePath));
+                    PluginSettings.Settings.BitmapShape = new BitmapImage(new Uri(ImageShapePath));
+                }
+            }
         }
 
 

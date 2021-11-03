@@ -10,9 +10,10 @@
         d:DataContext="{d:DesignInstance local:PluginIconDataContext}">
 
     <Grid>
-        <Image Source="{Binding ImageFrame}" RenderOptions.BitmapScalingMode="Fant" />
+        <Image Name="PART_ImageShape" Source="{Binding ImageFrame}" RenderOptions.BitmapScalingMode="Fant" />
 
-        <Image Source="{Binding ImageBitmap}" RenderOptions.BitmapScalingMode="Fant">
+        <Image Name="PART_Image" Source="{DynamicResource DefaultGameIcon}" RenderOptions.BitmapScalingMode="Fant"
+               Width="{Binding ElementName=PART_ImageShape, Path=ActualWidth}">
             <Image.OpacityMask>
                 <ImageBrush ImageSource="{Binding ImageShape}" />
             </Image.OpacityMask>

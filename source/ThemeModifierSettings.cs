@@ -2,9 +2,12 @@
 using Playnite.SDK.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
 using ThemeModifier.Views;
@@ -15,6 +18,11 @@ namespace ThemeModifier
     {
         #region Settings variables
         public bool MenuInExtensions { get; set; } = true;
+
+        [DontSerialize]
+        public BitmapImage BitmapFrame { get; set; }
+        [DontSerialize]
+        public BitmapImage BitmapShape { get; set; }
 
 
         public bool EnableIntegrationButtonHeader { get; set; } = true;
@@ -157,6 +165,9 @@ namespace ThemeModifier
 
             ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);
             ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeActualConstants);
+
+            ThemeModifier.SetFrame(this, Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            this.OnPropertyChanged();
         }
 
         // Code executed when user decides to confirm changes made since BeginEdit was called.
@@ -169,6 +180,7 @@ namespace ThemeModifier
             ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);
             ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeActualConstants);
 
+            ThemeModifier.SetFrame(this, Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
             Plugin.SavePluginSettings(Settings);
             this.OnPropertyChanged();
