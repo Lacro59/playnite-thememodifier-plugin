@@ -275,6 +275,7 @@ namespace ThemeModifier
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
+            PluginSettings.Settings.OnlyEditConstant = false;
             return new ThemeModifierSettingsView(PlayniteApi, PluginSettings.Settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath, this.GetPluginUserDataPath());
         }
         #endregion
