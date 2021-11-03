@@ -1,23 +1,16 @@
 ﻿using Playnite.SDK;
-using Playnite.SDK.Data;
 using Playnite.SDK.Events;
-using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
-using CommonPluginsShared;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ThemeModifier.Models;
 using ThemeModifier.Services;
 using ThemeModifier.Views;
-using CommonPlayniteShared;
 using CommonPluginsShared.PlayniteExtended;
-using CommonPlayniteShared.Manifests;
 using ThemeModifier.Controls;
 using System.Windows.Media;
 
