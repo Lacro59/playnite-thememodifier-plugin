@@ -75,7 +75,6 @@ namespace ThemeModifier.Controls
             this.PluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             InitializeComponent();
-
             this.DataContext = ControlDataContext;
 
             this.PluginSettings.PropertyChanged += PluginSettings_PropertyChanged;
@@ -97,7 +96,14 @@ namespace ThemeModifier.Controls
 
         public override void SetData(Game newContext)
         {
-            this.Icon = PlayniteApi.Database.GetFullFilePath(GameContext.Icon);
+            if (!GameContext.Icon.IsNullOrEmpty())
+            {
+                this.Icon = PlayniteApi.Database.GetFullFilePath(GameContext.Icon);
+            }
+            else
+            {
+                this.Icon = string.Empty;
+            }
         }
 
 
@@ -142,6 +148,11 @@ namespace ThemeModifier.Controls
             get => _IsActivated;
             set
             {
+                if (value.Equals(_IsActivated) == true)
+                {
+                    return;
+                }
+
                 _IsActivated = value;
                 OnPropertyChanged();
             }
@@ -162,6 +173,7 @@ namespace ThemeModifier.Controls
                 OnPropertyChanged();
             }
         }
+
         private BitmapImage _ImageShape { get; set; }
         public BitmapImage ImageShape
         {
