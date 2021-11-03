@@ -494,7 +494,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false);
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -555,7 +555,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false);
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -697,7 +697,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false);
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -810,7 +810,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false);
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -829,7 +829,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false);
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -855,7 +855,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false);
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -989,7 +989,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error on load {PathFileName}");
+                Common.LogError(ex, false, $"Error on load {PathFileName}", true, "ThemeModifier");
             }
         }
 
@@ -1006,7 +1006,7 @@ namespace ThemeModifier.Views
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error on remove {((FrameworkElement)sender).Tag.ToString()}");
+                Common.LogError(ex, false, $"Error on remove {((FrameworkElement)sender).Tag.ToString()}", true, "ThemeModifier");
             }
         }
 

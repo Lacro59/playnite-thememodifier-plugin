@@ -446,7 +446,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, "Error on SetThemeColor()");
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -567,7 +567,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, "Error on RestoreColor()");
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -1232,7 +1232,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, "Error on SetThemeSettings()");
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
         #endregion
@@ -1312,7 +1312,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, "Error on CreateControl()");
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
 
             return null;
@@ -1385,7 +1385,7 @@ namespace ThemeModifier.Services
                 }
                 catch (Exception ex)
                 {
-                    Common.LogError(ex, false, $"Error to parse file {objectFile}");
+                    Common.LogError(ex, false, true, "ThemeModifier");
                 }
             });
 
@@ -1400,7 +1400,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error to delete file {PathFileName}");
+                Common.LogError(ex, false, $"Error to delete file {PathFileName}", true, "ThemeModifier");
             }
         }
         public static void DeleteThemeColors(ThemeColors themeColors, string PluginUserDataPath)
@@ -1425,7 +1425,7 @@ namespace ThemeModifier.Services
                 }
                 catch (Exception ex)
                 {
-                    Common.LogError(ex, false, $"Error to delete file {objectFile}");
+                    Common.LogError(ex, false, $"Error to delete file {objectFile}", true, "ThemeModifier");
                 }
             });
         }
@@ -1446,7 +1446,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error to create file {PathThemeColorsFile} for {themeColors.Name}");
+                Common.LogError(ex, false, $"Error to create file {PathThemeColorsFile} for {themeColors.Name}", true, "ThemeModifier");
             }
         }
 
@@ -1511,7 +1511,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error for save theme {ThemeName}");
+                Common.LogError(ex, false, $"Error for save theme {ThemeName}", true, "ThemeModifier");
                 return false;
             }
 
@@ -1567,7 +1567,7 @@ namespace ThemeModifier.Services
                     }
                     catch (Exception ex)
                     {
-                        Common.LogError(ex, false);
+                        Common.LogError(ex, false, true, "ThemeModifier");
                     }
                 }
 
@@ -1575,7 +1575,7 @@ namespace ThemeModifier.Services
             }
             catch(Exception ex)
             {
-                Common.LogError(ex, false);
+                Common.LogError(ex, false, true, "ThemeModifier");
                 return new List<ThemeConstantsDefined>();
             }
         }
@@ -1609,7 +1609,7 @@ namespace ThemeModifier.Services
                         }
                         catch (Exception ex)
                         {
-                            Common.LogError(ex, false);
+                            Common.LogError(ex, false, true, "ThemeModifier");
                         }
                     }
 
@@ -1681,7 +1681,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, "Error on SetThemeSettingsConstans()");
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
         }
 
@@ -1708,7 +1708,7 @@ namespace ThemeModifier.Services
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error on GetThemesConstants()");
+                Common.LogError(ex, false, true, "ThemeModifier");
             }
 
             return ThemesConstants;
