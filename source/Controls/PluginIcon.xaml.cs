@@ -36,7 +36,6 @@ namespace ThemeModifier.Controls
 
         private IPlayniteAPI PlayniteApi;
         private ThemeModifierSettingsViewModel PluginSettings;
-        private string PluginFolder;
 
         private object CurrentIcon { get; set; }
 
@@ -72,7 +71,6 @@ namespace ThemeModifier.Controls
         {
             this.PlayniteApi = PlayniteApi;
             this.PluginSettings = PluginSettings;
-            this.PluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             InitializeComponent();
             this.DataContext = ControlDataContext;
@@ -117,6 +115,8 @@ namespace ThemeModifier.Controls
             CurrentIcon = newSource;
             BitmapImage image = null;
 
+            PART_Image.Source = (BitmapImage)resources.GetResource("DefaultGameIcon");
+
             if (newSource != null)
             {
                 image = await Task.Factory.StartNew(() =>
@@ -140,7 +140,7 @@ namespace ThemeModifier.Controls
     }
 
 
-    public class PluginIconDataContext : ObservableObjectExtend, IDataContext
+    public class PluginIconDataContext : ObservableObject, IDataContext
     {
         private bool _IsActivated;
         public bool IsActivated { get => _IsActivated; set => SetValue(ref _IsActivated, value);  }
