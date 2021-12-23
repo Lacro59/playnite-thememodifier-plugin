@@ -269,15 +269,11 @@ namespace ThemeModifier.Views
                     ComboBoxItem cbItem1 = new ComboBoxItem();
                     cbItem1.Tag = Visibility.Collapsed;
                     cbItem1.Content = "Collapsed";
-                    //ComboBoxItem cbItem2 = new ComboBoxItem();
-                    //cbItem2.Tag = Visibility.Hidden;
-                    //cbItem2.Content = "Hidden";
                     ComboBoxItem cbItem3 = new ComboBoxItem();
                     cbItem3.Tag = Visibility.Visible;
                     cbItem3.Content = "Visible";
 
                     ((ComboBox)control).Items.Add(cbItem1);
-                    //((ComboBox)control).Items.Add(cbItem2);
                     ((ComboBox)control).Items.Add(cbItem3);
 
                     switch (elSaved)
@@ -379,6 +375,12 @@ namespace ThemeModifier.Views
 
                 if (IsTitle)
                 {
+                    if (iRow != 0)
+                    {
+                        PART_ConstantsThemeEdit.RowDefinitions[iRow].Height = new GridLength(20);
+                        iRow++;
+                    }
+
                     tb.FontWeight = FontWeights.Bold;
                     tb.TextDecorations = TextDecorations.Underline;
                 }

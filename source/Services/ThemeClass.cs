@@ -1455,7 +1455,7 @@ namespace ThemeModifier.Services
             ThemeColors themeColors = new ThemeColors { Name = ThemeName };
 
             string PathThemeColors = Path.Combine(PluginUserDataPath, "ThemeColors");
-            string PathThemeColorsFile = PathThemeColorsFile = Path.Combine(PathThemeColors, Paths.GetSafePathName(ThemeName) + ".json");
+            string PathThemeColorsFile = PathThemeColorsFile = Path.Combine(PathThemeColors, CommonPlayniteShared.Common.Paths.GetSafePathName(ThemeName) + ".json");
 
             try
             {
@@ -1521,7 +1521,7 @@ namespace ThemeModifier.Services
         public static bool ThemeFileExist(string ThemeName, string PluginUserDataPath)
         {
             string PathThemeColors = Path.Combine(PluginUserDataPath, "ThemeColors");
-            string PathThemeColorsFile = PathThemeColorsFile = Path.Combine(PathThemeColors, Paths.GetSafePathName(ThemeName) + ".json");
+            string PathThemeColorsFile = PathThemeColorsFile = Path.Combine(PathThemeColors, CommonPlayniteShared.Common.Paths.GetSafePathName(ThemeName) + ".json");
 
             return File.Exists(PathThemeColorsFile);
         }
