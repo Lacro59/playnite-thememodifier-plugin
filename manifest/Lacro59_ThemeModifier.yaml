@@ -45,3 +45,10 @@ Packages:
     PackageUrl: https://github.com/Lacro59/playnite-thememodifier-plugin/releases/download/v2.2.3/playnite-ThemeModifier-plugin_2_2_3.pext
     Changelog:
       - Improved performances
+  - Version: 2.2.4
+    RequiredApiVersion: 6.2.0
+    ReleaseDate: 2021-12-23
+    PackageUrl: https://github.com/Lacro59/playnite-thememodifier-plugin/releases/download/v2.2.4/playnite-ThemeModifier-plugin_2_2_4.pext
+    Changelog:
+      - UI tweaks
+      - Updated localizations
