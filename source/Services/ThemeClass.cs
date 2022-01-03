@@ -20,6 +20,7 @@ using CommonPlayniteShared.Common;
 using System.Text.RegularExpressions;
 using CommonPlayniteShared.Manifests;
 using System.Text;
+using CommonPluginsShared.Models;
 
 namespace ThemeModifier.Services
 {

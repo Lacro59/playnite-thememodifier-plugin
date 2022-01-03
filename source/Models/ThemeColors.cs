@@ -1,4 +1,5 @@
-﻿using Playnite.SDK.Data;
+﻿using CommonPluginsShared.Models;
+using Playnite.SDK.Data;
 using System.Collections.Generic;
 
 namespace ThemeModifier.Models

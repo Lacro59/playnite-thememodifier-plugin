@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using CommonPluginsShared.Models;
+using Playnite.SDK;
 using Playnite.SDK.Data;
 using System;
 using System.Collections.Generic;
