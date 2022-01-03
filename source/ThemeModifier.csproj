@@ -94,6 +94,7 @@
     <Compile Include="Models\ThemeColors.cs" />
     <Compile Include="Models\ThemeConstants.cs" />
     <Compile Include="Models\ThemeElement.cs" />
+    <Compile Include="Models\ThemeLinearGradient.cs" />
     <Compile Include="playnite-plugincommon\CommonPluginsControls\Controls\ControlPickerGradient.xaml.cs">
       <DependentUpon>ControlPickerGradient.xaml</DependentUpon>
     </Compile>

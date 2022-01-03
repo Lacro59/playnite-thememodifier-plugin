@@ -1,5 +1,4 @@
-﻿using CommonPluginsShared.Models;
-using Playnite.SDK.Data;
+﻿using Playnite.SDK.Data;
 using System.Collections.Generic;
 
 namespace ThemeModifier.Models
@@ -16,6 +15,6 @@ namespace ThemeModifier.Models
     {
         public string Name { get; set; }
         public string ColorString { get; set; } = string.Empty;
-        public LinearGradient ColorLinear { get; set; } = new LinearGradient();
+        public ThemeLinearGradient ColorLinear { get; set; } = new ThemeLinearGradient();
     }
 }
