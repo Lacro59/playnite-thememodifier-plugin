@@ -19,6 +19,7 @@ using CommonPlayniteShared;
 using CommonPlayniteShared.Common;
 using System.Text.RegularExpressions;
 using CommonPlayniteShared.Manifests;
+using CommonPluginsShared.Models;
 using System.Text;
 
 namespace ThemeModifier.Services
@@ -294,11 +295,11 @@ namespace ThemeModifier.Services
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
                 string colorString = string.Empty;
-                ThemeLinearGradient themeLinearGradient = new ThemeLinearGradient();
+                LinearGradient LinearGradient = new LinearGradient();
 
                 if (color != null)
                 {
-                    if (color is ThemeLinearGradient)
+                    if (color is LinearGradient)
                     {
                         color = color.ToLinearGradientBrush;
                     }
@@ -312,16 +313,16 @@ namespace ThemeModifier.Services
                     {
                         resourcesLists.Add(new ResourcesList { Key = name, Value = color });
 
-                        themeLinearGradient = new ThemeLinearGradient
+                        LinearGradient = new LinearGradient
                         {
                             StartPoint = color.StartPoint,
                             EndPoint = color.EndPoint,
-                            GradientStop1 = new ThemeGradientColor
+                            GradientStop1 = new GradientColor
                             {
                                 ColorString = color.GradientStops[0].Color.ToString(),
                                 ColorOffset = color.GradientStops[0].Offset
                             },
-                            GradientStop2 = new ThemeGradientColor
+                            GradientStop2 = new GradientColor
                             {
                                 ColorString = color.GradientStops[1].Color.ToString(),
                                 ColorOffset = color.GradientStops[1].Offset
@@ -350,97 +351,97 @@ namespace ThemeModifier.Services
                 {
                     case "ControlBackgroundBrush":
                         settings.ControlBackgroundBrush_Edit = colorString;
-                        settings.ControlBackgroundBrush_EditGradient = themeLinearGradient;
+                        settings.ControlBackgroundBrush_EditGradient = LinearGradient;
                         break;
                     case "TextBrush":
                         settings.TextBrush_Edit = colorString;
-                        settings.TextBrush_EditGradient = themeLinearGradient;
+                        settings.TextBrush_EditGradient = LinearGradient;
                         break;
                     case "TextBrushDarker":
                         settings.TextBrushDarker_Edit = colorString;
-                        settings.TextBrushDarker_EditGradient = themeLinearGradient;
+                        settings.TextBrushDarker_EditGradient = LinearGradient;
                         break;
                     case "TextBrushDark":
                         settings.TextBrushDark_Edit = colorString;
-                        settings.TextBrushDark_EditGradient = themeLinearGradient;
+                        settings.TextBrushDark_EditGradient = LinearGradient;
                         break;
                     case "NormalBrush":
                         settings.NormalBrush_Edit = colorString;
-                        settings.NormalBrush_EditGradient = themeLinearGradient;
+                        settings.NormalBrush_EditGradient = LinearGradient;
                         break;
                     case "NormalBrushDark":
                         settings.NormalBrushDark_Edit = colorString;
-                        settings.NormalBrushDark_EditGradient = themeLinearGradient;
+                        settings.NormalBrushDark_EditGradient = LinearGradient;
                         break;
                     case "NormalBorderBrush":
                         settings.NormalBorderBrush_Edit = colorString;
-                        settings.NormalBorderBrush_EditGradient = themeLinearGradient;
+                        settings.NormalBorderBrush_EditGradient = LinearGradient;
                         break;
                     case "HoverBrush":
                         settings.HoverBrush_Edit = colorString;
-                        settings.HoverBrush_EditGradient = themeLinearGradient;
+                        settings.HoverBrush_EditGradient = LinearGradient;
                         break;
                     case "GlyphBrush":
                         settings.GlyphBrush_Edit = colorString;
-                        settings.GlyphBrush_EditGradient = themeLinearGradient;
+                        settings.GlyphBrush_EditGradient = LinearGradient;
                         break;
                     case "HighlightGlyphBrush":
                         settings.HighlightGlyphBrush_Edit = colorString;
-                        settings.HighlightGlyphBrush_EditGradient = themeLinearGradient;
+                        settings.HighlightGlyphBrush_EditGradient = LinearGradient;
                         break;
                     case "PopupBorderBrush":
                         settings.PopupBorderBrush_Edit = colorString;
-                        settings.PopupBorderBrush_EditGradient = themeLinearGradient;
+                        settings.PopupBorderBrush_EditGradient = LinearGradient;
                         break;
                     case "TooltipBackgroundBrush":
                         settings.TooltipBackgroundBrush_Edit = colorString;
-                        settings.TooltipBackgroundBrush_EditGradient = themeLinearGradient;
+                        settings.TooltipBackgroundBrush_EditGradient = LinearGradient;
                         break;
                     case "ButtonBackgroundBrush":
                         settings.ButtonBackgroundBrush_Edit = colorString;
-                        settings.ButtonBackgroundBrush_EditGradient = themeLinearGradient;
+                        settings.ButtonBackgroundBrush_EditGradient = LinearGradient;
                         break;
                     case "GridItemBackgroundBrush":
                         settings.GridItemBackgroundBrush_Edit = colorString;
-                        settings.GridItemBackgroundBrush_EditGradient = themeLinearGradient;
+                        settings.GridItemBackgroundBrush_EditGradient = LinearGradient;
                         break;
                     case "PanelSeparatorBrush":
                         settings.PanelSeparatorBrush_Edit = colorString;
-                        settings.PanelSeparatorBrush_EditGradient = themeLinearGradient;
+                        settings.PanelSeparatorBrush_EditGradient = LinearGradient;
                         break;
                     case "WindowPanelSeparatorBrush":
                         settings.WindowPanelSeparatorBrush_Edit = colorString;
-                        settings.WindowPanelSeparatorBrush_EditGradient = themeLinearGradient;
+                        settings.WindowPanelSeparatorBrush_EditGradient = LinearGradient;
                         break;
                     case "PopupBackgroundBrush":
                         settings.PopupBackgroundBrush_Edit = colorString;
-                        settings.PopupBackgroundBrush_EditGradient = themeLinearGradient;
+                        settings.PopupBackgroundBrush_EditGradient = LinearGradient;
                         break;
                     case "CheckBoxCheckMarkBkBrush":
                         settings.CheckBoxCheckMarkBkBrush_Edit = colorString;
-                        settings.CheckBoxCheckMarkBkBrush_EditGradient = themeLinearGradient;
+                        settings.CheckBoxCheckMarkBkBrush_EditGradient = LinearGradient;
                         break;
 
                     case "PositiveRatingBrush":
                         settings.PositiveRatingBrush_Edit = colorString;
-                        settings.PositiveRatingBrush_EditGradient = themeLinearGradient;
+                        settings.PositiveRatingBrush_EditGradient = LinearGradient;
                         break;
                     case "NegativeRatingBrush":
                         settings.NegativeRatingBrush_Edit = colorString;
-                        settings.NegativeRatingBrush_EditGradient = themeLinearGradient;
+                        settings.NegativeRatingBrush_EditGradient = LinearGradient;
                         break;
                     case "MixedRatingBrush":
                         settings.MixedRatingBrush_Edit = colorString;
-                        settings.MixedRatingBrush_EditGradient = themeLinearGradient;
+                        settings.MixedRatingBrush_EditGradient = LinearGradient;
                         break;
 
                     case "ExpanderBackgroundBrush":
                         settings.ExpanderBackgroundBrush_Edit = colorString;
-                        settings.ExpanderBackgroundBrush_EditGradient = themeLinearGradient;
+                        settings.ExpanderBackgroundBrush_EditGradient = LinearGradient;
                         break;
                     case "WindowBackgourndBrush":
                         settings.WindowBackgourndBrush_Edit = colorString;
-                        settings.WindowBackgourndBrush_EditGradient = themeLinearGradient;
+                        settings.WindowBackgourndBrush_EditGradient = LinearGradient;
                         break;
                 }
             }
@@ -467,97 +468,97 @@ namespace ThemeModifier.Services
                     {
                         resourcesLists.Add(new ResourcesList { Key = themeElement.Name, Value = themeElement.Element });
 
-                        ThemeLinearGradient themeLinearGradient = new ThemeLinearGradient();
+                        LinearGradient LinearGradient = new LinearGradient();
 
                         switch (themeElement.Name)
                         {
                             case "ControlBackgroundBrush":
                                 settings.ControlBackgroundBrush_Edit = string.Empty;
-                                settings.ControlBackgroundBrush_EditGradient = themeLinearGradient;
+                                settings.ControlBackgroundBrush_EditGradient = LinearGradient;
                                 break;
                             case "TextBrush":
                                 settings.TextBrush_Edit = string.Empty;
-                                settings.TextBrush_EditGradient = themeLinearGradient;
+                                settings.TextBrush_EditGradient = LinearGradient;
                                 break;
                             case "TextBrushDarker":
                                 settings.TextBrushDarker_Edit = string.Empty;
-                                settings.TextBrushDarker_EditGradient = themeLinearGradient;
+                                settings.TextBrushDarker_EditGradient = LinearGradient;
                                 break;
                             case "TextBrushDark":
                                 settings.TextBrushDark_Edit = string.Empty;
-                                settings.TextBrushDark_EditGradient = themeLinearGradient;
+                                settings.TextBrushDark_EditGradient = LinearGradient;
                                 break;
                             case "NormalBrush":
                                 settings.NormalBrush_Edit = string.Empty;
-                                settings.NormalBrush_EditGradient = themeLinearGradient;
+                                settings.NormalBrush_EditGradient = LinearGradient;
                                 break;
                             case "NormalBrushDark":
                                 settings.NormalBrushDark_Edit = string.Empty;
-                                settings.NormalBrushDark_EditGradient = themeLinearGradient;
+                                settings.NormalBrushDark_EditGradient = LinearGradient;
                                 break;
                             case "NormalBorderBrush":
                                 settings.NormalBorderBrush_Edit = string.Empty;
-                                settings.NormalBorderBrush_EditGradient = themeLinearGradient;
+                                settings.NormalBorderBrush_EditGradient = LinearGradient;
                                 break;
                             case "HoverBrush":
                                 settings.HoverBrush_Edit = string.Empty;
-                                settings.HoverBrush_EditGradient = themeLinearGradient;
+                                settings.HoverBrush_EditGradient = LinearGradient;
                                 break;
                             case "GlyphBrush":
                                 settings.GlyphBrush_Edit = string.Empty;
-                                settings.GlyphBrush_EditGradient = themeLinearGradient;
+                                settings.GlyphBrush_EditGradient = LinearGradient;
                                 break;
                             case "HighlightGlyphBrush":
                                 settings.HighlightGlyphBrush_Edit = string.Empty;
-                                settings.HighlightGlyphBrush_EditGradient = themeLinearGradient;
+                                settings.HighlightGlyphBrush_EditGradient = LinearGradient;
                                 break;
                             case "PopupBorderBrush":
                                 settings.PopupBorderBrush_Edit = string.Empty;
-                                settings.PopupBorderBrush_EditGradient = themeLinearGradient;
+                                settings.PopupBorderBrush_EditGradient = LinearGradient;
                                 break;
                             case "TooltipBackgroundBrush":
                                 settings.TooltipBackgroundBrush_Edit = string.Empty;
-                                settings.TooltipBackgroundBrush_EditGradient = themeLinearGradient;
+                                settings.TooltipBackgroundBrush_EditGradient = LinearGradient;
                                 break;
                             case "ButtonBackgroundBrush":
                                 settings.ButtonBackgroundBrush_Edit = string.Empty;
-                                settings.ButtonBackgroundBrush_EditGradient = themeLinearGradient;
+                                settings.ButtonBackgroundBrush_EditGradient = LinearGradient;
                                 break;
                             case "GridItemBackgroundBrush":
                                 settings.GridItemBackgroundBrush_Edit = string.Empty;
-                                settings.GridItemBackgroundBrush_EditGradient = themeLinearGradient;
+                                settings.GridItemBackgroundBrush_EditGradient = LinearGradient;
                                 break;
                             case "PanelSeparatorBrush":
                                 settings.PanelSeparatorBrush_Edit = string.Empty;
-                                settings.PanelSeparatorBrush_EditGradient = themeLinearGradient;
+                                settings.PanelSeparatorBrush_EditGradient = LinearGradient;
                                 break;
                             case "WindowPanelSeparatorBrush":
                                 settings.WindowPanelSeparatorBrush_Edit = string.Empty;
-                                settings.WindowPanelSeparatorBrush_EditGradient = themeLinearGradient;
+                                settings.WindowPanelSeparatorBrush_EditGradient = LinearGradient;
                                 break;
                             case "PopupBackgroundBrush":
                                 settings.PopupBackgroundBrush_Edit = string.Empty;
-                                settings.PopupBackgroundBrush_EditGradient = themeLinearGradient;
+                                settings.PopupBackgroundBrush_EditGradient = LinearGradient;
                                 break;
                             case "CheckBoxCheckMarkBkBrush":
                                 settings.CheckBoxCheckMarkBkBrush_Edit = string.Empty;
-                                settings.CheckBoxCheckMarkBkBrush_EditGradient = themeLinearGradient;
+                                settings.CheckBoxCheckMarkBkBrush_EditGradient = LinearGradient;
                                 break;
                             case "PositiveRatingBrush":
                                 settings.PositiveRatingBrush_Edit = string.Empty;
-                                settings.PositiveRatingBrush_EditGradient = themeLinearGradient;
+                                settings.PositiveRatingBrush_EditGradient = LinearGradient;
                                 break;
                             case "NegativeRatingBrush":
                                 settings.NegativeRatingBrush_Edit = string.Empty;
-                                settings.NegativeRatingBrush_EditGradient = themeLinearGradient;
+                                settings.NegativeRatingBrush_EditGradient = LinearGradient;
                                 break;
                             case "MixedRatingBrush":
                                 settings.MixedRatingBrush_Edit = string.Empty;
-                                settings.MixedRatingBrush_EditGradient = themeLinearGradient;
+                                settings.MixedRatingBrush_EditGradient = LinearGradient;
                                 break;
                             case "WarningBrush":
                                 settings.WarningBrush_Edit = string.Empty;
-                                settings.WarningBrush_EditGradient = themeLinearGradient;
+                                settings.WarningBrush_EditGradient = LinearGradient;
                                 break;
                         }
                     }
@@ -1482,16 +1483,16 @@ namespace ThemeModifier.Services
                             themeColors.ThemeColorsElements.Add(new ThemeColorsElement
                             {
                                 Name = ControlName,
-                                ColorLinear = new ThemeLinearGradient
+                                ColorLinear = new LinearGradient
                                 {
                                     StartPoint = color.StartPoint,
                                     EndPoint = color.EndPoint,
-                                    GradientStop1 = new ThemeGradientColor
+                                    GradientStop1 = new GradientColor
                                     {
                                         ColorString = color.GradientStops[0].Color.ToString(),
                                         ColorOffset = color.GradientStops[0].Offset
                                     },
-                                    GradientStop2 = new ThemeGradientColor
+                                    GradientStop2 = new GradientColor
                                     {
                                         ColorString = color.GradientStops[1].Color.ToString(),
                                         ColorOffset = color.GradientStops[1].Offset
@@ -1757,7 +1758,7 @@ namespace ThemeModifier.Services
                     }
                     break;
                 case "lineargradientbrush":
-                    ConvertedResource = (Serialization.FromJson<ThemeLinearGradient>(Serialization.ToJson(Element))).ToLinearGradientBrush;
+                    ConvertedResource = (Serialization.FromJson<LinearGradient>(Serialization.ToJson(Element))).ToLinearGradientBrush;
                     break;
 
                 case "visibility":
@@ -1811,23 +1812,23 @@ namespace ThemeModifier.Services
             }
             if (Element is LinearGradientBrush)
             {
-                ThemeLinearGradient themeLinearGradient = new ThemeLinearGradient
+                LinearGradient LinearGradient = new LinearGradient
                 {
                     StartPoint = Element.StartPoint,
                     EndPoint = Element.EndPoint,
-                    GradientStop1 = new ThemeGradientColor
+                    GradientStop1 = new GradientColor
                     {
                         ColorString = Element.GradientStops[0].Color.ToString(),
                         ColorOffset = Element.GradientStops[0].Offset
                     },
-                    GradientStop2 = new ThemeGradientColor
+                    GradientStop2 = new GradientColor
                     {
                         ColorString = Element.GradientStops[1].Color.ToString(),
                         ColorOffset = Element.GradientStops[1].Offset
                     }
                 };
 
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "lineargradientbrush", Element = (ThemeLinearGradient)themeLinearGradient };
+                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "lineargradientbrush", Element = (LinearGradient)LinearGradient };
             }
 
             if (Element is Visibility)

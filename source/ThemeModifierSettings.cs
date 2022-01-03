@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using CommonPluginsShared.Models;
+using Playnite.SDK;
 using Playnite.SDK.Data;
 using System;
 using System.Collections.Generic;
@@ -30,56 +31,56 @@ namespace ThemeModifier
         public bool OnlyEditConstant { get; set; } = false;
 
         public string ControlBackgroundBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient ControlBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient ControlBackgroundBrush_EditGradient { get; set; } = new LinearGradient();
         public string TextBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient TextBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient TextBrush_EditGradient { get; set; } = new LinearGradient();
         public string TextBrushDarker_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient TextBrushDarker_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient TextBrushDarker_EditGradient { get; set; } = new LinearGradient();
         public string TextBrushDark_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient TextBrushDark_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient TextBrushDark_EditGradient { get; set; } = new LinearGradient();
         public string NormalBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient NormalBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient NormalBrush_EditGradient { get; set; } = new LinearGradient();
         public string NormalBrushDark_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient NormalBrushDark_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient NormalBrushDark_EditGradient { get; set; } = new LinearGradient();
         public string NormalBorderBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient NormalBorderBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient NormalBorderBrush_EditGradient { get; set; } = new LinearGradient();
         public string HoverBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient HoverBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient HoverBrush_EditGradient { get; set; } = new LinearGradient();
         public string GlyphBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient GlyphBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient GlyphBrush_EditGradient { get; set; } = new LinearGradient();
         public string HighlightGlyphBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient HighlightGlyphBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient HighlightGlyphBrush_EditGradient { get; set; } = new LinearGradient();
         public string PopupBorderBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient PopupBorderBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient PopupBorderBrush_EditGradient { get; set; } = new LinearGradient();
         public string TooltipBackgroundBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient TooltipBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient TooltipBackgroundBrush_EditGradient { get; set; } = new LinearGradient();
         public string ButtonBackgroundBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient ButtonBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient ButtonBackgroundBrush_EditGradient { get; set; } = new LinearGradient();
         public string GridItemBackgroundBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient GridItemBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient GridItemBackgroundBrush_EditGradient { get; set; } = new LinearGradient();
         public string PanelSeparatorBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient PanelSeparatorBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient PanelSeparatorBrush_EditGradient { get; set; } = new LinearGradient();
         public string WindowPanelSeparatorBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient WindowPanelSeparatorBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient WindowPanelSeparatorBrush_EditGradient { get; set; } = new LinearGradient();
         public string PopupBackgroundBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient PopupBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient PopupBackgroundBrush_EditGradient { get; set; } = new LinearGradient();
         public string CheckBoxCheckMarkBkBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient CheckBoxCheckMarkBkBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient CheckBoxCheckMarkBkBrush_EditGradient { get; set; } = new LinearGradient();
 
         public string PositiveRatingBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient PositiveRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient PositiveRatingBrush_EditGradient { get; set; } = new LinearGradient();
         public string NegativeRatingBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient NegativeRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient NegativeRatingBrush_EditGradient { get; set; } = new LinearGradient();
         public string MixedRatingBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient MixedRatingBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient MixedRatingBrush_EditGradient { get; set; } = new LinearGradient();
 
         public string WarningBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient WarningBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient WarningBrush_EditGradient { get; set; } = new LinearGradient();
 
         public string ExpanderBackgroundBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient ExpanderBackgroundBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient ExpanderBackgroundBrush_EditGradient { get; set; } = new LinearGradient();
         public string WindowBackgourndBrush_Edit { get; set; } = string.Empty;
-        public ThemeLinearGradient WindowBackgourndBrush_EditGradient { get; set; } = new ThemeLinearGradient();
+        public LinearGradient WindowBackgourndBrush_EditGradient { get; set; } = new LinearGradient();
 
 
         public List<ThemeConstants> ThemesConstants = new List<ThemeConstants>();
