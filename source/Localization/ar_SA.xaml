@@ -7,28 +7,28 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">المحرر</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Load</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuExport">Export</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">إدارة</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">تحميل</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">تصدير</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageSaveOk">File saved</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageSaveKo">File not saved</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageNoFile">The selected file is not a theme file</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">تم حفظ الملف</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">لم يتم حفظ الملف</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">الملف المحدد ليس ملف سمة</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierPick">Choose</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestore">Restore</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
+    <sys:String x:Key="LOCThemeModifierPick">اختيار</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">إستعادة</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">استعادة القيم الافتراضية</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtSetIcons">Apply modification to icons</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restore icons</sys:String>
-    <sys:String x:Key="LOCThemeModifierEnableInDescription">Enable in description</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">عرض إطار الأيقونة</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">تطبيق التعديل على الأيقونات</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">استعادة الأيقونات</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">تفعيل في الوصف</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">تعديل الثوابت</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">تفعيل تكامل قائمة الميزات في تفاصيل اللعبة</sys:String>
 
 </ResourceDictionary>
