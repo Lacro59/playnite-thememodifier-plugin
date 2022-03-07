@@ -52,3 +52,9 @@ Packages:
     Changelog:
       - UI tweaks
       - Updated localizations
+  - Version: 2.2.5
+    RequiredApiVersion: 6.2.2
+    ReleaseDate: 2022-03-07
+    PackageUrl: https://github.com/Lacro59/playnite-thememodifier-plugin/releases/download/v2.2.5/playnite-ThemeModifier-plugin_2_2_5.pext
+    Changelog:
+      - Updated localizations
