@@ -1,0 +1,34 @@
+﻿<?xml version="1.0"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainView -->
+
+    <sys:String x:Key="LOCThemeModifier">ThemeModifier</sys:String>
+
+    <!-- ThemeModifierSettingsView -->
+
+    <sys:String x:Key="LOCThemeModifierEditTheme">المحرر</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageMenu">إدارة</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">تحميل</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">تصدير</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">تم حفظ الملف</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">لم يتم حفظ الملف</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">الملف المحدد ليس ملف سمة</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierPick">اختيار</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">إستعادة</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">استعادة القيم الافتراضية</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">عرض إطار الأيقونة</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">تطبيق التعديل على الأيقونات</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">استعادة الأيقونات</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">تفعيل في الوصف</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">تعديل الثوابت</sys:String>
+
+
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">تفعيل تكامل قائمة الميزات في تفاصيل اللعبة</sys:String>
+
+</ResourceDictionary>
