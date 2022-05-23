@@ -503,6 +503,10 @@ namespace ThemeModifier.Views
             try
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
+                if ((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent) == null) 
+                {
+                    return;
+                }
 
                 string Name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
                 string Type = (string)gdParent.Tag;
@@ -536,16 +540,16 @@ namespace ThemeModifier.Views
             try
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
-
-                tbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
-                lControl = gdParent.Children.OfType<Label>().FirstOrDefault();
+                tbControl = (TextBlock)UI.SearchElementByName("PART_ThemeConstantsControl", gdParent);
 
                 if (tbControl.Background is SolidColorBrush)
                 {
+                    PART_SelectorColorPickerConstants.IsSimpleColor = true;
                     PART_SelectorColorPickerConstants.SetColors((SolidColorBrush)tbControl.Background);
                 }
                 if (tbControl.Background is LinearGradientBrush)
                 {
+                    PART_SelectorColorPickerConstants.IsSimpleColor = false;
                     LinearGradientBrush linearGradientBrush = (LinearGradientBrush)tbControl.Background;
                     PART_SelectorColorPickerConstants.SetColors(linearGradientBrush);
                 }
@@ -707,7 +711,7 @@ namespace ThemeModifier.Views
             SolidColorBrush colorBrush = default(SolidColorBrush);
             LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
 
-            if (tbControl != null && lControl != null)
+            if (tbControl != null)
             {
                 dynamic elSaved = null;
                 string Name = (string)tbControl.Tag;
@@ -1058,13 +1062,16 @@ namespace ThemeModifier.Views
         {
             try
             {
-                if (((TabControl)sender).SelectedIndex == 1 || ((TabControl)sender).SelectedIndex == 3)
+                if (PART_EditThemeMenu != null)
                 {
-                    PART_EditThemeMenu.IsEnabled = true;
-                }
-                else
-                {
-                    PART_EditThemeMenu.IsEnabled = false;
+                    if (((TabControl)sender).SelectedIndex == 1 || ((TabControl)sender).SelectedIndex == 3)
+                    {
+                        PART_EditThemeMenu.IsEnabled = true;
+                    }
+                    else
+                    {
+                        PART_EditThemeMenu.IsEnabled = false;
+                    }
                 }
             }
             catch
