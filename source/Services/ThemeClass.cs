@@ -21,6 +21,7 @@ using System.Text.RegularExpressions;
 using CommonPlayniteShared.Manifests;
 using System.Text;
 using CommonPluginsShared.Models;
+using System.Globalization;
 
 namespace ThemeModifier.Services
 {
@@ -1602,8 +1603,14 @@ namespace ThemeModifier.Services
                             double Max = 30;
 
                             param = param.Replace("(", string.Empty).Replace(")", string.Empty);
-                            double.TryParse(param.Split(',')[0], out Min);
-                            double.TryParse(param.Split(',')[1], out Max);
+                            var paramList = param.Split(',');
+
+                            double.TryParse(paramList[0]
+                                .Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim()
+                                .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim(), out Min);
+                            double.TryParse(paramList[1]
+                                .Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim()
+                                .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim(), out Max);
 
                             themeSliderLimit.Min = Min;
                             themeSliderLimit.Max = Max;
