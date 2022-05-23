@@ -7,9 +7,9 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">编辑</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">编辑器</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">管理</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">管理器</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">载入</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">导出</sys:String>
 
@@ -17,14 +17,14 @@
     <sys:String x:Key="LOCThemeModifierManageSaveKo">文件未保存</sys:String>
     <sys:String x:Key="LOCThemeModifierManageNoFile">所选文件不是主题文件</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierPick">选</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestore">还</sys:String>
+    <sys:String x:Key="LOCThemeModifierPick">选择</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">还原</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">还原默认</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">显示图标</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtSetIcons">应用修改到图</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">还原图</sys:String>
-    <sys:String x:Key="LOCThemeModifierEnableInDescription">在描述中启</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">显示图标框</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">应用修改到图标</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">还原图标</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">在描述中启用</sys:String>
 
     <sys:String x:Key="LOCThemeModifierEditThemeConstants">编辑常量</sys:String>
 
