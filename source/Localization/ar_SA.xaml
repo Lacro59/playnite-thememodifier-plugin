@@ -9,19 +9,19 @@
 
     <sys:String x:Key="LOCThemeModifierEditTheme">المحرر</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">إدار</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">إدارة</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">تحمي</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">تصدير</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageSaveOk">تم حفظ المل</sys:String>
     <sys:String x:Key="LOCThemeModifierManageSaveKo">لم يتم حفظ المل</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageNoFile">الملف المحدد ليس ملف سم</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">الملف المحدد ليس ملف سمة</sys:String>
 
     <sys:String x:Key="LOCThemeModifierPick">اختيار</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestore">إستعاد</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">إستعادة</sys:String>
     <sys:String x:Key="LOCThemeModifierRestoreDefault">استعادة القيم الافتراضي</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">عرض إطار الأيقون</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">عرض إطار الأيقونة</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">تطبيق التعديل على الأيقونات</sys:String>
     <sys:String x:Key="LOCThemeModifierBtRemoveIcons">استعادة الأيقونات</sys:String>
     <sys:String x:Key="LOCThemeModifierEnableInDescription">تفعيل في الوص</sys:String>
