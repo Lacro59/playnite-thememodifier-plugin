@@ -81,6 +81,7 @@ namespace ThemeModifier.Views
                 tb.Name = "PART_ThemeConstantsLabel";
                 tb.Tag = themeElement.Name;
                 tb.Margin = new Thickness(0, 0, 10, 0);
+                tb.TextWrapping = TextWrapping.Wrap;
 
                 tb.Text = themeElement.Name;
                 if (!themeElement.Description.IsNullOrEmpty())
