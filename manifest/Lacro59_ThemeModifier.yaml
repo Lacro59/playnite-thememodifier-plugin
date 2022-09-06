@@ -66,3 +66,11 @@ Packages:
       - Updated localizations
       - Fixed an issue with color selector
       - Fixed minors bugs
+  - Version: 3.0
+    RequiredApiVersion: 6.3.0
+    ReleaseDate: 2022-09-06
+    PackageUrl: https://github.com/Lacro59/playnite-thememodifier-plugin/releases/download/v3.0/playnite-ThemeModifier-plugin_3_0.pext
+    Changelog:
+      - Only Playnite 10
+      - Updated localizations
+      - UI tweaks
