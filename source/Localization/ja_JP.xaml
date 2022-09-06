@@ -7,11 +7,11 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">編集</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Load</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuExport">Export</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">エクスポート</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageSaveOk">File saved</sys:String>
     <sys:String x:Key="LOCThemeModifierManageSaveKo">File not saved</sys:String>
@@ -19,7 +19,7 @@
 
     <sys:String x:Key="LOCThemeModifierPick">Choose</sys:String>
     <sys:String x:Key="LOCThemeModifierRestore">Restore</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">デフォルトに戻す</sys:String>
 
     <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">Apply modification to icons</sys:String>

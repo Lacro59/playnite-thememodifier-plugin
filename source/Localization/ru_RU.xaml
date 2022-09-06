@@ -7,7 +7,7 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Редакто</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Редактор</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageMenu">Управлeние</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Загрузить</sys:String>
