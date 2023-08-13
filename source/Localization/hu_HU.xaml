@@ -3,32 +3,32 @@
 
     <!-- MainView -->
 
-    <sys:String x:Key="LOCThemeModifier">ThemeModifier</sys:String>
+    <sys:String x:Key="LOCThemeModifier">Témamódosító</sys:String>
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme">Editor</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">Szerkesztő</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageMenu">Manager</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Load</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuExport">Export</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenu">Kezelő</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Betöltés</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Exportálás</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageSaveOk">File saved</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageSaveKo">File not saved</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageNoFile">The selected file is not a theme file</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">Fájl elmentve</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">Fájl nincs mentve</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">A kiválasztott fájl nem témafájl</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierPick">Choose</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestore">Restore</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestoreDefault">Restore default</sys:String>
+    <sys:String x:Key="LOCThemeModifierPick">Válassz</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">Visszaállítás</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">Visszaállítás alapállapotra</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Display an icon frame</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtSetIcons">Apply modification to icons</sys:String>
-    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Restore icons</sys:String>
-    <sys:String x:Key="LOCThemeModifierEnableInDescription">Enable in description</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Ikonkeret megjelenítése</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Módosítások alkalmazása az ikonokon</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Ikonok visszaállítása</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">Engedélyezés a leírásban</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Edit constants</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Konstans szerkesztése</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Enable feature list integration in game details</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">A funkciólista integrációjának engedélyezése a játék részleteiben</sys:String>
 
 </ResourceDictionary>
