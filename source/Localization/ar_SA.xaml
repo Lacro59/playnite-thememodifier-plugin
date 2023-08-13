@@ -10,16 +10,16 @@
     <sys:String x:Key="LOCThemeModifierEditTheme">المحرر</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageMenu">إدارة</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuLoad">تحمي</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">تحم</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">تصدير</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageSaveOk">تم حفظ المل</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageSaveKo">لم يتم حفظ المل</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">تم حفظ الم</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">لم يتم حفظ الم</sys:String>
     <sys:String x:Key="LOCThemeModifierManageNoFile">الملف المحدد ليس ملف سمة</sys:String>
 
     <sys:String x:Key="LOCThemeModifierPick">اختيار</sys:String>
     <sys:String x:Key="LOCThemeModifierRestore">إستعادة</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestoreDefault">استعادة القيم الافتراضي</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">استعادة القيم الافتراض</sys:String>
 
     <sys:String x:Key="LOCThemeModifierEnableIconChanger">عرض إطار الأيقونة</sys:String>
     <sys:String x:Key="LOCThemeModifierBtSetIcons">تطبيق التعديل على الأيقونات</sys:String>
@@ -29,6 +29,6 @@
     <sys:String x:Key="LOCThemeModifierEditThemeConstants">تعديل الثوابت</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">تفعيل تكامل قائمة الميزات في تفاصيل اللعب</sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">تفعيل تكامل قائمة الميزات في تفاصيل اللع</sys:String>
 
 </ResourceDictionary>
