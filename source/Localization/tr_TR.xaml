@@ -1,0 +1,34 @@
+﻿<?xml version="1.0"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainView -->
+
+    <sys:String x:Key="LOCThemeModifier">TemaDüzenleyici</sys:String>
+
+    <!-- ThemeModifierSettingsView -->
+
+    <sys:String x:Key="LOCThemeModifierEditTheme">Düzenleyici</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageMenu">Yönetici</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuLoad">Yükle</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Dışa aktar</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">Dosya kaydedildi</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">Dosya kaydedilmedi</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageNoFile">Seçilen dosya bir tema dosyası değil</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierPick">Seç</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">Geri yükle</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">Öntanımlıyı geri yükle</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">Bir simge çerçevesi görüntüle</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">Düzenlemeyi simgelere uygula</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">Simgeleri geri yükle</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">Açıklamada etkinleştir</sys:String>
+
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">Sabitleri düzenle</sys:String>
+
+
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">Oyun ayrıntılarında özellik listesi bütünleşmesini etkinleştir</sys:String>
+
+</ResourceDictionary>
