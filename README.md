@@ -10,7 +10,7 @@
 Extension for [Playnite](https://playnite.link).  
 
 ## Informations
-This plugin creates datas for your game activities and shows many statistics.
+The plugin can edit theme color scheme and edit custom theme variables.
 
 <a href="https://github.com/Lacro59/playnite-thememodifier-plugin/blob/master/forum/control_01.jpg?raw=true">
   <picture>
