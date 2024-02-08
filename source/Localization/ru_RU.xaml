@@ -11,7 +11,7 @@
 
     <sys:String x:Key="LOCThemeModifierManageMenu">Управление</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">Загрузить</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuExport">Экспорт</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">Экспор</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageSaveOk">Файл сохранён</sys:String>
     <sys:String x:Key="LOCThemeModifierManageSaveKo">Файл не сохранён</sys:String>
