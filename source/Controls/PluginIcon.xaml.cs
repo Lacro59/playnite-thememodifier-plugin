@@ -24,17 +24,10 @@ namespace ThemeModifier.Controls
         private PluginIconDataContext ControlDataContext = new PluginIconDataContext();
         internal override IDataContext _ControlDataContext
         {
-            get
-            {
-                return ControlDataContext;
-            }
-            set
-            {
-                ControlDataContext = (PluginIconDataContext)_ControlDataContext;
-            }
+            get => ControlDataContext;
+            set => ControlDataContext = (PluginIconDataContext)_ControlDataContext;
         }
 
-        private IPlayniteAPI PlayniteApi;
         private ThemeModifierSettingsViewModel PluginSettings;
 
         private object CurrentIcon { get; set; }
@@ -49,14 +42,14 @@ namespace ThemeModifier.Controls
         );
         public string Icon
         {
-            get { return (string)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
+            get => (string)GetValue(IconProperty);
+            set => SetValue(IconProperty, value);
         }
         private static void IconChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             try
             {
-                var control = (PluginIcon)obj;
+                PluginIcon control = (PluginIcon)obj;
                 control.LoadNewIcon(args.NewValue, args.OldValue);
             }
             catch (Exception ex)
@@ -67,17 +60,16 @@ namespace ThemeModifier.Controls
         #endregion
 
 
-        public PluginIcon(IPlayniteAPI PlayniteApi, ThemeModifierSettingsViewModel PluginSettings)
+        public PluginIcon(ThemeModifierSettingsViewModel PluginSettings)
         {
-            this.PlayniteApi = PlayniteApi;
             this.PluginSettings = PluginSettings;
-
+        
             InitializeComponent();
             this.DataContext = ControlDataContext;
-
+        
             this.PluginSettings.PropertyChanged += PluginSettings_PropertyChanged;
-            this.PlayniteApi.Database.Games.ItemUpdated += Games_ItemUpdated;
-
+            API.Instance.Database.Games.ItemUpdated += Games_ItemUpdated;
+        
             // Apply settings
             PluginSettings_PropertyChanged(null, null);
         }
@@ -94,14 +86,7 @@ namespace ThemeModifier.Controls
 
         public override void SetData(Game newContext)
         {
-            if (!GameContext.Icon.IsNullOrEmpty())
-            {
-                this.Icon = PlayniteApi.Database.GetFullFilePath(GameContext.Icon);
-            }
-            else
-            {
-                this.Icon = string.Empty;
-            }
+            this.Icon = !GameContext.Icon.IsNullOrEmpty() ? API.Instance.Database.GetFullFilePath(GameContext.Icon) : string.Empty;
         }
 
 

@@ -132,7 +132,7 @@ namespace ThemeModifier
         {
             if (args.Name == "PluginIcon")
             {
-                return new PluginIcon(PlayniteApi, PluginSettings);
+                return new PluginIcon(PluginSettings);
             }
 
             return null;
