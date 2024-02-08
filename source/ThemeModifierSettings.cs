@@ -86,16 +86,8 @@ namespace ThemeModifier
         public List<ThemeConstants> ThemesConstants = new List<ThemeConstants>();
 
 
-        private bool _EnableIntegrationIcon { get; set; } = true;
-        public bool EnableIntegrationIcon
-        {
-            get => _EnableIntegrationIcon;
-            set
-            {
-                _EnableIntegrationIcon = value;
-                OnPropertyChanged();
-            }
-        }
+        private bool _EnableIntegrationIcon = true;
+        public bool EnableIntegrationIcon { get => _EnableIntegrationIcon; set => SetValue(ref _EnableIntegrationIcon, value); }
 
         public bool UseIconCircle { get; set; } = true;
         public bool UseIconClock { get; set; } = false;
@@ -117,15 +109,7 @@ namespace ThemeModifier
         private ThemeModifierSettings EditingClone { get; set; }
 
         private ThemeModifierSettings _Settings;
-        public ThemeModifierSettings Settings
-        {
-            get => _Settings;
-            set
-            {
-                _Settings = value;
-                OnPropertyChanged();
-            }
-        }
+        public ThemeModifierSettings Settings { get => _Settings; set => SetValue(ref _Settings, value); }
 
 
         public ThemeModifierSettingsViewModel(ThemeModifier plugin)
@@ -134,17 +118,10 @@ namespace ThemeModifier
             Plugin = plugin;
 
             // Load saved settings.
-            var savedSettings = plugin.LoadPluginSettings<ThemeModifierSettings>();
+            ThemeModifierSettings savedSettings = plugin.LoadPluginSettings<ThemeModifierSettings>();
 
             // LoadPluginSettings returns null if not saved data is available.
-            if (savedSettings != null)
-            {
-                Settings = savedSettings;
-            }
-            else
-            {
-                Settings = new ThemeModifierSettings();
-            }
+            Settings = savedSettings ?? new ThemeModifierSettings();
         }
 
         // Code executed when settings view is opened and user starts editing values.

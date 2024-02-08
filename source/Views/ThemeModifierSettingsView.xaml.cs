@@ -800,13 +800,12 @@ namespace ThemeModifier.Views
                 tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
                 lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
-                if (tbControl.Background is SolidColorBrush)
+                if (tbControl.Background is SolidColorBrush brush)
                 {
-                    PART_SelectorColorPicker.SetColors((SolidColorBrush)tbControl.Background);
+                    PART_SelectorColorPicker.SetColors(brush);
                 }
-                if (tbControl.Background is LinearGradientBrush)
+                if (tbControl.Background is LinearGradientBrush linearGradientBrush)
                 {
-                    LinearGradientBrush linearGradientBrush = (LinearGradientBrush)tbControl.Background;
                     PART_SelectorColorPicker.SetColors(linearGradientBrush);
                 }
 
@@ -847,9 +846,9 @@ namespace ThemeModifier.Views
                 foreach (ThemeElement themeElement in _ThemeDefault)
                 {
                     var control = this.FindName("tb" + themeElement.Name);
-                    if (control is TextBlock)
+                    if (control is TextBlock block)
                     {
-                        ((TextBlock)control).Background = themeElement.Element;
+                        block.Background = themeElement.Element;
                         ThemeClass.SetThemeColor(themeElement.Name, null, _settings, themeElement.Element);
                     }
                     else
