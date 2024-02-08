@@ -16,7 +16,6 @@ using ThemeModifier.Models;
 using ThemeModifier.Views;
 using YamlDotNet.Serialization;
 using CommonPlayniteShared;
-using CommonPlayniteShared.Common;
 using System.Text.RegularExpressions;
 using CommonPlayniteShared.Manifests;
 using System.Text;
@@ -27,8 +26,8 @@ namespace ThemeModifier.Services
 {
     public class ThemeClass
     {
-        private static ILogger logger = LogManager.GetLogger();
-        private static IResourceProvider resources = new ResourceProvider();
+        private static readonly ILogger logger = LogManager.GetLogger();
+        private static readonly IResourceProvider resources = new ResourceProvider();
 
         public static readonly List<string> ThemeVariables = new List<string>
         {
@@ -1765,7 +1764,7 @@ namespace ThemeModifier.Services
                     }
                     break;
                 case "lineargradientbrush":
-                    ConvertedResource = (Serialization.FromJson<ThemeLinearGradient>(Serialization.ToJson(Element))).ToLinearGradientBrush;
+                    ConvertedResource = Serialization.FromJson<ThemeLinearGradient>(Serialization.ToJson(Element)).ToLinearGradientBrush;
                     break;
 
                 case "visibility":

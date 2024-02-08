@@ -584,19 +584,19 @@
                                                 <RowDefinition Height="auto" />
                                             </Grid.RowDefinitions>
 
-                                            <ToggleButton IsChecked="{Binding UseIconCircle}" Grid.Column="0" Grid.Row="0" Margin="5" 
+                                            <ToggleButton IsChecked="{Binding Settings.UseIconCircle}" Grid.Column="0" Grid.Row="0" Margin="5" 
                                                           Name="tbUseIconCircle" Click="ToggleButton_Click">
                                                 <Image Source="/ThemeModifier;component/Resources/Images/circleResource.png" Width="48"/>
                                             </ToggleButton>
-                                            <ToggleButton IsChecked="{Binding UseIconClock}" Grid.Column="1" Grid.Row="0" Margin="5" 
+                                            <ToggleButton IsChecked="{Binding Settings.UseIconClock}" Grid.Column="1" Grid.Row="0" Margin="5" 
                                                           Name="tbUseIconClock" Click="ToggleButton_Click">
                                                 <Image Source="/ThemeModifier;component/Resources/Images/clockResource.png" Width="48"/>
                                             </ToggleButton>
-                                            <ToggleButton IsChecked="{Binding UseIconSquareCorne}" Grid.Column="2" Grid.Row="0" Margin="5" 
+                                            <ToggleButton IsChecked="{Binding Settings.UseIconSquareCorne}" Grid.Column="2" Grid.Row="0" Margin="5" 
                                                           Name="tbUseIconSquareCorne" Click="ToggleButton_Click">
                                                 <Image Source="/ThemeModifier;component/Resources/Images/squareCorneResource.png" Width="48"/>
                                             </ToggleButton>
-                                            <ToggleButton IsChecked="{Binding UseIconWe4ponx}" Grid.Column="3" Grid.Row="0" Margin="5" 
+                                            <ToggleButton IsChecked="{Binding Settings.UseIconWe4ponx}" Grid.Column="3" Grid.Row="0" Margin="5" 
                                                           Name="tbUseIconWe4ponx" Click="ToggleButton_Click">
                                                 <Image Source="/ThemeModifier;component/Resources/Images/we4ponxResource.png" Width="48"/>
                                             </ToggleButton>

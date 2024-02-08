@@ -159,6 +159,8 @@ namespace ThemeModifier
 
             ThemeModifier.SetFrame(this, Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
+            Settings.OnlyEditConstant = false;
+
             Plugin.SavePluginSettings(Settings);
             this.OnPropertyChanged();
         }
