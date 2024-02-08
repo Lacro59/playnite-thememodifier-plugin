@@ -74,3 +74,11 @@ Packages:
       - Only Playnite 10
       - Updated localizations
       - UI tweaks
+  - Version: 3.0.1
+    RequiredApiVersion: 6.11.0
+    ReleaseDate: 2024-02-08
+    PackageUrl: https://github.com/Lacro59/playnite-thememodifier-plugin/releases/download/v3.0.1/playnite-ThemeModifier-plugin_3_0_1.pext
+    Changelog:
+      - Updated localizations
+      - UI tweaks
+      - Fixed minors bugs
