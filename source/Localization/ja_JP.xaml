@@ -7,28 +7,28 @@
 
     <!-- ThemeModifierSettingsView -->
 
-    <sys:String x:Key="LOCThemeModifierEditTheme"></sys:String>
+    <sys:String x:Key="LOCThemeModifierEditTheme">編集</sys:String>
 
     <sys:String x:Key="LOCThemeModifierManageMenu">管</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">読み込</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageMenuExport"></sys:String>
+    <sys:String x:Key="LOCThemeModifierManageMenuExport">エクスポート</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageSaveOk"></sys:String>
-    <sys:String x:Key="LOCThemeModifierManageSaveKo"></sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">ファイルを保存しました</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">ファイルは保存されていません</sys:String>
     <sys:String x:Key="LOCThemeModifierManageNoFile">選択したファイルはテーマファイルではありません</sys:String>
 
     <sys:String x:Key="LOCThemeModifierPick">選択</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestore">復</sys:String>
-    <sys:String x:Key="LOCThemeModifierRestoreDefault"></sys:String>
+    <sys:String x:Key="LOCThemeModifierRestore">復元</sys:String>
+    <sys:String x:Key="LOCThemeModifierRestoreDefault">初期設定に戻す</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEnableIconChanger"></sys:String>
-    <sys:String x:Key="LOCThemeModifierBtSetIcons"></sys:String>
-    <sys:String x:Key="LOCThemeModifierBtRemoveIcons"></sys:String>
-    <sys:String x:Key="LOCThemeModifierEnableInDescription"></sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableIconChanger">アイコンに外枠を表示</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtSetIcons">アイコンに変更を適用</sys:String>
+    <sys:String x:Key="LOCThemeModifierBtRemoveIcons">アイコンを復元</sys:String>
+    <sys:String x:Key="LOCThemeModifierEnableInDescription">あらすじで有効にする</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierEditThemeConstants">定数の編</sys:String>
+    <sys:String x:Key="LOCThemeModifierEditThemeConstants">定数の</sys:String>
 
 
-    <sys:String x:Key="LOCThemeModifierIntegrationFeatures"></sys:String>
+    <sys:String x:Key="LOCThemeModifierIntegrationFeatures">ゲーム詳細で特徴リストの連携を有効にする</sys:String>
 
 </ResourceDictionary>
