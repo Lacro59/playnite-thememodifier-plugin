@@ -13,8 +13,8 @@
     <sys:String x:Key="LOCThemeModifierManageMenuLoad">تح</sys:String>
     <sys:String x:Key="LOCThemeModifierManageMenuExport">تصدير</sys:String>
 
-    <sys:String x:Key="LOCThemeModifierManageSaveOk">تم حفظ ال</sys:String>
-    <sys:String x:Key="LOCThemeModifierManageSaveKo">لم يتم حفظ ال</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveOk">تم حفظ ا</sys:String>
+    <sys:String x:Key="LOCThemeModifierManageSaveKo">لم يتم حفظ ا</sys:String>
     <sys:String x:Key="LOCThemeModifierManageNoFile">الملف المحدد ليس ملف سمة</sys:String>
 
     <sys:String x:Key="LOCThemeModifierPick">اختيار</sys:String>
