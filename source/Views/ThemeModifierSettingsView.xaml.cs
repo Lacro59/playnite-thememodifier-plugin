@@ -17,33 +17,30 @@ namespace ThemeModifier.Views
 {
     public partial class ThemeModifierSettingsView : UserControl
     {
-        private static readonly ILogger logger = LogManager.GetLogger();
-        private static IResourceProvider resources = new ResourceProvider();
-        private IPlayniteAPI _PlayniteApi;
+        private static ILogger Logger => LogManager.GetLogger();
 
-        private ThemeModifierSettings _settings;
+        private ThemeModifierSettings Settings { get; set; }
 
-        private List<ThemeElement> _ThemeDefault;
-        private string _PluginUserDataPath;
-        private string _PlayniteConfigurationPath;
+        private List<ThemeElement> ThemeDefault { get; set; }
+        private string PluginUserDataPath { get; set; }
+        private string PlayniteConfigurationPath { get; set; }
 
-        private TextBlock tbControl;
-        private Label lControl;
+        private TextBlock TbControl { get; set; }
+        private Label LControl { get; set; }
 
-        public static List<ThemeElement> SettingsThemeConstants = new List<ThemeElement>();
+        public static List<ThemeElement> SettingsThemeConstants { get; set; } = new List<ThemeElement>();
 
-        private dynamic colorDefault = null;
+        private dynamic ColorDefault { get; set; } = null;
 
 
-        public ThemeModifierSettingsView(IPlayniteAPI PlayniteApi, ThemeModifierSettings settings, List<ThemeElement> ThemeDefault, string PlayniteConfigurationPath, string PluginUserDataPath)
+        public ThemeModifierSettingsView(ThemeModifierSettings settings, List<ThemeElement> themeDefault, string playniteConfigurationPath, string pluginUserDataPath)
         {
-            _PlayniteApi = PlayniteApi;
-            _settings = settings;
-            _ThemeDefault = ThemeDefault;
-            _PlayniteConfigurationPath = PlayniteConfigurationPath;
-            _PluginUserDataPath = PluginUserDataPath;
+            Settings = settings;
+            ThemeDefault = themeDefault;
+            PlayniteConfigurationPath = playniteConfigurationPath;
+            PluginUserDataPath = pluginUserDataPath;
 
-            SettingsThemeConstants = ThemeClass.GetThemeActualConstants(settings, PlayniteApi);
+            SettingsThemeConstants = ThemeClass.GetThemeActualConstants(settings);
 
             InitializeComponent();
 
@@ -123,7 +120,7 @@ namespace ThemeModifier.Views
                         }
                         else
                         {
-                            logger.Warn($"Different type for {themeElement.Name}");
+                            Logger.Warn($"Different type for {themeElement.Name}");
                         }
                     }
                     else
@@ -418,21 +415,21 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent))?.Tag;
-                bool Element = (bool)((CheckBox)sender).IsChecked;
+                string name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent))?.Tag;
+                bool element = (bool)((CheckBox)sender).IsChecked;
 
-                if (SettingsThemeConstants == null || Name.IsNullOrEmpty())
+                if (SettingsThemeConstants == null || name.IsNullOrEmpty())
                 {
                     return;
                 }
 
-                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                if (SettingsThemeConstants.Find(x => x.Name == name) != null)
                 {
-                    SettingsThemeConstants.Find(x => x.Name == Name).Element = Element;
+                    SettingsThemeConstants.Find(x => x.Name == name).Element = element;
                 }
                 else
                 {
-                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
+                    SettingsThemeConstants.Add(new ThemeElement { Name = name, Element = element });
                 }
             }
             catch (Exception ex)
@@ -447,21 +444,21 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
-                string Element = ((TextBox)sender).Text;
+                string name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
+                string element = ((TextBox)sender).Text;
 
-                if (SettingsThemeConstants == null || Name.IsNullOrEmpty())
+                if (SettingsThemeConstants == null || name.IsNullOrEmpty())
                 {
                     return;
                 }
 
-                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                if (SettingsThemeConstants.Find(x => x.Name == name) != null)
                 {
-                    SettingsThemeConstants.Find(x => x.Name == Name).Element = Element;
+                    SettingsThemeConstants.Find(x => x.Name == name).Element = element;
                 }
                 else
                 {
-                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
+                    SettingsThemeConstants.Add(new ThemeElement { Name = name, Element = element });
                 }
             }
             catch (Exception ex)
@@ -476,21 +473,21 @@ namespace ThemeModifier.Views
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
 
-                string Name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent))?.Tag;
-                dynamic Element = ((ComboBoxItem)((ComboBox)sender).SelectedItem)?.Tag;
+                string name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent))?.Tag;
+                dynamic element = ((ComboBoxItem)((ComboBox)sender).SelectedItem)?.Tag;
 
-                if (SettingsThemeConstants == null || Name.IsNullOrEmpty() || Element == null)
+                if (SettingsThemeConstants == null || name.IsNullOrEmpty() || element == null)
                 {
                     return;
                 }
 
-                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                if (SettingsThemeConstants.Find(x => x.Name == name) != null)
                 {
-                    SettingsThemeConstants.Find(x => x.Name == Name).Element = Element;
+                    SettingsThemeConstants.Find(x => x.Name == name).Element = element;
                 }
                 else
                 {
-                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
+                    SettingsThemeConstants.Add(new ThemeElement { Name = name, Element = element });
                 }
             }
             catch (Exception ex)
@@ -504,30 +501,30 @@ namespace ThemeModifier.Views
             try
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
-                if ((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent) == null) 
+                if ((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent) == null)
                 {
                     return;
                 }
 
-                string Name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
-                string Type = (string)gdParent.Tag;
-                dynamic Element = null;
-                if (Type.ToLower() == "int")
+                string name = (string)((TextBlock)UI.SearchElementByName("PART_ThemeConstantsLabel", gdParent)).Tag;
+                string type = (string)gdParent.Tag;
+                dynamic element = null;
+                if (type.ToLower() == "int")
                 {
-                    Element = (int)((Slider)sender).Value;
+                    element = (int)((Slider)sender).Value;
                 }
-                if (Type.ToLower() == "double")
+                if (type.ToLower() == "double")
                 {
-                    Element = (double)Math.Round(((Slider)sender).Value, 1);
+                    element = (double)Math.Round(((Slider)sender).Value, 1);
                 }
 
-                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                if (SettingsThemeConstants.Find(x => x.Name == name) != null)
                 {
-                    SettingsThemeConstants.Find(x => x.Name == Name).Element = Element;
+                    SettingsThemeConstants.Find(x => x.Name == name).Element = element;
                 }
                 else
                 {
-                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = Element });
+                    SettingsThemeConstants.Add(new ThemeElement { Name = name, Element = element });
                 }
             }
             catch (Exception ex)
@@ -541,17 +538,17 @@ namespace ThemeModifier.Views
             try
             {
                 Grid gdParent = (Grid)((FrameworkElement)sender).Parent;
-                tbControl = (TextBlock)UI.SearchElementByName("PART_ThemeConstantsControl", gdParent);
+                TbControl = (TextBlock)UI.SearchElementByName("PART_ThemeConstantsControl", gdParent);
 
-                if (tbControl.Background is SolidColorBrush)
+                if (TbControl.Background is SolidColorBrush)
                 {
                     PART_SelectorColorPickerConstants.IsSimpleColor = true;
-                    PART_SelectorColorPickerConstants.SetColors((SolidColorBrush)tbControl.Background);
+                    PART_SelectorColorPickerConstants.SetColors((SolidColorBrush)TbControl.Background);
                 }
-                if (tbControl.Background is LinearGradientBrush)
+                if (TbControl.Background is LinearGradientBrush)
                 {
                     PART_SelectorColorPickerConstants.IsSimpleColor = false;
-                    LinearGradientBrush linearGradientBrush = (LinearGradientBrush)tbControl.Background;
+                    LinearGradientBrush linearGradientBrush = (LinearGradientBrush)TbControl.Background;
                     PART_SelectorColorPickerConstants.SetColors(linearGradientBrush);
                 }
 
@@ -609,9 +606,9 @@ namespace ThemeModifier.Views
                     gdParent.Tag = "color";
                     ((TextBlock)elControl).Background = new SolidColorBrush((Color)elDefault);
 
-                    tbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
-                    lControl = gdParent.Children.OfType<Label>().FirstOrDefault();
-                    colorDefault = (Color)elDefault;
+                    TbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
+                    LControl = gdParent.Children.OfType<Label>().FirstOrDefault();
+                    ColorDefault = (Color)elDefault;
                     PART_TM_ColorOKConstants_Click(elControl, null);
                 }
 
@@ -620,9 +617,9 @@ namespace ThemeModifier.Views
                     gdParent.Tag = "solidcolorbrush";
                     ((TextBlock)elControl).Background = (SolidColorBrush)elDefault;
 
-                    tbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
-                    lControl = gdParent.Children.OfType<Label>().FirstOrDefault();
-                    colorDefault = (SolidColorBrush)elDefault;
+                    TbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
+                    LControl = gdParent.Children.OfType<Label>().FirstOrDefault();
+                    ColorDefault = (SolidColorBrush)elDefault;
                     PART_TM_ColorOKConstants_Click(elControl, null);
                 }
 
@@ -631,9 +628,9 @@ namespace ThemeModifier.Views
                     gdParent.Tag = "lineargradientbrush";
                     ((TextBlock)elControl).Background = (LinearGradientBrush)elDefault;
 
-                    tbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
-                    lControl = gdParent.Children.OfType<Label>().FirstOrDefault();
-                    colorDefault = (LinearGradientBrush)elDefault;
+                    TbControl = gdParent.Children.OfType<TextBlock>().FirstOrDefault();
+                    LControl = gdParent.Children.OfType<Label>().FirstOrDefault();
+                    ColorDefault = (LinearGradientBrush)elDefault;
                     PART_TM_ColorOKConstants_Click(elControl, null);
                 }
 
@@ -708,73 +705,73 @@ namespace ThemeModifier.Views
 
         private void PART_TM_ColorOKConstants_Click(object sender, RoutedEventArgs e)
         {
-            Color color = default(Color);
-            SolidColorBrush colorBrush = default(SolidColorBrush);
+            Color color = default;
+            SolidColorBrush colorBrush = default;
             LinearGradientBrush linearGradientBrush = new LinearGradientBrush();
 
-            if (tbControl != null)
+            if (TbControl != null)
             {
                 dynamic elSaved = null;
-                string Name = (string)tbControl.Tag;
-                string Type = (string)((Grid)tbControl.Parent).Tag;
-                double Opacity = 1;
+                string name = (string)TbControl.Tag;
+                string type = (string)((Grid)TbControl.Parent).Tag;
+                double opacity = 1;
 
-                if (colorDefault == null)
+                if (ColorDefault == null)
                 {
                     if (PART_SelectorColorPickerConstants.IsSimpleColor)
                     {
                         color = PART_SelectorColorPickerConstants.SimpleColor;
                         colorBrush = PART_SelectorColorPickerConstants.GetSolidColorBrush();
-                        tbControl.Background = colorBrush;
+                        TbControl.Background = colorBrush;
 
-                        if (Type == "color")
+                        if (type == "color")
                         {
                             elSaved = color;
                         }
                         else
                         {
-                            ((Grid)tbControl.Parent).Tag = "solidcolorbrush";
-                            Opacity = colorBrush.Opacity;
+                            ((Grid)TbControl.Parent).Tag = "solidcolorbrush";
+                            opacity = colorBrush.Opacity;
                             elSaved = colorBrush;
                         }
                     }
                     else
                     {
                         linearGradientBrush = PART_SelectorColorPickerConstants.GetLinearGradientBrush();
-                        tbControl.Background = linearGradientBrush;
+                        TbControl.Background = linearGradientBrush;
 
-                        if (Type == "color")
+                        if (type == "color")
                         {
                             elSaved = linearGradientBrush.GradientStops[0].Color;
-                            tbControl.Background = new SolidColorBrush(elSaved);
+                            TbControl.Background = new SolidColorBrush(elSaved);
                         }
                         else
                         {
-                            ((Grid)tbControl.Parent).Tag = "lineargradientbrush";
+                            ((Grid)TbControl.Parent).Tag = "lineargradientbrush";
                             elSaved = linearGradientBrush;
                         }
                     }
                 }
 
-                if (colorDefault != null)
+                if (ColorDefault != null)
                 {
-                    elSaved = colorDefault;
-                    colorDefault = null;
+                    elSaved = ColorDefault;
+                    ColorDefault = null;
                 }
 
-                if (SettingsThemeConstants.Find(x => x.Name == Name) != null)
+                if (SettingsThemeConstants.Find(x => x.Name == name) != null)
                 {
-                    SettingsThemeConstants.Find(x => x.Name == Name).Element = elSaved;
-                    SettingsThemeConstants.Find(x => x.Name == Name).Opacity = Opacity;
+                    SettingsThemeConstants.Find(x => x.Name == name).Element = elSaved;
+                    SettingsThemeConstants.Find(x => x.Name == name).Opacity = opacity;
                 }
                 else
                 {
-                    SettingsThemeConstants.Add(new ThemeElement { Name = Name, Element = elSaved, Opacity = Opacity });
+                    SettingsThemeConstants.Add(new ThemeElement { Name = name, Element = elSaved, Opacity = opacity });
                 }
             }
             else
             {
-                logger.Warn("One control is undefined");
+                Logger.Warn("One control is undefined");
             }
 
             PART_SelectorColorConstants.Visibility = Visibility.Collapsed;
@@ -794,17 +791,17 @@ namespace ThemeModifier.Views
         {
             try
             {
-                tbControl = null;
-                lControl = null;
+                TbControl = null;
+                LControl = null;
 
-                tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
-                lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
+                TbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
+                LControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
-                if (tbControl.Background is SolidColorBrush brush)
+                if (TbControl.Background is SolidColorBrush brush)
                 {
                     PART_SelectorColorPicker.SetColors(brush);
                 }
-                if (tbControl.Background is LinearGradientBrush linearGradientBrush)
+                if (TbControl.Background is LinearGradientBrush linearGradientBrush)
                 {
                     PART_SelectorColorPicker.SetColors(linearGradientBrush);
                 }
@@ -821,15 +818,15 @@ namespace ThemeModifier.Views
         private void BtRestore_Click(object sender, RoutedEventArgs e)
         {
             try
-            { 
+            {
                 TextBlock tbControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<TextBlock>().FirstOrDefault();
                 Label lControl = ((StackPanel)((FrameworkElement)sender).Parent).Children.OfType<Label>().FirstOrDefault();
 
-                ThemeElement finded = _ThemeDefault.Find(x => x.Name == lControl.Content.ToString());
+                ThemeElement finded = ThemeDefault.Find(x => x.Name == lControl.Content.ToString());
 
                 tbControl.Background = finded.Element;
 
-                ThemeClass.SetThemeColor(lControl.Content.ToString(), null, _settings, finded.Element);
+                ThemeClass.SetThemeColor(lControl.Content.ToString(), null, Settings, finded.Element);
             }
             catch (Exception ex)
             {
@@ -841,20 +838,20 @@ namespace ThemeModifier.Views
         {
             try
             {
-                ThemeClass.RestoreColor(_ThemeDefault, _settings);
+                ThemeClass.RestoreColor(ThemeDefault, Settings);
 
-                foreach (ThemeElement themeElement in _ThemeDefault)
+                foreach (ThemeElement themeElement in ThemeDefault)
                 {
-                    var control = this.FindName("tb" + themeElement.Name);
+                    object control = FindName("tb" + themeElement.Name);
                     if (control is TextBlock block)
                     {
                         block.Background = themeElement.Element;
-                        ThemeClass.SetThemeColor(themeElement.Name, null, _settings, themeElement.Element);
+                        ThemeClass.SetThemeColor(themeElement.Name, null, Settings, themeElement.Element);
                     }
                     else
                     {
-                        logger.Warn($"Bad control {"tb" + themeElement.Name}: {control.ToString()}");
-                    }                    
+                        Logger.Warn($"Bad control {"tb" + themeElement.Name}: {control}");
+                    }
                 }
             }
             catch (Exception ex)
@@ -866,22 +863,22 @@ namespace ThemeModifier.Views
 
         private void PART_TM_ColorOK_Click(object sender, RoutedEventArgs e)
         {
-            if (tbControl != null && lControl != null)
+            if (TbControl != null && LControl != null)
             {
                 if (PART_SelectorColorPicker.IsSimpleColor)
                 {
-                    tbControl.Background = PART_SelectorColorPicker.GetSolidColorBrush();
-                    ThemeClass.SetThemeColor(lControl.Content.ToString(), PART_SelectorColorPicker.GetSolidColorBrush(), _settings);
+                    TbControl.Background = PART_SelectorColorPicker.GetSolidColorBrush();
+                    ThemeClass.SetThemeColor(LControl.Content.ToString(), PART_SelectorColorPicker.GetSolidColorBrush(), Settings);
                 }
                 else
                 {
-                    tbControl.Background = PART_SelectorColorPicker.GetLinearGradientBrush();
-                    ThemeClass.SetThemeColor(lControl.Content.ToString(), PART_SelectorColorPicker.GetLinearGradientBrush(), _settings);
+                    TbControl.Background = PART_SelectorColorPicker.GetLinearGradientBrush();
+                    ThemeClass.SetThemeColor(LControl.Content.ToString(), PART_SelectorColorPicker.GetLinearGradientBrush(), Settings);
                 }
             }
             else
             {
-                logger.Warn("One control is undefined");
+                Logger.Warn("One control is undefined");
             }
 
             PART_SelectorColor.Visibility = Visibility.Collapsed;
@@ -899,7 +896,7 @@ namespace ThemeModifier.Views
         #region Icon changer
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            ThemeModifierSettingsViewModel PluginSettings = (ThemeModifierSettingsViewModel)this.DataContext;
+            ThemeModifierSettingsViewModel pluginSettings = (ThemeModifierSettingsViewModel)DataContext;
 
             ToggleButton tb = (ToggleButton)sender;
             if (!(bool)tb.IsChecked)
@@ -924,18 +921,18 @@ namespace ThemeModifier.Views
                 tbUseIconWe4ponx.IsChecked = false;
             }
 
-            PluginSettings.Settings.UseIconCircle = (bool)tbUseIconCircle.IsChecked;
-            PluginSettings.Settings.UseIconClock = (bool)tbUseIconClock.IsChecked;
-            PluginSettings.Settings.UseIconSquareCorne = (bool)tbUseIconSquareCorne.IsChecked;
-            PluginSettings.Settings.UseIconWe4ponx = (bool)tbUseIconWe4ponx.IsChecked;
+            pluginSettings.Settings.UseIconCircle = (bool)tbUseIconCircle.IsChecked;
+            pluginSettings.Settings.UseIconClock = (bool)tbUseIconClock.IsChecked;
+            pluginSettings.Settings.UseIconSquareCorne = (bool)tbUseIconSquareCorne.IsChecked;
+            pluginSettings.Settings.UseIconWe4ponx = (bool)tbUseIconWe4ponx.IsChecked;
         }
 
         private void BtSetIcons_Click(object sender, RoutedEventArgs e)
         {
-            _settings.UseIconCircle = (bool)tbUseIconCircle.IsChecked;
-            _settings.UseIconClock = (bool)tbUseIconClock.IsChecked;
-            _settings.UseIconSquareCorne = (bool)tbUseIconSquareCorne.IsChecked;
-            _settings.UseIconWe4ponx = (bool)tbUseIconWe4ponx.IsChecked;
+            Settings.UseIconCircle = (bool)tbUseIconCircle.IsChecked;
+            Settings.UseIconClock = (bool)tbUseIconClock.IsChecked;
+            Settings.UseIconSquareCorne = (bool)tbUseIconSquareCorne.IsChecked;
+            Settings.UseIconWe4ponx = (bool)tbUseIconWe4ponx.IsChecked;
         }
         #endregion
 
@@ -944,12 +941,12 @@ namespace ThemeModifier.Views
         private void SetMenuItems()
         {
             Thread.Sleep(500);
-            var listItems = ThemeClass.GetListThemeColors(_PluginUserDataPath);
+            List<ThemeColors> listItems = ThemeClass.GetListThemeColors(PluginUserDataPath);
 
             if (listItems == null)
             {
                 Thread.Sleep(500);
-                listItems = ThemeClass.GetListThemeColors(_PluginUserDataPath);
+                listItems = ThemeClass.GetListThemeColors(PluginUserDataPath);
             }
 
             listItems.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -962,15 +959,15 @@ namespace ThemeModifier.Views
 
         private void PART_EditThemeMenuBtSave_Click(object sender, RoutedEventArgs e)
         {
-            string ThemeName = PART_EditThemeMenuSaveName.Text;
-            if (ThemeClass.SaveThemeColors(this, ThemeName, _PluginUserDataPath))
+            string themeName = PART_EditThemeMenuSaveName.Text;
+            if (ThemeClass.SaveThemeColors(this, themeName, PluginUserDataPath))
             {
-                _PlayniteApi.Dialogs.ShowMessage(resources.GetString("LOCThemeModifierManageSaveOk"), "ThemeModifier");
+                _ = API.Instance.Dialogs.ShowMessage(ResourceProvider.GetString("LOCThemeModifierManageSaveOk"), "ThemeModifier");
                 SetMenuItems();
             }
             else
             {
-                _PlayniteApi.Dialogs.ShowMessage(resources.GetString("LOCThemeModifierManageSaveKo"), "ThemeModifier");
+                _ = API.Instance.Dialogs.ShowMessage(ResourceProvider.GetString("LOCThemeModifierManageSaveKo"), "ThemeModifier");
             }
 
             PART_EditThemeMenuSaveName.Text = string.Empty;
@@ -979,21 +976,21 @@ namespace ThemeModifier.Views
 
         private void PART_EditThemeMenuSaveName_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            string ThemeName = PART_EditThemeMenuSaveName.Text;
-            PART_EditThemeMenuBtSave.IsEnabled = (ThemeName.Trim().Length > 3 && !ThemeClass.ThemeFileExist(ThemeName, _PluginUserDataPath));
+            string themeName = PART_EditThemeMenuSaveName.Text;
+            PART_EditThemeMenuBtSave.IsEnabled = themeName.Trim().Length > 3 && !ThemeClass.ThemeFileExist(themeName, PluginUserDataPath);
         }
 
         private void PART_EditThemeMenuBtLoad_Click(object sender, RoutedEventArgs e)
         {
-            string PathFileName = ((FrameworkElement)sender).Tag.ToString();
+            string pathFileName = ((FrameworkElement)sender).Tag.ToString();
 
             try
             {
-                ThemeClass.LoadThemeColors(PathFileName, _settings, this);
+                ThemeClass.LoadThemeColors(pathFileName, Settings, this);
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error on load {PathFileName}", true, "ThemeModifier");
+                Common.LogError(ex, false, $"Error on load {pathFileName}", true, "ThemeModifier");
             }
         }
 
@@ -1001,10 +998,10 @@ namespace ThemeModifier.Views
         {
             try
             {
-                string PathFileName = ((FrameworkElement)sender).Tag.ToString();
-                if (_PlayniteApi.Dialogs.ShowMessage(resources.GetString("LOCRemoveLabel") + " " + PathFileName,  "ThemeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                string pathFileName = ((FrameworkElement)sender).Tag.ToString();
+                if (API.Instance.Dialogs.ShowMessage(ResourceProvider.GetString("LOCRemoveLabel") + " " + pathFileName, "ThemeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    ThemeClass.DeleteThemeColors(PathFileName, _PluginUserDataPath);
+                    ThemeClass.DeleteThemeColors(pathFileName);
                     SetMenuItems();
                 }
             }
@@ -1016,7 +1013,7 @@ namespace ThemeModifier.Views
 
         private void PART_EditThemeMenuImport_Click(object sender, RoutedEventArgs e)
         {
-            string targetPath = _PlayniteApi.Dialogs.SelectFile("json file|*.json");
+            string targetPath = API.Instance.Dialogs.SelectFile("json file|*.json");
 
             if (!targetPath.IsNullOrEmpty())
             {
@@ -1028,19 +1025,19 @@ namespace ThemeModifier.Views
                 }
                 catch
                 {
-                    _PlayniteApi.Dialogs.ShowErrorMessage(resources.GetString("LOCThemeModifierManageNoFile"), "ThemeModifier");
+                    _ = API.Instance.Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCThemeModifierManageNoFile"), "ThemeModifier");
                     return;
                 }
 
                 if (themeColors.Name.IsNullOrEmpty())
                 {
-                    _PlayniteApi.Dialogs.ShowErrorMessage(resources.GetString("LOCThemeModifierManageNoFile"), "ThemeModifier");
+                    _ = API.Instance.Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCThemeModifierManageNoFile"), "ThemeModifier");
                     return;
                 }
 
-                string PathThemeColors = Path.Combine(_PluginUserDataPath, "ThemeColors");
-                string PathThemeColorsFile = Path.Combine(PathThemeColors, themeColors.Name + "_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".json");
-                File.Copy(targetPath, PathThemeColorsFile, true);
+                string pathThemeColors = Path.Combine(PluginUserDataPath, "ThemeColors");
+                string pathThemeColorsFile = Path.Combine(pathThemeColors, themeColors.Name + "_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + ".json");
+                File.Copy(targetPath, pathThemeColorsFile, true);
 
                 SetMenuItems();
             }
@@ -1048,12 +1045,12 @@ namespace ThemeModifier.Views
 
         private void PART_EditThemeMenuBtExport_Click(object sender, RoutedEventArgs e)
         {
-            string PathFileName = ((FrameworkElement)sender).Tag.ToString();
-            string targetPath = _PlayniteApi.Dialogs.SaveFile("json file|*.json", true);            
+            string pathFileName = ((FrameworkElement)sender).Tag.ToString();
+            string targetPath = API.Instance.Dialogs.SaveFile("json file|*.json", true);
 
             if (!targetPath.IsNullOrEmpty())
             {
-                File.Copy(PathFileName, targetPath, true);
+                File.Copy(pathFileName, targetPath, true);
             }
         }
 
@@ -1064,14 +1061,7 @@ namespace ThemeModifier.Views
             {
                 if (PART_EditThemeMenu != null)
                 {
-                    if (((TabControl)sender).SelectedIndex == 1 || ((TabControl)sender).SelectedIndex == 3)
-                    {
-                        PART_EditThemeMenu.IsEnabled = true;
-                    }
-                    else
-                    {
-                        PART_EditThemeMenu.IsEnabled = false;
-                    }
+                    PART_EditThemeMenu.IsEnabled = ((TabControl)sender).SelectedIndex == 1 || ((TabControl)sender).SelectedIndex == 3;
                 }
             }
             catch

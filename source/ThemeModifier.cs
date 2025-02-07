@@ -28,12 +28,12 @@ namespace ThemeModifier
         {
             // Theme default
             ThemeDefault = ThemeClass.GetThemeDefault();
-            ThemeDefaultConstants = ThemeClass.GetThemeDefaultConstants(PlayniteApi);
+            ThemeDefaultConstants = ThemeClass.GetThemeDefaultConstants();
 
             // Theme actual
             if (ThemeDefaultConstants.Count > 0)
             {
-                ThemeActualConstants = ThemeClass.GetThemeActualConstants(PluginSettings.Settings, PlayniteApi);
+                ThemeActualConstants = ThemeClass.GetThemeActualConstants(PluginSettings.Settings);
             }
 
             // Add modified values
@@ -112,9 +112,9 @@ namespace ThemeModifier
                     {
                         Text = "\ue91c",
                         FontSize = 20,
-                        FontFamily = resources.GetResource("CommonFont") as FontFamily
+                        FontFamily = ResourceProvider.GetResource("CommonFont") as FontFamily
                     },
-                    Title = resources.GetString("LOCThemeModifierEditThemeConstants"),
+                    Title = ResourceProvider.GetString("LOCThemeModifierEditThemeConstants"),
                     Activated = () =>
                     {
                         PluginSettings.Settings.OnlyEditConstant = true;
@@ -152,12 +152,12 @@ namespace ThemeModifier
 #if DEBUG
             gameMenuItems.Add(new GameMenuItem
             {
-                MenuSection = resources.GetString("LOCThemeModifier"),
+                MenuSection = ResourceProvider.GetString("LOCThemeModifier"),
                 Description = "-"
             });
             gameMenuItems.Add(new GameMenuItem
             {
-                MenuSection = resources.GetString("LOCThemeModifier"),
+                MenuSection = ResourceProvider.GetString("LOCThemeModifier"),
                 Description = "Test",
                 Action = (mainMenuItem) => { }
             });
@@ -183,12 +183,12 @@ namespace ThemeModifier
 #if DEBUG
             mainMenuItems.Add(new MainMenuItem
             {
-                MenuSection = MenuInExtensions + resources.GetString("LOCThemeModifier"),
+                MenuSection = MenuInExtensions + ResourceProvider.GetString("LOCThemeModifier"),
                 Description = "-"
             });
             mainMenuItems.Add(new MainMenuItem
             {
-                MenuSection = MenuInExtensions + resources.GetString("LOCThemeModifier"),
+                MenuSection = MenuInExtensions + ResourceProvider.GetString("LOCThemeModifier"),
                 Description = "Test",
                 Action = (mainMenuItem) => { }
             });
@@ -267,7 +267,7 @@ namespace ThemeModifier
 
         public override UserControl GetSettingsView(bool firstRunSettings)
         {
-            return new ThemeModifierSettingsView(PlayniteApi, PluginSettings.Settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath, this.GetPluginUserDataPath());
+            return new ThemeModifierSettingsView(PluginSettings.Settings, ThemeDefault, PlayniteApi.Paths.ConfigurationPath, GetPluginUserDataPath());
         }
         #endregion
     }

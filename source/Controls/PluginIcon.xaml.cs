@@ -22,13 +22,13 @@ namespace ThemeModifier.Controls
     public partial class PluginIcon : PluginUserControlExtendBase
     {
         private PluginIconDataContext ControlDataContext = new PluginIconDataContext();
-        internal override IDataContext _ControlDataContext
+        internal override IDataContext controlDataContext
         {
             get => ControlDataContext;
-            set => ControlDataContext = (PluginIconDataContext)_ControlDataContext;
+            set => ControlDataContext = (PluginIconDataContext)controlDataContext;
         }
 
-        private ThemeModifierSettingsViewModel PluginSettings;
+        private ThemeModifierSettingsViewModel PluginSettings { get; set; }
 
         private object CurrentIcon { get; set; }
 
@@ -60,16 +60,16 @@ namespace ThemeModifier.Controls
         #endregion
 
 
-        public PluginIcon(ThemeModifierSettingsViewModel PluginSettings)
+        public PluginIcon(ThemeModifierSettingsViewModel pluginSettings)
         {
-            this.PluginSettings = PluginSettings;
-        
+            PluginSettings = pluginSettings;
+
             InitializeComponent();
-            this.DataContext = ControlDataContext;
-        
-            this.PluginSettings.PropertyChanged += PluginSettings_PropertyChanged;
+            DataContext = ControlDataContext;
+
+            PluginSettings.PropertyChanged += PluginSettings_PropertyChanged;
             API.Instance.Database.Games.ItemUpdated += Games_ItemUpdated;
-        
+
             // Apply settings
             PluginSettings_PropertyChanged(null, null);
         }
@@ -82,11 +82,11 @@ namespace ThemeModifier.Controls
             ControlDataContext.ImageFrame = PluginSettings.Settings.BitmapFrame;
             ControlDataContext.ImageShape = PluginSettings.Settings.BitmapShape;
         }
-         
+
 
         public override void SetData(Game newContext)
         {
-            this.Icon = !GameContext.Icon.IsNullOrEmpty() ? API.Instance.Database.GetFullFilePath(GameContext.Icon) : string.Empty;
+            Icon = !GameContext.Icon.IsNullOrEmpty() ? API.Instance.Database.GetFullFilePath(GameContext.Icon) : string.Empty;
         }
 
 
@@ -100,7 +100,7 @@ namespace ThemeModifier.Controls
             CurrentIcon = newSource;
             BitmapImage image = null;
 
-            PART_Image.Source = (BitmapImage)resources.GetResource("DefaultGameIcon");
+            PART_Image.Source = (BitmapImage)ResourceProvider.GetResource("DefaultGameIcon");
 
             if (newSource != null)
             {
@@ -116,7 +116,7 @@ namespace ThemeModifier.Controls
                         }
                     }
 
-                    return (BitmapImage)resources.GetResource("DefaultGameIcon");
+                    return (BitmapImage)ResourceProvider.GetResource("DefaultGameIcon");
                 });
             }
 
@@ -127,13 +127,13 @@ namespace ThemeModifier.Controls
 
     public class PluginIconDataContext : ObservableObject, IDataContext
     {
-        private bool _IsActivated;
-        public bool IsActivated { get => _IsActivated; set => SetValue(ref _IsActivated, value);  }
+        private bool _isActivated;
+        public bool IsActivated { get => _isActivated; set => SetValue(ref _isActivated, value); }
 
-        private BitmapImage _ImageFrame;
-        public BitmapImage ImageFrame { get => _ImageFrame; set => SetValue(ref _ImageFrame, value); }
+        private BitmapImage _imageFrame;
+        public BitmapImage ImageFrame { get => _imageFrame; set => SetValue(ref _imageFrame, value); }
 
-        private BitmapImage _ImageShape;
-        public BitmapImage ImageShape { get => _ImageShape; set => SetValue(ref _ImageShape, value); }
+        private BitmapImage _imageShape;
+        public BitmapImage ImageShape { get => _imageShape; set => SetValue(ref _imageShape, value); }
     }
 }

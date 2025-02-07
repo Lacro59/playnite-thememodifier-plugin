@@ -26,10 +26,9 @@ namespace ThemeModifier.Services
 {
     public class ThemeClass
     {
-        private static readonly ILogger logger = LogManager.GetLogger();
-        private static readonly IResourceProvider resources = new ResourceProvider();
+        private static ILogger Logger => LogManager.GetLogger();
 
-        public static readonly List<string> ThemeVariables = new List<string>
+        public static List<string> ThemeVariables { get; set; } = new List<string>
         {
             "ControlBackgroundBrush",
             "TextBrush",
@@ -60,7 +59,7 @@ namespace ThemeModifier.Services
             "WindowBackgourndBrush",
         };
 
-        private static readonly List<string> ThemeFileToBackup = new List<string>();
+        private static List<string> ThemeFileToBackup { get; set; } = new List<string>();
 
 
         #region Theme colors
@@ -70,218 +69,218 @@ namespace ThemeModifier.Services
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "ControlBackgroundBrush", Element = resources.GetResource("ControlBackgroundBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "ControlBackgroundBrush", Element = ResourceProvider.GetResource("ControlBackgroundBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists ControlBackgroundBrush");
+                Logger.Warn($"Resources don't exists ControlBackgroundBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "TextBrush", Element = resources.GetResource("TextBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "TextBrush", Element = ResourceProvider.GetResource("TextBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists TextBrush");
+                Logger.Warn($"Resources don't exists TextBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "TextBrushDarker", Element = resources.GetResource("TextBrushDarker") });
+                ThemeDefault.Add(new ThemeElement { Name = "TextBrushDarker", Element = ResourceProvider.GetResource("TextBrushDarker") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists TextBrushDarker");
+                Logger.Warn($"Resources don't exists TextBrushDarker");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "TextBrushDark", Element = resources.GetResource("TextBrushDark") });
+                ThemeDefault.Add(new ThemeElement { Name = "TextBrushDark", Element = ResourceProvider.GetResource("TextBrushDark") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists TextBrushDark");
+                Logger.Warn($"Resources don't exists TextBrushDark");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "NormalBrush", Element = resources.GetResource("NormalBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "NormalBrush", Element = ResourceProvider.GetResource("NormalBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists NormalBrush");
+                Logger.Warn($"Resources don't exists NormalBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "NormalBrushDark", Element = resources.GetResource("NormalBrushDark") });
+                ThemeDefault.Add(new ThemeElement { Name = "NormalBrushDark", Element = ResourceProvider.GetResource("NormalBrushDark") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists NormalBrushDark");
+                Logger.Warn($"Resources don't exists NormalBrushDark");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "NormalBorderBrush", Element = resources.GetResource("NormalBorderBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "NormalBorderBrush", Element = ResourceProvider.GetResource("NormalBorderBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists NormalBorderBrush");
+                Logger.Warn($"Resources don't exists NormalBorderBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "HoverBrush", Element = resources.GetResource("HoverBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "HoverBrush", Element = ResourceProvider.GetResource("HoverBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists HoverBrush");
+                Logger.Warn($"Resources don't exists HoverBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "GlyphBrush", Element = resources.GetResource("GlyphBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "GlyphBrush", Element = ResourceProvider.GetResource("GlyphBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists GlyphBrush");
+                Logger.Warn($"Resources don't exists GlyphBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "HighlightGlyphBrush", Element = resources.GetResource("HighlightGlyphBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "HighlightGlyphBrush", Element = ResourceProvider.GetResource("HighlightGlyphBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists HighlightGlyphBrush");
+                Logger.Warn($"Resources don't exists HighlightGlyphBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "PopupBorderBrush", Element = resources.GetResource("PopupBorderBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "PopupBorderBrush", Element = ResourceProvider.GetResource("PopupBorderBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists PopupBorderBrush");
+                Logger.Warn($"Resources don't exists PopupBorderBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "TooltipBackgroundBrush", Element = resources.GetResource("TooltipBackgroundBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "TooltipBackgroundBrush", Element = ResourceProvider.GetResource("TooltipBackgroundBrush") });
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists TooltipBackgroundBrush");
+                Logger.Warn($"ThemeModifier - Resources don't exists TooltipBackgroundBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "ButtonBackgroundBrush", Element = resources.GetResource("ButtonBackgroundBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "ButtonBackgroundBrush", Element = ResourceProvider.GetResource("ButtonBackgroundBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists ButtonBackgroundBrush");
+                Logger.Warn($"Resources don't exists ButtonBackgroundBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "GridItemBackgroundBrush", Element = resources.GetResource("GridItemBackgroundBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "GridItemBackgroundBrush", Element = ResourceProvider.GetResource("GridItemBackgroundBrush") });
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists GridItemBackgroundBrush");
+                Logger.Warn($"ThemeModifier - Resources don't exists GridItemBackgroundBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "PanelSeparatorBrush", Element = resources.GetResource("PanelSeparatorBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "PanelSeparatorBrush", Element = ResourceProvider.GetResource("PanelSeparatorBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists PanelSeparatorBrush");
+                Logger.Warn($"Resources don't exists PanelSeparatorBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "WindowPanelSeparatorBrush", Element = resources.GetResource("WindowPanelSeparatorBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "WindowPanelSeparatorBrush", Element = ResourceProvider.GetResource("WindowPanelSeparatorBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists WindowPanelSeparatorBrush");
+                Logger.Warn($"Resources don't exists WindowPanelSeparatorBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "PopupBackgroundBrush", Element = resources.GetResource("PopupBackgroundBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "PopupBackgroundBrush", Element = ResourceProvider.GetResource("PopupBackgroundBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists PopupBackgroundBrush");
+                Logger.Warn($"Resources don't exists PopupBackgroundBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "CheckBoxCheckMarkBkBrush", Element = resources.GetResource("CheckBoxCheckMarkBkBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "CheckBoxCheckMarkBkBrush", Element = ResourceProvider.GetResource("CheckBoxCheckMarkBkBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists CheckBoxCheckMarkBkBrush");
+                Logger.Warn($"Resources don't exists CheckBoxCheckMarkBkBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "PositiveRatingBrush", Element = resources.GetResource("PositiveRatingBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "PositiveRatingBrush", Element = ResourceProvider.GetResource("PositiveRatingBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists PositiveRatingBrush");
+                Logger.Warn($"Resources don't exists PositiveRatingBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "NegativeRatingBrush", Element = resources.GetResource("NegativeRatingBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "NegativeRatingBrush", Element = ResourceProvider.GetResource("NegativeRatingBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists NegativeRatingBrush");
+                Logger.Warn($"Resources don't exists NegativeRatingBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "MixedRatingBrush", Element = resources.GetResource("MixedRatingBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "MixedRatingBrush", Element = ResourceProvider.GetResource("MixedRatingBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists MixedRatingBrush");
+                Logger.Warn($"Resources don't exists MixedRatingBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "ExpanderBackgroundBrush", Element = resources.GetResource("ExpanderBackgroundBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "ExpanderBackgroundBrush", Element = ResourceProvider.GetResource("ExpanderBackgroundBrush") });
             }
             catch
             {
-                logger.Warn($"ThemeModifier - Resources don't exists ExpanderBackgroundBrush");
+                Logger.Warn($"ThemeModifier - Resources don't exists ExpanderBackgroundBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "WindowBackgourndBrush", Element = resources.GetResource("WindowBackgourndBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "WindowBackgourndBrush", Element = ResourceProvider.GetResource("WindowBackgourndBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists WindowBackgourndBrush");
+                Logger.Warn($"Resources don't exists WindowBackgourndBrush");
             }
 
             try
             {
-                ThemeDefault.Add(new ThemeElement { Name = "WarningBrush", Element = resources.GetResource("WarningBrush") });
+                ThemeDefault.Add(new ThemeElement { Name = "WarningBrush", Element = ResourceProvider.GetResource("WarningBrush") });
             }
             catch
             {
-                logger.Warn($"Resources don't exists WarningBrush");
+                Logger.Warn($"Resources don't exists WarningBrush");
             }
 
             return ThemeDefault;
@@ -331,7 +330,7 @@ namespace ThemeModifier.Services
                     }
                     else
                     {
-                        logger.Warn($"Color is {color.toString()}");
+                        Logger.Warn($"Color is {color.toString()}");
                     }
                 }
                 else if (colorDefault != null)
@@ -340,7 +339,7 @@ namespace ThemeModifier.Services
                 }
                 else
                 {
-                    logger.Warn($"No default color");
+                    Logger.Warn($"No default color");
                 }
 
 
@@ -451,7 +450,7 @@ namespace ThemeModifier.Services
             }
         }
 
-        public static void RestoreColor(List<ThemeElement> ThemeDefault, ThemeModifierSettings settings, bool withSettings = false)
+        public static void RestoreColor(List<ThemeElement> themeDefault, ThemeModifierSettings settings, bool withSettings = false)
         {
             try
             {
@@ -464,7 +463,7 @@ namespace ThemeModifier.Services
                     UI ui = new UI();
                     List<ResourcesList> resourcesLists = new List<ResourcesList>();
 
-                    foreach (ThemeElement themeElement in ThemeDefault)
+                    foreach (ThemeElement themeElement in themeDefault)
                     {
                         resourcesLists.Add(new ResourcesList { Key = themeElement.Name, Value = themeElement.Element });
 
@@ -1240,34 +1239,34 @@ namespace ThemeModifier.Services
 
 
         #region Theme icons
-        public static ThemeManifest GetActualTheme(IPlayniteAPI PlayniteApi)
+        public static ThemeManifest GetActualTheme()
         {
             PlayniteTools.SetThemeInformation();
             return ThemeManager.CurrentTheme;
         }
 
-        public static Grid CreateControl(ThemeModifierSettings settings, double MaxHeight, ImageSource OriginalSource)
+        public static Grid CreateControl(ThemeModifierSettings settings, double maxHeight, ImageSource originalSource)
         {
             try
             {
                 string pluginFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string ImageName = string.Empty;
+                string imageName = string.Empty;
 
                 if (settings.UseIconCircle)
                 {
-                    ImageName = "circle";
+                    imageName = "circle";
                 }
                 if (settings.UseIconClock)
                 {
-                    ImageName = "clock";
+                    imageName = "clock";
                 }
                 if (settings.UseIconSquareCorne)
                 {
-                    ImageName = "squareCorne";
+                    imageName = "squareCorne";
                 }
                 if (settings.UseIconWe4ponx)
                 {
-                    ImageName = "we4ponx";
+                    imageName = "we4ponx";
                 }
 
 
@@ -1280,25 +1279,25 @@ namespace ThemeModifier.Services
                 Image PART_ImageFrame = new Image
                 {
                     Name = "PART_ImageFrame",
-                    MaxHeight = MaxHeight,
-                    MaxWidth = MaxHeight,
-                    Source = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}.png"))
+                    MaxHeight = maxHeight,
+                    MaxWidth = maxHeight,
+                    Source = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{imageName}.png"))
                 };
                 RenderOptions.SetBitmapScalingMode(PART_ImageFrame, BitmapScalingMode.Fant);
 
                 Image PART_ImageIcon = new Image
                 {
                     Name = "PART_ImageIcon",
-                    Source = OriginalSource,
+                    Source = originalSource,
                     Stretch = Stretch.Fill,
-                    MaxHeight = MaxHeight,
-                    MaxWidth = MaxHeight
+                    MaxHeight = maxHeight,
+                    MaxWidth = maxHeight
                 };
                 RenderOptions.SetBitmapScalingMode(PART_ImageFrame, BitmapScalingMode.Fant);
 
                 ImageBrush imgB = new ImageBrush
                 {
-                    ImageSource = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{ImageName}Shape.png"))
+                    ImageSource = new BitmapImage(new Uri($"{pluginFolder}\\Themes\\Images\\{imageName}Shape.png"))
                 };
 
                 PART_ImageIcon.OpacityMask = imgB;
@@ -1322,11 +1321,12 @@ namespace ThemeModifier.Services
 
 
         #region Theme manage
-        public static void LoadThemeColors(string PathFileName, ThemeModifierSettings settings, ThemeModifierSettingsView settingsView)
+        public static void LoadThemeColors(string pathFileName, ThemeModifierSettings settings, ThemeModifierSettingsView settingsView)
         {
-            ThemeColors themeColors = Serialization.FromJsonFile<ThemeColors>(PathFileName);
+            ThemeColors themeColors = Serialization.FromJsonFile<ThemeColors>(pathFileName);
             LoadThemeColors(themeColors, settings, settingsView);
         }
+        
         public static void LoadThemeColors(ThemeColors themeColors, ThemeModifierSettings settings, ThemeModifierSettingsView settingsView)
         {
             foreach(ThemeColorsElement themeColorsElement in themeColors.ThemeColorsElements)
@@ -1358,23 +1358,23 @@ namespace ThemeModifier.Services
                 }
                 else
                 {
-                    logger.Warn($"Bad control {"tb" + themeColorsElement.Name}: {control.ToString()}");
+                    Logger.Warn($"Bad control {"tb" + themeColorsElement.Name}: {control.ToString()}");
                 }
             }
         }
 
-        public static List<ThemeColors> GetListThemeColors(string PluginUserDataPath)
+        public static List<ThemeColors> GetListThemeColors(string pluginUserDataPath)
         {
-            List<ThemeColors> ListThemeColors = new List<ThemeColors>();
+            List<ThemeColors> listThemeColors = new List<ThemeColors>();
 
-            string PathThemeColors = Path.Combine(PluginUserDataPath, "ThemeColors");
+            string pathThemeColors = Path.Combine(pluginUserDataPath, "ThemeColors");
 
-            if (!Directory.Exists(PathThemeColors))
+            if (!Directory.Exists(pathThemeColors))
             {
-                Directory.CreateDirectory(PathThemeColors);
+                Directory.CreateDirectory(pathThemeColors);
             }
 
-            Parallel.ForEach(Directory.EnumerateFiles(PathThemeColors, "*.json"), (objectFile) =>
+            Parallel.ForEach(Directory.EnumerateFiles(pathThemeColors, "*.json"), (objectFile) =>
             {
                 Common.LogDebug(true, $"GetListThemeColors() - {objectFile}");
 
@@ -1382,7 +1382,7 @@ namespace ThemeModifier.Services
                 {
                     ThemeColors themeColors = Serialization.FromJsonFile<ThemeColors>(objectFile);
                     themeColors.FileName = objectFile;
-                    ListThemeColors.Add(themeColors);
+                    listThemeColors.Add(themeColors);
                 }
                 catch (Exception ex)
                 {
@@ -1390,30 +1390,31 @@ namespace ThemeModifier.Services
                 }
             });
 
-            return ListThemeColors;
+            return listThemeColors;
         }
 
-        public static void DeleteThemeColors(string PathFileName, string PluginUserDataPath)
+        public static void DeleteThemeColors(string pathFileName)
         {
             try
             {
-                    File.Delete(PathFileName);
+                File.Delete(pathFileName);
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error to delete file {PathFileName}", true, "ThemeModifier");
+                Common.LogError(ex, false, $"Error to delete file {pathFileName}", true, "ThemeModifier");
             }
         }
-        public static void DeleteThemeColors(ThemeColors themeColors, string PluginUserDataPath)
-        {
-            string PathThemeColors = Path.Combine(PluginUserDataPath, "ThemeColors");
 
-            if (!Directory.Exists(PathThemeColors))
+        public static void DeleteThemeColors(ThemeColors themeColors, string pluginUserDataPath)
+        {
+            string pathThemeColors = Path.Combine(pluginUserDataPath, "ThemeColors");
+
+            if (!Directory.Exists(pathThemeColors))
             {
-                Directory.CreateDirectory(PathThemeColors);
+                Directory.CreateDirectory(pathThemeColors);
             }
 
-            Parallel.ForEach(Directory.EnumerateFiles(PathThemeColors, "*.json"), (objectFile) =>
+            Parallel.ForEach(Directory.EnumerateFiles(pathThemeColors, "*.json"), (objectFile) =>
             {
                 try
                 {
@@ -1431,38 +1432,38 @@ namespace ThemeModifier.Services
             });
         }
 
-        public static void AddThemeColors(ThemeColors themeColors, string PluginUserDataPath)
+        public static void AddThemeColors(ThemeColors themeColors, string pluginUserDataPath)
         {
-            string PathThemeColors = Path.Combine(PluginUserDataPath, "ThemeColors");
-            string PathThemeColorsFile = Path.Combine(PathThemeColors, themeColors.Name + "_" + DateTime.Now.ToString("YYYY-MM-dd-HH-mm") + ".json");
+            string pathThemeColors = Path.Combine(pluginUserDataPath, "ThemeColors");
+            string pathThemeColorsFile = Path.Combine(pathThemeColors, themeColors.Name + "_" + DateTime.Now.ToString("YYYY-MM-dd-HH-mm") + ".json");
 
             try
             {
-                if (!Directory.Exists(PathThemeColors))
+                if (!Directory.Exists(pathThemeColors))
                 {
-                    Directory.CreateDirectory(PathThemeColors);
+                    Directory.CreateDirectory(pathThemeColors);
                 }
 
-                File.WriteAllText(PathThemeColorsFile, Serialization.ToJson(themeColors), Encoding.UTF8);
+                File.WriteAllText(pathThemeColorsFile, Serialization.ToJson(themeColors), Encoding.UTF8);
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error to create file {PathThemeColorsFile} for {themeColors.Name}", true, "ThemeModifier");
+                Common.LogError(ex, false, $"Error to create file {pathThemeColorsFile} for {themeColors.Name}", true, "ThemeModifier");
             }
         }
 
-        public static bool SaveThemeColors(ThemeModifierSettingsView settingsView, string ThemeName, string PluginUserDataPath)
+        public static bool SaveThemeColors(ThemeModifierSettingsView settingsView, string themeName, string pluginUserDataPath)
         {
-            ThemeColors themeColors = new ThemeColors { Name = ThemeName };
+            ThemeColors themeColors = new ThemeColors { Name = themeName };
 
-            string PathThemeColors = Path.Combine(PluginUserDataPath, "ThemeColors");
-            string PathThemeColorsFile = PathThemeColorsFile = Path.Combine(PathThemeColors, CommonPlayniteShared.Common.Paths.GetSafePathName(ThemeName) + ".json");
+            string pathThemeColors = Path.Combine(pluginUserDataPath, "ThemeColors");
+            string pathThemeColorsFile = Path.Combine(pathThemeColors, CommonPlayniteShared.Common.Paths.GetSafePathName(themeName) + ".json");
 
             try
             {
-                if (!Directory.Exists(PathThemeColors))
+                if (!Directory.Exists(pathThemeColors))
                 {
-                    Directory.CreateDirectory(PathThemeColors);
+                    Directory.CreateDirectory(pathThemeColors);
                 }
 
                 // Create object
@@ -1503,48 +1504,48 @@ namespace ThemeModifier.Services
                     }
                     else
                     {
-                        logger.Warn($"Bad control {"tb" + ControlName}: {control.ToString()}");
+                        Logger.Warn($"Bad control {"tb" + ControlName}: {control.ToString()}");
                     }
                 }
 
                 //SaveThemeColors object
-                File.WriteAllText(PathThemeColorsFile, Serialization.ToJson(themeColors), Encoding.UTF8);
+                File.WriteAllText(pathThemeColorsFile, Serialization.ToJson(themeColors), Encoding.UTF8);
             }
             catch (Exception ex)
             {
-                Common.LogError(ex, false, $"Error for save theme {ThemeName}", true, "ThemeModifier");
+                Common.LogError(ex, false, $"Error for save theme {themeName}", true, "ThemeModifier");
                 return false;
             }
 
             return true;
         }
 
-        public static bool ThemeFileExist(string ThemeName, string PluginUserDataPath)
+        public static bool ThemeFileExist(string themeName, string pluginUserDataPath)
         {
-            string PathThemeColors = Path.Combine(PluginUserDataPath, "ThemeColors");
-            string PathThemeColorsFile = PathThemeColorsFile = Path.Combine(PathThemeColors, CommonPlayniteShared.Common.Paths.GetSafePathName(ThemeName) + ".json");
+            string pathThemeColors = Path.Combine(pluginUserDataPath, "ThemeColors");
+            string pathThemeColorsFile = pathThemeColorsFile = Path.Combine(pathThemeColors, CommonPlayniteShared.Common.Paths.GetSafePathName(themeName) + ".json");
 
-            return File.Exists(PathThemeColorsFile);
+            return File.Exists(pathThemeColorsFile);
         }
         #endregion
 
 
         #region Theme constants
-        public static List<ThemeConstantsDefined> GetThemeConstants(IPlayniteAPI PlayniteApi)
+        public static List<ThemeConstantsDefined> GetThemeConstants()
         {
             dynamic thm = null;
             try
             {
-                ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
+                ThemeManifest themeInfos = GetActualTheme();
                 List<ThemeConstantsDefined> themeConstantsDefined = new List<ThemeConstantsDefined>();
-                string PathYaml = Path.Combine(ThemeInfos.DirectoryPath, "thememodifier.yaml");
+                string pathYaml = Path.Combine(themeInfos.DirectoryPath, "thememodifier.yaml");
 
-                if (File.Exists(PathYaml))
+                if (File.Exists(pathYaml))
                 {
                     try
                     {
                         var deserializer = new DeserializerBuilder().Build();
-                        thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(PathYaml));
+                        thm = deserializer.Deserialize<ExpandoObject>(File.ReadAllText(pathYaml));
 
                         if (thm != null && thm.Constants != null)
                         {
@@ -1581,35 +1582,32 @@ namespace ThemeModifier.Services
             }
         }
 
-        public static List<ThemeElement> GetThemeDefaultConstants(IPlayniteAPI PlayniteApi)
+        public static List<ThemeElement> GetThemeDefaultConstants()
         {
-            List<ThemeElement> ThemeDefaultConstants = new List<ThemeElement>();
+            List<ThemeElement> themeDefaultConstants = new List<ThemeElement>();
 
-            List<ThemeConstantsDefined> ListThemeConstants = GetThemeConstants(PlayniteApi);
-            foreach (ThemeConstantsDefined ConstantsDefined in ListThemeConstants)
+            List<ThemeConstantsDefined> listThemeConstants = GetThemeConstants();
+            foreach (ThemeConstantsDefined constantsDefined in listThemeConstants)
             {
                 try
                 {
-                    string param = Regex.Match(ConstantsDefined.Name, @"(\([+-]?([0-9]*[.])?[0-9]+,[ ]?[+-]?([0-9]*[.])?[0-9]+\))").Value;
+                    string param = Regex.Match(constantsDefined.Name, @"(\([+-]?([0-9]*[.])?[0-9]+,[ ]?[+-]?([0-9]*[.])?[0-9]+\))").Value;
                     ThemeSliderLimit themeSliderLimit = new ThemeSliderLimit();
                     if (!param.IsNullOrEmpty())
                     {
-                        ConstantsDefined.Name = ConstantsDefined.Name.Replace(param, string.Empty);
+                        constantsDefined.Name = constantsDefined.Name.Replace(param, string.Empty);
 
                         try
                         {
-                            double Min = 0;
-                            double Max = 30;
-
                             param = param.Replace("(", string.Empty).Replace(")", string.Empty);
                             var paramList = param.Split(',');
 
                             double.TryParse(paramList[0]
                                 .Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim()
-                                .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim(), out Min);
+                                .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim(), out double Min);
                             double.TryParse(paramList[1]
                                 .Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim()
-                                .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim(), out Max);
+                                .Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Trim(), out double Max);
 
                             themeSliderLimit.Min = Min;
                             themeSliderLimit.Max = Max;
@@ -1620,66 +1618,66 @@ namespace ThemeModifier.Services
                         }
                     }
 
-                    ThemeDefaultConstants.Add(new ThemeElement
+                    themeDefaultConstants.Add(new ThemeElement
                     {
-                        Name = ConstantsDefined.Name,
-                        Description = ConstantsDefined.Description,
-                        Element = resources.GetResource(ConstantsDefined.Name),
+                        Name = constantsDefined.Name,
+                        Description = constantsDefined.Description,
+                        Element = ResourceProvider.GetResource(constantsDefined.Name),
                         themeSliderLimit = themeSliderLimit
                     });
                 }
                 catch
                 {
-                    logger.Warn($"Resources don't exists {ConstantsDefined.Name}");
+                    Logger.Warn($"Resources don't exists {constantsDefined.Name}");
                 }
             }
 
-            return ThemeDefaultConstants;
+            return themeDefaultConstants;
         }
 
-        public static List<ThemeElement> GetThemeActualConstants(ThemeModifierSettings settings, IPlayniteAPI PlayniteApi)
+        public static List<ThemeElement> GetThemeActualConstants(ThemeModifierSettings settings)
         {
-            List<ThemeElement> ThemeActualConstants = new List<ThemeElement>();
+            List<ThemeElement> themeActualConstants = new List<ThemeElement>();
 
-            ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
-            ThemeConstants ThemeSettingsConstants = new ThemeConstants();
+            ThemeManifest themeInfos = GetActualTheme();
+            ThemeConstants themeSettingsConstants = new ThemeConstants();
 
-            if (!ThemeInfos.Id.IsNullOrEmpty())
+            if (!themeInfos.Id.IsNullOrEmpty())
             {
-                ThemeSettingsConstants = settings.ThemesConstants.Find(x => x.Id == ThemeInfos.Id);
+                themeSettingsConstants = settings.ThemesConstants.Find(x => x.Id == themeInfos.Id);
             }
             else
             {
-                ThemeSettingsConstants = settings.ThemesConstants.Find(x => x.Name == ThemeInfos.Name);
+                themeSettingsConstants = settings.ThemesConstants.Find(x => x.Name == themeInfos.Name);
             }
 
-            if (ThemeSettingsConstants != null)
+            if (themeSettingsConstants != null)
             {
-                foreach (ElementConstants elementConstants in ThemeSettingsConstants.Constants)
+                foreach (ElementConstants elementConstants in themeSettingsConstants.Constants)
                 {
-                    dynamic ConvertedResource = ConvertResourceWithString(elementConstants.Element, elementConstants.TypeResource, elementConstants.Opacity);
-                    if (ConvertedResource != null)
+                    dynamic convertedResource = ConvertResourceWithString(elementConstants.Element, elementConstants.TypeResource, elementConstants.Opacity);
+                    if (convertedResource != null)
                     {
-                        ThemeActualConstants.Add(new ThemeElement
+                        themeActualConstants.Add(new ThemeElement
                         {
                             Name = elementConstants.Name,
-                            Element = ConvertedResource
+                            Element = convertedResource
                         });
                     }
                 }
             }
 
-            return ThemeActualConstants;
+            return themeActualConstants;
         }
 
-        public static void SetThemeSettingsConstants(List<ThemeElement> ThemeConstants)
+        public static void SetThemeSettingsConstants(List<ThemeElement> themeConstants)
         {
             try
             {
                 UI ui = new UI();
                 List<ResourcesList> resourcesLists = new List<ResourcesList>();
                 
-                foreach (ThemeElement themeElement in ThemeConstants.Where(x => x.Element != null).ToList())
+                foreach (ThemeElement themeElement in themeConstants.Where(x => x.Element != null).ToList())
                 {
                     resourcesLists.Add(new ResourcesList { Key = themeElement.Name, Value = themeElement.Element });
                 }
@@ -1692,25 +1690,25 @@ namespace ThemeModifier.Services
             }
         }
 
-        public static List<ThemeConstants> GetThemesConstants(IPlayniteAPI PlayniteApi, List<ThemeElement> themesElements, List<ThemeConstants> ThemesConstants)
+        public static List<ThemeConstants> GetThemesConstants(List<ThemeElement> themesElements, List<ThemeConstants> themesConstants)
         {
-            ThemeManifest ThemeInfos = GetActualTheme(PlayniteApi);
+            ThemeManifest themeInfos = GetActualTheme();
 
             try
             {
-                List<ElementConstants> Constants = new List<ElementConstants>();
+                List<ElementConstants> constants = new List<ElementConstants>();
                 foreach (ThemeElement themeElement in themesElements)
                 {
-                    Constants.Add(ConvertResourceToThemeConstants(themeElement.Name, themeElement.Element));
+                    constants.Add(ConvertResourceToThemeConstants(themeElement.Name, themeElement.Element));
                 }
 
-                if (ThemesConstants.Find(x => x.Id == ThemeInfos.Id) != null)
+                if (themesConstants.Find(x => x.Id == themeInfos.Id) != null)
                 {
-                    ThemesConstants.Find(x => x.Id == ThemeInfos.Id).Constants = Constants;
+                    themesConstants.Find(x => x.Id == themeInfos.Id).Constants = constants;
                 }
                 else
                 {
-                    ThemesConstants.Add(new ThemeConstants { Id = ThemeInfos.Id, Name = ThemeInfos.Name, Constants = Constants });
+                    themesConstants.Add(new ThemeConstants { Id = themeInfos.Id, Name = themeInfos.Name, Constants = constants });
                 }
             }
             catch (Exception ex)
@@ -1718,139 +1716,139 @@ namespace ThemeModifier.Services
                 Common.LogError(ex, false, true, "ThemeModifier");
             }
 
-            return ThemesConstants;
+            return themesConstants;
         }
-#endregion
+        #endregion
 
 
-        private static dynamic ConvertResourceWithString(dynamic Element, string ElementType, double ElementOpacity)
+        private static dynamic ConvertResourceWithString(dynamic element, string elementType, double elementOpacity)
         {
-            dynamic ConvertedResource = null;
+            dynamic convertedResource = null;
 
-            switch (ElementType.ToLower())
+            switch (elementType.ToLower())
             {
                 case "bool":
-                    ConvertedResource = (bool)Element;
+                    convertedResource = (bool)element;
                     break;
                 case "string":
-                    ConvertedResource = (string)Element;
+                    convertedResource = (string)element;
                     break;
                 case "double":
-                    ConvertedResource = (double)Element;
+                    convertedResource = (double)element;
                     break;
                 case "int":
-                    ConvertedResource = (int)Element;
+                    convertedResource = (int)element;
                     break;
 
                 case "color":
-                    if (Element is string)
+                    if (element is string)
                     {
-                        ConvertedResource = (Color)ColorConverter.ConvertFromString((string)Element);
+                        convertedResource = (Color)ColorConverter.ConvertFromString((string)element);
                     }
-                    if (Element is Color)
+                    if (element is Color)
                     {
-                        ConvertedResource = (Color)Element;
+                        convertedResource = (Color)element;
                     }
                     break;
                 case "solidcolorbrush":
-                    if (Element is string)
+                    if (element is string)
                     {
-                        ConvertedResource = new SolidColorBrush((Color)ColorConverter.ConvertFromString((string)Element));
-                        ConvertedResource.Opacity = ElementOpacity;
+                        convertedResource = new SolidColorBrush((Color)ColorConverter.ConvertFromString((string)element));
+                        convertedResource.Opacity = elementOpacity;
                     }
-                    if (Element is Color)
+                    if (element is Color)
                     {
-                        ConvertedResource = new SolidColorBrush((Color)Element);
+                        convertedResource = new SolidColorBrush((Color)element);
                     }
                     break;
                 case "lineargradientbrush":
-                    ConvertedResource = Serialization.FromJson<ThemeLinearGradient>(Serialization.ToJson(Element)).ToLinearGradientBrush;
+                    convertedResource = Serialization.FromJson<ThemeLinearGradient>(Serialization.ToJson(element)).ToLinearGradientBrush;
                     break;
 
                 case "visibility":
-                    ConvertedResource = (Visibility)Element;
+                    convertedResource = (Visibility)element;
                     break;
 
                 case "verticalalignment":
-                    ConvertedResource = (VerticalAlignment)Element;
+                    convertedResource = (VerticalAlignment)element;
                     break;
 
                 case "horizontalalignment":
-                    ConvertedResource = (HorizontalAlignment)Element;
+                    convertedResource = (HorizontalAlignment)element;
                     break;
 
                 default:
-                    logger.Warn($"Element type not supported: {ElementType}");
+                    Logger.Warn($"Element type not supported: {elementType}");
                     break;
             }
 
-            return ConvertedResource;
+            return convertedResource;
         }
 
-        private static ElementConstants ConvertResourceToThemeConstants(string Name, dynamic Element)
+        private static ElementConstants ConvertResourceToThemeConstants(string name, dynamic element)
         {
-            ElementConstants ConvertedResource = new ElementConstants();
+            ElementConstants convertedResource = new ElementConstants();
 
-            if (Element is bool)
+            if (element is bool)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "bool", Element = (bool)Element };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "bool", Element = (bool)element };
             }
-            if (Element is string)
+            if (element is string)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "string", Element = (string)Element };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "string", Element = (string)element };
             }
-            if (Element is double)
+            if (element is double)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "double", Element = (double)Element };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "double", Element = (double)element };
             }
-            if (Element is int)
+            if (element is int)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "int", Element = (int)Element };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "int", Element = (int)element };
             }
 
-            if (Element is Color)
+            if (element is Color)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "color", Element = (Color)Element };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "color", Element = (Color)element };
             }
-            if (Element is SolidColorBrush)
+            if (element is SolidColorBrush)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "solidcolorbrush", Element = (Color)((SolidColorBrush)Element).Color, Opacity = ((SolidColorBrush)Element).Opacity };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "solidcolorbrush", Element = (Color)((SolidColorBrush)element).Color, Opacity = ((SolidColorBrush)element).Opacity };
             }
-            if (Element is LinearGradientBrush)
+            if (element is LinearGradientBrush)
             {
                 ThemeLinearGradient themeLinearGradient = new ThemeLinearGradient
                 {
-                    StartPoint = Element.StartPoint,
-                    EndPoint = Element.EndPoint,
+                    StartPoint = element.StartPoint,
+                    EndPoint = element.EndPoint,
                     GradientStop1 = new ThemeGradientColor
                     {
-                        ColorString = Element.GradientStops[0].Color.ToString(),
-                        ColorOffset = Element.GradientStops[0].Offset
+                        ColorString = element.GradientStops[0].Color.ToString(),
+                        ColorOffset = element.GradientStops[0].Offset
                     },
                     GradientStop2 = new ThemeGradientColor
                     {
-                        ColorString = Element.GradientStops[1].Color.ToString(),
-                        ColorOffset = Element.GradientStops[1].Offset
+                        ColorString = element.GradientStops[1].Color.ToString(),
+                        ColorOffset = element.GradientStops[1].Offset
                     }
                 };
 
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "lineargradientbrush", Element = (ThemeLinearGradient)themeLinearGradient };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "lineargradientbrush", Element = (ThemeLinearGradient)themeLinearGradient };
             }
 
-            if (Element is Visibility)
+            if (element is Visibility)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "visibility", Element = (Visibility)Element };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "visibility", Element = (Visibility)element };
             }
-            if (Element is VerticalAlignment)
+            if (element is VerticalAlignment)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "verticalalignment", Element = (VerticalAlignment)Element };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "verticalalignment", Element = (VerticalAlignment)element };
             }
-            if (Element is HorizontalAlignment)
+            if (element is HorizontalAlignment)
             {
-                ConvertedResource = new ElementConstants { Name = Name, TypeResource = "horizontalalignment", Element = (HorizontalAlignment)Element };
+                convertedResource = new ElementConstants { Name = name, TypeResource = "horizontalalignment", Element = (HorizontalAlignment)element };
             }
 
-            return ConvertedResource;
+            return convertedResource;
         }
     }
 }

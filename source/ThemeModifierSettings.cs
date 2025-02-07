@@ -1,4 +1,5 @@
 ﻿using CommonPluginsShared.Models;
+using CommonPluginsShared.Plugins;
 using Playnite.SDK;
 using Playnite.SDK.Data;
 using System;
@@ -14,10 +15,9 @@ using ThemeModifier.Views;
 
 namespace ThemeModifier
 {
-    public class ThemeModifierSettings : ObservableObject
+    public class ThemeModifierSettings : PluginSettings
     {
         #region Settings variables
-        public bool MenuInExtensions { get; set; } = true;
 
         [DontSerialize]
         public BitmapImage BitmapFrame { get; set; }
@@ -86,8 +86,8 @@ namespace ThemeModifier
         public List<ThemeConstants> ThemesConstants = new List<ThemeConstants>();
 
 
-        private bool _EnableIntegrationIcon = true;
-        public bool EnableIntegrationIcon { get => _EnableIntegrationIcon; set => SetValue(ref _EnableIntegrationIcon, value); }
+        private bool _enableIntegrationIcon = true;
+        public bool EnableIntegrationIcon { get => _enableIntegrationIcon; set => SetValue(ref _enableIntegrationIcon, value); }
 
         public bool UseIconCircle { get; set; } = true;
         public bool UseIconClock { get; set; } = false;
@@ -108,8 +108,8 @@ namespace ThemeModifier
         private readonly ThemeModifier Plugin;
         private ThemeModifierSettings EditingClone { get; set; }
 
-        private ThemeModifierSettings _Settings;
-        public ThemeModifierSettings Settings { get => _Settings; set => SetValue(ref _Settings, value); }
+        private ThemeModifierSettings _settings;
+        public ThemeModifierSettings Settings { get => _settings; set => SetValue(ref _settings, value); }
 
 
         public ThemeModifierSettingsViewModel(ThemeModifier plugin)
@@ -151,7 +151,7 @@ namespace ThemeModifier
         // This method should save settings made to Option1 and Option2.
         public void EndEdit()
         {
-            Settings.ThemesConstants = ThemeClass.GetThemesConstants(Plugin.PlayniteApi, ThemeModifierSettingsView.SettingsThemeConstants, Settings.ThemesConstants);
+            Settings.ThemesConstants = ThemeClass.GetThemesConstants(ThemeModifierSettingsView.SettingsThemeConstants, Settings.ThemesConstants);
             ThemeModifier.ThemeActualConstants = ThemeModifierSettingsView.SettingsThemeConstants;
 
             ThemeClass.SetThemeSettingsConstants(ThemeModifier.ThemeDefaultConstants);
